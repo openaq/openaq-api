@@ -11,7 +11,7 @@
     "docs": "apidoc -i api/ -o docs/"
   },
   "author": "",
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "async": "^1.2.1",
     "boom": "^2.8.0",
