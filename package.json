@@ -1,0 +1,43 @@
+{
+  "name": "openaq-api",
+  "version": "0.1.0",
+  "description": "An API for open air quality data.",
+  "repository": "https://github.com/openaq/openaq-api",
+  "main": "",
+  "scripts": {
+    "lint": "semistandard",
+    "test": "npm run lint",
+    "start": "node index.js",
+    "docs": "apidoc -i api/ -o docs/"
+  },
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "async": "^1.2.1",
+    "boom": "^2.8.0",
+    "good": "^6.3.0",
+    "good-console": "^5.0.2",
+    "hapi": "^8.8.0",
+    "hapi-paginate": "^0.2.0",
+    "hapi-response-meta": "^0.2.0",
+    "hapi-router": "^3.0.1",
+    "lodash": "^3.9.3",
+    "moment": "^2.10.3",
+    "mongodb": "^2.0.35",
+    "request": "^2.58.0",
+    "require-dir": "^0.3.0",
+    "sendgrid": "^1.9.0"
+  },
+  "devDependencies": {
+    "apidoc": "^0.13.1",
+    "semistandard": "^6.1.2"
+  },
+  "apidoc": {
+    "title": "Open AQ Platform API",
+    "name": "Open AQ Platform API",
+    "url": "https://api.openaq.org/v1",
+    "template": {
+      "withCompare": false
+    }
+  }
+}
