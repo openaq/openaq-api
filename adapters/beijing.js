@@ -80,5 +80,24 @@ var formatData = function (data) {
     'measurements': measurements
   };
 
+  // Make sure the parameters names match with what the platform expects.
+  renameParameters(parsed.measurements);
+
   return parsed;
+};
+
+var renameParameters = function (measurements) {
+  _.map(measurements, function (m) {
+    var newName;
+    switch (m.parameter) {
+      case 'Beijing - PM2.5':
+        newName = 'pm25';
+        break;
+      default:
+        newName = m.parameter;
+        break;
+    }
+    m.parameter = newName;
+    return m;
+  });
 };

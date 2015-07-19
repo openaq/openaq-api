@@ -63,5 +63,28 @@ var formatData = function (data) {
     'name': data.name,
     'measurements': measurements
   };
+
+  // Make sure the parameters names match with what the platform expects.
+  renameParameters(parsed.measurements);
+
   return parsed;
+};
+
+var renameParameters = function (measurements) {
+  _.map(measurements, function (m) {
+    var newName;
+    switch (m.parameter) {
+      case 'Particulate Matter < 2.5 µg':
+        newName = 'pm25';
+        break;
+      case 'Particulate Matter < 10 µg':
+        newName = 'pm10';
+        break;
+      default:
+        newName = m.parameter;
+        break;
+    }
+    m.parameter = newName;
+    return m;
+  });
 };
