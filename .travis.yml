@@ -11,6 +11,8 @@ branches:
   - master
 before_install:
 - chmod +x ./.build_scripts/docs.sh
+script:
+- echo Removing tests for now due to eslint issues && exit 1
 after_success:
 - "./.build_scripts/docs.sh"
 deploy:
