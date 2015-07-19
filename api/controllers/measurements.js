@@ -29,7 +29,12 @@ module.exports.query = function (payload, page, limit, cb) {
     // Test to make sure the date is formatted correctly
     var toDate = new Date(payload.date_to);
     if (!isNaN(toDate.getTime())) {
-      payload.date = { $lte: new Date(payload.date_to) };
+      // Check if we already have a date set for $gte
+      if (payload.date) {
+        payload.date['$lte'] = new Date(payload.date_to);
+      } else {
+        payload.date = { $lte: new Date(payload.date_to) };
+      }
     }
 
     // sanitize payload
@@ -59,7 +64,6 @@ module.exports.query = function (payload, page, limit, cb) {
   var skip = limit * (page - 1);
 
   // Execute the search and return the result via callback
-  console.log(payload);
   c.count(payload, function (err, count) {
     if (err) {
       return cb(err);
