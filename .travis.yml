@@ -17,6 +17,6 @@ deploy:
   provider: heroku
   api_key:
     secure: E0Hyt+HMDb0NYR8fySMn2kYja+AkZccKakFuOPYVHyb791+YZYSq0+8QxIQ8ktIibsP+YxB941lgB1LDyDpNLLywzt5zDi+i5pwCfB8QwDdx2InUhkxC1HY+s0KKQwVq5nF9iLxWZ0L2wV3QPc1LS3togE5kq2Q/GWrJefhJ1IIn+BMn7HVuNe4iLhwVxp2+HLQmdE+ibqjB0YvavjQlLD64ItAkeS5ROgc4UQjzMWcDUiyfDr6qLsE+jXEfq7muhmb9KQ7rNUjRW/P7eh/jRNH0bZYZ06BaIkYyAkEv946bHZebnFeEgS7d/rk6uLtWegF+vA3Iv/5wKBFoL2Gp7tf7/TNMYIsUC7IGBiWf8TZtH0SJGrBGH5E98zJrLsVAiTmePhDEpg0Q39XZQo0vT92VKSiDHX07r7PBu5hnJiw8nAmJPJkDu9vfj9tlQmhbkvWd/Omkup16SOdoXa8+X0EcDxReWwgIHChY/NAckOjmWpJzoCZrYlv7Beh7WFZMzOskjQ7FYSNpt/GSOC9rrGTwVfNg8kVOhRKYONZoKC9layiQrKXYtEWBdDfPhN1xG/ldKT0/2XRpsSD0e5/sYgzMmNd9sZFu9h/PaFqXMJQSR0gHp32PJbMxjcpuS7GdJYVSZSuVnJdAv6nikXH+uz5UZT5/ZuzHtUdfxSDCg18=
-  app: nameless-ocean-6420
+  app: openaq-api
   on:
     repo: openaq/openaq-api
