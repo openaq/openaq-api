@@ -43,7 +43,7 @@ var getAndSaveData = function (site) {
       if (!isValid) {
         var error = {message: 'Adapeter returned invalid results.', site: site.name};
         mailer.sendFailureEmail(site.contacts, site.name, error);
-        return done(null, err);
+        return done(null, error);
       }
 
       // If we have no measurements to insert, we can exit now
