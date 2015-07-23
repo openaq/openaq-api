@@ -6,6 +6,7 @@ var async = require('async');
 var _ = require('lodash');
 var MongoClient = require('mongodb').MongoClient;
 var mailer = require('./lib/mailer');
+var utils = require('./lib/utils');
 
 var adapters = require('./adapters');
 
@@ -28,11 +29,30 @@ var getAndSaveData = function (site) {
     }
 
     adapter.fetchData(site.url, function (err, data) {
-      // If we have an error, send an email to the main contact and stop
+      // If we have an error, send an email to the contacts and stop
       if (err) {
         mailer.sendFailureEmail(site.contacts, site.name, err);
         err.site = site.name;
         return done(null, err);
+      }
+
+      // Verify the data format
+      var isValid = utils.verifyDataFormat(data);
+
+      // If the data format is invalid, let the contacts know
+      if (!isValid) {
+        var error = {message: 'Adapeter returned invalid results.', site: site.name};
+        mailer.sendFailureEmail(site.contacts, site.name, error);
+        return done(null, err);
+      }
+
+      // If we have no measurements to insert, we can exit now
+      if (data.measurements && data.measurements.length === 0) {
+        var msg = {
+          message: 'New measurements inserted for ' + site.name + ': 0',
+          site: site.name
+        };
+        return done(null, msg);
       }
 
       var bulk = measurementsCollection.initializeUnorderedBulkOp();
