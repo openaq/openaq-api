@@ -1,5 +1,6 @@
 'use static';
 
+require('newrelic');
 var database = require('./api/services/db.js');
 var Server = require('./api/services/server.js');
 
