@@ -5,22 +5,27 @@ var _ = require('lodash');
 
 exports.name = 'beijing';
 
-exports.fetchData = function (url, cb) {
-  var finalURL = url + '?apitoken=' + process.env.INDIA_KIMONO_TOKEN;
+exports.fetchData = function (site, cb) {
+  var finalURL = site.url + '?apitoken=' + process.env.INDIA_KIMONO_TOKEN;
   request(finalURL, function (err, res, body) {
     if (err || res.statusCode !== 200) {
       console.error(err || res);
       return cb({message: 'Failure to load data url.'});
     }
 
-    // Format the data
-    var data = formatData(body);
+    // Wrap everything in a try/catch in case something goes wrong
+    try {
+      // Format the data
+      var data = formatData(body);
 
-    // Make sure the data is valid
-    if (data === undefined) {
-      return cb({message: 'Failure to parse data.'});
+      // Make sure the data is valid
+      if (data === undefined) {
+        return cb({message: 'Failure to parse data.'});
+      }
+      cb(null, data);
+    } catch (e) {
+      return cb({message: 'Unknown adapter error.'});
     }
-    cb(null, data);
   });
 };
 

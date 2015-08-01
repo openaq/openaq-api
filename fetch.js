@@ -28,7 +28,7 @@ var getAndSaveData = function (site) {
       return done(null, err);
     }
 
-    adapter.fetchData(site.url, function (err, data) {
+    adapter.fetchData(site, function (err, data) {
       // If we have an error, send an email to the contacts and stop
       if (err) {
         mailer.sendFailureEmail(site.contacts, site.name, err);
