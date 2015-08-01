@@ -76,7 +76,7 @@ var formatData = function (data) {
     return {
       parameter: m.parameter,
       date: date,
-      value: valueObj.value,
+      value: Number(valueObj.value),
       unit: valueObj.unit
     };
   });

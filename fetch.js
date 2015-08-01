@@ -41,7 +41,7 @@ var getAndSaveData = function (site) {
 
       // If the data format is invalid, let the contacts know
       if (!isValid) {
-        var error = {message: 'Adapeter returned invalid results.', site: site.name};
+        var error = {message: 'Adapter returned invalid results.', site: site.name};
         mailer.sendFailureEmail(site.contacts, site.name, error);
         return done(null, error);
       }
