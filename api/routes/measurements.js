@@ -11,6 +11,8 @@ var m = require('../controllers/measurements.js');
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter.
+ * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
+ * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
  * @apiParam {string} [date_from] Show results after a certain date.
  * @apiParam {string} [date_to] Show results before a certain date.
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.

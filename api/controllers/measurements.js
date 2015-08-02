@@ -14,7 +14,9 @@ module.exports.query = function (payload, page, limit, cb) {
   // Get the collection
   var c = db.collection('measurements');
 
-  // Handle date ranges
+  //
+  // Date ranges
+  //
   if (_.has(payload, 'date_from')) {
     // Test to make sure the date is formatted correctly
     var fromDate = new Date(payload.date_from);
@@ -41,8 +43,36 @@ module.exports.query = function (payload, page, limit, cb) {
     payload = _.omit(payload, 'date_to');
   }
 
+  //
+  // Value ranges
+  //
+  if (_.has(payload, 'value_from')) {
+    if (isNaN(Number(payload.value_from)) === false) {
+      payload.value = { $gte: Number(payload.value_from) };
+    }
+
+    // sanitized payload
+    payload = _.omit(payload, 'value_from');
+  }
+
+  if (_.has(payload, 'value_to')) {
+    if (isNaN(Number(payload.value_to)) === false) {
+      // Check if we already have a value set for $gte
+      if (payload.value) {
+        payload.value['$lte'] = Number(payload.value_to);
+      } else {
+        payload.value = { $lte: Number(payload.value_to) };
+      }
+    }
+
+    // sanitized payload
+    payload = _.omit(payload, 'value_to');
+  }
+
+  //
   // Handle custom sorts, starting with default of most recent measurements
   // first. Do nothing if we don't have both sort and order_by.
+  //
   var sort = { date: -1 };
   if (_.has(payload, 'sort') && _.has(payload, 'order_by')) {
     // Custom sort, overwrite default
@@ -60,7 +90,9 @@ module.exports.query = function (payload, page, limit, cb) {
     payload = _.omit(payload, 'order_by');
   }
 
+  //
   // Apply paging
+  //
   var skip = limit * (page - 1);
 
   // Execute the search and return the result via callback
