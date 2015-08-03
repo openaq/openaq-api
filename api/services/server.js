@@ -4,10 +4,7 @@ var Hapi = require('hapi');
 
 var Server = function (port) {
   this.port = port;
-};
-
-Server.prototype.start = function (cb) {
-  var hapi = new Hapi.Server({
+  this.hapi = new Hapi.Server({
     connections: {
       routes: {
         cors: true
@@ -21,11 +18,14 @@ Server.prototype.start = function (cb) {
       request: [ 'error', 'received', 'response' ]
     } : false
   });
+};
 
-  hapi.connection({ port: this.port });
+Server.prototype.start = function (cb) {
+  var self = this;
+  self.hapi.connection({ port: this.port });
 
   // Register hapi-router
-  hapi.register({
+  self.hapi.register({
     register: require('hapi-router'),
     options: {
       routes: './api/routes/*.js'
@@ -35,7 +35,7 @@ Server.prototype.start = function (cb) {
   });
 
   // Register hapi-response-meta
-  hapi.register({
+  self.hapi.register({
     register: require('hapi-response-meta'),
     options: {
       content: {
@@ -50,7 +50,7 @@ Server.prototype.start = function (cb) {
   });
 
   // Register hapi-paginate
-  hapi.register({
+  self.hapi.register({
     register: require('hapi-paginate'),
     options: {
       limit: 100,
@@ -69,15 +69,15 @@ Server.prototype.start = function (cb) {
     }]
   };
 
-  hapi.register({
+  self.hapi.register({
     register: require('good'),
     options: options
   }, function (err) {
     if (err) throw err;
   });
 
-  hapi.start(function () {
-    hapi.log(['info'], 'Server running at:' + hapi.info.uri);
+  self.hapi.start(function () {
+    self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
     if (cb && typeof cb === 'function') {
       cb();
     }

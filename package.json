@@ -6,7 +6,7 @@
   "main": "",
   "scripts": {
     "lint": "semistandard",
-    "test": "echo removing linting due to eslint issues",
+    "test": "mocha test/**",
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/"
   },
@@ -30,7 +30,9 @@
     "sendgrid": "^1.9.0"
   },
   "devDependencies": {
-    "apidoc": "^0.13.1"
+    "apidoc": "^0.13.1",
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
   },
   "apidoc": {
     "title": "Open AQ Platform API",

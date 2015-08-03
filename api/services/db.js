@@ -17,6 +17,10 @@ exports.connect = function (dbURL, cb) {
   });
 };
 
+exports.drop = function (cb) {
+  exports.db.dropDatabase(cb);
+};
+
 exports.close = function () {
   exports.db.close();
 };
