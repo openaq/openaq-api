@@ -7,9 +7,6 @@ env:
   - GH_REF=github.com/openaq/openaq-api.git
   - PRODUCTION_BRANCH=master
   - secure: c7WtkBq9BI1H3L2QUznuFz1JKtLepFdHhQnyI/DraN8CkleAuYmLaoP5lPwSa6ksVW45r68EcCurwNxdwGcnAVcSLsC0gAqtkYQQXcvGR+YZglDflUBSgC58wkjalOAPCzR+NgzVfocELm4USwIH/EeCSDUy+jz4vml011la7JEEJaZJB1sV61U4Az4hnaGzJg4pujdx/oIOmwJnGx3R9qgiLOxT6O8jMZ2+WPz6PHJjOLpeyRD2LwW9iCVjWG8k7SRB7pylg3Y/n2dnxF1QFd+Sq9rMmKxlBvVk5+WgENa3cNXabCuF9FNuR2L8kvNjOqVlNEpOPusQBNZkQVGghwUVLDBS0ZSyCoHgU8Kf+FG8X55vVSWz4LhFuxC+GASYGHUoBnIBP1Hp7kUvcEJBeZS6493nOlDzaBylOwjib2t8uiuFf3XdTsmvK6nB8TuQ3sxsVYjcOQ9+4s08agCIOhczY63VHmO8oNMqkcE145HR8kqzVuOXnPGDr7Q6TM7PpKNsAGBd/dB6z8QKQDC9A4nYO3TpYDEPe/aHpmbpy93xzfi4FldO7fB1LE92SymjDO2pVvtZZzH3jN8NnVFbIQutupTcHvO5MBMXUl3f0HbKCqe2mgbYVJ33bPpCLnMk9FJORJxJlXlniOjm5iA9Tk9n5zh+uKF9XgW+ZS3Sd3U=
-branches:
-  only:
-  - master
 before_install:
 - chmod +x ./.build_scripts/docs.sh
 after_success:
@@ -21,3 +18,4 @@ deploy:
   app: openaq-api
   on:
     repo: openaq/openaq-api
+    branch: master
