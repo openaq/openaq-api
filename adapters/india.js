@@ -85,6 +85,12 @@ var renameParameters = function (measurements) {
       case 'Particulate Matter < 10 µg':
         newName = 'pm10';
         break;
+      case 'Nitrogen Dioxide':
+        newName = 'no2';
+        break;
+      case 'Ozone':
+        newName = 'ozone';
+        break;
       default:
         newName = m.parameter;
         break;

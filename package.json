@@ -23,6 +23,7 @@
     "hapi-router": "^3.0.1",
     "lodash": "^3.9.3",
     "moment": "^2.10.3",
+    "moment-timezone": "^0.4.0",
     "mongodb": "^2.0.35",
     "newrelic": "^1.21.1",
     "request": "^2.58.0",
