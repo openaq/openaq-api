@@ -50,10 +50,10 @@ var formatData = function (data) {
     // Do some magic to turn 24:00 into the next day 00:00
     if (s.match(/24:00:$/) !== null) {
       s = s.replace(/24:00:$/, '00:00:00');
-      date = moment.tz(s, 'MM/DD/YYYY HH:mm:ss', 'Europe/London');
+      date = moment.tz(s, 'DD/MM/YYYY HH:mm:ss', 'Europe/London');
       date.add(1, 'day');
     } else {
-      date = moment.tz(s, 'MM/DD/YYYY HH:mm:ss', 'Europe/London');
+      date = moment.tz(s, 'DD/MM/YYYY HH:mm:ss', 'Europe/London');
     }
 
     return date;
