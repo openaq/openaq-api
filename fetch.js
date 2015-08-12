@@ -57,7 +57,7 @@ var getAndSaveData = function (site) {
 
       var bulk = measurementsCollection.initializeUnorderedBulkOp();
       _.forEach(data.measurements, function (m) {
-        m.location = data.name;
+        m.location = m.location || data.name; // use existing location if it exists
         m.country = site.country;
         m.city = site.city;
         bulk.insert(m);
