@@ -41,13 +41,67 @@ describe('Testing measurements endpoints', function () {
     });
   });
 
-  it('should return something', function (done) {
+  it('should return properly', function (done) {
     request(self.baseURL + 'measurements', function (err, response, body) {
       if (err) {
-        console.log(err);
+        console.error(err);
       }
+
       var res = JSON.parse(body);
-      expect(res).to.exist;
+      expect(res.results.length).to.equal(74);
+      done();
+    });
+  });
+
+  it('has a meta block', function (done) {
+    request(self.baseURL + 'measurements', function (err, response, body) {
+      if (err) {
+        console.error(err);
+      }
+
+      var res = JSON.parse(body);
+      var testMeta = { name: 'openaq-api',
+        license: 'CC0-1.0',
+        website: 'https://docs.openaq.org/',
+        page: 1,
+        limit: 100,
+        found: 74
+      };
+      expect(res.meta).to.deep.equal(testMeta);
+      done();
+    });
+  });
+
+  it('should return an object like a good API', function (done) {
+    request(self.baseURL + 'measurements?_id=55bd532882c329ae31f8c0d5', function (err, response, body) {
+      if (err) {
+        console.error(err);
+      }
+
+      var res = JSON.parse(body);
+      var testObj = {
+        _id: '55bd532882c329ae31f8c0d5',
+        parameter: 'Wind Direction',
+        date: '2015-07-24T11:30:00.000Z',
+        value: 35,
+        unit: 'Degrees',
+        location: 'Punjabi Bagh',
+        country: 'IN',
+        city: 'Delhi'
+      };
+      expect(res.results[0]).to.deep.equal(testObj);
+      done();
+    });
+  });
+
+  it('should return csv when asked to', function (done) {
+    request(self.baseURL + 'measurements?limit=1&format=csv&_id=55bd532882c329ae31f8c08d', function (err, response, body) {
+      if (err) {
+        console.error(err);
+      }
+
+      var csv = 'location,city,country,date,parameter,value,unit\nAnand Vihar,Delhi,IN,2015-07-24T11:30:00.000Z,Ammonia,32.6,µg/m3\n';
+      expect(body).to.equal(csv);
       done();
     });
   });

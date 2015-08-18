@@ -43,7 +43,7 @@ Server.prototype.start = function (cb) {
         license: 'CC0-1.0',
         website: process.env.RESPONSE_HEADER_SERVER || 'https://docs.openaq.org/'
       },
-      routes: ['/v1/measurements', '/v1/sites']
+      excludeFormats: ['csv']
     }
   }, function (err) {
     if (err) throw err;
@@ -54,7 +54,7 @@ Server.prototype.start = function (cb) {
     register: require('hapi-paginate'),
     options: {
       limit: 100,
-      routes: ['/v1/measurements', '/v1/sites']
+      excludeFormats: ['csv']
     }
   }, function (err) {
     if (err) throw err;

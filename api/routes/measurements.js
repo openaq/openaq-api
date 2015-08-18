@@ -2,6 +2,8 @@
 
 var Boom = require('boom');
 var m = require('../controllers/measurements.js');
+var _ = require('lodash');
+var csv = require('csv-stringify');
 
 /**
  * @api {get} /measurements GET
@@ -20,6 +22,7 @@ var m = require('../controllers/measurements.js');
  * @apiParam {number} [limit=100] Change the number of results returned, max is 100.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
+ * @apiParam {string} [format=json] Format for data return, can be `csv`, defaults to `json`.
  *
  * @apiSuccess {string}   _id            Unique ID
  * @apiSuccess {date}   date          Date and time of measurement (UTC)
@@ -65,6 +68,13 @@ module.exports = [
         params = request.query;
       }
 
+      // Check if this is supposed to be formatted as csv
+      var formatForCSV = false;
+      if (params.format === 'csv') {
+        formatForCSV = true;
+      }
+      params = _.omit(params, 'format');
+
       // Set max limit to 100
       request.limit = Math.min(request.limit, 100);
 
@@ -75,8 +85,27 @@ module.exports = [
           return reply(Boom.badImplementation(err));
         }
 
-        request.count = count;
-        return reply(records);
+        if (formatForCSV) {
+          var options = {
+            header: true,
+            columns: ['location', 'city', 'country', 'date', 'parameter', 'value', 'unit']
+          };
+
+          csv(records, options, function (err, data) {
+            if (err) {
+              console.error(err);
+              return reply(Boom.badImplementation(err));
+            }
+
+            // And force the csv to be downloaded in browser
+            var response = reply(data);
+            response.header('Content-type', 'text/csv');
+            response.header('Content-disposition', 'attachment;filename=openaq.csv');
+          });
+        } else {
+          request.count = count;
+          return reply(records);
+        }
       });
 
     }
