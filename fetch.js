@@ -46,6 +46,12 @@ var getAndSaveData = function (site) {
         return done(null, error);
       }
 
+      // Remove any unwanted measurement fields
+      var validParams = ['pm25', 'pm10', 'no2', 'so2', 'o3', 'co', 'bc'];
+      data.measurements = _.filter(data.measurements, function (m) {
+        return validParams.indexOf(m.parameter) !== -1;
+      });
+
       // If we have no measurements to insert, we can exit now
       if (data.measurements && data.measurements.length === 0) {
         var msg = {

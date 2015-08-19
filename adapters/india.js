@@ -22,7 +22,7 @@ exports.fetchData = function (site, cb) {
       if (data === undefined) {
         return cb({message: 'Failure to parse data.'});
       }
-      cb(null, data);
+      return cb(null, data);
     } catch (e) {
       return cb({message: 'Unknown adapter error.'});
     }
@@ -89,7 +89,7 @@ var renameParameters = function (measurements) {
         newName = 'no2';
         break;
       case 'Ozone':
-        newName = 'ozone';
+        newName = 'o3';
         break;
       default:
         newName = m.parameter;

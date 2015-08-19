@@ -84,7 +84,7 @@ var formatData = function (data) {
 
     // Ozone
     obj = _.clone(base);
-    obj.parameter = 'ozone';
+    obj.parameter = 'o3';
     obj.measuredValue = location.oone8hourmeanugm3;
     l.measurements.push(obj);
 
