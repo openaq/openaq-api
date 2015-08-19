@@ -12,7 +12,7 @@ var csv = require('csv-stringify');
  *
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
- * @apiParam {string} [parameter] Limit to only a certain parameter.
+ * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
  * @apiParam {string} [date_from] Show results after a certain date.
@@ -22,7 +22,7 @@ var csv = require('csv-stringify');
  * @apiParam {number} [limit=100] Change the number of results returned, max is 100.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
- * @apiParam {string} [format=json] Format for data return, can be `csv`, defaults to `json`.
+ * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`.
  *
  * @apiSuccess {string}   _id            Unique ID
  * @apiSuccess {date}   date          Date and time of measurement (UTC)
