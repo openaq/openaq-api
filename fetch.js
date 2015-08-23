@@ -1,6 +1,6 @@
 'use strict';
 
-var settings = require('./sites');
+var settings = require('./sources');
 
 var async = require('async');
 var _ = require('lodash');
@@ -19,20 +19,20 @@ var findAdapter = function (name) {
   });
 };
 
-var getAndSaveData = function (site) {
+var getAndSaveData = function (source) {
   return function (done) {
     // Get the appropriate adapter
-    var adapter = findAdapter(site.adapter);
+    var adapter = findAdapter(source.adapter);
     if (!adapter) {
-      var err = {message: 'Could not find adapter.', site: site.name};
+      var err = {message: 'Could not find adapter.', source: source.name};
       return done(null, err);
     }
 
-    adapter.fetchData(site, function (err, data) {
+    adapter.fetchData(source, function (err, data) {
       // If we have an error, send an email to the contacts and stop
       if (err) {
-        mailer.sendFailureEmail(site.contacts, site.name, err);
-        err.site = site.name;
+        mailer.sendFailureEmail(source.contacts, source.name, err);
+        err.source = source.name;
         return done(null, err);
       }
 
@@ -41,8 +41,8 @@ var getAndSaveData = function (site) {
 
       // If the data format is invalid, let the contacts know
       if (!isValid) {
-        var error = {message: 'Adapter returned invalid results.', site: site.name};
-        mailer.sendFailureEmail(site.contacts, site.name, error);
+        var error = {message: 'Adapter returned invalid results.', source: source.name};
+        mailer.sendFailureEmail(source.contacts, source.name, error);
         return done(null, error);
       }
 
@@ -55,8 +55,8 @@ var getAndSaveData = function (site) {
       // If we have no measurements to insert, we can exit now
       if (data.measurements && data.measurements.length === 0) {
         var msg = {
-          message: 'New measurements inserted for ' + site.name + ': 0',
-          site: site.name
+          message: 'New measurements inserted for ' + source.name + ': 0',
+          source: source.name
         };
         return done(null, msg);
       }
@@ -64,8 +64,8 @@ var getAndSaveData = function (site) {
       var bulk = measurementsCollection.initializeUnorderedBulkOp();
       _.forEach(data.measurements, function (m) {
         m.location = m.location || data.name; // use existing location if it exists
-        m.country = site.country;
-        m.city = site.city;
+        m.country = source.country;
+        m.city = source.city;
         bulk.insert(m);
       });
       bulk.execute(function (err, result) {
@@ -73,8 +73,8 @@ var getAndSaveData = function (site) {
           // No need to log this out for now
         }
         var msg = {
-          message: 'New measurements inserted for ' + site.name + ': ' + result.nInserted,
-          site: site.name
+          message: 'New measurements inserted for ' + source.name + ': ' + result.nInserted,
+          source: source.name
         };
         done(null, msg);
       });
@@ -82,8 +82,8 @@ var getAndSaveData = function (site) {
   };
 };
 
-var tasks = _.map(settings.sites, function (site) {
-  return getAndSaveData(site);
+var tasks = _.map(settings.sources, function (source) {
+  return getAndSaveData(source);
 });
 
 MongoClient.connect(dbURL, function (err, db) {

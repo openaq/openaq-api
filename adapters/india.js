@@ -5,8 +5,8 @@ var _ = require('lodash');
 
 exports.name = 'india';
 
-exports.fetchData = function (site, cb) {
-  var finalURL = site.url + '?apitoken=' + process.env.INDIA_KIMONO_TOKEN;
+exports.fetchData = function (source, cb) {
+  var finalURL = source.url + '?apitoken=' + process.env.INDIA_KIMONO_TOKEN;
   request(finalURL, function (err, res, body) {
     if (err || res.statusCode !== 200) {
       console.error(err || res);

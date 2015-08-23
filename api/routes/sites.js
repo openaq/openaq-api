@@ -1,11 +1,11 @@
 'use strict';
 
-var sites = require('../../sites').sites;
+var sources = require('../../sources').sources;
 var _ = require('lodash');
 
 /**
- * @api {get} /sites GET
- * @apiGroup Sites
+ * @api {get} /sources GET
+ * @apiGroup Sources
  * @apiDescription Providing data about where the measurements come from
  *
  * @apiSuccess {string}   name        Descriptive name for location of measurement
@@ -37,18 +37,18 @@ var _ = require('lodash');
 module.exports = [
   {
     method: ['GET'],
-    path: '/v1/sites',
+    path: '/v1/sources',
     handler: function (request, reply) {
       // Meta fields
-      request.count = sites.length;
+      request.count = sources.length;
       request.limit = undefined; // Overwrite this to hide it in meta
 
       // Make it a bit nicer for display
-      sites = _.map(sites, function (site) {
-        return _.omit(site, ['url', 'adapter', 'contacts']);
+      sources = _.map(sources, function (source) {
+        return _.omit(source, ['url', 'adapter', 'contacts']);
       });
 
-      return reply(sites);
+      return reply(sources);
     }
   }
 ];
