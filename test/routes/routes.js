@@ -119,7 +119,6 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.results.length).to.equal(2);
         expect(res.results[0].count + res.results[1].count).to.equal(74);
-        expect(res.results[0].lastUpdated).to.equal('2015-07-24T11:30:00.000Z');
         expect(res.results[0].cities).to.be.instanceof(Array);
         done();
       });
