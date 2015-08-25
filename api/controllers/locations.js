@@ -42,7 +42,8 @@ module.exports.query = function (payload, page, limit, cb) {
             {
               '_id': { country: '$country', city: '$city', location: '$location' },
               'count': { $sum: 1 },
-              'lastUpdated': { $max: '$date' }
+              'lastUpdated': { $max: '$date' },
+              'parameters': { $addToSet: '$parameter' }
             }
           }
         ], { skip: skip, limit: limit }).toArray(function (err, docs) {
@@ -68,7 +69,8 @@ var groupResults = function (docs) {
     var location = {
       location: d._id.location,
       count: d.count,
-      lastUpdated: d.lastUpdated
+      lastUpdated: d.lastUpdated,
+      parameters: d.parameters
     };
     var country = grouped[d._id.country];
     if (country) {
@@ -81,13 +83,16 @@ var groupResults = function (docs) {
         country.count += location.count;
         city.lastUpdated = (location.lastUpdated > city.lastUpdated) ? location.lastUpdated : city.lastUpdated;
         country.lastUpdated = (location.lastUpdated > country.lastUpdated) ? location.lastUpdated : country.lastUpdated;
+        city.parameters = _.union(city.parameters, location.parameters);
+        country.parameters = _.union(country.parameters, location.parameters);
       } else {
         // City doesn't exist yet
         country.cities[d._id.city] = {
           city: d._id.city,
           locations: [location],
           count: location.count,
-          lastUpdated: location.lastUpdated
+          lastUpdated: location.lastUpdated,
+          parameters: location.parameters
         };
       }
     } else {
@@ -96,13 +101,15 @@ var groupResults = function (docs) {
         country: d._id.country,
         cities: {},
         count: location.count,
-        lastUpdated: location.lastUpdated
+        lastUpdated: location.lastUpdated,
+        parameters: location.parameters
       };
       grouped[d._id.country].cities[d._id.city] = {
         city: d._id.city,
         locations: [location],
         count: location.count,
-        lastUpdated: location.lastUpdated
+        lastUpdated: location.lastUpdated,
+        parameters: location.parameters
       };
     }
   });
