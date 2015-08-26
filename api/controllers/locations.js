@@ -45,7 +45,8 @@ module.exports.query = function (payload, page, limit, cb) {
               'lastUpdated': { $max: '$date' },
               'parameters': { $addToSet: '$parameter' }
             }
-          }
+          },
+          { $sort: { '_id.country': 1, '_id.city': 1, '_id.location': 1 } }
         ], { skip: skip, limit: limit }).toArray(function (err, docs) {
           if (err) {
             return cb(err);
