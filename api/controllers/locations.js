@@ -42,6 +42,7 @@ module.exports.query = function (payload, page, limit, cb) {
             {
               '_id': { country: '$country', city: '$city', location: '$location' },
               'count': { $sum: 1 },
+              'sourceName': { $first: '$sourceName' },
               'lastUpdated': { $max: '$date' },
               'parameters': { $addToSet: '$parameter' }
             }
@@ -71,7 +72,8 @@ var groupResults = function (docs) {
       location: d._id.location,
       count: d.count,
       lastUpdated: d.lastUpdated,
-      parameters: d.parameters
+      parameters: d.parameters,
+      sourceName: d.sourceName
     };
     var country = grouped[d._id.country];
     if (country) {
