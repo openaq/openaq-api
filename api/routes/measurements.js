@@ -68,15 +68,18 @@ module.exports = [
         params = request.query;
       }
 
+      // Set max limit to 100
+      request.limit = Math.min(request.limit, 100);
+
       // Check if this is supposed to be formatted as csv
       var formatForCSV = false;
       if (params.format === 'csv') {
         formatForCSV = true;
+
+        // Remove limit for CSVs, should probably set max size at some point
+        request.limit = undefined;
       }
       params = _.omit(params, 'format');
-
-      // Set max limit to 100
-      request.limit = Math.min(request.limit, 100);
 
       // Handle it
       m.query(params, request.page, request.limit, function (err, records, count) {
