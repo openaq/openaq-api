@@ -53,8 +53,13 @@ var formatData = function (data) {
     var idx = dateString.indexOf(', ');
     var time = dateString.substring(idx + 7, dateString.length);
     time = time.split(' ');
+    // Special case if it's 12 AM, because it's special
+    var hour;
+    if (time[0] === '12' && time[1].toLowerCase() === 'am') {
+      time[0] = 0;
+    }
     // Add 12 hours if it's PM
-    var hour = time[1].toLowerCase() === 'pm' ? Number(time[0]) + 12 : time[0];
+    hour = time[1].toLowerCase() === 'pm' ? Number(time[0]) + 12 : time[0];
 
     // Add it back with time offset, need better way to handle this
     var s = dateString.substring(0, idx + 6) + ' ' + hour + ':00 GMT+0800';
