@@ -66,6 +66,7 @@ var getAndSaveData = function (source) {
         m.location = m.location || data.name; // use existing location if it exists
         m.country = source.country;
         m.city = source.city;
+        m.sourceName = source.name;
         bulk.insert(m);
       });
       bulk.execute(function (err, result) {
