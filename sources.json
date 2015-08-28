@@ -8,7 +8,7 @@
                 "city": "Delhi",
                 "country": "IN",
                 "description": "",
-                "resolution": "",
+                "resolution": "15 min",
                 "sourceURL": "http://www.dpccairdata.com/dpccairdata/display/pbView15MinData.php",
                 "contacts": [
                     "info@openaq.org"
@@ -21,7 +21,7 @@
                 "city": "Delhi",
                 "country": "IN",
                 "description": "",
-                "resolution": "",
+                "resolution": "15 min",
                 "sourceURL": "http://www.dpccairdata.com/dpccairdata/display/mmView15MinData.php",
                 "contacts": [
                     "info@openaq.org"
@@ -34,7 +34,7 @@
                 "city": "Delhi",
                 "country": "IN",
                 "description": "",
-                "resolution": "",
+                "resolution": "15 min",
                 "sourceURL": "http://www.dpccairdata.com/dpccairdata/display/rkPuramView15MinData.php",
                 "contacts": [
                     "info@openaq.org"
@@ -47,7 +47,7 @@
                 "city": "Delhi",
                 "country": "IN",
                 "description": "",
-                "resolution": "",
+                "resolution": "15 min",
                 "sourceURL": "http://www.dpccairdata.com/dpccairdata/display/avView15MinData.php",
                 "contacts": [
                     "info@openaq.org"
@@ -60,7 +60,7 @@
                 "city": "Beijing",
                 "country": "CN",
                 "description": "",
-                "resolution": "",
+                "resolution": "1 hr",
                 "sourceURL": "http://www.stateair.net/web/post/1/1.html",
                 "contacts": [
                     "info@openaq.org"
@@ -73,7 +73,7 @@
                 "city": "London",
                 "country": "UK",
                 "description": "",
-                "resolution": "",
+                "resolution": "1 hr",
                 "sourceURL": "http://uk-air.defra.gov.uk/latest/currentlevels",
                 "contacts": [
                     "info@openaq.org"
