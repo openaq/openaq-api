@@ -43,6 +43,7 @@ module.exports.query = function (payload, page, limit, cb) {
               '_id': { country: '$country', city: '$city', location: '$location' },
               'count': { $sum: 1 },
               'sourceName': { $first: '$sourceName' },
+              'firstUpdated': { $min: '$date' },
               'lastUpdated': { $max: '$date' },
               'parameters': { $addToSet: '$parameter' }
             }
@@ -71,6 +72,7 @@ var groupResults = function (docs) {
     var location = {
       location: d._id.location,
       count: d.count,
+      firstUpdated: d.firstUpdated,
       lastUpdated: d.lastUpdated,
       parameters: d.parameters,
       sourceName: d.sourceName
@@ -84,6 +86,8 @@ var groupResults = function (docs) {
         city.locations.push(location);
         city.count += location.count;
         country.count += location.count;
+        city.firstUpdated = (location.firstUpdated < city.firstUpdated) ? location.firstUpdated : city.firstUpdated;
+        country.firstUpdated = (location.firstUpdated < country.firstUpdated) ? location.firstUpdated : country.firstUpdated;
         city.lastUpdated = (location.lastUpdated > city.lastUpdated) ? location.lastUpdated : city.lastUpdated;
         country.lastUpdated = (location.lastUpdated > country.lastUpdated) ? location.lastUpdated : country.lastUpdated;
         city.parameters = _.union(city.parameters, location.parameters);
@@ -94,6 +98,7 @@ var groupResults = function (docs) {
           city: d._id.city,
           locations: [location],
           count: location.count,
+          firstUpdated: location.firstUpdated,
           lastUpdated: location.lastUpdated,
           parameters: location.parameters
         };
@@ -104,6 +109,7 @@ var groupResults = function (docs) {
         country: d._id.country,
         cities: {},
         count: location.count,
+        firstUpdated: location.firstUpdated,
         lastUpdated: location.lastUpdated,
         parameters: location.parameters
       };
@@ -111,6 +117,7 @@ var groupResults = function (docs) {
         city: d._id.city,
         locations: [location],
         count: location.count,
+        firstUpdated: location.firstUpdated,
         lastUpdated: location.lastUpdated,
         parameters: location.parameters
       };
