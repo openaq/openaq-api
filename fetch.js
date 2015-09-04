@@ -1,7 +1,5 @@
 'use strict';
 
-var settings = require('./sources');
-
 var async = require('async');
 var _ = require('lodash');
 var MongoClient = require('mongodb').MongoClient;
@@ -9,9 +7,13 @@ var mailer = require('./lib/mailer');
 var utils = require('./lib/utils');
 
 var adapters = require('./adapters');
+var sources = require('./sources');
 
 var dbURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/openAQ';
 var measurementsCollection;
+
+// Flatten the sources into a single array
+sources = _.chain(sources).values().flatten().value();
 
 var findAdapter = function (name) {
   return _.find(adapters, function (a) {
@@ -83,7 +85,7 @@ var getAndSaveData = function (source) {
   };
 };
 
-var tasks = _.map(settings.sources, function (source) {
+var tasks = _.map(sources, function (source) {
   return getAndSaveData(source);
 });
 

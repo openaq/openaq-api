@@ -1,7 +1,10 @@
 'use strict';
 
-var sources = require('../../sources').sources;
+var sources = require('../../sources');
 var _ = require('lodash');
+
+// Flatten the sources into a single array
+sources = _.chain(sources).values().flatten().value();
 
 /**
  * @api {get} /sources GET
