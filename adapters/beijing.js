@@ -2,6 +2,7 @@
 
 var request = require('request');
 var _ = require('lodash');
+var moment = require('moment-timezone');
 
 exports.name = 'beijing';
 
@@ -48,23 +49,9 @@ var formatData = function (data) {
   };
 
   var getDate = function (dateString) {
-    // Going to be ugly, but it's gotta be done
-    // Strip off time, turn it into a better format, add it back on and parse
-    var idx = dateString.indexOf(', ');
-    var time = dateString.substring(idx + 7, dateString.length);
-    time = time.split(' ');
-    // Special case if it's 12 AM, because it's special
-    var hour;
-    if (time[0] === '12' && time[1].toLowerCase() === 'am') {
-      time[0] = 0;
-    }
-    // Add 12 hours if it's PM
-    hour = time[1].toLowerCase() === 'pm' ? Number(time[0]) + 12 : time[0];
+    var date = moment.tz(dateString, 'MMM DD, YYYY h A', 'Asia/Shanghai');
 
-    // Add it back with time offset, need better way to handle this
-    var s = dateString.substring(0, idx + 6) + ' ' + hour + ':00 GMT+0800';
-
-    return new Date(s);
+    return date.toDate();
   };
 
   // Filter out measurements with no value
