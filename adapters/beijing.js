@@ -66,7 +66,7 @@ var formatData = function (data) {
     // Manually adding offset, find a better way to do this
     var date = getDate(m.date);
     return {
-      parameter: m.parameter,
+      parameter: 'pm25',
       date: date,
       value: Number(valueObj.value),
       unit: valueObj.unit
@@ -77,24 +77,5 @@ var formatData = function (data) {
     'measurements': measurements
   };
 
-  // Make sure the parameters names match with what the platform expects.
-  renameParameters(parsed.measurements);
-
   return parsed;
-};
-
-var renameParameters = function (measurements) {
-  _.map(measurements, function (m) {
-    var newName;
-    switch (m.parameter) {
-      case 'Beijing - PM2.5':
-        newName = 'pm25';
-        break;
-      default:
-        newName = m.parameter;
-        break;
-    }
-    m.parameter = newName;
-    return m;
-  });
 };
