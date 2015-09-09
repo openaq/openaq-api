@@ -67,7 +67,7 @@ var getAndSaveData = function (source) {
       _.forEach(data.measurements, function (m) {
         m.location = m.location || data.name; // use existing location if it exists
         m.country = source.country;
-        m.city = source.city;
+        m.city = m.city || source.city; // use city from measurement, otherwise default to source
         m.sourceName = source.name;
         bulk.insert(m);
       });
