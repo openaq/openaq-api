@@ -59,6 +59,129 @@ var formatData = function (data) {
     return date;
   };
 
+  var addCoordinates = function (obj) {
+    switch (obj.name) {
+      case 'Camden Kerbside':
+        obj.coordinates = {
+          latitude: 51.544210,
+          longitude: -0.175269
+        };
+        break;
+
+      case 'Ealing Horn Lane':
+        obj.coordinates = {
+          latitude: 51.518950,
+          longitude: -0.265617
+        };
+        break;
+
+      case 'Haringey Roadside':
+        obj.coordinates = {
+          latitude: 51.599300,
+          longitude: -0.068218
+        };
+        break;
+
+      case 'London Bexley':
+        obj.coordinates = {
+          latitude: 51.466030,
+          longitude: 0.184806
+        };
+        break;
+
+      case 'London Bloomsbury':
+        obj.coordinates = {
+          latitude: 51.522290,
+          longitude: -0.125889
+        };
+        break;
+
+      case 'London Eltham':
+        obj.coordinates = {
+          latitude: 51.452580,
+          longitude: 0.070766
+        };
+        break;
+
+      case 'London Haringey Priory Park South':
+        obj.coordinates = {
+          latitude: 51.584128,
+          longitude: -0.125254
+        };
+        break;
+
+      case 'London Harlington':
+        obj.coordinates = {
+          latitude: 51.488790,
+          longitude: -0.441614
+        };
+        break;
+
+      case 'London Harrow Stanmore':
+        obj.coordinates = {
+          latitude: 51.617333,
+          longitude: -0.298777
+        };
+        break;
+
+      case 'London Hillingdon':
+        obj.coordinates = {
+          latitude: 51.496330,
+          longitude: -0.460861
+        };
+        break;
+
+      case 'London Marylebone Road':
+        obj.coordinates = {
+          latitude: 51.522530,
+          longitude: -0.154611
+        };
+        break;
+
+      case 'London N. Kensington':
+        obj.coordinates = {
+          latitude: 51.521050,
+          longitude: -0.213492
+        };
+        break;
+
+      case 'London Teddington':
+        obj.coordinates = {
+          latitude: 51.420990,
+          longitude: -0.339647
+        };
+        break;
+
+      case 'London Teddington Bushy Park':
+        obj.coordinates = {
+          latitude: 51.425286,
+          longitude: -0.345606
+        };
+        break;
+
+      case 'London Westminster':
+        obj.coordinates = {
+          latitude: 51.494670,
+          longitude: -0.131931
+        };
+        break;
+
+      case 'Southwark A2 Old Kent Road':
+        obj.coordinates = {
+          latitude: 51.480499,
+          longitude: -0.059550
+        };
+        break;
+
+      case 'Tower Hamlets Roadside':
+        obj.coordinates = {
+          latitude: 51.522530,
+          longitude: -0.042155
+        };
+        break;
+    }
+  };
+
   // Handle the fact that there are several locations in one response
   var locations = [];
   _.forEach(data.results.collection1, function (location) {
@@ -70,6 +193,9 @@ var formatData = function (data) {
       name: location.Location.text,
       date: location.datetimeupdated
     };
+    // Add coordinates to base if they're available
+    addCoordinates(base);
+
     // PM25
     var obj = _.clone(base);
     obj.parameter = 'pm25';
@@ -106,13 +232,18 @@ var formatData = function (data) {
 
       // Manually adding offset, find a better way to do this
       var date = getDate(m.date);
-      return {
+      var obj = {
         location: m.name,
         parameter: m.parameter,
         date: date.toDate(),
         value: Number(value),
         unit: 'µg/m³'
       };
+      if (m.coordinates) {
+        obj.coordinates = m.coordinates;
+      }
+
+      return obj;
     });
     l.measurements = measurements;
 
