@@ -90,6 +90,13 @@ module.exports.query = function (payload, page, limit, cb) {
     payload = _.omit(payload, 'order_by');
   }
 
+  // Handle has_geo flag and only return measurements with coordinates
+  if (_.has(payload, 'has_geo')) {
+    payload['coordinates'] = { $exists: true };
+    // sanitized payload
+    payload = _.omit(payload, 'has_geo');
+  }
+
   //
   // Apply paging
   //
