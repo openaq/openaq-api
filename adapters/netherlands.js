@@ -1,5 +1,9 @@
 'use strict';
 
+// TODO: turn organization into attribution array
+// TODO: remove road
+// TODO: figure out how best to label location
+// TODO: add geo coordinates if possible
 var request = require('request');
 var _ = require('lodash');
 var cheerio = require('cheerio');
@@ -19,24 +23,25 @@ exports.fetchData = function (source, cb) {
 
     // Fetch list with available files from server
     var fileList = listApachetree(body, finalURL);
+
     // Filter list so it only contains the most recent group of files.
-    var recentDate = _.last(fileList).date.toString();
-    var recentFiles = _.filter(fileList, function (e) {
-      return e.date.toString() === recentDate && e.size != 0;
+    var recentDate = _.last(fileList).date.getTime();
+    var recentFiles = _.filter(fileList, function (f) {
+      return f.date.getTime() === recentDate && f.size !== 0;
     });
 
-    var tasks = [ ];
+    var tasks = [];
 
-    _.forEach(recentFiles, function (e) {
+    _.forEach(recentFiles, function (f) {
       var task = function (cb) {
         // download the xml
-        request(e.uri, function (err, res, body) {
+        request(f.url, function (err, res, body) {
           if (err || res.statusCode !== 200) {
             return cb(err || res);
-          };
+          }
 
           // pass the data to formatData
-          var mData = formatData(e.name, body);
+          var mData = formatData(f.name, body);
           cb(null, mData);
         });
       };
@@ -46,24 +51,15 @@ exports.fetchData = function (source, cb) {
 
     async.parallel(tasks, function (err, results) {
       if (err) {
-        return console.log(err);
-      };
+        return console.error(err);
+      }
 
       var result = {
         name: 'unused',
         measurements: _.flatten(results)
       };
 
-      // Wrap everything in a try/catch in case something goes wrong
-      try {
-        // Make sure the data is valid
-        if (result === undefined) {
-          return cb({message: 'Failure to parse data.'});
-        }
-        cb(null, result);
-      } catch (e) {
-        return cb({message: 'Unknown adapter error.'});
-      }
+      cb(null, result);
     });
   });
 };
@@ -84,30 +80,31 @@ var listApachetree = function (data, url) {
     // Files are stored in <td>. Skip the rows that don't contain them
     if ($(this).find('td').length === 0) {
       return true;
-    };
+    }
 
     var fp = [];
     $('td', this).each(function (i, elem) {
       fp[i] = $(this).text();
     });
 
-    var f = {};
-    f.name = fp[1];
-    f.uri = url + fp[1];
-    f.date = parseDate(fp[2]);
-    f.size = fp[3].trim();
+    var f = {
+      name: fp[1],
+      url: url + fp[1],
+      date: parseDate(fp[2]),
+      size: fp[3].trim()
+    };
     allFiles.push(f);
   });
 
   return allFiles;
 };
 
-var formatData = function (fn, data) {
+var formatData = function (name, data) {
   var $ = cheerio.load(data, {xmlMode: true});
 
   // Determine what parameter is measured from the file-name
   var regExp = new RegExp('[0-9]+-(.+).xml');
-  var p = fn.match(regExp)[1].replace('.', '').toLowerCase();
+  var p = name.match(regExp)[1].replace('.', '').toLowerCase();
 
   var parseDate = function (string) {
     var date = moment.tz(string, 'YYYYMMDDHHmmss', 'UTC');
