@@ -90,7 +90,6 @@ describe('Testing endpoints', function () {
           location: 'Nisekh',
           country: 'MN',
           city: 'Ulaanbaatar',
-          sourceName: 'Agaar.mn',
           coordinates: {
             'latitude': 47.863943,
             'longitude': 106.779094
@@ -113,22 +112,32 @@ describe('Testing endpoints', function () {
       });
     });
 
-    // it('should allow for field selection', function (done) {
-    //   request(self.baseURL + 'measurements?_id=55bd532882c329ae31f8c0d5&fields=location,country', function (err, response, body) {
-    //     if (err) {
-    //       console.error(err);
-    //     }
+    it('should allow for field selection', function (done) {
+      request(self.baseURL + 'measurements?_id=55fc0c28dd51280300bdc190&include_fields=sourceName', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
 
-    //     var res = JSON.parse(body);
-    //     var testObj = {
-    //       _id: '55bd532882c329ae31f8c0d5',
-    //       location: 'Punjabi Bagh',
-    //       country: 'IN'
-    //     };
-    //     expect(res.results[0]).to.deep.equal(testObj);
-    //     done();
-    //   });
-    // });
+        var res = JSON.parse(body);
+        var testObj = {
+          _id: '55fc0c28dd51280300bdc190',
+          parameter: 'pm25',
+          date: '2015-09-18T13:00:00.000Z',
+          value: 95,
+          unit: 'µg/m³',
+          location: 'Nisekh',
+          country: 'MN',
+          city: 'Ulaanbaatar',
+          sourceName: 'Agaar.mn',
+          coordinates: {
+            'latitude': 47.863943,
+            'longitude': 106.779094
+          }
+        };
+        expect(res.results[0]).to.deep.equal(testObj);
+        done();
+      });
+    });
   });
 
   describe('/locations', function () {
