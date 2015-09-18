@@ -1,1 +1,1420 @@
-{"meta":{"name":"openaq-api","license":"CC0-1.0","website":"https://docs.openaq.org/","page":1,"limit":100,"found":74},"results":[{"_id":"55bd532882c329ae31f8c0d5","parameter":"Wind Direction","date":"2015-07-24T11:30:00.000Z","value":35,"unit":"Degrees","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0d4","parameter":"Horizontal Wind Speed","date":"2015-07-24T11:30:00.000Z","value":1.5,"unit":"m/s","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0d3","parameter":"Vertical Wind Speed","date":"2015-07-24T11:30:00.000Z","value":0,"unit":"m/s","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0d2","parameter":"Solar Radiation","date":"2015-07-24T11:30:00.000Z","value":64,"unit":"W/m2","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0d1","parameter":"Relative Humidity","date":"2015-07-24T11:30:00.000Z","value":61,"unit":"%","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0d0","parameter":"pm25","date":"2015-07-24T11:30:00.000Z","value":34,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0cf","parameter":"pm10","date":"2015-07-24T11:30:00.000Z","value":89,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ce","parameter":"Barometric Pressure","date":"2015-07-24T11:30:00.000Z","value":738,"unit":"mmHg","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0cd","parameter":"Ambient Temperature","date":"2015-07-24T11:30:00.000Z","value":30.5,"unit":"ºC","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0cc","parameter":"Toluene","date":"2015-07-24T11:30:00.000Z","value":2.3,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0cb","parameter":"Sulphur Dioxide","date":"2015-07-24T11:30:00.000Z","value":7.8,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ca","parameter":"p-Xylene","date":"2015-07-24T11:30:00.000Z","value":1.1,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c9","parameter":"Ozone","date":"2015-07-24T11:30:00.000Z","value":67.3,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c8","parameter":"Oxides of Nitrogen","date":"2015-07-24T11:30:00.000Z","value":200,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c7","parameter":"Nitrogen Oxide","date":"2015-07-24T11:30:00.000Z","value":6.3,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c6","parameter":"Nitrogen Dioxide","date":"2015-07-24T11:30:00.000Z","value":66.9,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c5","parameter":"Carbon Monoxide","date":"2015-07-24T11:30:00.000Z","value":1.4,"unit":"mg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c4","parameter":"Benzene","date":"2015-07-24T11:30:00.000Z","value":0,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c3","parameter":"Ammonia","date":"2015-07-24T11:30:00.000Z","value":67.9,"unit":"µg/m3","location":"Punjabi Bagh","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c2","parameter":"Wind Direction","date":"2015-07-24T11:30:00.000Z","value":105,"unit":"Degrees","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c1","parameter":"Horizontal Wind Speed","date":"2015-07-24T11:30:00.000Z","value":1.1,"unit":"m/s","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0c0","parameter":"Vertical Wind Speed","date":"2015-07-24T11:30:00.000Z","value":0,"unit":"m/s","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0bf","parameter":"Solar Radiation","date":"2015-07-24T11:30:00.000Z","value":101,"unit":"W/m2","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0be","parameter":"Relative Humidity","date":"2015-07-24T11:30:00.000Z","value":52,"unit":"%","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0bd","parameter":"pm25","date":"2015-07-24T11:30:00.000Z","value":3,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0bc","parameter":"pm10","date":"2015-07-24T11:30:00.000Z","value":58,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0bb","parameter":"Barometric Pressure","date":"2015-07-24T11:30:00.000Z","value":736,"unit":"mmHg","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ba","parameter":"Ambient Temperature","date":"2015-07-24T11:30:00.000Z","value":31.9,"unit":"ºC","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b9","parameter":"Toluene","date":"2015-07-24T11:30:00.000Z","value":2.1,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b8","parameter":"Sulphur Dioxide","date":"2015-07-24T11:30:00.000Z","value":9.7,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b7","parameter":"p-Xylene","date":"2015-07-24T11:30:00.000Z","value":0.7,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b6","parameter":"Ozone","date":"2015-07-24T11:30:00.000Z","value":9.6,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b5","parameter":"Oxides of Nitrogen","date":"2015-07-24T11:30:00.000Z","value":95,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b4","parameter":"Nitrogen Oxide","date":"2015-07-24T11:30:00.000Z","value":4.4,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b3","parameter":"Nitrogen Dioxide","date":"2015-07-24T11:30:00.000Z","value":29.4,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b2","parameter":"Carbon Monoxide","date":"2015-07-24T11:30:00.000Z","value":0.5,"unit":"mg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b1","parameter":"Benzene","date":"2015-07-24T11:30:00.000Z","value":0.5,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0b0","parameter":"Ammonia","date":"2015-07-24T11:30:00.000Z","value":18.2,"unit":"µg/m3","location":"Mandir Marg","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0af","parameter":"Wind Direction","date":"2015-07-24T11:30:00.000Z","value":221,"unit":"Degrees","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ae","parameter":"Horizontal Wind Speed","date":"2015-07-24T11:30:00.000Z","value":0.5,"unit":"m/s","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ad","parameter":"Vertical Wind Speed","date":"2015-07-24T11:30:00.000Z","value":0,"unit":"m/s","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ac","parameter":"Solar Radiation","date":"2015-07-24T11:30:00.000Z","value":118,"unit":"W/m2","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0ab","parameter":"Relative Humidity","date":"2015-07-24T11:30:00.000Z","value":51,"unit":"%","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0aa","parameter":"pm25","date":"2015-07-24T11:30:00.000Z","value":74,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a9","parameter":"pm10","date":"2015-07-24T11:30:00.000Z","value":124,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a8","parameter":"Barometric Pressure","date":"2015-07-24T11:30:00.000Z","value":734,"unit":"mmHg","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a7","parameter":"Ambient Temperature","date":"2015-07-24T11:30:00.000Z","value":32.4,"unit":"ºC","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a6","parameter":"Sulphur Dioxide","date":"2015-07-24T11:30:00.000Z","value":6.3,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a5","parameter":"Ozone","date":"2015-07-24T11:30:00.000Z","value":18.5,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a4","parameter":"Oxides of Nitrogen","date":"2015-07-24T11:30:00.000Z","value":116.5,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a3","parameter":"Nitrogen Oxide","date":"2015-07-24T11:30:00.000Z","value":2.8,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a2","parameter":"Nitrogen Dioxide","date":"2015-07-24T11:30:00.000Z","value":40.3,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a1","parameter":"Carbon Monoxide","date":"2015-07-24T11:30:00.000Z","value":1.1,"unit":"mg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c0a0","parameter":"Ammonia","date":"2015-07-24T11:30:00.000Z","value":45,"unit":"µg/m3","location":"RK Puram","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c09f","parameter":"Wind Direction","date":"2015-07-24T11:30:00.000Z","value":81,"unit":"Degrees","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c09e","parameter":"Horizontal Wind Speed","date":"2015-07-24T11:30:00.000Z","value":3.3,"unit":"m/s","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c09d","parameter":"Vertical Wind Speed","date":"2015-07-24T11:30:00.000Z","value":-0.1,"unit":"m/s","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c09c","parameter":"Solar Radiation","date":"2015-07-24T11:30:00.000Z","value":398,"unit":"W/m2","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c09b","parameter":"Relative Humidity","date":"2015-07-24T11:30:00.000Z","value":52,"unit":"%","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c09a","parameter":"pm25","date":"2015-07-24T11:30:00.000Z","value":36,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c099","parameter":"pm10","date":"2015-07-24T11:30:00.000Z","value":141,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c098","parameter":"Barometric Pressure","date":"2015-07-24T11:30:00.000Z","value":740,"unit":"mmHg","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c097","parameter":"Ambient Temperature","date":"2015-07-24T11:30:00.000Z","value":34.9,"unit":"ºC","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c096","parameter":"Toluene","date":"2015-07-24T11:30:00.000Z","value":6.3,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c095","parameter":"Sulphur Dioxide","date":"2015-07-24T11:30:00.000Z","value":15.2,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c094","parameter":"p-Xylene","date":"2015-07-24T11:30:00.000Z","value":0,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c093","parameter":"Ozone","date":"2015-07-24T11:30:00.000Z","value":1.3,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c092","parameter":"Oxides of Nitrogen","date":"2015-07-24T11:30:00.000Z","value":175,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c091","parameter":"Nitrogen Oxide","date":"2015-07-24T11:30:00.000Z","value":15.5,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c090","parameter":"Nitrogen Dioxide","date":"2015-07-24T11:30:00.000Z","value":43.2,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c08f","parameter":"Carbon Monoxide","date":"2015-07-24T11:30:00.000Z","value":0.6,"unit":"mg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c08e","parameter":"Benzene","date":"2015-07-24T11:30:00.000Z","value":0.4,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c08d","parameter":"Ammonia","date":"2015-07-24T11:30:00.000Z","value":32.6,"unit":"µg/m3","location":"Anand Vihar","country":"IN","city":"Delhi"},{"_id":"55bd532882c329ae31f8c08c","parameter":"pm25","date":"2015-07-24T11:00:00.000Z","value":35,"unit":"µg/m³","location":"Beijing US Embassy","country":"CN","city":"Beijing"}]}
+{
+"meta": {
+"name": "openaq-api",
+"license": "CC0-1.0",
+"website": "https://docs.openaq.org/",
+"page": 1,
+"found": 21039,
+"limit": 100
+},
+"results": [
+{
+"_id": "55fc0c28dd51280300bdc190",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T13:00:00.000Z",
+"value": 95,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc0c28dd51280300bdc196",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T13:00:00.000Z",
+"value": 74,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc0c28dd51280300bdc19c",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T13:00:00.000Z",
+"value": 105,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc0c28dd51280300bdc1aa",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T13:00:00.000Z",
+"value": 12,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc0c28dd51280300bdc1af",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T13:00:00.000Z",
+"value": 33,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc09d6a4f2b2030002e390",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T12:45:00.000Z",
+"value": 9,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc09d6a4f2b2030002e395",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T12:45:00.000Z",
+"value": 30,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc05237391ef0300017001",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T12:30:00.000Z",
+"value": 103,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc05237391ef0300017007",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T12:30:00.000Z",
+"value": 81,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc05237391ef030001700d",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T12:30:00.000Z",
+"value": 90,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc05237391ef030001701b",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T12:30:00.000Z",
+"value": 9,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc05237391ef0300017020",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T12:30:00.000Z",
+"value": 30,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc02ce72d2f80300c34ae0",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T12:15:00.000Z",
+"value": 9,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc02ce72d2f80300c34ae5",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T12:15:00.000Z",
+"value": 30,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbfe1327a4470300dc1865",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 157,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbfe1327a4470300dc186b",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 255,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbfe1327a4470300dc1871",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 181,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbfe1327a4470300dc187f",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 14,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbfe1327a4470300dc1884",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 15,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fc05177391ef0300016fce",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 39,
+"unit": "µg/m³",
+"location": "Beijing US Embassy",
+"country": "CN",
+"city": "Beijing",
+"sourceName": "Beijing US Embassy"
+},
+{
+"_id": "55fc07712b11f50300cfc83f",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 34,
+"unit": "µg/m³",
+"location": "Chengdu",
+"country": "CN",
+"city": "Chengdu",
+"sourceName": "Chengdu"
+},
+{
+"_id": "55fc09caa4f2b2030002e343",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 46,
+"unit": "µg/m³",
+"location": "Shanghai",
+"country": "CN",
+"city": "Shanghai",
+"sourceName": "Shanghai"
+},
+{
+"_id": "55fc0c2cdd51280300bdc1bb",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 63,
+"unit": "µg/m³",
+"location": "Guangzhou",
+"country": "CN",
+"city": "Guangzhou",
+"sourceName": "Guangzhou"
+},
+{
+"_id": "55fc0c34dd51280300bdc1bc",
+"parameter": "pm25",
+"date": "2015-09-18T12:00:00.000Z",
+"value": 36,
+"unit": "µg/m³",
+"location": "Shenyang",
+"country": "CN",
+"city": "Shenyang",
+"sourceName": "Shenyang"
+},
+{
+"_id": "55fbfbbd8728df0300c3d853",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T11:45:00.000Z",
+"value": 15,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbfbbd8728df0300c3d858",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T11:45:00.000Z",
+"value": 11,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf713a602fc0300134899",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T11:30:00.000Z",
+"value": 216,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf713a602fc030013489f",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T11:30:00.000Z",
+"value": 273,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf713a602fc03001348a5",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T11:30:00.000Z",
+"value": 173,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf713a602fc03001348b3",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T11:30:00.000Z",
+"value": 15,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf713a602fc03001348b8",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T11:30:00.000Z",
+"value": 11,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf4c49fc82e03007766d2",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T11:15:00.000Z",
+"value": 15,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf4c49fc82e03007766d7",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T11:15:00.000Z",
+"value": 11,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf015e72b90030094a9ba",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 72,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf015e72b90030094a9c0",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 99,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf015e72b90030094a9c6",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 40,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf015e72b90030094a9d4",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 22,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf015e72b90030094a9d9",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbf707a602fc030013488c",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 24,
+"unit": "µg/m3",
+"location": "Mandir Marg",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "Mandir Marg"
+},
+{
+"_id": "55fbf707a602fc030013488e",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 30,
+"unit": "µg/m³",
+"location": "Beijing US Embassy",
+"country": "CN",
+"city": "Beijing",
+"sourceName": "Beijing US Embassy"
+},
+{
+"_id": "55fbf968b74e0303000f4340",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 28,
+"unit": "µg/m³",
+"location": "Chengdu",
+"country": "CN",
+"city": "Chengdu",
+"sourceName": "Chengdu"
+},
+{
+"_id": "55fbf968b74e0303000f434a",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 39,
+"unit": "µg/m3",
+"location": "RK Puram",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "RK Puram"
+},
+{
+"_id": "55fbfbb28728df0300c3d835",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 33,
+"unit": "µg/m³",
+"location": "Shanghai",
+"country": "CN",
+"city": "Shanghai",
+"sourceName": "Shanghai"
+},
+{
+"_id": "55fbfe0727a4470300dc1832",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 71,
+"unit": "µg/m³",
+"location": "Guangzhou",
+"country": "CN",
+"city": "Guangzhou",
+"sourceName": "Guangzhou"
+},
+{
+"_id": "55fbfe0727a4470300dc1858",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 30,
+"unit": "µg/m³",
+"location": "Shenyang",
+"country": "CN",
+"city": "Shenyang",
+"sourceName": "Shenyang"
+},
+{
+"_id": "55fc02c372d2f80300c34a9b",
+"location": "Camden Kerbside",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 9,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.54421,
+"longitude": -0.175269
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34a9f",
+"location": "Haringey Roadside",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 11,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.5993,
+"longitude": -0.068218
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34aa1",
+"location": "London Bexley",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 9,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.46603,
+"longitude": 0.184806
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34aa2",
+"location": "London Bloomsbury",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 4,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.52229,
+"longitude": -0.125889
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34aa4",
+"location": "London Eltham",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.45258,
+"longitude": 0.070766
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34aad",
+"location": "London Marylebone Road",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 18,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.52253,
+"longitude": -0.154611
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34ab1",
+"location": "London N. Kensington",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 5,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.52105,
+"longitude": -0.213492
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fc02c372d2f80300c34ab7",
+"location": "London Teddington Bushy Park",
+"parameter": "pm25",
+"date": "2015-09-18T11:00:00.000Z",
+"value": 3,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.425286,
+"longitude": -0.345606
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbeda3bf10d90300ec29e2",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T10:45:00.000Z",
+"value": 24,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbeda3bf10d90300ec29e7",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T10:45:00.000Z",
+"value": 4,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8f299add603008ce383",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T10:30:00.000Z",
+"value": 21,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8f299add603008ce389",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T10:30:00.000Z",
+"value": 43,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8f299add603008ce38f",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T10:30:00.000Z",
+"value": 23,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8f299add603008ce39d",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T10:30:00.000Z",
+"value": 24,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8f299add603008ce3a2",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T10:30:00.000Z",
+"value": 4,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbeb4c706b9003006722f8",
+"parameter": "pm25",
+"date": "2015-09-18T10:20:00.000Z",
+"value": 52,
+"unit": "µg/m3",
+"location": "RK Puram",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "RK Puram"
+},
+{
+"_id": "55fbed99bf10d90300ec29ba",
+"parameter": "pm25",
+"date": "2015-09-18T10:20:00.000Z",
+"value": 45,
+"unit": "µg/m3",
+"location": "Punjabi Bagh",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "Punjabi Bagh"
+},
+{
+"_id": "55fbed99bf10d90300ec29be",
+"parameter": "pm25",
+"date": "2015-09-18T10:20:00.000Z",
+"value": 50,
+"unit": "µg/m3",
+"location": "Mandir Marg",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "Mandir Marg"
+},
+{
+"_id": "55fbe6a65e8edf03003afe06",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T10:15:00.000Z",
+"value": 24,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe6a65e8edf03003afe0b",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T10:15:00.000Z",
+"value": 4,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8e799add603008ce380",
+"parameter": "pm25",
+"date": "2015-09-18T10:10:00.000Z",
+"value": 50,
+"unit": "µg/m3",
+"location": "Mandir Marg",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "Mandir Marg"
+},
+{
+"_id": "55fbe200a30efc0300a33e74",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 18,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe200a30efc0300a33e7a",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 44,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe200a30efc0300a33e80",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 14,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe200a30efc0300a33e8e",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 39,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe200a30efc0300a33e93",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbe8e799add603008ce381",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 25,
+"unit": "µg/m³",
+"location": "Beijing US Embassy",
+"country": "CN",
+"city": "Beijing",
+"sourceName": "Beijing US Embassy"
+},
+{
+"_id": "55fbeb4c706b9003006722fa",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 28,
+"unit": "µg/m³",
+"location": "Chengdu",
+"country": "CN",
+"city": "Chengdu",
+"sourceName": "Chengdu"
+},
+{
+"_id": "55fbed99bf10d90300ec2994",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 35,
+"unit": "µg/m³",
+"location": "Shanghai",
+"country": "CN",
+"city": "Shanghai",
+"sourceName": "Shanghai"
+},
+{
+"_id": "55fbf00de72b90030094a9b7",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 74,
+"unit": "µg/m³",
+"location": "Shenyang",
+"country": "CN",
+"city": "Shenyang",
+"sourceName": "Shenyang"
+},
+{
+"_id": "55fbf00de72b90030094a9b8",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 59,
+"unit": "µg/m³",
+"location": "Guangzhou",
+"country": "CN",
+"city": "Guangzhou",
+"sourceName": "Guangzhou"
+},
+{
+"_id": "55fbf4b99fc82e030077668c",
+"location": "Camden Kerbside",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 8,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.54421,
+"longitude": -0.175269
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e0300776690",
+"location": "Haringey Roadside",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 10,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.5993,
+"longitude": -0.068218
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e0300776692",
+"location": "London Bexley",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 9,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.46603,
+"longitude": 0.184806
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e0300776693",
+"location": "London Bloomsbury",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 5,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.52229,
+"longitude": -0.125889
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e0300776695",
+"location": "London Eltham",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.45258,
+"longitude": 0.070766
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e030077669e",
+"location": "London Marylebone Road",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 17,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.52253,
+"longitude": -0.154611
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e03007766a2",
+"location": "London N. Kensington",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 5,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.52105,
+"longitude": -0.213492
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbf4b99fc82e03007766a8",
+"location": "London Teddington Bushy Park",
+"parameter": "pm25",
+"date": "2015-09-18T10:00:00.000Z",
+"value": 3,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.425286,
+"longitude": -0.345606
+},
+"country": "UK",
+"city": "London",
+"sourceName": "Greater London"
+},
+{
+"_id": "55fbdf92aeb6b403001becf3",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T09:45:00.000Z",
+"value": 43,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdf92aeb6b403001becf8",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T09:45:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdae7b1b36203002dc109",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T09:30:00.000Z",
+"value": 16,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdae7b1b36203002dc10f",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T09:30:00.000Z",
+"value": 43,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdae7b1b36203002dc115",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T09:30:00.000Z",
+"value": 13,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdae7b1b36203002dc123",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T09:30:00.000Z",
+"value": 43,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdae7b1b36203002dc128",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T09:30:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbdd45bd80a203004c0124",
+"parameter": "pm25",
+"date": "2015-09-18T09:20:00.000Z",
+"value": 25,
+"unit": "µg/m3",
+"location": "RK Puram",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "RK Puram"
+},
+{
+"_id": "55fbdd45bd80a203004c0120",
+"parameter": "pm25",
+"date": "2015-09-18T09:20:00.000Z",
+"value": 29,
+"unit": "µg/m3",
+"location": "Mandir Marg",
+"country": "IN",
+"city": "Delhi",
+"sourceName": "Mandir Marg"
+},
+{
+"_id": "55fbd8a02182f60300a8462f",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T09:15:00.000Z",
+"value": 43,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbd8a02182f60300a84634",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T09:15:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbd3dc0af47f03002fdbb9",
+"location": "Nisekh",
+"parameter": "pm25",
+"date": "2015-09-18T09:00:00.000Z",
+"value": 13,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbd3dc0af47f03002fdbbf",
+"location": "Tolgoit",
+"parameter": "pm25",
+"date": "2015-09-18T09:00:00.000Z",
+"value": 43,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.922495,
+"longitude": 106.794805
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbd3dc0af47f03002fdbc5",
+"location": "MNB",
+"parameter": "pm25",
+"date": "2015-09-18T09:00:00.000Z",
+"value": 15,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbd3dc0af47f03002fdbd3",
+"location": "Baruun 4 zam",
+"parameter": "pm25",
+"date": "2015-09-18T09:00:00.000Z",
+"value": 22,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9153833,
+"longitude": 106.8941944
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "55fbd3dc0af47f03002fdbd8",
+"location": "Bukhiin urguu",
+"parameter": "pm25",
+"date": "2015-09-18T09:00:00.000Z",
+"value": 6,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 47.9176056,
+"longitude": 106.9373611
+},
+"country": "MN",
+"city": "Ulaanbaatar",
+"sourceName": "Agaar.mn"
+}
+]
+}

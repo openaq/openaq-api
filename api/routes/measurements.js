@@ -20,19 +20,22 @@ var csv = require('csv-stringify');
  * @apiParam {string} [date_to] Show results before a certain date.
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
  * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
+ * @apiParam {array}  [include_fields=location,parameter,date,value,unit,coordinates,country,city] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 100.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`.
  *
- * @apiSuccess {string}   _id            Unique ID
- * @apiSuccess {date}   date          Date and time of measurement (UTC)
- * @apiSuccess {string}   parameter     Property being measured
- * @apiSuccess {number}   value         Value of measurement
- * @apiSuccess {string}   unit           Unit of measurement
- * @apiSuccess {string}   location      Location description for measurement
- * @apiSuccess {string}   country       2 digit country code containing measurement
- * @apiSuccess {string}   city       City containing measurement
+ * @apiSuccess {string}   _id           Unique ID `default`
+ * @apiSuccess {date}     date          Date and time of measurement (UTC) `default`
+ * @apiSuccess {string}   parameter     Property being measured `default`
+ * @apiSuccess {number}   value         Value of measurement `default`
+ * @apiSuccess {string}   unit          Unit of measurement `default`
+ * @apiSuccess {string}   location      Location description for measurement `default`
+ * @apiSuccess {string}   country       2 digit country code containing measurement `default`
+ * @apiSuccess {string}   city          City containing measurement `default`
+ * @apiSuccess {object}   coordinates   Latitude and longitude measurement was taken at `default`
+ * @apiSuccess {string}   sourceName    Name of source matching to sources table for reference
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {
