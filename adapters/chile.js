@@ -39,7 +39,7 @@ var formatData = function (data) {
   }
 
   // Filter out stations that are not online
-  var onlineS = _.filter(data, function (s) {
+  var onlineStations = _.filter(data, function (s) {
     return s.online === 1;
   });
 
@@ -59,14 +59,14 @@ var formatData = function (data) {
 
   // Make 'µg/m³' pretty
   var parseUnit = function (u) {
-    return u === '&micro;g/m<sup>3</sup>' ? 'µg/m³' : u;
+    return (u === '&micro;g/m<sup>3</sup>' || u === '&micro;g/Nm<sup>3</sup>') ? 'µg/m³' : u;
   };
 
   var measurements = [];
 
-  _.forEach(onlineS, function (s) {
+  _.forEach(onlineStations, function (s) {
     // Store the main properties for this measuring station
-    var baseM = {
+    var base = {
       city: s.nombre,
       location: s.key,
       coordinates: {
@@ -81,10 +81,10 @@ var formatData = function (data) {
 
     // Loop over the parameters measured by this station
     _.forOwn(s.status, function (value, key) {
-      var m = _.clone(baseM);
+      var m = _.clone(base);
       m.parameter = paramMap[key];
       m.date = parseDate(value);
-      m.value = value.value;
+      m.value = Number(value.value);
       m.unit = parseUnit(value.unit);
       measurements.push(m);
     });
