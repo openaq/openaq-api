@@ -36,6 +36,7 @@ var csv = require('csv-stringify');
  * @apiSuccess {string}   city          City containing measurement `default`
  * @apiSuccess {object}   coordinates   Latitude and longitude measurement was taken at `default`
  * @apiSuccess {string}   sourceName    Name of source matching to sources table for reference
+ * @apiSuccess {array}    attribution   Attribution information for the measurement (name and url), in priority order.
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {
@@ -46,8 +47,18 @@ var csv = require('csv-stringify');
  *       "unit": "µg/m3",
  *       "location": "Anand Vihar",
  *       "country": "IN",
- *       "city": "Delhi"
- *      }
+ *       "city": "Delhi",
+ *       "sourceName": "Anand Vihar",
+ *       "attribution": [
+ *         {
+ *           "name" : "SINCA",
+ *           "url" : "http://sinca.mma.gob.cl/"
+ *         },
+ *         {
+ *           "name" : "Ministerio del Medio Ambiente"
+ *         }
+ *       ]
+ *     }
  *
  * @apiError statusCode     The error code
  * @apiError error          Error name
