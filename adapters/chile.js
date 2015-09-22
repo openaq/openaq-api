@@ -84,8 +84,8 @@ var formatData = function (data) {
       var m = _.clone(base);
       m.parameter = paramMap[key];
       m.date = parseDate(value);
-      m.value = Number(value.value);
-      m.unit = parseUnit(value.unit);
+      m.value = Number(value.uvalue);
+      m.unit = parseUnit(value.uunit);
       measurements.push(m);
     });
   });
