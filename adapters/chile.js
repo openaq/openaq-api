@@ -9,8 +9,8 @@ exports.name = 'chile';
 
 exports.fetchData = function (source, cb) {
   // Fetch both the measurements and meta-data about the locations
-  var sources = [ source.url, 'http://sinca.mma.gob.cl/index.php/json/listado' ];
-  var tasks = [ ];
+  var sources = [source.url, 'http://sinca.mma.gob.cl/index.php/json/listado'];
+  var tasks = [];
 
   _.forEach(sources, function (e) {
     var task = function (cb) {
