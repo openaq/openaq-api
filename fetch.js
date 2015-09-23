@@ -9,6 +9,8 @@ var argv = require('yargs')
   .describe('source', 'Run the fetch process with only the defined source using source name.')
   .alias('s', 'source')
   .nargs('source', 1)
+  .boolean('noemail')
+  .describe('noemail', 'Run the fetch process but do not send emails if there are errors.')
   .help('h')
   .alias('h', 'help')
   .argv;
@@ -50,8 +52,8 @@ var getAndSaveData = function (source) {
     adapter.fetchData(source, function (err, data) {
       // If we have an error, send an email to the contacts and stop
       if (err) {
-        // Don't send an email if it's a dry run
-        if (!argv.dryrun) {
+        // Don't send an email if it's a dry run or noemail flag is set
+        if (!argv.dryrun && !argv.noemail) {
           mailer.sendFailureEmail(source.contacts, source.name, err);
         }
         err.source = source.name;
@@ -64,8 +66,8 @@ var getAndSaveData = function (source) {
       // If the data format is invalid, let the contacts know
       if (!isValid) {
         var error = {message: 'Adapter returned invalid results.', source: source.name};
-        // Don't send an email if it's a dry run
-        if (!argv.dryrun) {
+        // Don't send an email if it's a dry run or noemail flag is set
+        if (!argv.dryrun && !argv.noemail) {
           mailer.sendFailureEmail(source.contacts, source.name, error);
         }
         return done(null, error);
