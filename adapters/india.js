@@ -2,6 +2,7 @@
 
 var request = require('request');
 var _ = require('lodash');
+var moment = require('moment-timezone');
 
 exports.name = 'india';
 
@@ -55,10 +56,12 @@ var formatData = function (data) {
   var measurements = _.map(filtered, function (m) {
     var valueObj = getValue(m.measuredValue);
 
-    // Manually adding offset, find a better way to do this
-    var date = new Date(m.date + ' ' + m.time + ' GMT+0530');
+    // Parse the date
+    var dateString = m.date + ' ' + m.time;
+    var date = moment.tz(dateString, 'dddd, MMMM D, YYYY HH:mm:ss', 'Asia/Kolkata').toDate();
+
     return {
-      parameter: m.parameter.text,
+      parameter: m.parameter.text || m.parameter,
       date: date,
       value: Number(valueObj.value),
       unit: valueObj.unit
