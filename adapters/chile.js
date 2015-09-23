@@ -95,8 +95,8 @@ var formatData = function (results) {
         longitude: s.longitud
       },
       attribution: [
-        { name: 'SINCA', url: 'http://sinca.mma.gob.cl/' },
-        { name: s.empresa }
+        {name: 'SINCA', url: 'http://sinca.mma.gob.cl/'},
+        {name: s.empresa}
       ]
     };
 
