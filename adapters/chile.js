@@ -17,7 +17,7 @@ exports.fetchData = function (source, cb) {
       request(e, function (err, res, body) {
         if (err || res.statusCode !== 200) {
           return cb(err || res);
-        };
+        }
         cb(null, body);
       });
     };
@@ -28,7 +28,7 @@ exports.fetchData = function (source, cb) {
   async.parallel(tasks, function (err, results) {
     if (err) {
       return console.log(err);
-    };
+    }
 
     // Wrap everything in a try/catch in case something goes wrong
     try {
@@ -69,8 +69,8 @@ var formatData = function (results) {
 
   // Fetch the city (comuna) from a separate meta endpoint
   var getComuna = function (id) {
-    var s = _.find(meta, _.matchesProperty('key', id));
-    return s.comuna;
+    var s = _.get(_.find(meta, _.matchesProperty('key', id)), 'comuna');
+    return s;
   };
 
   var parseDate = function (m) {
@@ -87,8 +87,9 @@ var formatData = function (results) {
 
   _.forEach(reportingStations, function (s) {
     // Store the main properties for this measuring station
+    // Sometimes the listado object doesn't exist, in that case, defaulting to nombre
     var base = {
-      city: getComuna(s.key),
+      city: getComuna(s.key) || s.nombre,
       location: s.nombre,
       coordinates: {
         latitude: s.latitud,
