@@ -165,7 +165,7 @@ describe('Testing endpoints', function () {
           license: 'CC0-1.0',
           website: 'https://docs.openaq.org/',
           page: 1,
-          limit: 100,
+          limit: 500,
           found: 21
         };
         expect(res.meta).to.deep.equal(testMeta);

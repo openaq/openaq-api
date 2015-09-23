@@ -10,7 +10,7 @@ var m = require('../controllers/locations.js');
  * a nested list reflecting the country-city-location relationship, `count` and
  * `lastUpdated` are calculated from all children.
  *
- * @apiParam {number} [limit=100] Change the number of results returned, max is 100.
+ * @apiParam {number} [limit=500] Change the number of results returned, max is 100.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
  *
@@ -70,8 +70,8 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 100
-      request.limit = Math.min(request.limit, 100);
+      // Set max limit to 500 for now
+      request.limit = 500;
 
       // Handle it
       m.query(params, request.page, request.limit, function (err, records, count) {
@@ -83,7 +83,6 @@ module.exports = [
         request.count = count;
         return reply(records);
       });
-
     }
   }
 ];
