@@ -3,22 +3,37 @@
 var request = require('request');
 var _ = require('lodash');
 var moment = require('moment-timezone');
+var async = require('async');
 
 exports.name = 'chile';
 
 exports.fetchData = function (source, cb) {
-  request(source.url, function (err, res, body) {
-    if (err || res.statusCode !== 200) {
-      console.error(err || res);
-      return cb({message: 'Failure to load data url.'});
-    }
+  // Fetch both the measurements and meta-data about the locations
+  var sources = [ source.url, 'http://sinca.mma.gob.cl/index.php/json/listado' ];
+  var tasks = [ ];
+
+  _.forEach(sources, function (e) {
+    var task = function (cb) {
+      request(e, function (err, res, body) {
+        if (err || res.statusCode !== 200) {
+          return cb(err || res);
+        };
+        cb(null, body);
+      });
+    };
+
+    tasks.push(task);
+  });
+
+  async.parallel(tasks, function (err, results) {
+    if (err) {
+      return console.log(err);
+    };
 
     // Wrap everything in a try/catch in case something goes wrong
     try {
       // Format the data
-      var data = formatData(body);
-
-      // Make sure the data is valid
+      var data = formatData(results);
       if (data === undefined) {
         return cb({message: 'Failure to parse data.'});
       }
@@ -29,18 +44,18 @@ exports.fetchData = function (source, cb) {
   });
 };
 
-var formatData = function (data) {
-  // Wrap the JSON.parse() in a try/catch in case it fails
+var formatData = function (results) {
   try {
-    data = JSON.parse(data);
+    var data = JSON.parse(results[0]);
+    var meta = JSON.parse(results[1]);
   } catch (e) {
-    // Return undefined to be caught elsewhere
     return undefined;
   }
 
-  // Filter out stations that are not online
-  var onlineStations = _.filter(data, function (s) {
-    return s.online === 1;
+  // Measurements are stored in a 'status' object. If there are no measurements
+  // 'status' will be an empty array.
+  var reportingStations = _.filter(data, function (s) {
+    return _.isPlainObject(s.status);
   });
 
   var paramMap = {
@@ -50,6 +65,12 @@ var formatData = function (data) {
     '0003': 'no2', // Dióxido de nitrógeno
     '0004': 'co', // Monóxido de carbono
     '0008': 'o3' // Ozono
+  };
+
+  // Fetch the city (comuna) from a separate meta endpoint
+  var getComuna = function (id) {
+    var s = _.find(meta, _.matchesProperty('key', id));
+    return s.comuna;
   };
 
   var parseDate = function (m) {
@@ -64,11 +85,11 @@ var formatData = function (data) {
 
   var measurements = [];
 
-  _.forEach(onlineStations, function (s) {
+  _.forEach(reportingStations, function (s) {
     // Store the main properties for this measuring station
     var base = {
-      city: s.nombre,
-      location: s.key,
+      city: getComuna(s.key),
+      location: s.nombre,
       coordinates: {
         latitude: s.latitud,
         longitude: s.longitud
