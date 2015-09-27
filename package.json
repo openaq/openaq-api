@@ -6,7 +6,7 @@
   "main": "",
   "scripts": {
     "lint": "semistandard",
-    "test": "mocha test/**",
+    "test": "semistandard && mocha test/**",
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/"
   },
@@ -35,7 +35,8 @@
   "devDependencies": {
     "apidoc": "^0.13.1",
     "chai": "^3.2.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "semistandard": "^7.0.2"
   },
   "apidoc": {
     "title": "Open AQ Platform API",

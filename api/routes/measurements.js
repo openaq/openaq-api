@@ -125,7 +125,6 @@ module.exports = [
           return reply(records);
         }
       });
-
     }
   }
 ];

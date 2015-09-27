@@ -5,7 +5,6 @@ var expect = require('chai').expect;
 var utils = require('../../lib/utils');
 
 describe('Testing helper functions', function () {
-
   describe('verifyDataFormat', function () {
     it('should fail with nothing', function (done) {
       expect(utils.verifyDataFormat()).to.be.false;
