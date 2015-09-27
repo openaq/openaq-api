@@ -31,6 +31,15 @@ var measurementsCollection;
 sources = _.chain(sources).values().flatten().value();
 if (argv.source) {
   sources = _.find(sources, { name: argv.source });
+
+  // Check here to make sure we have at least one valid source
+  if (!sources) {
+    console.error('I\'m sorry Dave, I searched all known sources and can\'t ' +
+      'find anything for', argv.source);
+    process.exit(1);
+  }
+
+  // Make it a single element array to play nicely downstream
   sources = [sources];
 }
 
