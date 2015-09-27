@@ -77,7 +77,6 @@ var formatData = function (data) {
 
     // Build up pretty measurements array
     var measurements = _.map(filtered, function (m) {
-
       // Manually adding offset, find a better way to do this
       var date = getDate(m.date).toDate();
       return {

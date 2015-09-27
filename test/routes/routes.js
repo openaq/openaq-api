@@ -11,7 +11,6 @@ var measurements = require('../data/measurements');
 var _ = require('lodash');
 
 describe('Testing endpoints', function () {
-
   var self = this;
   self.baseURL = 'http://127.0.0.1:' + testPort + '/v1/';
 

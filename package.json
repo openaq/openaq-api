@@ -6,7 +6,7 @@
   "main": "",
   "scripts": {
     "lint": "semistandard",
-    "test": "mocha test/**",
+    "test": "semistandard && mocha test/**",
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/"
   },
