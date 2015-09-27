@@ -24,31 +24,27 @@ module.exports.query = function (payload, page, limit, cb) {
   // handling paging. This can probably be handled better if it becomes a
   // performance issue.
   c.aggregate(
-    [
-      { '$group':
-        {
-          '_id': { country: '$country', city: '$city', location: '$location' }
-        }
+    [{
+      '$group': {
+        '_id': { country: '$country', city: '$city', location: '$location' }
       }
-    ]).toArray(function (err, docs) {
+    }]).toArray(function (err, docs) {
       if (err) {
         return cb(err);
       }
 
       var length = docs.length;
       c.aggregate(
-        [
-          { '$group':
-            {
-              '_id': { country: '$country', city: '$city', location: '$location' },
-              'count': { $sum: 1 },
-              'sourceName': { $first: '$sourceName' },
-              'firstUpdated': { $min: '$date' },
-              'lastUpdated': { $max: '$date' },
-              'parameters': { $addToSet: '$parameter' }
-            }
-          },
-          { $sort: { '_id.country': 1, '_id.city': 1, '_id.location': 1 } }
+        [{ '$group': {
+          '_id': { country: '$country', city: '$city', location: '$location' },
+          'count': { $sum: 1 },
+          'sourceName': { $first: '$sourceName' },
+          'firstUpdated': { $min: '$date' },
+          'lastUpdated': { $max: '$date' },
+          'parameters': { $addToSet: '$parameter' }
+        }
+        },
+        { $sort: { '_id.country': 1, '_id.city': 1, '_id.location': 1 } }
         ], { skip: skip, limit: limit }).toArray(function (err, docs) {
           if (err) {
             return cb(err);
