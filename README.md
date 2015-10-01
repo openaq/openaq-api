@@ -35,4 +35,4 @@ To confirm that everything is working as expected, you can run the tests with
 `npm test`
 
 ## Contributing
-There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).
+There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md). 
