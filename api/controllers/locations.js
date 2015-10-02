@@ -98,6 +98,8 @@ var groupResults = function (docs) {
           lastUpdated: location.lastUpdated,
           parameters: location.parameters
         };
+        // And update country count
+        country.count += location.count;
       }
     } else {
       // Neither Country nor City exist yet
