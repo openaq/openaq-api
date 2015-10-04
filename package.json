@@ -15,6 +15,7 @@
   "dependencies": {
     "async": "^1.2.1",
     "boom": "^2.8.0",
+    "cheerio": "latest",
     "csv-stringify": "0.0.8",
     "good": "^6.3.0",
     "good-console": "^5.0.2",
