@@ -127,7 +127,7 @@ var formatData = function (name, data) {
     if (string !== 'RIVM') {
       var provider = {name: string};
       attribution.push(provider);
-    };
+    }
     return attribution;
   };
 
