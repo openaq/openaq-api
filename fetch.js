@@ -106,10 +106,19 @@ var getAndSaveData = function (source) {
         var bulk = measurementsCollection.initializeUnorderedBulkOp();
       }
       _.forEach(data.measurements, function (m) {
+        // Set defaults on measurement if needed
         m.location = m.location || data.name; // use existing location if it exists
         m.country = m.country || source.country;
         m.city = m.city || source.city; // use city from measurement, otherwise default to source
         m.sourceName = source.name;
+
+        // Remove extra fields
+        var wanted = ['date', 'parameter', 'location', 'value', 'unit', 'city',
+                      'attribution', 'averagingPeriod', 'coordinates',
+                      'country', 'sourceName'];
+        m = _.pick(m, wanted);
+
+        // Save or print depending on the state
         if (argv.dryrun) {
           console.info(m);
         } else {

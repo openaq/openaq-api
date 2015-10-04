@@ -26,17 +26,18 @@ var csv = require('csv-stringify');
  * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`.
  *
- * @apiSuccess {string}   _id           Unique ID `default`
- * @apiSuccess {date}     date          Date and time of measurement (UTC) `default`
- * @apiSuccess {string}   parameter     Property being measured `default`
- * @apiSuccess {number}   value         Value of measurement `default`
- * @apiSuccess {string}   unit          Unit of measurement `default`
- * @apiSuccess {string}   location      Location description for measurement `default`
- * @apiSuccess {string}   country       2 digit country code containing measurement `default`
- * @apiSuccess {string}   city          City containing measurement `default`
- * @apiSuccess {object}   coordinates   Latitude and longitude measurement was taken at `default`
- * @apiSuccess {string}   sourceName    Name of source matching to sources table for reference
- * @apiSuccess {array}    attribution   Attribution information for the measurement (name and url), in priority order.
+ * @apiSuccess {string}   _id             Unique ID `default`
+ * @apiSuccess {date}     date            Date and time of measurement (UTC) `default`
+ * @apiSuccess {string}   parameter       Property being measured `default`
+ * @apiSuccess {number}   value           Value of measurement `default`
+ * @apiSuccess {string}   unit            Unit of measurement `default`
+ * @apiSuccess {string}   location        Location description for measurement `default`
+ * @apiSuccess {string}   country         2 digit country code containing measurement `default`
+ * @apiSuccess {string}   city            City containing measurement `default`
+ * @apiSuccess {object}   coordinates     Latitude and longitude measurement was taken at `default`
+ * @apiSuccess {string}   sourceName      Name of source matching to sources table for reference
+ * @apiSuccess {array}    attribution     Attribution information for the measurement (name and url), in priority order.
+ * @apiSuccess {object}   averagingPeriod Period over which measurement is averaged.
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {
@@ -49,6 +50,14 @@ var csv = require('csv-stringify');
  *       "country": "IN",
  *       "city": "Delhi",
  *       "sourceName": "Anand Vihar",
+ *       "averagingPeriod": {
+ *          "value": 1,
+ *          "unit": "hours"
+ *       },
+ *       "coordinates": {
+ *          "latitude": 43.34,
+ *          "longitude": 23.04
+ *       },
  *       "attribution": [
  *         {
  *           "name" : "SINCA",
