@@ -70,6 +70,30 @@ module.exports.query = function (payload, page, limit, cb) {
   }
 
   //
+  // Handle include_fields cases
+  //
+  var projection = {
+    location: 1,
+    parameter: 1,
+    date: 1,
+    value: 1,
+    unit: 1,
+    coordinates: 1,
+    country: 1,
+    city: 1
+  };
+  if (_.has(payload, 'include_fields')) {
+    // Turn into an array and add to projection
+    var fields = payload.include_fields.split(',');
+    _.forEach(fields, function (f) {
+      projection[f] = 1;
+    });
+
+    // sanitized payload
+    payload = _.omit(payload, 'include_fields');
+  }
+
+  //
   // Handle custom sorts, starting with default of most recent measurements
   // first. Do nothing if we don't have both sort and order_by.
   //
@@ -90,6 +114,13 @@ module.exports.query = function (payload, page, limit, cb) {
     payload = _.omit(payload, 'order_by');
   }
 
+  // Handle has_geo flag and only return measurements with coordinates
+  if (_.has(payload, 'has_geo')) {
+    payload['coordinates'] = { $exists: true };
+    // sanitized payload
+    payload = _.omit(payload, 'has_geo');
+  }
+
   //
   // Apply paging
   //
@@ -101,7 +132,7 @@ module.exports.query = function (payload, page, limit, cb) {
       return cb(err);
     }
 
-    c.find(payload, { skip: skip, limit: limit }).sort(sort).toArray(function (err, docs) {
+    c.find(payload, projection, { skip: skip, limit: limit }).sort(sort).toArray(function (err, docs) {
       return cb(err, docs, count);
     });
   });

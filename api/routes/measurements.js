@@ -13,25 +13,30 @@ var csv = require('csv-stringify');
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
+ * @apiParam {boolean} [has_geo=true] Only return items with geographic coordinates, this option can only be `true`.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
  * @apiParam {string} [date_from] Show results after a certain date.
  * @apiParam {string} [date_to] Show results before a certain date.
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
  * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
+ * @apiParam {array}  [include_fields=location,parameter,date,value,unit,coordinates,country,city] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 100.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`.
  *
- * @apiSuccess {string}   _id            Unique ID
- * @apiSuccess {date}   date          Date and time of measurement (UTC)
- * @apiSuccess {string}   parameter     Property being measured
- * @apiSuccess {number}   value         Value of measurement
- * @apiSuccess {string}   unit           Unit of measurement
- * @apiSuccess {string}   location      Location description for measurement
- * @apiSuccess {string}   country       2 digit country code containing measurement
- * @apiSuccess {string}   city       City containing measurement
+ * @apiSuccess {string}   _id           Unique ID `default`
+ * @apiSuccess {date}     date          Date and time of measurement (UTC) `default`
+ * @apiSuccess {string}   parameter     Property being measured `default`
+ * @apiSuccess {number}   value         Value of measurement `default`
+ * @apiSuccess {string}   unit          Unit of measurement `default`
+ * @apiSuccess {string}   location      Location description for measurement `default`
+ * @apiSuccess {string}   country       2 digit country code containing measurement `default`
+ * @apiSuccess {string}   city          City containing measurement `default`
+ * @apiSuccess {object}   coordinates   Latitude and longitude measurement was taken at `default`
+ * @apiSuccess {string}   sourceName    Name of source matching to sources table for reference
+ * @apiSuccess {array}    attribution   Attribution information for the measurement (name and url), in priority order.
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {
@@ -42,8 +47,18 @@ var csv = require('csv-stringify');
  *       "unit": "µg/m3",
  *       "location": "Anand Vihar",
  *       "country": "IN",
- *       "city": "Delhi"
- *      }
+ *       "city": "Delhi",
+ *       "sourceName": "Anand Vihar",
+ *       "attribution": [
+ *         {
+ *           "name" : "SINCA",
+ *           "url" : "http://sinca.mma.gob.cl/"
+ *         },
+ *         {
+ *           "name" : "Ministerio del Medio Ambiente"
+ *         }
+ *       ]
+ *     }
  *
  * @apiError statusCode     The error code
  * @apiError error          Error name
@@ -110,7 +125,6 @@ module.exports = [
           return reply(records);
         }
       });
-
     }
   }
 ];

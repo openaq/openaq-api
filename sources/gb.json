@@ -4,7 +4,7 @@
         "adapter": "london",
         "name": "Greater London",
         "city": "London",
-        "country": "UK",
+        "country": "GB",
         "description": "",
         "resolution": "1 hr",
         "sourceURL": "http://uk-air.defra.gov.uk/latest/currentlevels",
