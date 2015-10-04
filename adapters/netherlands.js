@@ -1,9 +1,5 @@
 'use strict';
 
-// TODO: turn organization into attribution array
-// TODO: remove road
-// TODO: figure out how best to label location
-// TODO: add geo coordinates if possible
 var request = require('request');
 var _ = require('lodash');
 var cheerio = require('cheerio');
@@ -124,10 +120,22 @@ var formatData = function (name, data) {
     return splitLocation[0];
   };
 
-  var getRoad = function (string) {
-    var splitLocation = string.split('-');
-    // Not every location has a road
-    return splitLocation[1] || '';
+  // RIVM has to be attributed first. If another organization is
+  // mentioned, pass in it in the second place.
+  var getAttribution = function (string) {
+    var attribution = [{name: 'RIVM', url: 'http://www.lml.rivm.nl/'}];
+    if (string !== 'RIVM') {
+      var provider = {name: string};
+      attribution.push(provider);
+    };
+    return attribution;
+  };
+
+  // Hardcode the averaging periods for PM10 and PM2.5
+  var getPeriod = function (string) {
+    if ((string === 'pm25') || (string === 'pm10')) {
+      return {'value': 24, 'unit': 'hours'};
+    }
   };
 
   var measurements = [];
@@ -137,12 +145,13 @@ var formatData = function (name, data) {
     var m = {
       date: parseDate($('MWAA_BEGINDATUMTIJD', this).text()),
       parameter: p,
-      location: getLocation($('STAT_NUMMER', this).text()),
+      location: $('STAT_NAAM', this).text(),
       value: Number($('MWAA_WAARDE', this).text()),
       unit: 'µg/m3',
+      stationId: getLocation($('STAT_NUMMER', this).text()),
       city: getCity($('STAT_NAAM', this).text()),
-      road: getRoad($('STAT_NAAM', this).text()),
-      organization: $('OPST_OPDR_ORGA_CODE', this).text()
+      attribution: getAttribution($('OPST_OPDR_ORGA_CODE', this).text()),
+      averagingPeriod: getPeriod(p)
     };
     measurements.push(m);
   });
