@@ -231,6 +231,8 @@ var formatData = function (name, data) {
   var getPeriod = function (string) {
     if ((string === 'pm25') || (string === 'pm10')) {
       return {'value': 24, 'unit': 'hours'};
+    } else {
+      return {'value': 1, 'unit': 'hours'};
     }
   };
 
