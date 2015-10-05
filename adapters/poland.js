@@ -36,7 +36,7 @@ exports.fetchData = function (source, cb) {
       tasks.push(task);
     });
 
-    async.parallelLimit(tasks, 4, function (err, results) {
+    async.series(tasks, function (err, results) {
       if (err) {
         return console.error(err);
       }
