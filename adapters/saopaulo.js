@@ -92,7 +92,6 @@ var formatData = function (results) {
   var makeDate = function (day, time) {
     // Grab date from page, add time string and convert to date
     var dateString = day + ' ' + time;
-    console.log(dateString);
     var date = moment.tz(dateString, 'DD/MM/YYYY HH:mm', 'America/Sao_Paulo');
 
     return date.toDate();
