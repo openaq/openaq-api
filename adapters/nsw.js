@@ -72,8 +72,8 @@ var formatData = function (data) {
         if ($(this).find('a').length) {
           var regExp = new RegExp('</a><br>+(.+)');
           var param = $(this).html().match(regExp)[1].replace('.', '').toLowerCase();
-          indexParams.push({col: colCounter, parameter: param, avgPeriod: null });
-        };
+          indexParams.push({col: colCounter, parameter: param, avgPeriod: null});
+        }
       });
 
     // Deal with the row containing averaging periods
@@ -89,7 +89,7 @@ var formatData = function (data) {
         var period = $(this).html().match(regExp);
         if (period) {
           indexParams[_.findIndex(indexParams, { 'col': colCounter })].avgPeriod = period[1];
-        };
+        }
       });
 
     // Any other row may contain measurements
@@ -133,10 +133,10 @@ var formatData = function (data) {
             m.value = Number($(this).text());
             m.averagingPeriod = {value: Number(p.avgPeriod), unit: 'hours'};
             measurements.push(m);
-          };
+          }
         });
-      };
-    };
+      }
+    }
   });
 
   // The same pollutant can contain multiple measurements per location.
@@ -152,7 +152,7 @@ var formatData = function (data) {
       // Matching measurement found with bigger avgPeriod
       finalMeasurements.push(measurements[m]);
       finalMeasurements.splice(match, 1);
-    };
+    }
   }
   return {name: 'unused', measurements: finalMeasurements};
 };
