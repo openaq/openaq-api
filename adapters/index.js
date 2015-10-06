@@ -25,7 +25,7 @@ module.exports = require('require-dir')();
  *   ]
  * }
  *
- * Valid parameter values are pm25, pm10, so2, no2, co, and bc (black carbon).
+ * Valid parameter values are pm25, pm10, so2, no2, co, o3, and bc (black carbon).
  * All other values will be ignored.
  *
  * Date should be provided as UTC. moment.js can be used to handle time zone
