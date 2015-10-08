@@ -243,7 +243,7 @@ var formatData = function (name, data) {
     var stationID = getLocation($('STAT_NUMMER', this).text());
 
     var m = {
-      date: parseDate($('MWAA_BEGINDATUMTIJD', this).text()),
+      date: parseDate($('MWAA_EINDDATUMTIJD', this).text()),
       parameter: p,
       location: $('STAT_NAAM', this).text(),
       value: Number($('MWAA_WAARDE', this).text()),
