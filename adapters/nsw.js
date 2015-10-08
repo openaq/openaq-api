@@ -34,7 +34,7 @@ var parseDate = function (dateString) {
   var d = dateString.split('<br>');
   // Split the hour string to get starting hour + am/pm
   var h = d[2].split(' ');
-  var date = moment.tz(d[1] + h[0] + h[3], 'D MMMM YYYYha', 'Australia/Melbourne');
+  var date = moment.tz(d[1] + h[2] + h[3], 'D MMMM YYYYha', 'Australia/Melbourne');
   return date.toDate();
 };
 
