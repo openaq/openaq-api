@@ -211,9 +211,14 @@ var formatData = function (name, data) {
     return li;
   };
 
+  // Location names are reported as follows: 'Eindhoven-Genovevalaan'
+  // The first is the city, the second usually some type of road
+  // In some cases, the first part contains PNH (Province of North Holland)
+  // which needs to be removed as well.
   var getCity = function (string) {
     var splitLocation = string.split('-');
-    return splitLocation[0];
+    var cityName = splitLocation[0].replace('PNH ', '');
+    return cityName;
   };
 
   // RIVM has to be attributed first. If another organization is
