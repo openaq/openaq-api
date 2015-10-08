@@ -203,7 +203,7 @@ var formatData = function (name, data) {
     return date.toDate();
   };
 
-  var getLocation = function (string) {
+  var getStationId = function (string) {
     // Some locations don't have their full ID in the XML. In that case,
     // it can always be prepended by 'NL10'
     // http://www.lml.rivm.nl/tabel/ versus http://www.lml.rivm.nl/sos/
@@ -240,7 +240,7 @@ var formatData = function (name, data) {
 
   // Loop over each <ROW> in the XML and store the measurement
   $('ROW').each(function (i, elem) {
-    var stationID = getLocation($('STAT_NUMMER', this).text());
+    var stationID = getStationId($('STAT_NUMMER', this).text());
 
     var m = {
       date: parseDate($('MWAA_EINDDATUMTIJD', this).text()),
