@@ -203,7 +203,7 @@ var formatData = function (name, data) {
     return date.toDate();
   };
 
-  var getLocation = function (string) {
+  var getStationId = function (string) {
     // Some locations don't have their full ID in the XML. In that case,
     // it can always be prepended by 'NL10'
     // http://www.lml.rivm.nl/tabel/ versus http://www.lml.rivm.nl/sos/
@@ -211,9 +211,14 @@ var formatData = function (name, data) {
     return li;
   };
 
+  // Location names are reported as follows: 'Eindhoven-Genovevalaan'
+  // The first is the city, the second usually some type of road
+  // In some cases, the first part contains PNH (Province of North Holland)
+  // which needs to be removed as well.
   var getCity = function (string) {
     var splitLocation = string.split('-');
-    return splitLocation[0];
+    var cityName = splitLocation[0].replace('PNH ', '');
+    return cityName;
   };
 
   // RIVM has to be attributed first. If another organization is
@@ -240,10 +245,10 @@ var formatData = function (name, data) {
 
   // Loop over each <ROW> in the XML and store the measurement
   $('ROW').each(function (i, elem) {
-    var stationID = getLocation($('STAT_NUMMER', this).text());
+    var stationID = getStationId($('STAT_NUMMER', this).text());
 
     var m = {
-      date: parseDate($('MWAA_BEGINDATUMTIJD', this).text()),
+      date: parseDate($('MWAA_EINDDATUMTIJD', this).text()),
       parameter: p,
       location: $('STAT_NAAM', this).text(),
       value: Number($('MWAA_WAARDE', this).text()),
