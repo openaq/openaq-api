@@ -10,14 +10,9 @@ var db = require('../services/db.js').db;
 * @param {Object} payload - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (payload, page, limit, cb) {
+module.exports.query = function (payload, cb) {
   // Get the collection
   var c = db.collection('measurements');
-
-  //
-  // Apply paging
-  //
-  var skip = limit * (page - 1);
 
   // Execute the search and return the result via callback
   // Actually wrapping two aggregations here to get the true count before
@@ -45,7 +40,7 @@ module.exports.query = function (payload, page, limit, cb) {
         }
         },
         { $sort: { '_id.country': 1, '_id.city': 1, '_id.location': 1 } }
-        ], { skip: skip, limit: limit }).toArray(function (err, docs) {
+        ]).toArray(function (err, docs) {
           if (err) {
             return cb(err);
           }
