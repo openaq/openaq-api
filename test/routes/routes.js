@@ -164,7 +164,7 @@ describe('Testing endpoints', function () {
           license: 'CC0-1.0',
           website: 'https://docs.openaq.org/',
           page: 1,
-          limit: 500,
+          limit: 100,
           found: 21
         };
         expect(res.meta).to.deep.equal(testMeta);
@@ -173,7 +173,41 @@ describe('Testing endpoints', function () {
     });
   });
 
-  describe('/sites', function () {
+  describe('/latest', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'latest', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(21);
+        expect(res.results[0].measurements).to.be.instanceof(Array);
+        done();
+      });
+    });
+
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'latest', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC0-1.0',
+          website: 'https://docs.openaq.org/',
+          page: 1,
+          limit: 100,
+          found: 21
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+  });
+
+  describe('/sources', function () {
     it('should exist', function (done) {
       request(self.baseURL + 'sources', function (err, response, body) {
         if (err) {

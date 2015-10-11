@@ -10,10 +10,6 @@ var m = require('../controllers/locations.js');
  * a nested list reflecting the country-city-location relationship, `count` and
  * `lastUpdated` are calculated from all children.
  *
- * @apiParam {number} [limit=500] Change the number of results returned, max is 100.
- * @apiParam {number} [page=1] Paginate through results.
- * @apiParam {number} [skip] Number of records to skip.
- *
  * @apiSuccess {string}   location      Location description for measurement
  * @apiSuccess {string}   country       2 digit country code containing measurement
  * @apiSuccess {string}   city       City containing measurement
@@ -70,11 +66,11 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 500 for now
-      request.limit = 500;
+      // Don't use a limit for this endpoint
+      request.limit = undefined;
 
       // Handle it
-      m.query(params, request.page, request.limit, function (err, records, count) {
+      m.query(params, function (err, records, count) {
         if (err) {
           console.error(err);
           return reply(Boom.badImplementation(err));
