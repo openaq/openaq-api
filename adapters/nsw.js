@@ -4,6 +4,7 @@ var request = require('request');
 var _ = require('lodash');
 var moment = require('moment-timezone');
 var cheerio = require('cheerio');
+var utils = require('../lib/utils');
 
 exports.name = 'nsw';
 
@@ -154,5 +155,9 @@ var formatData = function (data) {
       finalMeasurements.splice(match, 1);
     }
   }
+
+  // Attempt to convert to the Open AQ standard unit
+  utils.convertUnits(finalMeasurements);
+
   return {name: 'unused', measurements: finalMeasurements};
 };
