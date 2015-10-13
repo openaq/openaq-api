@@ -29,10 +29,31 @@ describe('Testing helper functions', function () {
             unit: 234,
             value: 'asd',
             date: new Date()
+          },
+          {
+            parameter: 'pm25',
+            unit: 'ppb',
+            value: 234,
+            date: new Date()
+          },
+          {
+            parameter: 'pm25',
+            unit: 'ppm',
+            value: 234,
+            coordinates: {
+              latitude: 43
+            },
+            date: new Date()
+          },
+          {
+            parameter: 'pm25',
+            unit: 'µg/m3',
+            value: 20,
+            date: new Date()
           }
         ]
       };
-      expect(utils.verifyDataFormat(data)).to.be.false;
+      expect(utils.pruneMeasurements(data.measurements).length).to.equal(1);
       done();
     });
 
