@@ -33,9 +33,20 @@ exports.fetchData = function (source, cb) {
 // This is pretty nasty, but the rest of the code is as well.
 var parseDate = function (dateString) {
   var d = dateString.split('<br>');
-  // Split the hour string to get starting hour + am/pm
-  var h = d[2].split(' ');
-  var date = moment.tz(d[1] + h[2] + h[3], 'D MMMM YYYYha', 'Australia/Melbourne');
+
+  // Split the hour string to get hours + am/pm
+  var timeString = d[2].split(' ');
+  // We're interested in the 'to' hour and am/pm indication
+  var time = timeString[2] + timeString[3];
+
+  // Dates are reported in a range: December 13, 11pm - 12am
+  // If the 'to' time is 12am, we need to add a day, so it returns
+  // December 14, 12am, instead of December 13, 12am.
+  var date_offset = (time === '12am') ? 1 : 0;
+
+  var date = moment.tz(d[1] + time, 'D MMMM YYYYha', 'Australia/Melbourne');
+  date.add(date_offset, 'day');
+
   return date.toDate();
 };
 
