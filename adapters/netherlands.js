@@ -5,7 +5,6 @@ var _ = require('lodash');
 var cheerio = require('cheerio');
 var async = require('async');
 var moment = require('moment-timezone');
-moment.locale('nl');
 
 exports.name = 'netherlands';
 
@@ -66,7 +65,7 @@ var listApachetree = function (data, url) {
   var $ = cheerio.load(data);
 
   var parseDate = function (ds) {
-    var date = moment.tz(ds, 'DD-MMM-YYYY HH:mm', 'Europe/Amsterdam');
+    var date = moment.tz(ds, 'DD-MMM-YYYY HH:mm', 'nl', 'Europe/Amsterdam');
     return date.toDate();
   };
 
