@@ -25,19 +25,19 @@ describe('Testing helper functions', function () {
         name: 'test',
         measurements: [
           {
-            parameter: 324,
+            parameter: 324, // Bad param, unit, value
             unit: 234,
             value: 'asd',
             date: new Date()
           },
           {
-            parameter: 'pm25',
+            parameter: 'pm25', // Bad unit
             unit: 'ppb',
             value: 234,
             date: new Date()
           },
           {
-            parameter: 'pm25',
+            parameter: 'pm25', // Bad coords
             unit: 'ppm',
             value: 234,
             coordinates: {
@@ -46,10 +46,16 @@ describe('Testing helper functions', function () {
             date: new Date()
           },
           {
-            parameter: 'pm25',
+            parameter: 'pm25',  // Bad unit
             unit: 'µg/m3',
             value: 20,
             date: new Date()
+          },
+          {
+            parameter: 'pm25',  // Date too far in past
+            unit: 'µg/m3',
+            value: 20,
+            date: new Date(new Date().setDate(new Date().getDate() - 5))
           }
         ]
       };
