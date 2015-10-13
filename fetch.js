@@ -82,11 +82,8 @@ var getAndSaveData = function (source) {
         return done(null, error);
       }
 
-      // Remove any unwanted measurement fields
-      var validParams = ['pm25', 'pm10', 'no2', 'so2', 'o3', 'co', 'bc'];
-      data.measurements = _.filter(data.measurements, function (m) {
-        return validParams.indexOf(m.parameter) !== -1;
-      });
+      // Remove any measurements that don't meet our requirements
+      data.measurements = utils.pruneMeasurements(data.measurements);
 
       // If we have no measurements to insert, we can exit now
       if (data.measurements && data.measurements.length === 0) {
