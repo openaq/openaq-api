@@ -9,6 +9,7 @@ var testPort = 2000;
 var request = require('request');
 var measurements = require('../data/measurements');
 var _ = require('lodash');
+var ObjectID = require('mongodb').ObjectID;
 
 describe('Testing endpoints', function () {
   var self = this;
@@ -25,6 +26,8 @@ describe('Testing endpoints', function () {
         // Insert records into db
         var collection = self.db.db.collection('measurements');
         _.forEach(measurements.results, function (m) {
+          m['_id'] = new ObjectID(m['_id']);
+          m.date.utc = new Date(m.date.utc);
           collection.save(m);
         });
 
@@ -74,24 +77,27 @@ describe('Testing endpoints', function () {
     });
 
     it('should return an object like a good API', function (done) {
-      request(self.baseURL + 'measurements?_id=55fc0c28dd51280300bdc190', function (err, response, body) {
+      request(self.baseURL + 'measurements?_id=561e7d31e7a1bc855f63fcb6', function (err, response, body) {
         if (err) {
           console.error(err);
         }
 
         var res = JSON.parse(body);
         var testObj = {
-          _id: '55fc0c28dd51280300bdc190',
+          _id: '561e7d31e7a1bc855f63fcb6',
           parameter: 'pm25',
-          date: '2015-09-18T13:00:00.000Z',
-          value: 95,
+          'date': {
+            'local': '2015-10-14T12:00:00-03:00',
+            'utc': '2015-10-14T15:00:00.000Z'
+          },
+          value: 10.66,
           unit: 'µg/m³',
-          location: 'Nisekh',
-          country: 'MN',
-          city: 'Ulaanbaatar',
+          location: 'Nueva Libertad',
+          country: 'CL',
+          city: 'Talcahuano',
           coordinates: {
-            'latitude': 47.863943,
-            'longitude': 106.779094
+            'latitude': -36.735998,
+            'longitude': -73.118693
           }
         };
         expect(res.results[0]).to.deep.equal(testObj);
@@ -100,37 +106,40 @@ describe('Testing endpoints', function () {
     });
 
     it('should return csv when asked to', function (done) {
-      request(self.baseURL + 'measurements?limit=1&format=csv&_id=55fc0c28dd51280300bdc190', function (err, response, body) {
+      request(self.baseURL + 'measurements?limit=1&format=csv&_id=561e7d31e7a1bc855f63fcb6', function (err, response, body) {
         if (err) {
           console.error(err);
         }
 
-        var csv = 'location,city,country,date,parameter,value,unit\nNisekh,Ulaanbaatar,MN,2015-09-18T13:00:00.000Z,pm25,95,µg/m³\n';
+        var csv = 'location,city,country,utc,local,parameter,value,unit\nNueva Libertad,Talcahuano,CL,2015-10-14T15:00:00.000Z,2015-10-14T12:00:00-03:00,pm25,10.66,µg/m³\n';
         expect(body).to.equal(csv);
         done();
       });
     });
 
     it('should allow for field selection', function (done) {
-      request(self.baseURL + 'measurements?_id=55fc0c28dd51280300bdc190&include_fields=sourceName', function (err, response, body) {
+      request(self.baseURL + 'measurements?_id=561e7d31e7a1bc855f63fcb6&include_fields=sourceName', function (err, response, body) {
         if (err) {
           console.error(err);
         }
 
         var res = JSON.parse(body);
         var testObj = {
-          _id: '55fc0c28dd51280300bdc190',
+          _id: '561e7d31e7a1bc855f63fcb6',
           parameter: 'pm25',
-          date: '2015-09-18T13:00:00.000Z',
-          value: 95,
+          'date': {
+            'local': '2015-10-14T12:00:00-03:00',
+            'utc': '2015-10-14T15:00:00.000Z'
+          },
+          value: 10.66,
           unit: 'µg/m³',
-          location: 'Nisekh',
-          country: 'MN',
-          city: 'Ulaanbaatar',
-          sourceName: 'Agaar.mn',
+          location: 'Nueva Libertad',
+          country: 'CL',
+          city: 'Talcahuano',
+          sourceName: 'Chile - SINCA',
           coordinates: {
-            'latitude': 47.863943,
-            'longitude': 106.779094
+            'latitude': -36.735998,
+            'longitude': -73.118693
           }
         };
         expect(res.results[0]).to.deep.equal(testObj);
@@ -147,7 +156,7 @@ describe('Testing endpoints', function () {
         }
 
         var res = JSON.parse(body);
-        expect(res.results.length).to.equal(4);
+        expect(res.results.length).to.equal(5);
         expect(res.results[0].cities).to.be.instanceof(Array);
         done();
       });
@@ -165,7 +174,7 @@ describe('Testing endpoints', function () {
           website: 'https://docs.openaq.org/',
           page: 1,
           limit: 100,
-          found: 21
+          found: 79
         };
         expect(res.meta).to.deep.equal(testMeta);
         done();
@@ -181,7 +190,7 @@ describe('Testing endpoints', function () {
         }
 
         var res = JSON.parse(body);
-        expect(res.results.length).to.equal(21);
+        expect(res.results.length).to.equal(79);
         expect(res.results[0].measurements).to.be.instanceof(Array);
         done();
       });
@@ -199,7 +208,7 @@ describe('Testing endpoints', function () {
           website: 'https://docs.openaq.org/',
           page: 1,
           limit: 100,
-          found: 21
+          found: 79
         };
         expect(res.meta).to.deep.equal(testMeta);
         done();

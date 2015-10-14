@@ -59,7 +59,7 @@ describe('Testing helper functions', function () {
           }
         ]
       };
-      expect(utils.pruneMeasurements(data.measurements).length).to.equal(1);
+      expect(utils.pruneMeasurements(data.measurements).length).to.equal(0);
       done();
     });
 

@@ -4,1417 +4,2291 @@
 "license": "CC0-1.0",
 "website": "https://docs.openaq.org/",
 "page": 1,
-"found": 21039,
-"limit": 100
+"limit": 100,
+"found": 381
 },
 "results": [
 {
-"_id": "55fc0c28dd51280300bdc190",
-"location": "Nisekh",
+"_id": "561eaab55e162c6c7006896e",
+"date": {
+"utc": "2015-10-14T19:00:00.000Z",
+"local": "2015-10-15T03:00:00+08:00"
+},
 "parameter": "pm25",
-"date": "2015-09-18T13:00:00.000Z",
-"value": 95,
+"location": "Nisekh",
+"value": 58,
 "unit": "µg/m³",
+"city": "Ulaanbaatar",
 "coordinates": {
 "latitude": 47.863943,
 "longitude": 106.779094
 },
 "country": "MN",
-"city": "Ulaanbaatar",
 "sourceName": "Agaar.mn"
 },
 {
-"_id": "55fc0c28dd51280300bdc196",
-"location": "Tolgoit",
+"_id": "561eaab55e162c6c70068974",
+"date": {
+"utc": "2015-10-14T19:00:00.000Z",
+"local": "2015-10-15T03:00:00+08:00"
+},
 "parameter": "pm25",
-"date": "2015-09-18T13:00:00.000Z",
-"value": 74,
+"location": "Tolgoit",
+"value": 97,
 "unit": "µg/m³",
+"city": "Ulaanbaatar",
 "coordinates": {
 "latitude": 47.922495,
 "longitude": 106.794805
 },
 "country": "MN",
-"city": "Ulaanbaatar",
 "sourceName": "Agaar.mn"
 },
 {
-"_id": "55fc0c28dd51280300bdc19c",
+"_id": "561eaab55e162c6c7006897a",
+"date": {
+"utc": "2015-10-14T19:00:00.000Z",
+"local": "2015-10-15T03:00:00+08:00"
+},
+"parameter": "pm25",
 "location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T13:00:00.000Z",
-"value": 105,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc0c28dd51280300bdc1aa",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T13:00:00.000Z",
-"value": 12,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc0c28dd51280300bdc1af",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T13:00:00.000Z",
 "value": 33,
 "unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
 "city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc09d6a4f2b2030002e390",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T12:45:00.000Z",
-"value": 9,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc09d6a4f2b2030002e395",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T12:45:00.000Z",
-"value": 30,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc05237391ef0300017001",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T12:30:00.000Z",
-"value": 103,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc05237391ef0300017007",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T12:30:00.000Z",
-"value": 81,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc05237391ef030001700d",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T12:30:00.000Z",
-"value": 90,
-"unit": "µg/m³",
 "coordinates": {
 "latitude": 47.929732,
 "longitude": 106.888629
 },
 "country": "MN",
-"city": "Ulaanbaatar",
 "sourceName": "Agaar.mn"
 },
 {
-"_id": "55fc05237391ef030001701b",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T12:30:00.000Z",
-"value": 9,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc05237391ef0300017020",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T12:30:00.000Z",
-"value": 30,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc02ce72d2f80300c34ae0",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T12:15:00.000Z",
-"value": 9,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc02ce72d2f80300c34ae5",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T12:15:00.000Z",
-"value": 30,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbfe1327a4470300dc1865",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 157,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbfe1327a4470300dc186b",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 255,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbfe1327a4470300dc1871",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 181,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbfe1327a4470300dc187f",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 14,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbfe1327a4470300dc1884",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 15,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fc05177391ef0300016fce",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 39,
-"unit": "µg/m³",
-"location": "Beijing US Embassy",
-"country": "CN",
-"city": "Beijing",
-"sourceName": "Beijing US Embassy"
-},
-{
-"_id": "55fc07712b11f50300cfc83f",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 34,
-"unit": "µg/m³",
-"location": "Chengdu",
-"country": "CN",
-"city": "Chengdu",
-"sourceName": "Chengdu"
-},
-{
-"_id": "55fc09caa4f2b2030002e343",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 46,
-"unit": "µg/m³",
-"location": "Shanghai",
-"country": "CN",
-"city": "Shanghai",
-"sourceName": "Shanghai"
-},
-{
-"_id": "55fc0c2cdd51280300bdc1bb",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 63,
-"unit": "µg/m³",
-"location": "Guangzhou",
-"country": "CN",
-"city": "Guangzhou",
-"sourceName": "Guangzhou"
-},
-{
-"_id": "55fc0c34dd51280300bdc1bc",
-"parameter": "pm25",
-"date": "2015-09-18T12:00:00.000Z",
-"value": 36,
-"unit": "µg/m³",
-"location": "Shenyang",
-"country": "CN",
-"city": "Shenyang",
-"sourceName": "Shenyang"
-},
-{
-"_id": "55fbfbbd8728df0300c3d853",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T11:45:00.000Z",
-"value": 15,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbfbbd8728df0300c3d858",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T11:45:00.000Z",
-"value": 11,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf713a602fc0300134899",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T11:30:00.000Z",
-"value": 216,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf713a602fc030013489f",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T11:30:00.000Z",
-"value": 273,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf713a602fc03001348a5",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T11:30:00.000Z",
-"value": 173,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf713a602fc03001348b3",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T11:30:00.000Z",
-"value": 15,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf713a602fc03001348b8",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T11:30:00.000Z",
-"value": 11,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf4c49fc82e03007766d2",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T11:15:00.000Z",
-"value": 15,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf4c49fc82e03007766d7",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T11:15:00.000Z",
-"value": 11,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf015e72b90030094a9ba",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 72,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf015e72b90030094a9c0",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 99,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf015e72b90030094a9c6",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 40,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf015e72b90030094a9d4",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 22,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf015e72b90030094a9d9",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbf707a602fc030013488c",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 24,
-"unit": "µg/m3",
-"location": "Mandir Marg",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "Mandir Marg"
-},
-{
-"_id": "55fbf707a602fc030013488e",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 30,
-"unit": "µg/m³",
-"location": "Beijing US Embassy",
-"country": "CN",
-"city": "Beijing",
-"sourceName": "Beijing US Embassy"
-},
-{
-"_id": "55fbf968b74e0303000f4340",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 28,
-"unit": "µg/m³",
-"location": "Chengdu",
-"country": "CN",
-"city": "Chengdu",
-"sourceName": "Chengdu"
-},
-{
-"_id": "55fbf968b74e0303000f434a",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 39,
-"unit": "µg/m3",
-"location": "RK Puram",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "RK Puram"
-},
-{
-"_id": "55fbfbb28728df0300c3d835",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 33,
-"unit": "µg/m³",
-"location": "Shanghai",
-"country": "CN",
-"city": "Shanghai",
-"sourceName": "Shanghai"
-},
-{
-"_id": "55fbfe0727a4470300dc1832",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 71,
-"unit": "µg/m³",
-"location": "Guangzhou",
-"country": "CN",
-"city": "Guangzhou",
-"sourceName": "Guangzhou"
-},
-{
-"_id": "55fbfe0727a4470300dc1858",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 30,
-"unit": "µg/m³",
-"location": "Shenyang",
-"country": "CN",
-"city": "Shenyang",
-"sourceName": "Shenyang"
-},
-{
-"_id": "55fc02c372d2f80300c34a9b",
-"location": "Camden Kerbside",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 9,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.54421,
-"longitude": -0.175269
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34a9f",
-"location": "Haringey Roadside",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 11,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.5993,
-"longitude": -0.068218
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34aa1",
-"location": "London Bexley",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 9,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.46603,
-"longitude": 0.184806
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34aa2",
-"location": "London Bloomsbury",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 4,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.52229,
-"longitude": -0.125889
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34aa4",
-"location": "London Eltham",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.45258,
-"longitude": 0.070766
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34aad",
-"location": "London Marylebone Road",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 18,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.52253,
-"longitude": -0.154611
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34ab1",
-"location": "London N. Kensington",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 5,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.52105,
-"longitude": -0.213492
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fc02c372d2f80300c34ab7",
-"location": "London Teddington Bushy Park",
-"parameter": "pm25",
-"date": "2015-09-18T11:00:00.000Z",
-"value": 3,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.425286,
-"longitude": -0.345606
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbeda3bf10d90300ec29e2",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T10:45:00.000Z",
-"value": 24,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbeda3bf10d90300ec29e7",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T10:45:00.000Z",
-"value": 4,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8f299add603008ce383",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T10:30:00.000Z",
-"value": 21,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8f299add603008ce389",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T10:30:00.000Z",
-"value": 43,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8f299add603008ce38f",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T10:30:00.000Z",
-"value": 23,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8f299add603008ce39d",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T10:30:00.000Z",
-"value": 24,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8f299add603008ce3a2",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T10:30:00.000Z",
-"value": 4,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbeb4c706b9003006722f8",
-"parameter": "pm25",
-"date": "2015-09-18T10:20:00.000Z",
-"value": 52,
-"unit": "µg/m3",
-"location": "RK Puram",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "RK Puram"
-},
-{
-"_id": "55fbed99bf10d90300ec29ba",
-"parameter": "pm25",
-"date": "2015-09-18T10:20:00.000Z",
-"value": 45,
-"unit": "µg/m3",
-"location": "Punjabi Bagh",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "Punjabi Bagh"
-},
-{
-"_id": "55fbed99bf10d90300ec29be",
-"parameter": "pm25",
-"date": "2015-09-18T10:20:00.000Z",
-"value": 50,
-"unit": "µg/m3",
-"location": "Mandir Marg",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "Mandir Marg"
-},
-{
-"_id": "55fbe6a65e8edf03003afe06",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T10:15:00.000Z",
-"value": 24,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe6a65e8edf03003afe0b",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T10:15:00.000Z",
-"value": 4,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8e799add603008ce380",
-"parameter": "pm25",
-"date": "2015-09-18T10:10:00.000Z",
-"value": 50,
-"unit": "µg/m3",
-"location": "Mandir Marg",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "Mandir Marg"
-},
-{
-"_id": "55fbe200a30efc0300a33e74",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 18,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe200a30efc0300a33e7a",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 44,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe200a30efc0300a33e80",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 14,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe200a30efc0300a33e8e",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 39,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe200a30efc0300a33e93",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbe8e799add603008ce381",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 25,
-"unit": "µg/m³",
-"location": "Beijing US Embassy",
-"country": "CN",
-"city": "Beijing",
-"sourceName": "Beijing US Embassy"
-},
-{
-"_id": "55fbeb4c706b9003006722fa",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 28,
-"unit": "µg/m³",
-"location": "Chengdu",
-"country": "CN",
-"city": "Chengdu",
-"sourceName": "Chengdu"
-},
-{
-"_id": "55fbed99bf10d90300ec2994",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 35,
-"unit": "µg/m³",
-"location": "Shanghai",
-"country": "CN",
-"city": "Shanghai",
-"sourceName": "Shanghai"
-},
-{
-"_id": "55fbf00de72b90030094a9b7",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 74,
-"unit": "µg/m³",
-"location": "Shenyang",
-"country": "CN",
-"city": "Shenyang",
-"sourceName": "Shenyang"
-},
-{
-"_id": "55fbf00de72b90030094a9b8",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 59,
-"unit": "µg/m³",
-"location": "Guangzhou",
-"country": "CN",
-"city": "Guangzhou",
-"sourceName": "Guangzhou"
-},
-{
-"_id": "55fbf4b99fc82e030077668c",
-"location": "Camden Kerbside",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 8,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.54421,
-"longitude": -0.175269
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
+"_id": "561eaab55e162c6c70068980",
+"date": {
+"utc": "2015-10-14T19:00:00.000Z",
+"local": "2015-10-15T03:00:00+08:00"
 },
-{
-"_id": "55fbf4b99fc82e0300776690",
-"location": "Haringey Roadside",
 "parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
+"location": "Amgalan",
 "value": 10,
 "unit": "µg/m³",
+"city": "Ulaanbaatar",
 "coordinates": {
-"latitude": 51.5993,
-"longitude": -0.068218
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbf4b99fc82e0300776692",
-"location": "London Bexley",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 9,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.46603,
-"longitude": 0.184806
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbf4b99fc82e0300776693",
-"location": "London Bloomsbury",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 5,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.52229,
-"longitude": -0.125889
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbf4b99fc82e0300776695",
-"location": "London Eltham",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.45258,
-"longitude": 0.070766
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbf4b99fc82e030077669e",
-"location": "London Marylebone Road",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 17,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.52253,
-"longitude": -0.154611
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbf4b99fc82e03007766a2",
-"location": "London N. Kensington",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 5,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.52105,
-"longitude": -0.213492
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbf4b99fc82e03007766a8",
-"location": "London Teddington Bushy Park",
-"parameter": "pm25",
-"date": "2015-09-18T10:00:00.000Z",
-"value": 3,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 51.425286,
-"longitude": -0.345606
-},
-"country": "UK",
-"city": "London",
-"sourceName": "Greater London"
-},
-{
-"_id": "55fbdf92aeb6b403001becf3",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T09:45:00.000Z",
-"value": 43,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
+"latitude": 47.913429,
+"longitude": 106.997907
 },
 "country": "MN",
-"city": "Ulaanbaatar",
 "sourceName": "Agaar.mn"
 },
 {
-"_id": "55fbdf92aeb6b403001becf8",
-"location": "Bukhiin urguu",
+"_id": "561e7de1e7a1bc855f6406a0",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
 "parameter": "pm25",
-"date": "2015-09-18T09:45:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbdae7b1b36203002dc109",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T09:30:00.000Z",
-"value": 16,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbdae7b1b36203002dc10f",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T09:30:00.000Z",
-"value": 43,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbdae7b1b36203002dc115",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T09:30:00.000Z",
-"value": 13,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbdae7b1b36203002dc123",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T09:30:00.000Z",
-"value": 43,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbdae7b1b36203002dc128",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T09:30:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbdd45bd80a203004c0124",
-"parameter": "pm25",
-"date": "2015-09-18T09:20:00.000Z",
-"value": 25,
+"location": "Reja",
+"value": 27.6,
 "unit": "µg/m3",
-"location": "RK Puram",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "RK Puram"
+"city": "Płock",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.55094028,
+"longitude": 19.70527778
+},
+"country": "PL",
+"sourceName": "Poland"
 },
 {
-"_id": "55fbdd45bd80a203004c0120",
+"_id": "561e7de1e7a1bc855f640607",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
 "parameter": "pm25",
-"date": "2015-09-18T09:20:00.000Z",
-"value": 29,
+"location": "Pułaskiego",
+"value": 31.8,
 "unit": "µg/m3",
-"location": "Mandir Marg",
-"country": "IN",
-"city": "Delhi",
-"sourceName": "Mandir Marg"
+"city": "Piastów",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
 },
-{
-"_id": "55fbd8a02182f60300a8462f",
-"location": "Baruun 4 zam",
-"parameter": "pm25",
-"date": "2015-09-18T09:15:00.000Z",
-"value": 43,
-"unit": "µg/m³",
 "coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
+"latitude": 52.19172722,
+"longitude": 20.83888889
 },
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
-},
-{
-"_id": "55fbd8a02182f60300a84634",
-"location": "Bukhiin urguu",
-"parameter": "pm25",
-"date": "2015-09-18T09:15:00.000Z",
-"value": 6,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
-},
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
+"country": "PL",
+"sourceName": "Poland"
 },
 {
-"_id": "55fbd3dc0af47f03002fdbb9",
-"location": "Nisekh",
-"parameter": "pm25",
-"date": "2015-09-18T09:00:00.000Z",
-"value": 13,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.863943,
-"longitude": 106.779094
+"_id": "561e7d43e7a1bc855f6400f4",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T13:00:00-03:00"
 },
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
+"parameter": "pm25",
+"location": "Itaim Paulista",
+"value": 41,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
 },
 {
-"_id": "55fbd3dc0af47f03002fdbbf",
-"location": "Tolgoit",
-"parameter": "pm25",
-"date": "2015-09-18T09:00:00.000Z",
-"value": 43,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.922495,
-"longitude": 106.794805
+"_id": "561e7d43e7a1bc855f6400ce",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T13:00:00-03:00"
 },
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
+"parameter": "pm25",
+"location": "Ibirapuera",
+"value": 24,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
 },
 {
-"_id": "55fbd3dc0af47f03002fdbc5",
-"location": "MNB",
-"parameter": "pm25",
-"date": "2015-09-18T09:00:00.000Z",
-"value": 15,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 47.929732,
-"longitude": 106.888629
+"_id": "561e7d43e7a1bc855f6400a9",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T13:00:00-03:00"
 },
-"country": "MN",
-"city": "Ulaanbaatar",
-"sourceName": "Agaar.mn"
+"parameter": "pm25",
+"location": "Guarulhos-Pimentas",
+"value": 33,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
 },
 {
-"_id": "55fbd3dc0af47f03002fdbd3",
-"location": "Baruun 4 zam",
+"_id": "561e7d43e7a1bc855f63ffc5",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T13:00:00-03:00"
+},
 "parameter": "pm25",
-"date": "2015-09-18T09:00:00.000Z",
+"location": "Cid.Universitária-USP-Ipen",
 "value": 22,
-"unit": "µg/m³",
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f63ff11",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T13:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Campinas-V.União",
+"value": 26,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdda",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Maastricht-A2 Kasteel Hillenraadweg",
+"value": 30.91304347826087,
+"unit": "µg/m3",
+"city": "Maastricht",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": ""
+}
+],
 "coordinates": {
-"latitude": 47.9153833,
-"longitude": 106.8941944
+"latitude": 50.8598,
+"longitude": 5.71381
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd9",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Groningen-Nijensteinheerd",
+"value": 11.0854,
+"unit": "µg/m3",
+"city": "Groningen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 53.2465,
+"longitude": 6.60894
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd8",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Groningen-Europaweg",
+"value": 12.86991,
+"unit": "µg/m3",
+"city": "Groningen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 53.2178,
+"longitude": 6.5789
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd7",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Kollumerwaard-Hooge Zuidwal",
+"value": 4.8147416666666665,
+"unit": "µg/m3",
+"city": "Kollumerwaard",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 53.3304,
+"longitude": 6.27681
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd6",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Enschede-Winkelshorst",
+"value": 17.612375,
+"unit": "µg/m3",
+"city": "Enschede",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.2345,
+"longitude": 6.91949
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd5",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Nijmegen-Ruyterstraat",
+"value": 19.388315833333333,
+"unit": "µg/m3",
+"city": "Nijmegen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.8382,
+"longitude": 5.85694
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd4",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Nijmegen-Graafseweg",
+"value": 21.099191666666666,
+"unit": "µg/m3",
+"city": "Nijmegen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.8414,
+"longitude": 5.85778
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd3",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Wekerom-Riemterdijk",
+"value": 16.70310695652174,
+"unit": "µg/m3",
+"city": "Wekerom",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.1116,
+"longitude": 5.70842
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd2",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Cabauw-Wielsekade",
+"value": 15.089475833333333,
+"unit": "µg/m3",
+"city": "Cabauw",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.9745,
+"longitude": 4.9233
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd1",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Utrecht-Griftpark",
+"value": 27.121495833333334,
+"unit": "µg/m3",
+"city": "Utrecht",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.1013,
+"longitude": 5.12818
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdd0",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Breukelen-Snelweg",
+"value": 12.549172916666667,
+"unit": "µg/m3",
+"city": "Breukelen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.2015,
+"longitude": 4.98744
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdcf",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Utrecht-Kardinaal de Jongweg",
+"value": 16.701682608695652,
+"unit": "µg/m3",
+"city": "Utrecht",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.105,
+"longitude": 5.12446
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdce",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Wieringerwerf-Medemblikkerweg",
+"value": 5.93809875,
+"unit": "µg/m3",
+"city": "Wieringerwerf",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.8037,
+"longitude": 5.05051
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdcd",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Rotterdam-Bentinckplein",
+"value": 20.528432083333332,
+"unit": "µg/m3",
+"city": "Rotterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.9271,
+"longitude": 4.46134
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdcc",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "De Zilk-Vogelaarsdreef",
+"value": 6.798010833333334,
+"unit": "µg/m3",
+"city": "De Zilk",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.2966,
+"longitude": 4.51082
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdcb",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Vlaardingen-Floreslaan",
+"value": 11.98823375,
+"unit": "µg/m3",
+"city": "Vlaardingen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.9105,
+"longitude": 4.3263
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdca",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Rotterdam-Schiedamsevest",
+"value": 19.789057083333333,
+"unit": "µg/m3",
+"city": "Rotterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.9142,
+"longitude": 4.47992
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc9",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Den Haag-Rebecquestraat",
+"value": 14.36811125,
+"unit": "µg/m3",
+"city": "Den Haag",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 52.0771,
+"longitude": 4.28919
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc8",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Veldhoven-Europalaan",
+"value": 19.211410454545454,
+"unit": "µg/m3",
+"city": "Veldhoven",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.4074,
+"longitude": 5.39333
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc7",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Breda-Bastenakenstraat",
+"value": 19.786099583333332,
+"unit": "µg/m3",
+"city": "Breda",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.6031,
+"longitude": 4.78102
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc6",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Breda-Tilburgseweg",
+"value": 22.053175,
+"unit": "µg/m3",
+"city": "Breda",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.5935,
+"longitude": 4.82494
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc5",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Biest Houtakker-Biestsestraat",
+"value": 24.003839130434784,
+"unit": "µg/m3",
+"city": "Biest Houtakker",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.5184,
+"longitude": 5.14845
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc4",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Heerlen-Jamboreepad",
+"value": 19.717205,
+"unit": "µg/m3",
+"city": "Heerlen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 50.9003,
+"longitude": 5.98685
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc3",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Heerlen-Looierstraat",
+"value": 22.194604166666668,
+"unit": "µg/m3",
+"city": "Heerlen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 50.888,
+"longitude": 5.9705
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc2",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Vredepeel-Vredeweg",
+"value": 16.251052916666666,
+"unit": "µg/m3",
+"city": "Vredepeel",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+}
+],
+"coordinates": {
+"latitude": 51.5405,
+"longitude": 5.85307
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc1",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Maastricht-Hoge Fronten",
+"value": 30.304347826086957,
+"unit": "µg/m3",
+"city": "Maastricht",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "Prov. Limburg"
+}
+],
+"coordinates": {
+"latitude": 50.8521,
+"longitude": 5.6758
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdc0",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Horst a/d Maas-Hoogheide",
+"value": 21.47826086956522,
+"unit": "µg/m3",
+"city": "Horst a/d Maas",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "Prov. Limburg"
+}
+],
+"coordinates": {
+"latitude": 51.4541,
+"longitude": 6.1082
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdbf",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Maastricht-A2 Nassaulaan",
+"value": 26.82608695652174,
+"unit": "µg/m3",
+"city": "Maastricht",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "Prov. Limburg"
+}
+],
+"coordinates": {
+"latitude": 50.8459,
+"longitude": 5.71475
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdbe",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Geleen-Asterstraat",
+"value": 25.782608695652176,
+"unit": "µg/m3",
+"city": "Geleen",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "Prov. Limburg"
+}
+],
+"coordinates": {
+"latitude": 50.9844,
+"longitude": 5.82223
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdbd",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Hilversum-Johannes Geradtsweg",
+"value": 16.8548,
+"unit": "µg/m3",
+"city": "Hilversum",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "Gem. Hilversum"
+}
+],
+"coordinates": {
+"latitude": 52.2351,
+"longitude": 5.18155
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdbc",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Hoogtij",
+"value": 12.220833333333333,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.428,
+"longitude": 4.77348
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdbb",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Spaarnwoude",
+"value": 13.995833333333334,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.3984,
+"longitude": 4.72858
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdba",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Zaandam-Wagenschotpad",
+"value": 11.056521739130435,
+"unit": "µg/m3",
+"city": "Zaandam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.448,
+"longitude": 4.81671
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb9",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "PNH Reijndersweg",
+"value": 9.141666666666667,
+"unit": "µg/m3",
+"city": "Reijndersweg",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.4789,
+"longitude": 4.57934
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb8",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "PNH Staalstraat",
+"value": 10.7375,
+"unit": "µg/m3",
+"city": "Staalstraat",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.4744,
+"longitude": 4.6288
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb7",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "PNH Beverwijk-West",
+"value": 6.7272727272727275,
+"unit": "µg/m3",
+"city": "Beverwijk",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.4893,
+"longitude": 4.64053
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb6",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "PNH Badhoevedorp",
+"value": 13.195833333333333,
+"unit": "µg/m3",
+"city": "Badhoevedorp",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.334,
+"longitude": 4.77401
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb5",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "PNH Wijk aan Zee",
+"value": 9.470833333333333,
+"unit": "µg/m3",
+"city": "Wijk aan Zee",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.494,
+"longitude": 4.60199
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb4",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "PNH IJmuiden",
+"value": 13.325,
+"unit": "µg/m3",
+"city": "IJmuiden",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.463,
+"longitude": 4.60184
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb3",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Stadhouderskade",
+"value": 9.729166666666666,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.358,
+"longitude": 4.8997
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb2",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Westerpark",
+"value": 20.804545454545455,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.394,
+"longitude": 4.87016
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb1",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Vondelpark",
+"value": 10.45,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.3597,
+"longitude": 4.86621
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdb0",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Van Diemenstraat",
+"value": 13.970833333333333,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.39,
+"longitude": 4.88781
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdaf",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Amsterdam-Einsteinweg",
+"value": 21.930434782608696,
+"unit": "µg/m3",
+"city": "Amsterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "GGD A'dam"
+}
+],
+"coordinates": {
+"latitude": 52.3813,
+"longitude": 4.84523
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdae",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Hoek v. Holland-Berghaven",
+"value": -996,
+"unit": "µg/m3",
+"city": "Hoek v. Holland",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.9778,
+"longitude": 4.12194
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdad",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Maassluis-Kwartellaan",
+"value": 17.525,
+"unit": "µg/m3",
+"city": "Maassluis",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.932,
+"longitude": 4.22802
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdac",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Schiedam-Alphons Arienstraat",
+"value": 22.3875,
+"unit": "µg/m3",
+"city": "Schiedam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.9214,
+"longitude": 4.40139
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdab",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Rotterdam-Oost Sidelinge A13",
+"value": 20.291666666666668,
+"unit": "µg/m3",
+"city": "Rotterdam",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.9385,
+"longitude": 4.43069
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fdaa",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Ridderkerk-Hogeweg",
+"value": 17.825,
+"unit": "µg/m3",
+"city": "Ridderkerk",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.8694,
+"longitude": 4.58006
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fda9",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Rotterdam Zuid-Zwartewaalstraat",
+"value": 17.71818181818182,
+"unit": "µg/m3",
+"city": "Rotterdam Zuid",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.8936,
+"longitude": 4.48753
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fda8",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Rotterdam Zuid-Pleinweg",
+"value": 18.3875,
+"unit": "µg/m3",
+"city": "Rotterdam Zuid",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.8911,
+"longitude": 4.48069
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fda7",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Hoogvliet-Leemkuil",
+"value": 19.525,
+"unit": "µg/m3",
+"city": "Hoogvliet",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.8674,
+"longitude": 4.35524
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d37e7a1bc855f63fda6",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Botlek-Spoortunnel",
+"value": 30.054166666666667,
+"unit": "µg/m3",
+"city": "Botlek",
+"attribution": [
+{
+"name": "RIVM",
+"url": "http://www.lml.rivm.nl/"
+},
+{
+"name": "DCMR"
+}
+],
+"coordinates": {
+"latitude": 51.8701,
+"longitude": 4.31806
+},
+"country": "NL",
+"sourceName": "Netherlands"
+},
+{
+"_id": "561e7d31e7a1bc855f63fc5a",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T13:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Escuela E-10",
+"value": 11.94,
+"unit": "µg/m³",
+"city": "Tocopilla",
+"attribution": [
+{
+"name": "SINCA",
+"url": "http://sinca.mma.gob.cl/"
+},
+{
+"name": "Electroandina S.A."
+}
+],
+"coordinates": {
+"latitude": -22.087,
+"longitude": -70.193253
+},
+"country": "CL",
+"sourceName": "Chile - SINCA"
+},
+{
+"_id": "561e7d3be7a1bc855f63fe40",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-15T00:00:00+08:00"
+},
+"parameter": "pm25",
+"location": "MNB",
+"value": 109,
+"unit": "µg/m³",
+"city": "Ulaanbaatar",
+"coordinates": {
+"latitude": 47.929732,
+"longitude": 106.888629
 },
 "country": "MN",
-"city": "Ulaanbaatar",
 "sourceName": "Agaar.mn"
 },
 {
-"_id": "55fbd3dc0af47f03002fdbd8",
-"location": "Bukhiin urguu",
+"_id": "561e7d3be7a1bc855f63fe3a",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-15T00:00:00+08:00"
+},
 "parameter": "pm25",
-"date": "2015-09-18T09:00:00.000Z",
-"value": 6,
+"location": "Tolgoit",
+"value": 87,
 "unit": "µg/m³",
+"city": "Ulaanbaatar",
 "coordinates": {
-"latitude": 47.9176056,
-"longitude": 106.9373611
+"latitude": 47.922495,
+"longitude": 106.794805
 },
 "country": "MN",
-"city": "Ulaanbaatar",
 "sourceName": "Agaar.mn"
+},
+{
+"_id": "561e7d3be7a1bc855f63fe34",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-15T00:00:00+08:00"
+},
+"parameter": "pm25",
+"location": "Nisekh",
+"value": 96,
+"unit": "µg/m³",
+"city": "Ulaanbaatar",
+"coordinates": {
+"latitude": 47.863943,
+"longitude": 106.779094
+},
+"country": "MN",
+"sourceName": "Agaar.mn"
+},
+{
+"_id": "561e7de1e7a1bc855f6408b1",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Roosevelta",
+"value": 30,
+"unit": "µg/m3",
+"city": "Żyrardów",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": null,
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f64084a",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Targówek",
+"value": 26.9,
+"unit": "µg/m3",
+"city": "Warszawa",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.29085889,
+"longitude": 21.03916667
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f6407ad",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Komunikacyjna",
+"value": 40.4,
+"unit": "µg/m3",
+"city": "Warszawa",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.21929306,
+"longitude": 21.00583333
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f64070b",
+"date": {
+"utc": "2015-10-14T16:00:00.000Z",
+"local": "2015-10-14T18:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Tochtermana",
+"value": 45.8,
+"unit": "µg/m3",
+"city": "Radom",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 51.39909556,
+"longitude": 21.13916667
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f64069b",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T17:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Reja",
+"value": 27.6,
+"unit": "µg/m3",
+"city": "Płock",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.55094028,
+"longitude": 19.70527778
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f640603",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T17:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Pułaskiego",
+"value": 31.1,
+"unit": "µg/m3",
+"city": "Piastów",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.19172722,
+"longitude": 20.83888889
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7d43e7a1bc855f640476",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "São José do Rio Preto",
+"value": 24,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f64041e",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Santos-Ponta da Praia",
+"value": 5,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f640388",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "S.José Campos-Jd.Satélite",
+"value": 23,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f640322",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "S.Bernardo-Centro",
+"value": 21,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f6402bb",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Piracicaba",
+"value": 21,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f640213",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Parelheiros",
+"value": 23,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f640193",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Marg.Tietê-Ponte dos Remédios",
+"value": 0,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f6400f3",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Itaim Paulista",
+"value": 61,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f6400cd",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Ibirapuera",
+"value": 12,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f6400a8",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Guarulhos-Pimentas",
+"value": 51,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f63fff3",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Congonhas",
+"value": 36,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f63ffc4",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Cid.Universitária-USP-Ipen",
+"value": 17,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f63ff10",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Campinas-V.União",
+"value": 21,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d31e7a1bc855f63fcb6",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Nueva Libertad",
+"value": 10.66,
+"unit": "µg/m³",
+"city": "Talcahuano",
+"attribution": [
+{
+"name": "SINCA",
+"url": "http://sinca.mma.gob.cl/"
+},
+{
+"name": "Compañía Siderurgica Huachipato"
+}
+],
+"coordinates": {
+"latitude": -36.735998,
+"longitude": -73.118693
+},
+"country": "CL",
+"sourceName": "Chile - SINCA"
+},
+{
+"_id": "561e7d31e7a1bc855f63fc58",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T12:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Sierra Gorda ",
+"value": 4,
+"unit": "µg/m³",
+"city": "Sierra Gorda",
+"attribution": [
+{
+"name": "SINCA",
+"url": "http://sinca.mma.gob.cl/"
+},
+{
+"name": "Sierra Gorda SCM"
+}
+],
+"coordinates": {
+"latitude": -22.888724142633,
+"longitude": -69.318140714844
+},
+"country": "CL",
+"sourceName": "Chile - SINCA"
+},
+{
+"_id": "561e7de1e7a1bc855f6408ac",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T17:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Roosevelta",
+"value": 28.4,
+"unit": "µg/m3",
+"city": "Żyrardów",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": null,
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f640844",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T17:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Targówek",
+"value": 24.8,
+"unit": "µg/m3",
+"city": "Warszawa",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.29085889,
+"longitude": 21.03916667
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f6407a9",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T17:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Komunikacyjna",
+"value": 38.8,
+"unit": "µg/m3",
+"city": "Warszawa",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.21929306,
+"longitude": 21.00583333
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f640705",
+"date": {
+"utc": "2015-10-14T15:00:00.000Z",
+"local": "2015-10-14T17:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Tochtermana",
+"value": 38,
+"unit": "µg/m3",
+"city": "Radom",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 51.39909556,
+"longitude": 21.13916667
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f640696",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T16:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Reja",
+"value": 29.9,
+"unit": "µg/m3",
+"city": "Płock",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.55094028,
+"longitude": 19.70527778
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7de1e7a1bc855f6405ff",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T16:00:00+02:00"
+},
+"parameter": "pm25",
+"location": "Pułaskiego",
+"value": 29.3,
+"unit": "µg/m3",
+"city": "Piastów",
+"attribution": {
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+},
+"coordinates": {
+"latitude": 52.19172722,
+"longitude": 20.83888889
+},
+"country": "PL",
+"sourceName": "Poland"
+},
+{
+"_id": "561e7d43e7a1bc855f640475",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T11:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "São José do Rio Preto",
+"value": 23,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f64041d",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T11:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Santos-Ponta da Praia",
+"value": 8,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f640387",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T11:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "S.José Campos-Jd.Satélite",
+"value": 20,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f640321",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T11:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "S.Bernardo-Centro",
+"value": 30,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
+},
+{
+"_id": "561e7d43e7a1bc855f6402ba",
+"date": {
+"utc": "2015-10-14T14:00:00.000Z",
+"local": "2015-10-14T11:00:00-03:00"
+},
+"parameter": "pm25",
+"location": "Piracicaba",
+"value": 31,
+"unit": "µg/m3",
+"city": "Sao Paulo",
+"attribution": {
+"name": "CETESB",
+"url": "http://cetesb.sp.gov.br/"
+},
+"country": "BR",
+"sourceName": "Sao Paulo"
 }
 ]
 }

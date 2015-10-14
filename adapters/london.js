@@ -56,7 +56,7 @@ var formatData = function (data) {
       date = moment.tz(s, 'DD/MM/YYYY HH:mm:ss', 'Europe/London');
     }
 
-    return {utc: date.toDate(), local: date.format() };
+    return {utc: date.toDate(), local: date.format()};
   };
 
   var addCoordinates = function (obj) {

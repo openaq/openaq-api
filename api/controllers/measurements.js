@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var ObjectID = require('mongodb').ObjectID;
 
 var db = require('../services/db.js').db;
 
@@ -67,6 +68,11 @@ module.exports.query = function (payload, page, limit, cb) {
 
     // sanitized payload
     payload = _.omit(payload, 'value_to');
+  }
+
+  // Handle _id field
+  if (_.has(payload, '_id')) {
+    payload['_id'] = new ObjectID(payload['_id']);
   }
 
   //
