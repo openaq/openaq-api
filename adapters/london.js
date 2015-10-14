@@ -56,7 +56,7 @@ var formatData = function (data) {
       date = moment.tz(s, 'DD/MM/YYYY HH:mm:ss', 'Europe/London');
     }
 
-    return date;
+    return {utc: date.toDate(), local: date.format() };
   };
 
   var addCoordinates = function (obj) {
@@ -230,12 +230,11 @@ var formatData = function (data) {
     var measurements = _.map(filtered, function (m) {
       var value = getValue(m.measuredValue);
 
-      // Manually adding offset, find a better way to do this
       var date = getDate(m.date);
       var obj = {
         location: m.name,
         parameter: m.parameter,
-        date: date.toDate(),
+        date: date,
         value: Number(value),
         unit: 'µg/m³'
       };

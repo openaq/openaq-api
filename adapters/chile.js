@@ -75,7 +75,8 @@ var formatData = function (results) {
 
   var parseDate = function (m) {
     var date = moment.tz(m.date + m.hour, 'YYYY-MM-DDHH:mm', 'America/Santiago');
-    return date.toDate();
+
+    return {utc: date.toDate(), local: date.format()};
   };
 
   // Make 'µg/m³' pretty

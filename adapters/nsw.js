@@ -47,7 +47,7 @@ var parseDate = function (dateString) {
   var date = moment.tz(d[1] + time, 'D MMMM YYYYha', 'Australia/Melbourne');
   date.add(date_offset, 'day');
 
-  return date.toDate();
+  return {utc: date.toDate(), local: date.format()};
 };
 
 // Not every pollutant is measured in 'µg/m3'
@@ -58,8 +58,8 @@ var units = {
   'co': 'ppm',
   'neph': 'Bsp, 10-4 m-1',
   'so2': 'pphm',
-  'pm25': 'µg/m3',
-  'pm10': 'µg/m3'
+  'pm25': 'µg/m³',
+  'pm10': 'µg/m³'
 };
 
 var formatData = function (data) {

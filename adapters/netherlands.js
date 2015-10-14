@@ -199,7 +199,8 @@ var formatData = function (name, data) {
 
   var parseDate = function (string) {
     var date = moment.tz(string, 'YYYYMMDDHHmmss', 'UTC');
-    return date.toDate();
+
+    return {utc: date.toDate(), local: date.format()};
   };
 
   var getStationId = function (string) {
@@ -251,7 +252,7 @@ var formatData = function (name, data) {
       parameter: p,
       location: $('STAT_NAAM', this).text(),
       value: Number($('MWAA_WAARDE', this).text()),
-      unit: 'µg/m3',
+      unit: 'µg/m³',
       stationId: stationID,
       city: getCity($('STAT_NAAM', this).text()),
       attribution: getAttribution($('OPST_OPDR_ORGA_CODE', this).text()),

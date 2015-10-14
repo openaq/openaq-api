@@ -115,8 +115,15 @@ module.exports = [
         if (formatForCSV) {
           var options = {
             header: true,
-            columns: ['location', 'city', 'country', 'date', 'parameter', 'value', 'unit']
+            columns: ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit']
           };
+
+          records = records.map(function (r) {
+            r.utc = r.date.utc.toISOString();
+            r.local = r.date.local;
+            r = _.omit(r, 'date');
+            return r;
+          });
 
           csv(records, options, function (err, data) {
             if (err) {

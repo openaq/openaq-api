@@ -181,12 +181,17 @@ if (argv.dryrun) {
     measurementsCollection = db.collection('measurements');
     async.parallel([
       function (done) {
-        measurementsCollection.createIndex({ location: 1, parameter: 1, date: 1 }, { unique: true }, function (err) {
+        measurementsCollection.createIndex({ location: 1, parameter: 1, 'date.utc': 1 }, { unique: true }, function (err) {
           done(err);
         });
       },
       function (done) {
         measurementsCollection.createIndex({ city: 1 }, { background: true }, function (err) {
+          done(err);
+        });
+      },
+      function (done) {
+        measurementsCollection.createIndex({ 'date.utc': 1 }, { background: true }, function (err) {
           done(err);
         });
       }

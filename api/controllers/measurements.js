@@ -21,7 +21,7 @@ module.exports.query = function (payload, page, limit, cb) {
     // Test to make sure the date is formatted correctly
     var fromDate = new Date(payload.date_from);
     if (!isNaN(fromDate.getTime())) {
-      payload.date = { $gte: new Date(payload.date_from) };
+      payload['date.utc'] = { $gte: new Date(payload.date_from) };
     }
 
     // sanitize payload
@@ -33,9 +33,9 @@ module.exports.query = function (payload, page, limit, cb) {
     if (!isNaN(toDate.getTime())) {
       // Check if we already have a date set for $gte
       if (payload.date) {
-        payload.date['$lte'] = new Date(payload.date_to);
+        payload['date.utc']['$lte'] = new Date(payload.date_to);
       } else {
-        payload.date = { $lte: new Date(payload.date_to) };
+        payload['date.utc'] = { $lte: new Date(payload.date_to) };
       }
     }
 
@@ -97,7 +97,7 @@ module.exports.query = function (payload, page, limit, cb) {
   // Handle custom sorts, starting with default of most recent measurements
   // first. Do nothing if we don't have both sort and order_by.
   //
-  var sort = { date: -1 };
+  var sort = { 'date.utc': -1 };
   if (_.has(payload, 'sort') && _.has(payload, 'order_by')) {
     // Custom sort, overwrite default
     sort = {};

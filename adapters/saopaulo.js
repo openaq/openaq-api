@@ -89,18 +89,18 @@ var formatData = function (results) {
     }
   };
 
-  var makeDate = function (day, time) {
+  var getDate = function (day, time) {
     // Grab date from page, add time string and convert to date
     var dateString = day + ' ' + time;
     var date = moment.tz(dateString, 'DD/MM/YYYY HH:mm', 'America/Sao_Paulo');
 
-    return date.toDate();
+    return {utc: date.toDate(), local: date.format()};
   };
 
   // Try to find a nice unit to use for the measurement
   var niceUnit = function (string) {
     if (string.indexOf('&micro;g/m&sup3;') !== -1) {
-      return 'µg/m3';
+      return 'µg/m³';
     } else {
       console.warn('Unknown unit');
       return undefined;
@@ -150,7 +150,7 @@ var formatData = function (results) {
                 m.value = Number(value);
                 m.parameter = niceParameter(parameter);
                 m.unit = unit;
-                m.date = makeDate(day, hours[j - 2]); // Subtract 2 to match hours array
+                m.date = getDate(day, hours[j - 2]); // Subtract 2 to match hours array
 
                 measurements.push(m);
               }
