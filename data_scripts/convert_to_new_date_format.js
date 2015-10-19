@@ -40,6 +40,9 @@ var convertToLocal = function (m) {
     case 'Netherlands':
       zone = 'Europe/Amsterdam';
       break;
+    case 'Australia - New South Wales':
+      zone = 'Australia/Melbourne';
+      break;
     default:
       console.log('Unknown sourceName:', m.sourceName);
   }
