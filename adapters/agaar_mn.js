@@ -40,9 +40,9 @@ var formatData = function (data) {
   }
 
   var getDate = function (dateString) {
-    var date = moment.tz(dateString, 'YYYY-MM-DD HH:mm', 'Asia/Ulaanbaatar');
+    var m = moment.tz(dateString, 'YYYY-MM-DD HH:mm', 'Asia/Ulaanbaatar');
 
-    return date;
+    return {utc: m.toDate(), local: m.format()};
   };
 
   // Handle the fact that there are several locations in one response
@@ -77,8 +77,7 @@ var formatData = function (data) {
 
     // Build up pretty measurements array
     var measurements = _.map(filtered, function (m) {
-      // Manually adding offset, find a better way to do this
-      var date = getDate(m.date).toDate();
+      var date = getDate(m.date);
       return {
         location: m.name,
         parameter: m.parameter,

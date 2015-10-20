@@ -34,8 +34,8 @@ module.exports.query = function (payload, cb) {
           '_id': { country: '$country', city: '$city', location: '$location' },
           'count': { $sum: 1 },
           'sourceName': { $first: '$sourceName' },
-          'firstUpdated': { $min: '$date' },
-          'lastUpdated': { $max: '$date' },
+          'firstUpdated': { $min: '$date.utc' },
+          'lastUpdated': { $max: '$date.utc' },
           'parameters': { $addToSet: '$parameter' }
         }
         },

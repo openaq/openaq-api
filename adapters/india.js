@@ -47,6 +47,13 @@ var formatData = function (data) {
     };
   };
 
+  var getDate = function (measurement) {
+    var dateString = measurement.date + ' ' + measurement.time;
+    var m = moment.tz(dateString, 'dddd, MMMM D, YYYY HH:mm:ss', 'Asia/Kolkata');
+
+    return {utc: m.toDate(), local: m.format()};
+  };
+
   // Filter out measurements with no value
   var filtered = _.filter(data.results.collection1, function (m) {
     return getValue(m.measuredValue).value !== '';
@@ -57,8 +64,7 @@ var formatData = function (data) {
     var valueObj = getValue(m.measuredValue);
 
     // Parse the date
-    var dateString = m.date + ' ' + m.time;
-    var date = moment.tz(dateString, 'dddd, MMMM D, YYYY HH:mm:ss', 'Asia/Kolkata').toDate();
+    var date = getDate(m);
 
     return {
       parameter: m.parameter.text || m.parameter,
@@ -72,7 +78,7 @@ var formatData = function (data) {
     'measurements': measurements
   };
 
-  // Make sure the parameters names match with what the platform expects.
+  // Make sure the parameters/units names match with what the platform expects.
   renameParameters(parsed.measurements);
 
   return parsed;
@@ -80,25 +86,29 @@ var formatData = function (data) {
 
 var renameParameters = function (measurements) {
   _.map(measurements, function (m) {
-    var newName;
+    // Parameters
     switch (m.parameter) {
       case 'Particulate Matter < 2.5 µg':
-        newName = 'pm25';
+        m.parameter = 'pm25';
         break;
       case 'Particulate Matter < 10 µg':
-        newName = 'pm10';
+        m.parameter = 'pm10';
         break;
       case 'Nitrogen Dioxide':
-        newName = 'no2';
+        m.parameter = 'no2';
         break;
       case 'Ozone':
-        newName = 'o3';
-        break;
-      default:
-        newName = m.parameter;
+        m.parameter = 'o3';
         break;
     }
-    m.parameter = newName;
+
+    // Units
+    switch (m.unit) {
+      case 'µg/m3':
+        m.unit = 'µg/m³';
+        break;
+    }
+
     return m;
   });
 };

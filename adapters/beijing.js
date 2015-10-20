@@ -51,7 +51,7 @@ var formatData = function (data) {
   var getDate = function (dateString) {
     var date = moment.tz(dateString, 'MMM DD, YYYY h A', 'Asia/Shanghai');
 
-    return date.toDate();
+    return {utc: date.toDate(), local: date.format()};
   };
 
   // Filter out measurements with no value

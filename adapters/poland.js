@@ -71,42 +71,6 @@ var makeURL = function (base, station) {
 var formatData = function (results) {
   var measurements = [];
 
-  // Converting to valid utf8, this makes me cry
-  var getEncodedId = function (id) {
-    switch (id) {
-      case 'Belsk-IGFPAN':
-        return 'Belsk-IGFPAN';
-      case 'Granica-KPN':
-        return 'Granica-KPN';
-      case 'Legionowo-Zegrzy&#x144;ska':
-        return 'Legionowo-Zegrzyńska';
-      case 'Piast&#xF3;w-Pu&#x142;askiego':
-        return 'Piastów-Pułaskiego';
-      case 'P&#x142;ock-Gimnazjum':
-        return 'Płock-Gimnazjum';
-      case 'P&#x142;ock-Reja':
-        return 'Płock-Reja';
-      case 'Radom-Tochtermana':
-        return 'Radom-Tochtermana';
-      case 'Siedlce-Konarskiego':
-        return 'Siedlce-Konarskiego';
-      case 'Warszawa-Komunikacyjna':
-        return 'Warszawa-Komunikacyjna';
-      case 'Warszawa-Marsza&#x142;kowska':
-        return 'Warszawa-Marszałkowska';
-      case 'Warszawa-Podle&#x15B;na':
-        return 'Warszawa-Podleśna';
-      case 'Warszawa-Targ&#xF3;wek':
-        return 'Warszawa-Targówek';
-      case 'Warszawa-Ursyn&#xF3;w':
-        return 'Warszawa-Ursynów';
-      case '&#x17B;yrard&#xF3;w-Roosevelta':
-        return 'Żyrardów-Roosevelta';
-      default:
-        return undefined;
-    }
-  };
-
   var getCoordinates = function (id) {
     switch (id) {
       case 'Belsk-IGFPAN':
@@ -146,7 +110,7 @@ var formatData = function (results) {
   // This will loop over each individual station page we've received
   _.forEach(results, function (r) {
     // Load the html into Cheerio
-    var $ = cheerio.load(r);
+    var $ = cheerio.load(r, {decodeEntities: false});
 
     // Store the order of the parameters in the header
     var parameters = [];
@@ -158,7 +122,7 @@ var formatData = function (results) {
     });
 
     // Get the location and city from selected option
-    var id = getEncodedId($('option[selected="selected"]').html());
+    var id = $('option[selected="selected"]').html();
     var split = id.split('-');
     var city = split[0];
     var location = split[1];
@@ -177,7 +141,8 @@ var formatData = function (results) {
     $('tbody tr').each(function (i, e) {
       // Get date
       var date = $(e).find('th').html();
-      date = moment.tz(date, 'YYYY-MM-DD HH:mm', 'Europe/Warsaw').toDate();
+      var dateMoment = moment.tz(date, 'YYYY-MM-DD HH:mm', 'Europe/Warsaw');
+      date = {utc: dateMoment.toDate(), local: dateMoment.format()};
 
       // Split out measurements and create them if value is present
       $(e).find('td').each(function (i, e) {
@@ -188,7 +153,7 @@ var formatData = function (results) {
           m.date = date;
           m.value = Number(value.trim());
           m.parameter = parameters[i].toLowerCase();
-          m.unit = 'µg/m3';
+          m.unit = 'µg/m³';
 
           // Add to array
           measurements.push(m);

@@ -31,10 +31,10 @@ module.exports.query = function (payload, cb) {
       var length = docs.length;
       c.aggregate(
         [
-          { $sort: { 'date': -1 } },
+          { $sort: { 'date.utc': -1 } },
           { '$group': {
             '_id': { country: '$country', city: '$city', location: '$location', parameter: '$parameter', coordinates: '$coordinates', unit: '$unit' },
-            'lastUpdated': { $first: '$date' },
+            'lastUpdated': { $first: '$date.utc' },
             'value': { $first: '$value' },
             'coordinates': { $first: '$coordinates' }
           }
