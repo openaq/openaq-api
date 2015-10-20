@@ -194,6 +194,21 @@ if (argv.dryrun) {
         measurementsCollection.createIndex({ 'date.utc': 1 }, { background: true }, function (err) {
           done(err);
         });
+      },
+      function (done) {
+        measurementsCollection.createIndex({ 'country': 1, 'date.utc': -1 }, { background: true }, function (err) {
+          done(err);
+        });
+      },
+      function (done) {
+        measurementsCollection.createIndex({ 'country': 1 }, { background: true }, function (err) {
+          done(err);
+        });
+      },
+      function (done) {
+        measurementsCollection.createIndex({ 'location': 1, 'date.utc': -1 }, { background: true }, function (err) {
+          done(err);
+        });
       }
     ], function (err, results) {
       if (err) {
