@@ -163,9 +163,8 @@ var runTasks = function (db) {
     if (db) {
       db.close();
     }
-
-    // Nice exit
-    process.exit(0);
+    
+    return console.info('Have a good day!');
   });
 };
 
