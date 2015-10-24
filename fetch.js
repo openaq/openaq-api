@@ -163,7 +163,7 @@ var runTasks = function (db) {
     if (db) {
       db.close();
     }
-    
+
     return console.info('Have a good day!');
   });
 };
