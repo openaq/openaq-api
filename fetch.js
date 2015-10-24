@@ -163,6 +163,9 @@ var runTasks = function (db) {
     if (db) {
       db.close();
     }
+
+    // Nice exit
+    process.exit(0);
   });
 };
 
