@@ -10,7 +10,7 @@ module.exports = require('require-dir')();
  *        date: {
  *           utc: Thu Jul 23 2015 06:40:00 GMT-0400 (EDT),
  *           local: '2015-07-23T07:40:00-03:00'
- *         }
+ *         },
  *        coordinates: {
  *          latitude: 45,
  *          longitude: 40
@@ -18,7 +18,10 @@ module.exports = require('require-dir')();
  *        value: 63,
  *        unit: 'µg/m3' },
  *     { parameter: 'pm25',
- *        date: Thu Jul 23 2015 06:40:00 GMT-0400 (EDT),
+ *        date: {
+ *           utc: Thu Jul 23 2015 06:40:00 GMT-0400 (EDT),
+ *           local: '2015-07-23T07:40:00-03:00'
+ *         },
  *        coordinates: {
  *          latitude: 45,
  *          longitude: 40
