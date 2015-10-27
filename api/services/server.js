@@ -1,6 +1,7 @@
 'use strict';
 
 var Hapi = require('hapi');
+var ua = require('universal-analytics')(process.env.GA_ID);
 
 var Server = function (port) {
   this.port = port;
@@ -73,6 +74,29 @@ Server.prototype.start = function (cb) {
     register: require('good'),
     options: options
   }, function (err) {
+    if (err) throw err;
+  });
+
+  // Add Google Analytics to endpoints
+  var GAPlugin = {
+    register: function (server, options, next) {
+      server.ext('onPreResponse', function (request, reply) {
+        // Pass along route view, exclude ping
+        if (request.route.path !== '/ping') {
+          ua.pageview(request.route.path).send();
+        }
+
+        return reply.continue();
+      });
+
+      next();
+    }
+  };
+  GAPlugin.register.attributes = {
+    name: 'GAPlugin',
+    version: '0.0.1'
+  };
+  self.hapi.register(GAPlugin, function (err) {
     if (err) throw err;
   });
 
