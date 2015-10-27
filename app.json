@@ -18,8 +18,6 @@
   },
   "addons": [
     "newrelic",
-    "mongolab",
-    "sendgrid",
-    "scheduler"
+    "mongolab"
   ]
 }

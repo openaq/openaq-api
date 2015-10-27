@@ -215,18 +215,4 @@ describe('Testing endpoints', function () {
       });
     });
   });
-
-  describe('/sources', function () {
-    it('should exist', function (done) {
-      request(self.baseURL + 'sources', function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
-        var res = JSON.parse(body);
-        expect(res).to.be.instanceof(Object);
-        expect(response.statusCode).to.equal(200);
-        done();
-      });
-    });
-  });
 });
