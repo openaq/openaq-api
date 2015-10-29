@@ -156,8 +156,8 @@ describe('Testing endpoints', function () {
         }
 
         var res = JSON.parse(body);
-        expect(res.results.length).to.equal(5);
-        expect(res.results[0].cities).to.be.instanceof(Array);
+        expect(res.results.length).to.equal(79);
+        expect(res.results).to.be.instanceof(Array);
         done();
       });
     });

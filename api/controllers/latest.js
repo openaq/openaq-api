@@ -15,38 +15,23 @@ module.exports.query = function (payload, cb) {
   var c = db.collection('measurements');
 
   // Execute the search and return the result via callback
-  // Actually wrapping two aggregations here to get the true count before
-  // handling paging. This can probably be handled better if it becomes a
-  // performance issue.
   c.aggregate(
-    [{
-      '$group': {
-        '_id': { country: '$country', city: '$city', location: '$location' }
+    [
+      { $sort: { 'date.utc': -1 } },
+      { '$group': {
+        '_id': { country: '$country', city: '$city', location: '$location', parameter: '$parameter', coordinates: '$coordinates', unit: '$unit' },
+        'lastUpdated': { $first: '$date.utc' },
+        'value': { $first: '$value' },
+        'coordinates': { $first: '$coordinates' }
       }
-    }]).toArray(function (err, docs) {
+      }
+    ], { allowDiskUse: true }).toArray(function (err, docs) {
       if (err) {
         return cb(err);
       }
 
-      var length = docs.length;
-      c.aggregate(
-        [
-          { $sort: { 'date.utc': -1 } },
-          { '$group': {
-            '_id': { country: '$country', city: '$city', location: '$location', parameter: '$parameter', coordinates: '$coordinates', unit: '$unit' },
-            'lastUpdated': { $first: '$date.utc' },
-            'value': { $first: '$value' },
-            'coordinates': { $first: '$coordinates' }
-          }
-          }
-        ], { allowDiskUse: true }).toArray(function (err, docs) {
-          if (err) {
-            return cb(err);
-          }
-
-          docs = groupResults(docs);
-          return cb(err, docs, length);
-        });
+      docs = groupResults(docs);
+      return cb(err, docs, docs.length);
     });
 };
 
