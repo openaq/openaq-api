@@ -2,13 +2,15 @@
 
 var db = require('../services/db.js').db;
 
+var cacheName = 'CACHED_LOCATIONS';
+
 /**
 * Query distinct Locations. Implements all protocols supported by /locations endpoint
 *
 * @param {Object} payload - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (payload, cb) {
+module.exports.query = function (payload, redis, cb) {
   // Get the collection
   var c = db.collection('measurements');
 
