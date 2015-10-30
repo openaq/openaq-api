@@ -25,6 +25,9 @@ For the above to work, you will need to have certain environment variables set a
 |---|---|---|
 | MONGOLAB_URI | Database URL | mongodb://localhost:27017/openAQ |
 | NEW_RELIC_LICENSE_KEY | New Relic API key for system monitoring | not set |
+| WEBHOOK_KEY | Secret key to interact with openaq-api | '123' |
+| USE_REDIS | Use Redis for caching? | not set (so not used) |
+| REDIS_URL | Redis instance URL | redis://localhost:6379 |
 
 ## Tests
 To confirm that everything is working as expected, you can run the tests with

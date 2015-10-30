@@ -68,7 +68,9 @@ Server.prototype.start = function (redisURL, cb) {
       connection: redisURL
     }
   }, function (err) {
-    if (err) throw err;
+    if (err) {
+      console.error(err);
+    }
   });
 
   // Register good logger

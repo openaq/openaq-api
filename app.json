@@ -14,6 +14,10 @@
     "INDIA_KIMONO_TOKEN": {
       "description": "Your Kimono API token to use if needed to query sources.",
       "required": false
+    },
+    "WEBHOOK_KEY": {
+      "description": "The secret key used to accept webhooks.",
+      "required": false
     }
   },
   "addons": [
