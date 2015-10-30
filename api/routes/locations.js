@@ -70,7 +70,8 @@ module.exports = [
       request.limit = undefined;
 
       // Handle it
-      m.query(params, function (err, records, count) {
+      var redis = request.server.plugins['hapi-redis'].client;
+      m.query(params, redis, function (err, records, count) {
         if (err) {
           console.error(err);
           return reply(Boom.badImplementation(err));

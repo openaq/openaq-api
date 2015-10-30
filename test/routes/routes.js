@@ -33,7 +33,7 @@ describe('Testing endpoints', function () {
 
         // Start API server once we have a DB connection
         self.server = new Server(testPort);
-        self.server.start(done);
+        self.server.start('redis://foo', done);
       });
     });
   });

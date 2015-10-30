@@ -21,7 +21,7 @@ var Server = function (port) {
   });
 };
 
-Server.prototype.start = function (cb) {
+Server.prototype.start = function (redisURL, cb) {
   var self = this;
   self.hapi.connection({ port: this.port });
 
@@ -59,6 +59,18 @@ Server.prototype.start = function (cb) {
     }
   }, function (err) {
     if (err) throw err;
+  });
+
+  // Register hapi-redis
+  self.hapi.register({
+    register: require('hapi-redis'),
+    options: {
+      connection: redisURL
+    }
+  }, function (err) {
+    if (err) {
+      console.error(err);
+    }
   });
 
   // Register good logger
