@@ -1,6 +1,9 @@
 'use strict';
 
+var _ = require('lodash');
+
 var db = require('../services/db.js').db;
+var utils = require('../../lib/utils');
 
 var cacheName = 'CACHED_LOCATIONS';
 
@@ -19,9 +22,13 @@ module.exports.query = function (payload, redis, cb) {
     // Get the collection
     var c = db.collection('measurements');
 
+    // Turn the payload into something we can use with mongo
+    payload = utils.queryFromParameters(payload);
+
     // Execute the search and return the result via callback
     c.aggregate(
-      [{ '$group': {
+      [{ '$match': payload },
+      { '$group': {
         '_id': { country: '$country', city: '$city', location: '$location' },
         'count': { $sum: 1 },
         'sourceName': { $first: '$sourceName' },
@@ -39,8 +46,12 @@ module.exports.query = function (payload, redis, cb) {
         // Send result to client
         sendResults(null, docs);
 
-        // Save the data to cache
-        return redis.set(cacheName, JSON.stringify(docs));
+        // Save the data to cache if we have no payload
+        if (_.keys(payload).length === 0) {
+          redis.set(cacheName, JSON.stringify(docs));
+        }
+
+        return;
       });
   };
 

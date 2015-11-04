@@ -10,12 +10,9 @@ var webhookKey = process.env.WEBHOOK_KEY || '123';
 * @param {recordsCallback} cb - The callback that returns the records
 */
 module.exports.handleAction = function (payload, redis, cb) {
-  // Go ahead and return, we'll handle everything later
-  cb(null);
-
   // Make sure we have an action and a good key
   if (payload.action === undefined || payload.key === undefined || payload.key !== webhookKey) {
-    return;
+    return cb({error: 'No action or invalid key provided.'});
   }
 
   switch (payload.action) {
@@ -23,9 +20,13 @@ module.exports.handleAction = function (payload, redis, cb) {
       // Dump Redis caches if we have a redis connection
       if (redis.ready) {
         redis.del('CACHED_LOCATIONS');
+        redis.del('CACHED_LATEST');
       }
       break;
     default:
       console.warn('Invalid action provided', payload.action);
+      return cb({error: 'Invalid action provided.'});
   }
+
+  return cb(null);
 };
