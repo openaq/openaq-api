@@ -29,7 +29,7 @@ module.exports.query = function (payload, redis, cb) {
     c.aggregate(
       [{ '$match': payload },
       { '$group': {
-        '_id': { country: '$country', city: '$city', location: '$location' },
+        '_id': { country: '$country', city: '$city', location: '$location', coordinates: '$coordinates' },
         'count': { $sum: 1 },
         'sourceName': { $first: '$sourceName' },
         'firstUpdated': { $min: '$date.utc' },
@@ -42,6 +42,13 @@ module.exports.query = function (payload, redis, cb) {
         if (err) {
           return cb(err);
         }
+
+        // Move the _id result block to the top level
+        docs = _.map(docs, function (d) {
+          d = _.merge(d, d._id);
+          d = _.omit(d, '_id');
+          return d;
+        });
 
         // Send result to client
         sendResults(null, docs);
