@@ -2,14 +2,15 @@
 'use strict';
 
 var expect = require('chai').expect;
-var database = require('../../api/services/db.js');
-var Server = require('../../api/services/server.js');
+var database = require('../api/services/db.js');
+var Server = require('../api/services/server.js');
 var testDb = 'openaq-test';
 var testPort = 2000;
 var request = require('request');
-var measurements = require('../data/measurements');
+var measurements = require('./data/measurements');
 var _ = require('lodash');
 var ObjectID = require('mongodb').ObjectID;
+var utils = require('../lib/utils');
 
 describe('Testing endpoints', function () {
   var self = this;
@@ -211,6 +212,131 @@ describe('Testing endpoints', function () {
           found: 79
         };
         expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+  });
+
+  describe('/webhooks', function () {
+    it('should do nothing on a GET', function (done) {
+      request(self.baseURL + 'webhooks', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(404);
+        done();
+      });
+    });
+
+    it('should do nothing without a key', function (done) {
+      request.post(self.baseURL + 'webhooks', {}, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(400);
+        done();
+      });
+    });
+
+    it('should do nothing without a good action', function (done) {
+      request.post(self.baseURL + 'webhooks', {key: 123, action: 'foo'}, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(400);
+        done();
+      });
+    });
+
+    it('should do something with key and action', function (done) {
+      request.post(self.baseURL + 'webhooks', {form: {key: 123, action: 'DATABASE_UPDATED'}}, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
+
+  describe('utils', function () {
+    describe('queryFromParameters', function () {
+      it('should convert payload data correctly', function (done) {
+        var payload = {
+          date_from: '2015-10-21',
+          date_to: '2015-10-22',
+          value_from: 20,
+          value_to: 21,
+          has_geo: true
+        };
+        var expected = {
+          'coordinates': {
+            '$exists': true
+          },
+          'date.utc': {
+            '$lte': new Date('2015-10-22'),
+            '$gte': new Date('2015-10-21')
+          },
+          'value': {
+            '$gte': 20,
+            '$lte': 21
+          }
+        };
+        expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
+        done();
+      });
+
+      it('should convert payload dates correctly', function (done) {
+        var payload = {
+          date_from: '2015-10-21'
+        };
+        var expected = {
+          'date.utc': {
+            '$gte': new Date('2015-10-21')
+          }
+        };
+        expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
+
+        payload = {
+          date_to: '2015-10-21'
+        };
+        expected = {
+          'date.utc': {
+            '$lte': new Date('2015-10-21')
+          }
+        };
+        expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
+        done();
+      });
+
+      it('should convert ug/m3 to be nice', function (done) {
+        var payload = {
+          unit: 'ug/m3'
+        };
+        var expected = {
+          'unit': 'µg/m³'
+        };
+        expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
+
+        payload = {
+          unit: 'ug/m³'
+        };
+        expected = {
+          'unit': 'µg/m³'
+        };
+        expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
+
+        payload = {
+          unit: 'µg/m3'
+        };
+        expected = {
+          'unit': 'µg/m³'
+        };
+        expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
         done();
       });
     });

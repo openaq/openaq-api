@@ -10,6 +10,15 @@ var m = require('../controllers/locations.js');
  * a nested list reflecting the country-city-location relationship, `count` and
  * `lastUpdated` are calculated from all children.
  *
+ * @apiParam {string} [country] Limit results by a certain country.
+ * @apiParam {string} [location] Limit results by a certain location.
+ * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
+ * @apiParam {boolean} [has_geo=true] Only return items with geographic coordinates, this option can only be `true`.
+ * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
+ * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
+ * @apiParam {string} [date_from] Show results after a certain date.
+ * @apiParam {string} [date_to] Show results before a certain date.
+ *
  * @apiSuccess {string}   location      Location description for measurement
  * @apiSuccess {string}   country       2 digit country code containing measurement
  * @apiSuccess {string}   city       City containing measurement

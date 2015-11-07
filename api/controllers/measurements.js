@@ -4,6 +4,7 @@ var _ = require('lodash');
 var ObjectID = require('mongodb').ObjectID;
 
 var db = require('../services/db.js').db;
+var utils = require('../../lib/utils');
 
 /**
 * Query Measurements. Implements all protocols supported by /measurements endpoint
@@ -15,60 +16,8 @@ module.exports.query = function (payload, page, limit, cb) {
   // Get the collection
   var c = db.collection('measurements');
 
-  //
-  // Date ranges
-  //
-  if (_.has(payload, 'date_from')) {
-    // Test to make sure the date is formatted correctly
-    var fromDate = new Date(payload.date_from);
-    if (!isNaN(fromDate.getTime())) {
-      payload['date.utc'] = { $gte: new Date(payload.date_from) };
-    }
-
-    // sanitize payload
-    payload = _.omit(payload, 'date_from');
-  }
-  if (_.has(payload, 'date_to')) {
-    // Test to make sure the date is formatted correctly
-    var toDate = new Date(payload.date_to);
-    if (!isNaN(toDate.getTime())) {
-      // Check if we already have a date set for $gte
-      if (payload.date) {
-        payload['date.utc']['$lte'] = new Date(payload.date_to);
-      } else {
-        payload['date.utc'] = { $lte: new Date(payload.date_to) };
-      }
-    }
-
-    // sanitize payload
-    payload = _.omit(payload, 'date_to');
-  }
-
-  //
-  // Value ranges
-  //
-  if (_.has(payload, 'value_from')) {
-    if (isNaN(Number(payload.value_from)) === false) {
-      payload.value = { $gte: Number(payload.value_from) };
-    }
-
-    // sanitized payload
-    payload = _.omit(payload, 'value_from');
-  }
-
-  if (_.has(payload, 'value_to')) {
-    if (isNaN(Number(payload.value_to)) === false) {
-      // Check if we already have a value set for $gte
-      if (payload.value) {
-        payload.value['$lte'] = Number(payload.value_to);
-      } else {
-        payload.value = { $lte: Number(payload.value_to) };
-      }
-    }
-
-    // sanitized payload
-    payload = _.omit(payload, 'value_to');
-  }
+  // Turn the payload into something we can use with mongo
+  payload = utils.queryFromParameters(payload);
 
   // Handle _id field
   if (_.has(payload, '_id')) {
@@ -118,13 +67,6 @@ module.exports.query = function (payload, page, limit, cb) {
   } else if (_.has(payload, 'order_by')) {
     // sanitized payload
     payload = _.omit(payload, 'order_by');
-  }
-
-  // Handle has_geo flag and only return measurements with coordinates
-  if (_.has(payload, 'has_geo')) {
-    payload['coordinates'] = { $exists: true };
-    // sanitized payload
-    payload = _.omit(payload, 'has_geo');
   }
 
   //

@@ -15,7 +15,7 @@ module.exports = [
       c.handleAction(payload, redis, function (err, records, count) {
         if (err) {
           console.error(err);
-          return reply(Boom.badImplementation(err));
+          return reply(Boom.badRequest(err.error));
         }
 
         return reply();
