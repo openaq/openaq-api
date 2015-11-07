@@ -62,8 +62,8 @@ module.exports.query = function (payload, redis, cb) {
       });
   };
 
-  // Send back cached result if we have it
-  if (redis.ready) {
+  // Send back cached result if we have it and it matches our cached search
+  if (redis.ready && _.keys(payload).length === 0) {
     redis.get(cacheName, function (err, reply) {
       if (err) {
         console.error(err);
