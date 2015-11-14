@@ -18,7 +18,7 @@
     "good": "^6.3.0",
     "good-console": "^5.0.2",
     "hapi": "^8.8.0",
-    "hapi-paginate": "^0.3.0",
+    "hapi-paginate": "developmentseed/hapi-paginate#caching-fixes",
     "hapi-redis": "^6.0.0",
     "hapi-response-meta": "^0.3.0",
     "hapi-router": "^3.0.1",
