@@ -21,6 +21,8 @@ module.exports.handleAction = function (payload, redis, cb) {
       if (redis.ready) {
         redis.del('CACHED_LOCATIONS');
         redis.del('CACHED_LATEST');
+        redis.del('CACHED_COUNTRIES');
+        redis.del('CACHED_CITIES');
       }
       break;
     default:

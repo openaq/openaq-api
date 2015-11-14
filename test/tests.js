@@ -45,6 +45,34 @@ describe('Testing endpoints', function () {
     });
   });
 
+  describe('/countries', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'countries', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(5);
+        done();
+      });
+    });
+  });
+
+  describe('/cities', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'cities', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(47);
+        done();
+      });
+    });
+  });
+
   describe('/measurements', function () {
     it('should return properly', function (done) {
       request(self.baseURL + 'measurements', function (err, response, body) {
@@ -337,6 +365,14 @@ describe('Testing endpoints', function () {
           'unit': 'µg/m³'
         };
         expect(utils.queryFromParameters(payload)).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    describe('prettyCountryName', function () {
+      it('should convert name properly', function (done) {
+        expect(utils.prettyCountryName('US')).to.equal('United States');
+        expect(utils.prettyCountryName('FOO')).to.equal(undefined);
         done();
       });
     });
