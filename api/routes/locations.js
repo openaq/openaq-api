@@ -7,8 +7,7 @@ var m = require('../controllers/locations.js');
  * @api {get} /locations GET
  * @apiGroup Locations
  * @apiDescription Providing data about distinct measurement locations, this is
- * a nested list reflecting the country-city-location relationship, `count` and
- * `lastUpdated` are calculated from all children.
+ * a list containing metadata about the location..
  *
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
@@ -16,41 +15,51 @@ var m = require('../controllers/locations.js');
  * @apiParam {boolean} [has_geo=true] Only return items with geographic coordinates, this option can only be `true`.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
- * @apiParam {string} [date_from] Show results after a certain date.
- * @apiParam {string} [date_to] Show results before a certain date.
+ * @apiParam {date} [date_from] Show results after a certain date.
+ * @apiParam {date} [date_to] Show results before a certain date.
  *
  * @apiSuccess {string}   location      Location description for measurement
  * @apiSuccess {string}   country       2 digit country code containing measurement
- * @apiSuccess {string}   city       City containing measurement
+ * @apiSuccess {string}   city          City containing measurement
  * @apiSuccess {number}   count         Number of measurements, cumulative by specificity level
- * @apiSuccess {string}   _id            Unique ID
- * @apiSuccessExample {date} lastUpdated    The last update time for this specificity level.
- *       HTTP/1.1 200 OK
- *       [
- *         {
- *         "country": "UK",
- *         "cities": [
- *           {
- *           "city": "London",
- *           "locations": [
- *             {
- *               "location": "London Harrow Stanmore",
- *               "count": 1,
- *               "lastUpdated": "2015-08-23T16:00:00.000Z"
- *             },
- *             {
- *               "location": "Southwark A2 Old Kent Road",
- *               "count": 4,
- *               "lastUpdated": "2015-08-23T16:00:00.000Z"
- *             }
- *           ],
- *           ...
- *           "count": 68,
- *           "lastUpdated": "2015-08-23T16:00:00.000Z"
- *         ],
- *         "count": 68,
- *         "lastUpdated": "2015-08-23T16:00:00.000Z"
- *       ]
+ * @apiSuccess {string}   sourceName    Can follow this to determine which adapter is used for this location
+ * @apiSuccess {date}     firstUpdated  When was data first grabbed for this location (in UTC)?
+ * @apiSuccess {date}     lastUpdated   When was data last grabbed for this location (in UTC)?
+ * @apiSuccess {array}    parameters    List of parameters present for this location
+ * @apiSuccess {string}   _id           Unique ID
+ * @apiSuccessExample {json} Success Response:
+ * [
+ *   {
+ *     "count": 4242,
+ *     "sourceName": "Australia - New South Wales",
+ *     "firstUpdated": "2015-10-13T01:00:00.000Z",
+ *     "lastUpdated": "2015-11-14T03:00:00.000Z",
+ *     "parameters": [
+ *       "pm25",
+ *       "pm10",
+ *       "so2",
+ *       "co",
+ *       "no2",
+ *       "o3"
+ *     ],
+ *     "country": "AU",
+ *     "city": "Central Coast",
+ *     "location": "Wyong"
+ *   },
+ *   {
+ *     "count": 728,
+ *     "sourceName": "Australia - New South Wales",
+ *     "firstUpdated": "2015-10-13T01:00:00.000Z",
+ *     "lastUpdated": "2015-11-14T03:00:00.000Z",
+ *     "parameters": [
+ *       "pm10"
+ *     ],
+ *     "country": "AU",
+ *     "city": "Central Tablelands",
+ *     "location": "Bathurst"
+ *   },
+ *   ...
+ * ]
  *
  * @apiError statusCode     The error code
  * @apiError error          Error name
