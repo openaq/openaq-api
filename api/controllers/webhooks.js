@@ -23,6 +23,9 @@ module.exports.handleAction = function (payload, redis, cb) {
         redis.del('CACHED_LATEST');
         redis.del('CACHED_COUNTRIES');
         redis.del('CACHED_CITIES');
+
+        // Rebuild cache instead of waiting for first query
+        runCachedQueries(redis);
       }
       break;
     default:
@@ -31,4 +34,28 @@ module.exports.handleAction = function (payload, redis, cb) {
   }
 
   return cb(null);
+};
+
+var runCachedQueries = function (redis) {
+  // Run the queries to build up the cache
+  require('./cities').query({}, redis, function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+  require('./countries').query({}, redis, function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+  require('./locations').query({}, redis, function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+  require('./latest').query({}, redis, function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
 };
