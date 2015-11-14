@@ -55,7 +55,8 @@ Server.prototype.start = function (redisURL, cb) {
     register: require('hapi-paginate'),
     options: {
       limit: 100,
-      excludeFormats: ['csv']
+      excludeFormats: ['csv'],
+      routes: ['/v1/measurements']
     }
   }, function (err) {
     if (err) throw err;
