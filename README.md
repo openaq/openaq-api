@@ -28,6 +28,8 @@ For the above to work, you will need to have certain environment variables set a
 | WEBHOOK_KEY | Secret key to interact with openaq-api | '123' |
 | USE_REDIS | Use Redis for caching? | not set (so not used) |
 | REDIS_URL | Redis instance URL | redis://localhost:6379 |
+| KEEN_PROJECT_ID | Keen project ID for analytics. | not set |
+| KEEN_WRITE_KEY | Keen write key for analytics. | not set |
 
 ## Tests
 To confirm that everything is working as expected, you can run the tests with

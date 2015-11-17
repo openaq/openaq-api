@@ -22,10 +22,10 @@
     "hapi-redis": "^6.0.0",
     "hapi-response-meta": "^0.3.0",
     "hapi-router": "^3.0.1",
+    "keen-js": "^3.3.0",
     "lodash": "^3.9.3",
     "mongodb": "^2.0.45",
-    "newrelic": "^1.21.1",
-    "universal-analytics": "^0.3.9"
+    "newrelic": "^1.21.1"
   },
   "devDependencies": {
     "apidoc": "^0.13.1",

@@ -1,7 +1,13 @@
 'use strict';
 
 var Hapi = require('hapi');
-var ua = require('universal-analytics')(process.env.GA_ID);
+var Keen = require('keen-js');
+
+// Configure Keen instance
+var keen = new Keen({
+  projectId: process.env.KEEN_PROJECT_ID,
+  writeKey: process.env.KEEN_WRITE_KEY
+});
 
 var Server = function (port) {
   this.port = port;
@@ -91,12 +97,19 @@ Server.prototype.start = function (redisURL, cb) {
   });
 
   // Add Google Analytics to endpoints
-  var GAPlugin = {
+  var KeenPlugin = {
     register: function (server, options, next) {
       server.ext('onPreResponse', function (request, reply) {
         // Pass along route view, exclude ping
-        if (request.route.path !== '/ping') {
-          ua.pageview(request.route.path).send();
+        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico') {
+          var components = request.route.path.split('/');
+          var rEvent = {
+            endpoint: components[2],
+            version: components[1],
+            query: request.query,
+            ip: request.info.remoteAddress
+          };
+          keen.addEvent('requests', rEvent);
         }
 
         return reply.continue();
@@ -105,11 +118,11 @@ Server.prototype.start = function (redisURL, cb) {
       next();
     }
   };
-  GAPlugin.register.attributes = {
-    name: 'GAPlugin',
+  KeenPlugin.register.attributes = {
+    name: 'KeenPlugin',
     version: '0.0.1'
   };
-  self.hapi.register(GAPlugin, function (err) {
+  self.hapi.register(KeenPlugin, function (err) {
     if (err) throw err;
   });
 
