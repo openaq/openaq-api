@@ -13,7 +13,7 @@ var csv = require('csv-stringify');
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
- * @apiParam {boolean} [has_geo=true] Only return items with geographic coordinates, this option can only be `true`.
+ * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
  * @apiParam {string} [date_from] Show results after a certain date.
