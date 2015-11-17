@@ -8,6 +8,7 @@ var m = require('../controllers/latest.js');
  * @apiGroup Latest
  * @apiDescription Provides the latest value of each available parameter for every location in the system.
  *
+ * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
