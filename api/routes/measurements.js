@@ -11,13 +11,14 @@ var csv = require('csv-stringify');
  * @apiDescription Providing data about individual measurements
  *
  * @apiParam {string} [country] Limit results by a certain country.
+ * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
- * @apiParam {string} [date_from] Show results after a certain date.
- * @apiParam {string} [date_to] Show results before a certain date.
+ * @apiParam {string} [date_from] Show results after a certain date. (ex. `2015-12-20`)
+ * @apiParam {string} [date_to] Show results before a certain date. (ex. `2015-12-20`)
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
  * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
  * @apiParam {array}  [include_fields=location,parameter,date,value,unit,coordinates,country,city] Include extra fields in the output in addition to default values.
