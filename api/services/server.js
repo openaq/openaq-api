@@ -47,7 +47,7 @@ Server.prototype.start = function (redisURL, cb) {
     options: {
       content: {
         name: 'openaq-api',
-        license: 'CC0-1.0',
+        license: 'CC BY 4.0',
         website: process.env.RESPONSE_HEADER_SERVER || 'https://docs.openaq.org/'
       },
       excludeFormats: ['csv']

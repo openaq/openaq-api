@@ -10,8 +10,8 @@
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/"
   },
-  "author": "",
-  "license": "BSD-3-Clause",
+  "author": "Joe Flasher",
+  "license": "MIT",
   "dependencies": {
     "boom": "^2.8.0",
     "csv-stringify": "0.0.8",
