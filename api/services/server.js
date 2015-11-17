@@ -101,7 +101,7 @@ Server.prototype.start = function (redisURL, cb) {
     register: function (server, options, next) {
       server.ext('onPreResponse', function (request, reply) {
         // Pass along route view, exclude ping
-        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico') {
+        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico' && request.route.path.indexOf('webhooks') === -1) {
           var components = request.route.path.split('/');
           var rEvent = {
             endpoint: components[2],
