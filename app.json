@@ -11,6 +11,14 @@
   "repository": "https://github.com/openaq/openaq-api",
   "logo": "https://avatars1.githubusercontent.com/u/11806583?v=3&s=200",
   "env": {
+    "KEEN_PROJECT_ID": {
+      "description": "Keen project ID for analytics.",
+      "required": false
+    },
+    "KEEN_WRITE_KEY": {
+      "description": "Keen write key for analytics.",
+      "required": false
+    },
     "INDIA_KIMONO_TOKEN": {
       "description": "Your Kimono API token to use if needed to query sources.",
       "required": false
@@ -22,6 +30,7 @@
   },
   "addons": [
     "newrelic",
-    "mongolab"
+    "mongolab",
+    "keen"
   ]
 }
