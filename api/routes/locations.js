@@ -9,14 +9,15 @@ var m = require('../controllers/locations.js');
  * @apiDescription Providing data about distinct measurement locations, this is
  * a list containing metadata about the location..
  *
+ * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
- * @apiParam {date} [date_from] Show results after a certain date.
- * @apiParam {date} [date_to] Show results before a certain date.
+ * @apiParam {date} [date_from] Show results after a certain date. (ex. `2015-12-20`)
+ * @apiParam {date} [date_to] Show results before a certain date. (ex. `2015-12-20`)
  *
  * @apiSuccess {string}   location      Location description for measurement
  * @apiSuccess {string}   country       2 digit country code containing measurement
