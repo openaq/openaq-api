@@ -37,4 +37,7 @@ To confirm that everything is working as expected, you can run the tests with
 `npm test`
 
 ## Contributing
-There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md). 
+There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).
+
+## Projects using the API
+openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data.
