@@ -22,7 +22,7 @@ var csv = require('csv-stringify');
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
  * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
  * @apiParam {array}  [include_fields=location,parameter,date,value,unit,coordinates,country,city] Include extra fields in the output in addition to default values.
- * @apiParam {number} [limit=100] Change the number of results returned, max is 100.
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`.
@@ -93,8 +93,8 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 100
-      request.limit = Math.min(request.limit, 100);
+      // Set max limit to 1000
+      request.limit = Math.min(request.limit, 1000);
 
       // Check if this is supposed to be formatted as csv
       var formatForCSV = false;
