@@ -1,0 +1,7 @@
+api:
+  build: .
+  volumes:
+  - .:/local
+  env_file: ./local.env
+  ports:
+  - "80:3004"

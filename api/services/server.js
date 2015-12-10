@@ -2,6 +2,10 @@
 
 var Hapi = require('hapi');
 var Keen = require('keen-js');
+var GoodWinston = require('good-winston');
+var winston = require('winston');
+require('winston-papertrail').Papertrail;
+var os = require('os');
 
 // Configure Keen instance
 var keen = new Keen({
@@ -80,13 +84,37 @@ Server.prototype.start = function (redisURL, cb) {
     }
   });
 
-  // Register good logger
+  // Setup loggin
+  var logger = new winston.Logger({
+    level: 'info',
+    transports: [
+      new winston.transports.Console({
+        colorize: true,
+        timestamp: function () {
+          return new Date().toString();
+        }
+      })
+    ]
+  });
+  // Add Papertrail logger if we have credentials
+  if (process.env.PAPERTRAIL_URL) {
+    logger.add(winston.transports.Papertrail, {
+      host: process.env.PAPERTRAIL_URL,
+      port: process.env.PAPERTRAIL_PORT,
+      hostname: process.env.PAPERTRAIL_HOSTNAME,
+      colorize: true,
+      program: os.hostname()
+    });
+  }
   var options = {
-    opsInterval: 1000,
-    reporters: [{
-      reporter: require('good-console'),
-      events: { log: '*', response: '*', request: '*', error: '*' }
-    }]
+    reporters: [
+      new GoodWinston({
+        request: '*',
+        response: '*',
+        log: '*',
+        error: '*'
+      }, logger)
+    ]
   };
 
   self.hapi.register({

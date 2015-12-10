@@ -1,0 +1,20 @@
+{
+    "family": "openaq-api",
+    "containerDefinitions": [
+        {
+            "name": "openaq-api",
+            "image": "flasher/openaq-api",
+            "memory": 400,
+            "portMappings": [
+                {
+                    "containerPort": 3004,
+                    "hostPort": 80
+                }
+            ],
+            "command": [
+                "npm",
+                "start"
+            ]
+        }
+    ]
+}
