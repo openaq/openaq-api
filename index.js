@@ -20,6 +20,6 @@ database.connect(dbURL, function (err) {
   }
 
   // Start API server once we have a DB connection
-  var server = new Server(process.env.PORT || 3004);
+  var server = new Server(3004);
   server.start(redisURL);
 });

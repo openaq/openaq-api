@@ -5,3 +5,4 @@ docs
 newrelic_agent.log
 dump
 dump.rdb
+local.env

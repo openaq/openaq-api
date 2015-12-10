@@ -6,17 +6,19 @@
   "main": "",
   "scripts": {
     "lint": "semistandard",
-    "test": "mocha test/**",
+    "test": "semistandard && mocha test/**",
     "start": "node index.js",
-    "docs": "apidoc -i api/ -o docs/"
+    "docs": "apidoc -i api/ -o docs/",
+    "docker": "docker-compose --project openaq run --rm --service-ports api"
   },
   "author": "Joe Flasher",
   "license": "MIT",
+  "homepage": "https://github.com/openaq/openaq-api#readme",
   "dependencies": {
     "boom": "^2.8.0",
     "csv-stringify": "0.0.8",
     "good": "^6.3.0",
-    "good-console": "^5.0.2",
+    "good-winston": "^1.0.0",
     "hapi": "^8.8.0",
     "hapi-paginate": "^0.4.0",
     "hapi-redis": "^6.0.0",
@@ -25,7 +27,9 @@
     "keen-js": "^3.3.0",
     "lodash": "^3.9.3",
     "mongodb": "^2.0.45",
-    "newrelic": "^1.21.1"
+    "newrelic": "^1.21.1",
+    "winston": "^2.1.1",
+    "winston-papertrail": "^1.0.2"
   },
   "devDependencies": {
     "apidoc": "^0.13.1",

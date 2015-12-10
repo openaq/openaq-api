@@ -1,4 +1,4 @@
-# OpenAQ Platform API [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+# OpenAQ Platform API 
 [![Build Status](https://travis-ci.org/openaq/openaq-api.svg?branch=master)](https://travis-ci.org/openaq/openaq-api)
 
 ## Overview
@@ -19,7 +19,7 @@ Make sure you have MongoDB running locally and then you can start the app with
 
 `npm start`
 
-For the above to work, you will need to have certain environment variables set as in the table below
+For the above to work, you will need to have certain environment variables set as in the table below (for production deployments, these are stored in an S3 bucket).
 
 | Name | Description | Default |
 |---|---|---|
@@ -36,8 +36,11 @@ To confirm that everything is working as expected, you can run the tests with
 
 `npm test`
 
+## Dockerfile
+There is a Dockerfile included that will turn the project into a Docker container. The container can be found [here](https://hub.docker.com/r/flasher/openaq-api/) and is currently mostly used for deployment purposes for [AWS ECS](https://aws.amazon.com/ecs/). If someone wanted to make it better for local development, that'd be a great PR!
+
 ## Contributing
 There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).
 
 ## Projects using the API
-openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data.
+openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data. 
