@@ -286,6 +286,28 @@ describe('Testing endpoints', function () {
   });
 
   describe('utils', function () {
+    describe('payloadToKey', function () {
+      it('should convert payloads properly', function (done) {
+        var payload = {
+          date_from: '2015-10-21',
+          date_to: '2015-10-22',
+          value_from: 20,
+          value_to: 21,
+          has_geo: true
+        };
+        var expected = 'test+date_from=2015-10-21&date_to=2015-10-22&value_from=20&value_to=21&has_geo=true';
+        expect(utils.payloadToKey('test', payload)).to.equal(expected);
+        done();
+      });
+
+      it('should handle no payload well', function (done) {
+        var payload = {};
+        var expected = 'test';
+        expect(utils.payloadToKey('test', payload)).to.equal(expected);
+        done();
+      });
+    });
+
     describe('queryFromParameters', function () {
       it('should convert payload data correctly', function (done) {
         var payload = {

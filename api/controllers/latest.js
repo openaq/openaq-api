@@ -5,7 +5,7 @@ var _ = require('lodash');
 var db = require('../services/db.js').db;
 var utils = require('../../lib/utils');
 
-var cacheName = 'CACHED_LATEST';
+var cacheName = 'LATEST';
 
 /**
 * Get latest for all locations. Implements all protocols supported by /latest endpoint
@@ -14,6 +14,9 @@ var cacheName = 'CACHED_LATEST';
 * @param {recordsCallback} cb - The callback that returns the records
 */
 module.exports.query = function (payload, redis, cb) {
+  // Save payload to use for caching
+  var oPayload = _.cloneDeep(payload);
+
   var sendResults = function (err, data) {
     cb(err, data, data.length);
   };
@@ -46,18 +49,16 @@ module.exports.query = function (payload, redis, cb) {
         // Send result to client
         sendResults(null, docs);
 
-        // Save the data to cache if we have no payload
-        if (_.keys(payload).length === 0) {
-          redis.set(cacheName, JSON.stringify(docs));
-        }
+        // Save the data to cache
+        redis.set(utils.payloadToKey(cacheName, oPayload), JSON.stringify(docs));
 
         return;
       });
   };
 
   // Send back cached result if we have it and it matches our cached search
-  if (redis.ready && _.keys(payload).length === 0) {
-    redis.get(cacheName, function (err, reply) {
+  if (redis.ready) {
+    redis.get(utils.payloadToKey(cacheName, oPayload), function (err, reply) {
       if (err) {
         console.error(err);
       } else if (reply) {
