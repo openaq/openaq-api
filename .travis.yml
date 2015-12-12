@@ -35,4 +35,4 @@ deploy:
   skip_cleanup: true
   script: ".build_scripts/deploy.sh"
   on:
-    branch: docker
+    branch: ${PRODUCTION_BRANCH}
