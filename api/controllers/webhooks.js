@@ -1,5 +1,7 @@
 'use strict';
 
+var async = require('async');
+var request = require('request');
 var webhookKey = process.env.WEBHOOK_KEY || '123';
 
 /**
@@ -40,43 +42,43 @@ module.exports.handleAction = function (payload, redis, cb) {
 };
 
 var runCachedQueries = function (redis) {
-  // Run the queries to build up the cache, doing a bit of weird nesting
-  // to try and make sure system doesn't get overwhelmed
+  var baseURL = process.env.API_URL || 'http://localhost:3004/v1/';
+  // Run the queries to build up the cache, I'm cheating and just calling the
+  // exposed urls because I was running into issue doing it internally. :(
   console.info('Rebuilding cache.');
-  require('./cities').query({}, redis, function (err) {
-    console.info('Built cache for: /cities.');
-    if (err) {
-      console.error(err);
-    }
-  });
-  require('./countries').query({}, redis, function (err) {
-    console.info('Built cache for: /countries.');
-    if (err) {
-      console.error(err);
-    }
-  });
-  require('./locations').query({}, redis, function (err) {
-    console.info('Built cache for: /locations.');
-    if (err) {
-      console.error(err);
-    }
-    require('./locations').query({ has_geo: true }, redis, function (err) {
-      console.info('Built cache for: /locations?has_geo.');
-      if (err) {
-        console.error(err);
-      }
-      require('./latest').query({}, redis, function (err) {
-        console.info('Built cache for: /latest.');
-        if (err) {
-          console.error(err);
-        }
-        require('./latest').query({ has_geo: true }, redis, function (err) {
-          console.info('Built cache for: /latest?has_geo.');
-          if (err) {
-            console.error(err);
-          }
-        });
+  async.parallel([
+    function (done) {
+      request(baseURL + 'locations', function () {
+        done(null);
       });
-    });
+    },
+    function (done) {
+      request(baseURL + 'locations?has_geo', function () {
+        done(null);
+      });
+    },
+    function (done) {
+      request(baseURL + 'latest', function () {
+        done(null);
+      });
+    },
+    function (done) {
+      request(baseURL + 'latest?has_geo', function () {
+        done(null);
+      });
+    },
+    function (done) {
+      request(baseURL + 'cities', function () {
+        done(null);
+      });
+    },
+    function (done) {
+      request(baseURL + 'countries', function () {
+        done(null);
+      });
+    }
+  ],
+  function () {
+    console.info('Cache completed rebuilding.');
   });
 };
