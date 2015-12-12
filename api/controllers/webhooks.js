@@ -19,7 +19,9 @@ module.exports.handleAction = function (payload, redis, cb) {
     case 'DATABASE_UPDATED':
       // Dump Redis caches if we have a redis connection
       if (redis.ready) {
+        console.info('Starting to dump cache.');
         redis.flushall(function (err, reply) {
+          console.info('Finished dumping cache.');
           if (err) {
             console.error(err);
           }
@@ -40,29 +42,36 @@ module.exports.handleAction = function (payload, redis, cb) {
 var runCachedQueries = function (redis) {
   // Run the queries to build up the cache, doing a bit of weird nesting
   // to try and make sure system doesn't get overwhelmed
+  console.info('Rebuilding cache.');
   require('./cities').query({}, redis, function (err) {
+    console.info('Built cache for: /cities.');
     if (err) {
       console.error(err);
     }
   });
   require('./countries').query({}, redis, function (err) {
+    console.info('Built cache for: /countries.');
     if (err) {
       console.error(err);
     }
   });
   require('./locations').query({}, redis, function (err) {
+    console.info('Built cache for: /locations.');
     if (err) {
       console.error(err);
     }
     require('./locations').query({ has_geo: true }, redis, function (err) {
+      console.info('Built cache for: /locations?has_geo.');
       if (err) {
         console.error(err);
       }
       require('./latest').query({}, redis, function (err) {
+        console.info('Built cache for: /latest.');
         if (err) {
           console.error(err);
         }
         require('./latest').query({ has_geo: true }, redis, function (err) {
+          console.info('Built cache for: /latest?has_geo.');
           if (err) {
             console.error(err);
           }
