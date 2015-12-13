@@ -46,7 +46,7 @@ var runCachedQueries = function (redis) {
   // Run the queries to build up the cache, I'm cheating and just calling the
   // exposed urls because I was running into issue doing it internally. :(
   console.info('Rebuilding cache.');
-  async.parallel([
+  async.series([
     function (done) {
       request(baseURL + 'locations', function () {
         done(null);
