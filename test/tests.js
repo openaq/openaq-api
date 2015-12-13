@@ -135,13 +135,25 @@ describe('Testing endpoints', function () {
     });
 
     it('should return csv when asked to', function (done) {
-      request(self.baseURL + 'measurements?limit=1&format=csv&_id=561e7d31e7a1bc855f63fcb6', function (err, response, body) {
+      request(self.baseURL + 'measurements?format=csv&_id=561e7d31e7a1bc855f63fcb6', function (err, response, body) {
         if (err) {
           console.error(err);
         }
 
         var csv = 'location,city,country,utc,local,parameter,value,unit\nNueva Libertad,Talcahuano,CL,2015-10-14T15:00:00.000Z,2015-10-14T12:00:00-03:00,pm25,10.66,µg/m³\n';
         expect(body).to.equal(csv);
+        done();
+      });
+    });
+
+    it('should respect limit parameter for csv', function (done) {
+      request(self.baseURL + 'measurements?limit=10&format=csv', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var lines = body.split('\n');
+        expect(lines.length).to.equal(12);
         done();
       });
     });
