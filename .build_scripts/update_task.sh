@@ -13,7 +13,11 @@ echo "Getting the revision of the old task"
 # This should be updated to check for running revision, not necessarily latest revision
 OLD_VERSION=$($aws ecs describe-task-definition --task-definition openaq-api | sed -n "/revision/p" | grep -o "[0-9]\+")
 NEW_VERSION=$(($OLD_VERSION + 1))
+# Grab this so we're not trying to deploy latest, but rather the last good image
+CURRENT_HASH=$($aws ecs describe-task-definition --task-definition openaq-api | grep -o "flasher/openaq-api:[a-zA-Z_0-9]\+")
+export CURRENT_HASH=$CURRENT_HASH
 echo "Current revision of ECS task is $OLD_VERSION"
+echo "Current Docker image is $CURRENT_HASH"
 
 echo "Scaling current task down to 1"
 $aws ecs update-service --service openaq-api --task-definition openaq-api:$OLD_VERSION --desired-count 1

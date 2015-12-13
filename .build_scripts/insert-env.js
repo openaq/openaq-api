@@ -24,7 +24,12 @@ envs.split('\n').forEach(function (e) {
 obj['containerDefinitions'][0]['environment'] = splitEnvs;
 
 // Also set container version based on hash
-let hash = process.env.TRAVIS_COMMIT || 'latest';
+let hash = 'latest';
+if (process.env.TRAVIS_COMMIT) {
+  hash = process.env.TRAVIS_COMMIT;
+} else if (process.env.CURRENT_HASH) {
+  hash = process.env.CURRENT_HASH.split(':')[1];
+}
 obj['containerDefinitions'][0]['image'] += ':' + hash;
 
 // Save to output file
