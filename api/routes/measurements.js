@@ -25,7 +25,7 @@ var csv = require('csv-stringify');
  * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
- * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`.
+ * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`. Note that `csv` will return a max of 65,536 results at a time.
  *
  * @apiSuccess {string}   _id             Unique ID `default`
  * @apiSuccess {date}     date            Date and time of measurement (UTC) `default`
@@ -101,8 +101,10 @@ module.exports = [
       if (params.format === 'csv') {
         formatForCSV = true;
 
-        // Remove limit for CSVs, should probably set max size at some point
-        request.limit = undefined;
+        // Set a different max limit for CSVs to get a lot of data, but not
+        // all of it, because that's just crazy. Setting to 65,536 since this
+        // is the Excel limit from a while back and is as good as anything.
+        request.limit = Math.min(request.limit, 65536);
       }
       params = _.omit(params, 'format');
 
