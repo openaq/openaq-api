@@ -1,8 +1,9 @@
 'use strict';
 
+var _ = require('lodash');
 var async = require('async');
-var request = require('request');
 var webhookKey = process.env.WEBHOOK_KEY || '123';
+var mongoHoldTime = process.env.MONGO_HOLD_TIME || 5000;
 
 /**
 * Handle incoming webhooks. Implements all protocols supported by /webhooks endpoint
@@ -19,18 +20,9 @@ module.exports.handleAction = function (payload, redis, cb) {
 
   switch (payload.action) {
     case 'DATABASE_UPDATED':
-      // Dump Redis caches if we have a redis connection
       if (redis.ready) {
-        console.info('Starting to dump cache.');
-        redis.flushall(function (err, reply) {
-          console.info('Finished dumping cache.');
-          if (err) {
-            console.error(err);
-          }
-
-          // Rebuild cache instead of waiting for first query
-          runCachedQueries(redis);
-        });
+        // Rebuild cache instead of waiting for first query
+        runCachedQueries(redis);
       }
       break;
     default:
@@ -42,43 +34,113 @@ module.exports.handleAction = function (payload, redis, cb) {
 };
 
 var runCachedQueries = function (redis) {
-  var baseURL = process.env.API_URL || 'http://localhost:3004/v1/';
   // Run the queries to build up the cache, I'm cheating and just calling the
   // exposed urls because I was running into issue doing it internally. :(
-  console.info('Rebuilding cache.');
-  async.series([
-    function (done) {
-      request(baseURL + 'locations', function () {
-        done(null);
+  console.info('Database updated, running new cache queries.');
+  async.series({
+    'LOCATIONS': function (done) {
+      require('./locations').query({}, redis, false, function (err, docs) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Query done');
+        // Now hold for a bit
+        setTimeout(function () {
+          console.log('Done waiting');
+          done(null, JSON.stringify(docs));
+        }, mongoHoldTime);
       });
     },
-    function (done) {
-      request(baseURL + 'locations?has_geo', function () {
-        done(null);
+    'LATEST+has_geo=': function (done) {
+      require('./latest').query({ has_geo: true }, redis, false, function (err, docs) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Query done');
+        // Now hold for a bit
+        setTimeout(function () {
+          console.log('Done waiting');
+          done(null, JSON.stringify(docs));
+        }, mongoHoldTime);
       });
     },
-    function (done) {
-      request(baseURL + 'latest', function () {
-        done(null);
+    'LATEST': function (done) {
+      require('./latest').query({}, redis, false, function (err, docs) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Query done');
+        // Now hold for a bit
+        setTimeout(function () {
+          console.log('Done waiting');
+          done(null, JSON.stringify(docs));
+        }, mongoHoldTime);
       });
     },
-    function (done) {
-      request(baseURL + 'latest?has_geo', function () {
-        done(null);
+    'LOCATIONS+has_geo=': function (done) {
+      require('./locations').query({ has_geo: true }, redis, false, function (err, docs) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Query done');
+        // Now hold for a bit
+        setTimeout(function () {
+          console.log('Done waiting');
+          done(null, JSON.stringify(docs));
+        }, mongoHoldTime);
       });
     },
-    function (done) {
-      request(baseURL + 'cities', function () {
-        done(null);
+    'CITIES': function (done) {
+      require('./cities').query({}, redis, false, function (err, docs) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Query done');
+        // Now hold for a bit
+        setTimeout(function () {
+          console.log('Done waiting');
+          done(null, JSON.stringify(docs));
+        }, mongoHoldTime);
       });
     },
-    function (done) {
-      request(baseURL + 'countries', function () {
-        done(null);
+    'COUNTRIES': function (done) {
+      require('./countries').query({}, redis, false, function (err, docs) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Query done');
+        // Now hold for a bit
+        setTimeout(function () {
+          console.log('Done waiting');
+          done(null, JSON.stringify(docs));
+        }, mongoHoldTime);
       });
     }
-  ],
-  function () {
-    console.info('Cache completed rebuilding.');
+  },
+  function (err, results) {
+    if (err) {
+      console.error(err);
+    }
+
+    console.info('New cache queries done, dumping current cache.');
+    redis.flushall(function (err, reply) {
+      console.info('Finished dumping cache, updating with new query results.');
+      if (err) {
+        console.error(err);
+      }
+
+      // Do a multi-insert into Redis
+      var multi = redis.multi();
+      _.forEach(results, function (v, k) {
+        multi.set(k, v);
+      });
+      multi.exec(function (err, replies) {
+        if (err) {
+          console.error(err);
+        }
+        console.log(replies);
+        console.info('Cache completed rebuilding.');
+      });
+    });
   });
 };

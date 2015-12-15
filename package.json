@@ -29,7 +29,6 @@
     "lodash": "^3.9.3",
     "mongodb": "^2.0.45",
     "newrelic": "^1.21.1",
-    "request": "^2.67.0",
     "winston": "^2.1.1",
     "winston-papertrail": "^1.0.2"
   },
@@ -37,6 +36,7 @@
     "apidoc": "^0.13.1",
     "chai": "^3.2.0",
     "mocha": "^2.2.5",
+    "request": "^2.67.0",
     "semistandard": "^7.0.2"
   },
   "apidoc": {
