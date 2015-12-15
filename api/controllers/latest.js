@@ -13,7 +13,7 @@ var cacheName = 'LATEST';
 * @param {Object} payload - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (payload, redis, cb) {
+module.exports.query = function (payload, redis, checkCache, cb) {
   // Save payload to use for caching
   var oPayload = _.cloneDeep(payload);
 
@@ -57,7 +57,7 @@ module.exports.query = function (payload, redis, cb) {
   };
 
   // Send back cached result if we have it and it matches our cached search
-  if (redis.ready) {
+  if (checkCache && redis.ready) {
     redis.get(utils.payloadToKey(cacheName, oPayload), function (err, reply) {
       if (err) {
         console.error(err);
