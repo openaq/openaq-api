@@ -43,4 +43,5 @@ There is a Dockerfile included that will turn the project into a Docker containe
 There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).
 
 ## Projects using the API
-openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data. 
+- openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data. 
+- py-openaq [code](https://github.com/dhhagan/py-openaq) - A Python wrapper for the API
