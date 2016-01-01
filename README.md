@@ -45,3 +45,4 @@ There are a lot of ways to contribute to this project, more details can be found
 ## Projects using the API
 - openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data. 
 - py-openaq [code](https://github.com/dhhagan/py-openaq) - A Python wrapper for the API
+- Ropenaq [code](https://github.com/masalmon/Ropenaq) - An R package for the API
