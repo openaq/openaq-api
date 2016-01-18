@@ -27,8 +27,7 @@ var csv = require('csv-stringify');
  * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`. Note that `csv` will return a max of 65,536 results at a time.
  *
- * @apiSuccess {string}   _id             Unique ID `default`
- * @apiSuccess {date}     date            Date and time of measurement (UTC) `default`
+ * @apiSuccess {object}   date            Date and time of measurement in both local and UTC `default`
  * @apiSuccess {string}   parameter       Property being measured `default`
  * @apiSuccess {number}   value           Value of measurement `default`
  * @apiSuccess {string}   unit            Unit of measurement `default`
@@ -42,9 +41,11 @@ var csv = require('csv-stringify');
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {
- *       "_id": "55a823fc3fe18309498d6ce2",
  *       "parameter": "Ammonia",
- *       "date": "2015-07-16T20:30:00.000Z",
+ *       "date": {
+ *           "utc": "2015-07-16T20:30:00.000Z",
+ *           "local": "2015-07-16T18:30:00.000-02:00"
+ *       },
  *       "value": "72.9",
  *       "unit": "µg/m3",
  *       "location": "Anand Vihar",
@@ -111,7 +112,6 @@ module.exports = [
       // Handle it
       m.query(params, request.page, request.limit, function (err, records, count) {
         if (err) {
-          console.error(err);
           return reply(Boom.badImplementation(err));
         }
 
@@ -122,7 +122,7 @@ module.exports = [
           };
 
           records = records.map(function (r) {
-            r.utc = r.date.utc.toISOString();
+            r.utc = r.date.utc;
             r.local = r.date.local;
             r = _.omit(r, 'date');
             return r;

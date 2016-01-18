@@ -1,47 +1,31 @@
 'use strict';
 
 var _ = require('lodash');
-var ObjectID = require('mongodb').ObjectID;
 
-var db = require('../services/db.js').db;
+import { db } from '../services/db';
 var utils = require('../../lib/utils');
 
 /**
 * Query Measurements. Implements all protocols supported by /measurements endpoint
 *
-* @param {Object} payload - Payload contains query paramters and their values
+* @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (payload, page, limit, cb) {
-  // Get the collection
-  var c = db.collection('measurements');
-
-  // Turn the payload into something we can use with mongo
-  payload = utils.queryFromParameters(payload);
-
-  // Handle _id field
-  if (_.has(payload, '_id')) {
-    payload['_id'] = new ObjectID(payload['_id']);
-  }
+module.exports.query = function (query, page, limit, cb) {
+  // Turn the payload into something we can use with psql
+  let { payload, operators, betweens, nulls, notNulls } = utils.queryFromParameters(query);
 
   //
   // Handle include_fields cases
   //
-  var projection = {
-    location: 1,
-    parameter: 1,
-    date: 1,
-    value: 1,
-    unit: 1,
-    coordinates: 1,
-    country: 1,
-    city: 1
-  };
+  var projection = ['location', 'parameter', 'date', 'value', 'unit',
+                    'coordinates', 'country', 'city'];
+
   if (_.has(payload, 'include_fields')) {
     // Turn into an array and add to projection
     var fields = payload.include_fields.split(',');
     _.forEach(fields, function (f) {
-      projection[f] = 1;
+      projection.push(f);
     });
 
     // sanitized payload
@@ -52,11 +36,16 @@ module.exports.query = function (payload, page, limit, cb) {
   // Handle custom sorts, starting with default of most recent measurements
   // first. Do nothing if we don't have both sort and order_by.
   //
-  var sort = { 'date.utc': -1 };
+  var sort = { column: 'date_utc', direction: 'desc' };
   if (_.has(payload, 'sort') && _.has(payload, 'order_by')) {
+    // Catch case where order_by is provided as 'date'
+    if (payload.order_by === 'date') { payload.order_by = 'date_utc'; }
+
     // Custom sort, overwrite default
-    sort = {};
-    sort[payload.order_by] = (payload.sort === 'asc') ? 1 : -1;
+    sort = {
+      column: payload.order_by,
+      direction: payload.sort
+    };
 
     // sanitized payload
     payload = _.omit(payload, 'sort');
@@ -74,14 +63,40 @@ module.exports.query = function (payload, page, limit, cb) {
   //
   var skip = limit * (page - 1);
 
-  // Execute the search and return the result via callback
-  c.count(payload, function (err, count) {
-    if (err) {
-      return cb(err);
-    }
+  //
+  // Run the queries, first do a count for paging, then get results
+  //
+  let countQuery = db
+                    .count('location')
+                    .from('measurements');
+  countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls);
+  countQuery.then((count) => {
+    return Number(count[0].count); // PostgreSQL returns count as string
+  })
+  .then((count) => {
+    // Base query
+    let resultsQuery = db
+                        .select('data')
+                        .from('measurements')
+                        .limit(limit).offset(skip)
+                        .orderBy(sort.column, sort.direction);
+    // Build on base query
+    resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
 
-    c.find(payload, projection, { skip: skip, limit: limit }).sort(sort).toArray(function (err, docs) {
-      return cb(err, docs, count);
-    });
+    // Run the query
+    resultsQuery.then((results) => {
+      // Move data obj to top level and handle projections
+      results = results.map((r) => {
+        r = r.data;
+        return _.pick(r, projection);
+      });
+      return cb(null, results, count);
+    })
+      .catch((err) => {
+        return cb(err);
+      });
+  })
+  .catch((err) => {
+    return cb(err);
   });
 };

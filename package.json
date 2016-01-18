@@ -6,7 +6,7 @@
   "main": "",
   "scripts": {
     "lint": "semistandard",
-    "test": "semistandard && mocha test/**",
+    "test": "export PSQL_DATABASE=openaq-test && semistandard && mocha test/** --require babel-register",
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/",
     "docker": "docker-compose --project openaq run --rm --service-ports api"
@@ -16,6 +16,8 @@
   "homepage": "https://github.com/openaq/openaq-api#readme",
   "dependencies": {
     "async": "^1.5.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.3.13",
     "boom": "^2.8.0",
     "csv-stringify": "0.0.8",
     "good": "^6.3.0",
@@ -26,9 +28,11 @@
     "hapi-response-meta": "^0.3.0",
     "hapi-router": "^3.0.1",
     "keen-js": "^3.3.0",
-    "lodash": "^3.9.3",
-    "mongodb": "^2.0.45",
+    "knex": "^0.9.0",
+    "knex-postgis": "^0.1.8",
+    "lodash": "^3.10.1",
     "newrelic": "^1.21.1",
+    "pg": "^4.4.3",
     "winston": "^2.1.1",
     "winston-papertrail": "^1.0.2"
   },
