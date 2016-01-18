@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 
-var db = require('../services/db.js').db;
+import { db } from '../services/db';
 var utils = require('../../lib/utils');
 
 var cacheName = 'COUNTRIES';
@@ -10,56 +10,51 @@ var cacheName = 'COUNTRIES';
 /**
 * Query distinct countries. Implements all protocols supported by /countries endpoint
 *
-* @param {Object} payload - Payload contains query paramters and their values
+* @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (payload, redis, checkCache, cb) {
+module.exports.query = function (query, redis, checkCache, cb) {
   // Save payload to use for caching
-  var oPayload = _.cloneDeep(payload);
+  var oPayload = _.cloneDeep(query);
 
   var sendResults = function (err, data) {
     cb(err, data, data.length);
   };
 
   var queryDatabase = function () {
-    // Get the collection
-    var c = db.collection('measurements');
+    // Turn the payload into something we can use with psql
+    let { payload, operators, betweens, nulls, notNulls } = utils.queryFromParameters(query);
 
-    // Turn the payload into something we can use with mongo
-    payload = utils.queryFromParameters(payload);
+    let resultsQuery = db
+                        .from('measurements')
+                        .select('country')
+                        .count('value')
+                        .groupBy('country');
 
-    // Execute the search and return the result via callback
-    c.aggregate(
-      [{ '$match': payload },
-      { '$group': {
-        '_id': { country: '$country' },
-        'count': { $sum: 1 }
-      }
-      },
-      { $sort: { '_id.country': 1 } }
-      ]).toArray(function (err, docs) {
-        if (err) {
-          return cb(err);
-        }
+    // Build on base query
+    resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
 
-        // Move the _id result block to the top level and make some other changes
-        docs = _.map(docs, function (d) {
-          d = _.merge(d, d._id);
-          d = _.omit(d, '_id');
-          d.code = d.country;
-          d = _.omit(d, 'country');
-          d.name = utils.prettyCountryName(d.code);
-          return d;
-        });
+    // Grab the results
+    resultsQuery.then((results) => {
+      // Convert numbers to Numbers
+      results.map((r) => {
+        r.count = Number(r.count);
+        r.code = r.country;
+        r.name = utils.prettyCountryName(r.code);
+        delete r.country;
 
-        // Send result to client
-        sendResults(null, docs);
-
-        // Save the data to cache
-        redis.set(utils.payloadToKey(cacheName, oPayload), JSON.stringify(docs));
-
-        return;
+        return r;
       });
+
+      // Send result to client
+      sendResults(null, results);
+
+      // Save the data to cache
+      redis.set(utils.payloadToKey(cacheName, oPayload), JSON.stringify(results));
+    })
+    .catch((err) => {
+      sendResults(err);
+    });
   };
 
   // Send back cached result if we have it and it matches our cached search

@@ -1,26 +1,8 @@
 'use strict';
 
-var MongoClient = require('mongodb').MongoClient;
+import knexConfig from '../../knexfile';
+import knex from 'knex';
 
-exports.db = undefined;
-
-exports.connect = function (dbURL, cb) {
-  MongoClient.connect(dbURL, function (err, db) {
-    if (err) {
-      return cb(err);
-    }
-
-    exports.db = db;
-    if (cb && typeof cb === 'function') {
-      return cb(null);
-    }
-  });
-};
-
-exports.drop = function (cb) {
-  exports.db.dropDatabase(cb);
-};
-
-exports.close = function () {
-  exports.db.close();
-};
+export const db = knex(knexConfig);
+export const st = require('knex-postgis')(db);
+console.info('Connected to the database!');
