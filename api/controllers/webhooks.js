@@ -37,7 +37,7 @@ var runCachedQueries = function (redis) {
   // Run the queries to build up the cache, I'm cheating and just calling the
   // exposed urls because I was running into issue doing it internally. :(
   console.info('Database updated, running new cache queries.');
-  async.series({
+  async.parallelLimit({
     'LOCATIONS': function (done) {
       require('./locations').query({}, redis, false, function (err, docs) {
         if (err) {
@@ -116,7 +116,7 @@ var runCachedQueries = function (redis) {
         }, mongoHoldTime);
       });
     }
-  },
+  }, 2,
   function (err, results) {
     if (err) {
       console.error(err);
