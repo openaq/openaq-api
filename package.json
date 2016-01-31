@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "semistandard",
     "test": "semistandard && mocha test/** --require babel-register",
-    "start": "PSQL_DATABASE=openaq-local node index.js",
+    "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/",
     "docker": "docker-compose --project openaq run --rm --service-ports api",
     "docker-test": "docker-compose --project openaq run --rm api-test npm test"
