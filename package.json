@@ -6,10 +6,11 @@
   "main": "",
   "scripts": {
     "lint": "semistandard",
-    "test": "export PSQL_DATABASE=openaq-test && semistandard && mocha test/** --require babel-register",
-    "start": "node index.js",
+    "test": "semistandard && mocha test/** --require babel-register",
+    "start": "PSQL_DATABASE=openaq-local node index.js",
     "docs": "apidoc -i api/ -o docs/",
-    "docker": "docker-compose --project openaq run --rm --service-ports api"
+    "docker": "docker-compose --project openaq run --rm --service-ports api",
+    "docker-test": "docker-compose --project openaq run --rm api-test npm test"
   },
   "author": "Joe Flasher",
   "license": "MIT",

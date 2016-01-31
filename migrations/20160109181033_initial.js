@@ -1,7 +1,7 @@
 
 exports.up = function (knex, Promise) {
   return Promise.all([
-    knex.schema.raw('CREATE EXTENSION postgis'),
+    knex.schema.raw('CREATE EXTENSION IF NOT EXISTS postgis'),
     knex.schema.createTable('measurements', function (table) {
       table.bigIncrements('_id');
       table.string('location');
