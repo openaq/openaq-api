@@ -49,6 +49,8 @@ COPY ["app.js", "/app/"]
 COPY lib /app/lib/
 COPY test /app/test/
 COPY api /app/api/
+COPY migrations /app/migrations/
+COPY seeds /app/seeds/
 
 #############################
 # develop helper script and entrypoint
