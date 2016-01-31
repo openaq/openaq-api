@@ -17,6 +17,7 @@ before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - sudo apt-get -qq update
 - sudo apt-get install -y jq
+- touch local.env
 install: echo no install outside of Docker
 script: npm run docker-test
 after_success:
