@@ -8,8 +8,8 @@ then
 fi
 
 touch local.env
-docker-compose --project openaq build
+docker-compose --project openaq build api
 
-mkdir -p $HOME/docker
+# mkdir -p $HOME/docker
 echo "Caching openaq_api docker image."
-docker save openaq_api > $HOME/docker/openaq_api.tar
+# docker save openaq_api > $HOME/docker/openaq_api.tar
