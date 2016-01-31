@@ -1,42 +1,28 @@
 sudo: true
 language: node_js
 node_js:
-- '4.0'
-addons:
-  postgresql: "9.4"
-  apt:
-    packages:
-      - postgresql-9.4-postgis-2.1
+- '4.1'
 env:
   global:
-  - GH_REF=github.com/openaq/openaq-api.git
   - STAGING_BRANCH=develop
   - PRODUCTION_BRANCH=master
-  - secure: c7WtkBq9BI1H3L2QUznuFz1JKtLepFdHhQnyI/DraN8CkleAuYmLaoP5lPwSa6ksVW45r68EcCurwNxdwGcnAVcSLsC0gAqtkYQQXcvGR+YZglDflUBSgC58wkjalOAPCzR+NgzVfocELm4USwIH/EeCSDUy+jz4vml011la7JEEJaZJB1sV61U4Az4hnaGzJg4pujdx/oIOmwJnGx3R9qgiLOxT6O8jMZ2+WPz6PHJjOLpeyRD2LwW9iCVjWG8k7SRB7pylg3Y/n2dnxF1QFd+Sq9rMmKxlBvVk5+WgENa3cNXabCuF9FNuR2L8kvNjOqVlNEpOPusQBNZkQVGghwUVLDBS0ZSyCoHgU8Kf+FG8X55vVSWz4LhFuxC+GASYGHUoBnIBP1Hp7kUvcEJBeZS6493nOlDzaBylOwjib2t8uiuFf3XdTsmvK6nB8TuQ3sxsVYjcOQ9+4s08agCIOhczY63VHmO8oNMqkcE145HR8kqzVuOXnPGDr7Q6TM7PpKNsAGBd/dB6z8QKQDC9A4nYO3TpYDEPe/aHpmbpy93xzfi4FldO7fB1LE92SymjDO2pVvtZZzH3jN8NnVFbIQutupTcHvO5MBMXUl3f0HbKCqe2mgbYVJ33bPpCLnMk9FJORJxJlXlniOjm5iA9Tk9n5zh+uKF9XgW+ZS3Sd3U=  # GH_TOKEN
 cache:
   apt: true
   directories:
   - "$HOME/docker"
-  - node_modules
 services:
 - docker
-- postgresql
 before_install:
-- chmod +x ./.build_scripts/docs.sh
 - chmod +x ./.build_scripts/build.sh
 - chmod +x ./.build_scripts/deploy.sh
 - sudo apt-get -qq update
 - sudo apt-get install -y jq
-install:
-- npm install -g semistandard
-- npm install
-before_script:
-  - psql -c 'create database "openaq-test";' -U postgres
-  - psql -U postgres -c "create extension postgis"
-script: export PSQL_USER=postgres && npm test
+- touch local.env
+install: npm install apidoc
+script: npm run docker-test
 after_success:
 - ".build_scripts/build.sh"
-- "./.build_scripts/docs.sh"
+- "npm run docs"
 deploy:
   - provider: script
     skip_cleanup: true
@@ -46,5 +32,15 @@ deploy:
   - provider: script
     skip_cleanup: true
     script: ".build_scripts/deploy.sh"
+    on:
+      branch: ${PRODUCTION_BRANCH}
+  - provider: s3
+    access_key_id: AKIAIHACHLPCT2PIL4TA
+    secret_access_key:
+      secure: LjNaw4L1W6Ia3qjn22yhyq9sa8+HWsaZ8f5Z8P+apOraKifxgxNwVcaLJRzBM2hfdslLN6HnADBZWCT3MBX7Hl3XOVnQZsEuo22BMCAUaWxyZ9lGMWDGtCBGtDt7SfXvoMw6e84HpaED2I5/OcluPFg/5Knq/yOvRqy9x7mPa5VUezPkCcnSEW5OsL0v5/sXxaRAzUGOHicLglne5cZRSbbdxN+xp3/w+Vuj3kx9JzZ7C7pJNe3rINnWNlZ8ymy/z4W4xlMWMxl7DHLWhJUSaeRe+RBypozsOtttYdtMzi88MkZnh2nPakyTT8OgknW9BZn6xWml8Gk2RdvPp3GEO53zrG0DEmHul8CT6hyG7/sBiIcIKAsJQH4OOaE3mxjuNAx+IH7G0m6BEAYZZ/gbcL+xIMVHmZKj1GROjWgOyDACOoDjpsz0Lq7HHBY9iU1PzTcOcVAdrzoqJ8NAgBgwQgMjPXgw6ece00IgySjQK+9BcdqE4eVS+QU+DKQYCwyWz8NWYvnm3NPDzJTo75c4LMxDqy3iUqGimx7Nb89Ouv9huZv1lmipgPyMn7w4uPxI+2xfK1oT6aWoujyYnyvBfWzZJpWJsNLAf1e4RSxw53UBUko0/S8YNPneYLmAFiuLuf0RER1u064IodYs2zR23uDF+XHtsS0NtZUoehkiwYM=
+    bucket: docs.openaq.org
+    acl: public_read
+    local-dir: docs
+    skip-cleanup: true
     on:
       branch: ${PRODUCTION_BRANCH}

@@ -5,3 +5,16 @@ api:
   env_file: ./local.env
   ports:
   - "80:3004"
+api-test:
+  build: .
+  volumes:
+  - .:/local
+  environment:
+  - PSQL_HOST=postgis
+  - PSQL_USER=docker
+  - PSQL_PASSWORD=docker
+  - PSQL_DATABASE=gis
+  links:
+  - postgis
+postgis:
+  image: kartoza/postgis:9.4-2.1
