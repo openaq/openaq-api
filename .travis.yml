@@ -1,38 +1,24 @@
 sudo: true
 language: node_js
 node_js:
-- '4.0'
-addons:
-  postgresql: "9.4"
-  apt:
-    packages:
-      - postgresql-9.4-postgis-2.1
+- '4.1'
 env:
   global:
-  - GH_REF=github.com/openaq/openaq-api.git
   - STAGING_BRANCH=develop
   - PRODUCTION_BRANCH=master
-  - secure: c7WtkBq9BI1H3L2QUznuFz1JKtLepFdHhQnyI/DraN8CkleAuYmLaoP5lPwSa6ksVW45r68EcCurwNxdwGcnAVcSLsC0gAqtkYQQXcvGR+YZglDflUBSgC58wkjalOAPCzR+NgzVfocELm4USwIH/EeCSDUy+jz4vml011la7JEEJaZJB1sV61U4Az4hnaGzJg4pujdx/oIOmwJnGx3R9qgiLOxT6O8jMZ2+WPz6PHJjOLpeyRD2LwW9iCVjWG8k7SRB7pylg3Y/n2dnxF1QFd+Sq9rMmKxlBvVk5+WgENa3cNXabCuF9FNuR2L8kvNjOqVlNEpOPusQBNZkQVGghwUVLDBS0ZSyCoHgU8Kf+FG8X55vVSWz4LhFuxC+GASYGHUoBnIBP1Hp7kUvcEJBeZS6493nOlDzaBylOwjib2t8uiuFf3XdTsmvK6nB8TuQ3sxsVYjcOQ9+4s08agCIOhczY63VHmO8oNMqkcE145HR8kqzVuOXnPGDr7Q6TM7PpKNsAGBd/dB6z8QKQDC9A4nYO3TpYDEPe/aHpmbpy93xzfi4FldO7fB1LE92SymjDO2pVvtZZzH3jN8NnVFbIQutupTcHvO5MBMXUl3f0HbKCqe2mgbYVJ33bPpCLnMk9FJORJxJlXlniOjm5iA9Tk9n5zh+uKF9XgW+ZS3Sd3U=  # GH_TOKEN
 cache:
   apt: true
   directories:
   - "$HOME/docker"
-  - node_modules
 services:
 - docker
-- postgresql
 before_install:
 - chmod +x ./.build_scripts/build.sh
 - chmod +x ./.build_scripts/deploy.sh
 - sudo apt-get -qq update
 - sudo apt-get install -y jq
-install:
-- npm install -g semistandard
-- npm install
-before_script:
-  - psql -c 'create database "openaq-test";' -U postgres
-  - psql -U postgres -c "create extension postgis"
-script: export PSQL_USER=postgres && npm test
+install: no install outside of Docker
+script: npm run docker-test
 after_success:
 - ".build_scripts/build.sh"
 - "npm run docs"
