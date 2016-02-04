@@ -127,6 +127,18 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('should return all entries in csv when no limit is set', function (done) {
+      request(self.baseURL + 'measurements?format=csv', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var lines = body.split('\n');
+        expect(lines.length).to.equal(102);
+        done();
+      });
+    });
+
     it('should respect limit parameter for csv', function (done) {
       request(self.baseURL + 'measurements?limit=10&format=csv', function (err, response, body) {
         if (err) {
