@@ -105,7 +105,11 @@ module.exports = [
         // Set a different max limit for CSVs to get a lot of data, but not
         // all of it, because that's just crazy. Setting to 65,536 since this
         // is the Excel limit from a while back and is as good as anything.
-        request.limit = Math.min(request.limit, 65536);
+
+        // This gets a bit weird since we want to honor any orig set limit,
+        // regardless of what was just set above
+        let limit = request.url.query.limit || 65536;
+        request.limit = Math.min(limit, 65536);
       }
       params = _.omit(params, 'format');
 
