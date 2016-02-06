@@ -1,11 +1,32 @@
 'use strict';
 
-var _ = require('lodash');
+import { filter, has } from 'lodash';
 
 import { db } from '../services/db';
-var utils = require('../../lib/utils');
 
 var cacheName = 'CITIES';
+
+/**
+ * Query the database and recieve back somewhat aggregated results
+ *
+ * @params {function} cb Callback of form (err, results)
+ */
+export function queryDatabase (cb) {
+  // Generate intermediate aggregated result
+  let resultsQuery = db
+                        .from('measurements')
+                        .select('city', 'country')
+                        .count('value')
+                        .select(db.raw('count(distinct location) as locations'))
+                        .groupBy('city', 'country');
+
+  resultsQuery.then((results) => {
+    cb(null, results);
+  })
+  .catch((err) => {
+    cb(err);
+  });
+}
 
 /**
 * Query distinct cities. Implements all protocols supported by /cities endpoint
@@ -13,68 +34,110 @@ var cacheName = 'CITIES';
 * @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (query, redis, checkCache, cb) {
-  // Save payload to use for caching
-  var oPayload = _.cloneDeep(query);
-
+module.exports.query = function (query, redis, cb) {
   var sendResults = function (err, data) {
     cb(err, data, data.length);
   };
 
-  var queryDatabase = function () {
-    // Turn the payload into something we can use with psql
-    let { payload, operators, betweens, nulls, notNulls } = utils.queryFromParameters(query);
-
-    // Grab the results
-    let resultsQuery = db
-                        .from('measurements')
-                        .select('city', 'country')
-                        .count('value')
-                        .select(db.raw('count(distinct location) as locations'))
-                        .groupBy('city', 'country');
-
-    // Build on base query
-    resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
-
-    resultsQuery.then((results) => {
-      // Convert numbers to Numbers
-      results.map((r) => {
-        r.locations = Number(r.locations);
-        r.count = Number(r.count);
-
-        return r;
-      });
-
-      // Send result to client
-      sendResults(null, results);
-
-      // Save the data to cache
-      redis.set(utils.payloadToKey(cacheName, oPayload), JSON.stringify(results));
-    })
-    .catch((err) => {
-      sendResults(err);
-    });
-  };
-
-  // Send back cached result if we have it and it matches our cached search
-  if (checkCache && redis.ready) {
-    redis.get(utils.payloadToKey(cacheName, oPayload), function (err, reply) {
+  // Check to see if we have the intermeditate aggregation result cached, use
+  // if it's there
+  if (redis.ready) {
+    redis.get(cacheName, (err, reply) => {
       if (err) {
         console.error(err);
       } else if (reply) {
+        // Wrap in a try catch because you can never be too careful
         try {
-          var data = JSON.parse(reply);
+          let data = JSON.parse(reply);
+
+          // Build specific result from aggregated data
+          data = filterResultsForQuery(data, query);
+
+          // Group the results to a nicer output
+          data = groupResults(data);
+
+          // Send back results
           return sendResults(null, data);
         } catch (e) {
           console.error(e);
         }
       }
 
-      // If we're here, try a database query since Redis failed us
-      queryDatabase();
+      // If we're here, try a database query since Redis failed us, most likely
+      // because the key was missing
+      queryDatabase((err, results) => {
+        if (err) {
+          return sendResults(err);
+        }
+
+        // This data should be in the cache, so save it
+        redis.set(cacheName, JSON.stringify(results), (err, res) => {
+          if (err) {
+            console.log(err);
+          }
+
+          console.info(`Saved Redis cache for ${cacheName} after it was missing.`);
+        });
+
+        // Build specific result from aggregated data
+        results = filterResultsForQuery(results, query);
+
+        // Group the results to a nicer output
+        results = groupResults(results);
+
+        // Send back results
+        sendResults(null, results);
+      });
     });
   } else {
-    // Query database if we have no Redis connection
-    queryDatabase();
+    // Query database if we have no Redis connection or don't want to hit it
+    queryDatabase((err, results) => {
+      if (err) {
+        return sendResults(err);
+      }
+
+      // Build specific result from aggregated data
+      results = filterResultsForQuery(results, query);
+
+      // Group the results to a nicer output
+      results = groupResults(results);
+
+      // Send back results
+      sendResults(null, results);
+    });
   }
+};
+
+/**
+ * Filter over larger results set to get only get specific values if requested
+ *
+ * @param {array} results Results array from database query or cache
+ * @param {object} query Query object from Hapi
+ * @returns {array} An array of filtered results
+ * @todo this could be better optimized for sure
+ */
+let filterResultsForQuery = function (results, query) {
+  if (has(query, 'country')) {
+    results = filter(results, (r) => {
+      return r.country === query.country;
+    });
+  }
+
+  return results;
+};
+
+/**
+* This is a big ugly function to group the results from the db into something
+* nicer for display.
+*
+* @param {Array} results - The db aggregation results
+*/
+let groupResults = function (results) {
+  // Convert numbers to Numbers
+  return results.map((r) => {
+    r.locations = Number(r.locations);
+    r.count = Number(r.count);
+
+    return r;
+  });
 };
