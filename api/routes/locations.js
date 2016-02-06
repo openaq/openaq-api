@@ -14,10 +14,6 @@ var m = require('../controllers/locations.js');
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
- * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
- * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
- * @apiParam {date} [date_from] Show results after a certain date. (ex. `2015-12-20`)
- * @apiParam {date} [date_to] Show results before a certain date. (ex. `2015-12-20`)
  *
  * @apiSuccess {string}   location      Location description for measurement
  * @apiSuccess {string}   country       2 digit country code containing measurement
@@ -90,7 +86,7 @@ module.exports = [
 
       // Handle it
       var redis = request.server.plugins['hapi-redis'].client;
-      m.query(params, redis, true, function (err, records, count) {
+      m.query(params, redis, function (err, records, count) {
         if (err) {
           console.error(err);
           return reply(Boom.badImplementation(err));

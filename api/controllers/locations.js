@@ -1,11 +1,26 @@
 'use strict';
 
-var _ = require('lodash');
+import { filter, has, groupBy, forEach, unique } from 'lodash';
 
 import { db } from '../services/db';
-var utils = require('../../lib/utils');
 
 var cacheName = 'LOCATIONS';
+
+/**
+ * Query the database and recieve back somewhat aggregated results
+ *
+ * @params {function} cb Callback of form (err, results)
+ */
+export function queryDatabase (cb) {
+  // Generate intermediate aggregated result
+  let resultsQuery = db.select(db.raw('location, city, parameter, source_name, country, count(value), max(date_utc) as last_updated, min(date_utc) as first_updated, ST_AsGeoJSON(coordinates) as coordinates from measurements group by location, city, parameter, source_name, ST_AsGeoJSON(coordinates), country'));
+  resultsQuery.then((results) => {
+    cb(null, results);
+  })
+  .catch((err) => {
+    cb(err);
+  });
+}
 
 /**
 * Query distinct Locations. Implements all protocols supported by /locations endpoint
@@ -13,86 +28,158 @@ var cacheName = 'LOCATIONS';
 * @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (query, redis, checkCache, cb) {
-  // Save payload to use for caching
-  var oPayload = _.cloneDeep(query);
-
+module.exports.query = function (query, redis, cb) {
   var sendResults = function (err, data) {
     cb(err, data, data.length);
   };
 
-  var queryDatabase = function () {
-    // Turn the payload into something we can use with psql
-    let { payload, operators, betweens, nulls, notNulls } = utils.queryFromParameters(query);
-
-    let resultsQuery = db
-                        .from('measurements')
-                        .select(db.raw('distinct on (location, city, parameter) location, city, parameter, country, city, source_name, ST_AsGeoJSON(coordinates) as coordinates, first_value(date_utc) over (partition by location, city order by date_utc desc) as last_updated, first_value(date_utc) over (partition by location, city order by date_utc asc) as first_updated, count(value) over (partition by location, city)'));
-
-    // Build on base query
-    resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
-
-    resultsQuery.then((results) => {
-      // Make the results look nicer
-      results = groupResults(results);
-
-      // Send result to client
-      sendResults(null, results);
-
-      // Save the data to cache
-      redis.set(utils.payloadToKey(cacheName, oPayload), JSON.stringify(results));
-    })
-    .catch((err) => {
-      sendResults(err);
-    });
-  };
-
-  // Send back cached result if we have it and it matches our cached search
-  if (checkCache && redis.ready) {
-    redis.get(utils.payloadToKey(cacheName, oPayload), function (err, reply) {
+  // Check to see if we have the intermeditate aggregation result cached, use
+  // if it's there
+  if (redis.ready) {
+    redis.get(cacheName, (err, reply) => {
       if (err) {
         console.error(err);
       } else if (reply) {
+        // Wrap in a try catch because you can never be too careful
         try {
-          var data = JSON.parse(reply);
+          let data = JSON.parse(reply);
+
+          // Build specific result from aggregated data
+          data = filterResultsForQuery(data, query);
+
+          // Group the results to a nicer output
+          data = groupResults(data);
+
+          // Send back results
           return sendResults(null, data);
         } catch (e) {
           console.error(e);
         }
       }
 
-      // If we're here, try a database query since Redis failed us
-      queryDatabase();
+      // If we're here, try a database query since Redis failed us, most likely
+      // because the key was missing
+      queryDatabase((err, results) => {
+        if (err) {
+          return sendResults(err);
+        }
+
+        // This data should be in the cache, so save it
+        redis.set(cacheName, JSON.stringify(results), (err, res) => {
+          if (err) {
+            console.log(err);
+          }
+
+          console.info(`Saved Redis cache for ${cacheName} after it was missing.`);
+        });
+
+        // Build specific result from aggregated data
+        results = filterResultsForQuery(results, query);
+
+        // Group the results to a nicer output
+        results = groupResults(results);
+
+        // Send back results
+        sendResults(null, results);
+      });
     });
   } else {
-    // Query database if we have no Redis connection
-    queryDatabase();
+    // Query database if we have no Redis connection or don't want to hit it
+    queryDatabase((err, results) => {
+      if (err) {
+        return sendResults(err);
+      }
+
+      // Build specific result from aggregated data
+      results = filterResultsForQuery(results, query);
+
+      // Group the results to a nicer output
+      results = groupResults(results);
+
+      // Send back results
+      sendResults(null, results);
+    });
   }
+};
+
+/**
+ * Filter over larger results set to get only get specific values if requested
+ *
+ * @param {array} results Results array from database query or cache
+ * @param {object} query Query object from Hapi
+ * @returns {array} An array of filtered results
+ * @todo this could be better optimized for sure
+ */
+let filterResultsForQuery = function (results, query) {
+  if (has(query, 'city')) {
+    results = filter(results, (r) => {
+      return r.city === query.city;
+    });
+  }
+  if (has(query, 'country')) {
+    results = filter(results, (r) => {
+      return r.country === query.country;
+    });
+  }
+  if (has(query, 'location')) {
+    results = filter(results, (r) => {
+      return r.location === query.location;
+    });
+  }
+  if (has(query, 'parameter')) {
+    results = filter(results, (r) => {
+      return r.parameter === query.parameter;
+    });
+  }
+  if (has(query, 'has_geo')) {
+    if (query.has_geo === false || query.has_geo === 'false') {
+      results = filter(results, (r) => {
+        return r.coordinates === undefined;
+      });
+    } else {
+      results = filter(results, (r) => {
+        return r.coordinates !== undefined;
+      });
+    }
+  }
+
+  return results;
 };
 
 /**
 * This is a big ugly function to group the results from the db into something
 * nicer for display.
 *
-* @param {Array} docs - The db aggregation results
+* @param {Array} results - The db aggregation results
 */
-var groupResults = function (docs) {
-  var grouped = _.groupBy(docs, 'location');
-  var final = [];
-  _.forEach(grouped, function (m) {
+let groupResults = function (results) {
+  let grouped = groupBy(results, 'location');
+  let final = [];
+  forEach(grouped, (m) => {
     let parameters = [];
+    let lastUpdated = m[0].last_updated;
+    let firstUpdated = m[0].first_updated;
+    let count = 0;
     m.forEach((item) => {
+      // Get each parameter
       parameters.push(item.parameter);
+
+      // Get the absolute first and last dates
+      firstUpdated = (item.first_updated < firstUpdated) ? item.first_updated : firstUpdated;
+      lastUpdated = (item.last_updated > lastUpdated) ? item.last_updated : lastUpdated;
+
+      // Sum up value counts
+      count += Number(item.count);
     });
-    var f = {
+    let f = {
       location: m[0].location,
       city: m[0].city,
       country: m[0].country,
       sourceName: m[0].source_name,
-      count: Number(m[0].count),
-      lastUpdated: m[0].last_updated,
-      firstUpdated: m[0].first_updated,
-      parameters: _.unique(parameters)
+      count: count,
+      lastUpdated: lastUpdated,
+      firstUpdated: firstUpdated,
+      parameters: unique(parameters)
     };
 
     // If we have coordinates, add them
