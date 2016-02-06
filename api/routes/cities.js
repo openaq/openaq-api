@@ -59,7 +59,7 @@ module.exports = [
 
       // Handle it
       var redis = request.server.plugins['hapi-redis'].client;
-      m.query(params, redis, true, function (err, records, count) {
+      m.query(params, redis, function (err, records, count) {
         if (err) {
           console.error(err);
           return reply(Boom.badImplementation(err));
