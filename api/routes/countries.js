@@ -6,12 +6,11 @@ var m = require('../controllers/countries.js');
 /**
  * @api {get} /countries GET
  * @apiGroup Countries
- * @apiDescription Providing a simple listing of countries within the platform.
+ * @apiDescription Provides a simple listing of countries within the platform.
  *
- *
- * @apiSuccess {string}   code     2 digit ISO country code containing measurement
- * @apiSuccess {string}   name     Nicer country name
- * @apiSuccess {string}   count    Number of measurements for the country
+ * @apiSuccess {string}   code     2 letter ISO code
+ * @apiSuccess {string}   name     Country name
+ * @apiSuccess {number}   count    Number of measurements for the country
  * @apiSuccessExample {json} Success Response:
  * [
  *   {
