@@ -1,5 +1,7 @@
 'use strict';
 
+import { log } from '../services/logger';
+
 /**
  * Generic base class for aggregation endpoints, provides a mechanism to
  * handle querying and filtering via API from cache as well as unfiltered
@@ -48,7 +50,7 @@ export class AggregationEndpoint {
     if (redis.ready) {
       redis.get(this.cacheName, (err, reply) => {
         if (err) {
-          console.error(err);
+          log(['error'], err);
         } else if (reply) {
           // Wrap in a try catch because you can never be too careful
           try {
@@ -63,7 +65,7 @@ export class AggregationEndpoint {
             // Send back results
             return sendResults(null, data);
           } catch (e) {
-            console.error(e);
+            log(['error'], e);
           }
         }
 
@@ -77,10 +79,10 @@ export class AggregationEndpoint {
           // This data should be in the cache, so save it
           redis.set(this.cacheName, JSON.stringify(results), (err, res) => {
             if (err) {
-              console.log(err);
+              log(['error'], err);
             }
 
-            console.info(`Saved Redis cache for ${this.cacheName} after it was missing.`);
+            log(['info'], `Saved Redis cache for ${this.cacheName} after it was missing.`);
           });
 
           // Build specific result from aggregated data

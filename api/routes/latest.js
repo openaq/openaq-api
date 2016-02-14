@@ -2,6 +2,7 @@
 
 var Boom = require('boom');
 var m = require('../controllers/latest.js');
+import { log } from '../services/logger';
 
 /**
  * @api {get} /latest GET
@@ -79,7 +80,7 @@ module.exports = [
       var redis = request.server.plugins['hapi-redis'].client;
       m.query(params, redis, function (err, records, count) {
         if (err) {
-          console.error(err);
+          log(['error'], err);
           return reply(Boom.badImplementation(err));
         }
 
