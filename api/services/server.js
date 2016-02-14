@@ -66,7 +66,13 @@ Server.prototype.start = function (redisURL, cb) {
     options: {
       limit: 100,
       excludeFormats: ['csv'],
-      routes: ['/v1/measurements']
+      routes: [
+        '/v1/measurements',
+        '/v1/locations',
+        '/v1/latest',
+        '/v1/cities',
+        '/v1/countries'
+      ]
     }
   }, function (err) {
     if (err) throw err;

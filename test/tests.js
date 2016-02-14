@@ -189,7 +189,10 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
-          website: 'https://docs.openaq.org/'
+          website: 'https://docs.openaq.org/',
+          found: 57,
+          page: 1,
+          limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
         done();
@@ -220,7 +223,10 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
-          website: 'https://docs.openaq.org/'
+          website: 'https://docs.openaq.org/',
+          found: 57,
+          page: 1,
+          limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
         done();
