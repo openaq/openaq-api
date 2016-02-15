@@ -33,6 +33,7 @@ module.exports.query = function (query, page, limit, cb) {
     let resultsQuery = db
                         .select(['time_started', 'time_ended', 'count', 'results'])
                         .from('fetches')
+                        .orderBy('time_started', 'desc')
                         .limit(limit).offset(skip);
     // Build on base query
     resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
