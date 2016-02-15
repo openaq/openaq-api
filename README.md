@@ -9,21 +9,22 @@ Starting with `index.js`, there is a web-accessible API that provides endpoints 
 [openaq-fetch](https://github.com/openaq/openaq-fetch) takes care of fetching new data and inserting into the database. Data format is explained in [openaq-data-format](https://github.com/openaq/openaq-data-format).
 
 ## Installing & Running
-To run the API locally, you will need both [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.org/) installed.
+To run the API locally, you will need both [Node.js](https://nodejs.org) and [PostgreSQL](http://www.postgresql.org/) installed.
 
 Install necessary Node.js packages by running
 
 `npm install`
 
-Make sure you have MongoDB running locally and then you can start the app with
+Make sure you have a PostgreSQL database available (with PostGIS extension) and have the DB settings in `knexfile.js`.
+
+Now you can get started with:
 
 `npm start`
 
-For the above to work, you will need to have certain environment variables set as in the table below (for production deployments, these are stored in an S3 bucket).
+For production deployment, you will need to have certain environment variables set as in the table below (for production deployments, these are stored in an S3 bucket).
 
 | Name | Description | Default |
 |---|---|---|
-| MONGOLAB_URI | Database URL | mongodb://localhost:27017/openAQ |
 | NEW_RELIC_LICENSE_KEY | New Relic API key for system monitoring | not set |
 | WEBHOOK_KEY | Secret key to interact with openaq-api | '123' |
 | USE_REDIS | Use Redis for caching? | not set (so not used) |
