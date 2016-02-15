@@ -9,12 +9,12 @@ import { log } from '../services/logger';
 /**
  * @api {get} /measurements GET
  * @apiGroup Measurements
- * @apiDescription Providing data about individual measurements
+ * @apiDescription Provides data about individual measurements
  *
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [location] Limit results by a certain location.
- * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
+ * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to only a certain parameter.
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
@@ -26,19 +26,17 @@ import { log } from '../services/logger';
  * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {number} [skip] Number of records to skip.
- * @apiParam {string} [format=json] Format for data return, can be `csv` or `json`. Note that `csv` will return a max of 65,536 results at a time.
+ * @apiParam {string=csv, json} [format=json] Format for data return. Note that `csv` will return a max of 65,536 results when no limit is set.
  *
  * @apiSuccess {object}   date            Date and time of measurement in both local and UTC `default`
  * @apiSuccess {string}   parameter       Property being measured `default`
  * @apiSuccess {number}   value           Value of measurement `default`
  * @apiSuccess {string}   unit            Unit of measurement `default`
  * @apiSuccess {string}   location        Location description for measurement `default`
- * @apiSuccess {string}   country         2 digit country code containing measurement `default`
+ * @apiSuccess {string}   country         Country containing measurement in 2 letter ISO code `default`
  * @apiSuccess {string}   city            City containing measurement `default`
  * @apiSuccess {object}   coordinates     Latitude and longitude measurement was taken at `default`
  * @apiSuccess {string}   sourceName      Name of source matching to sources table for reference
- * @apiSuccess {array}    attribution     Attribution information for the measurement (name and url), in priority order.
- * @apiSuccess {object}   averagingPeriod Period over which measurement is averaged.
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {

@@ -7,24 +7,23 @@ import { log } from '../services/logger';
 /**
  * @api {get} /locations GET
  * @apiGroup Locations
- * @apiDescription Providing data about distinct measurement locations, this is
- * a list containing metadata about the location..
+ * @apiDescription Provides a list of measurement locations and their meta data.
  *
  * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
- * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
+ * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to only a certain parameter.
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  *
- * @apiSuccess {string}   location      Location description for measurement
- * @apiSuccess {string}   country       2 digit country code containing measurement
- * @apiSuccess {string}   city          City containing measurement
+ * @apiSuccess {string}   location      Location identifier
+ * @apiSuccess {string}   country       Country containing location in 2 letter ISO code
+ * @apiSuccess {string}   city          City containing location
  * @apiSuccess {number}   count         Number of measurements, cumulative by specificity level
  * @apiSuccess {string}   sourceName    Can follow this to determine which adapter is used for this location
  * @apiSuccess {date}     firstUpdated  When was data first grabbed for this location (in UTC)?
  * @apiSuccess {date}     lastUpdated   When was data last grabbed for this location (in UTC)?
  * @apiSuccess {array}    parameters    List of parameters present for this location
- * @apiSuccess {string}   _id           Unique ID
+ * @apiSuccess {object}   coordinates   Coordinates of location
  * @apiSuccessExample {json} Success Response:
  * [
  *   {

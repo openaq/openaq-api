@@ -12,12 +12,12 @@ import { log } from '../services/logger';
  * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [location] Limit results by a certain location.
- * @apiParam {string} [parameter] Limit to only a certain parameter (valid values are pm25, pm10, so2, no2, o3, co and bc).
+ * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to only a certain parameter.
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  *
- * @apiSuccess {string}   location      Location description for measurement
- * @apiSuccess {string}   country       2 digit country code containing measurement
- * @apiSuccess {string}   city          City containing measurement
+ * @apiSuccess {string}   location      Location identifier.
+ * @apiSuccess {string}   country       Country containing measurement in 2 letter ISO code.
+ * @apiSuccess {string}   city          City containing location.
  * @apiSuccess {array}    measurements  An array of the latest measurements for each parameter for this location.
  * @apiSuccessExample
  *       HTTP/1.1 200 OK

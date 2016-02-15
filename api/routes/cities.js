@@ -7,27 +7,28 @@ import { log } from '../services/logger';
 /**
  * @api {get} /cities GET
  * @apiGroup Cities
- * @apiDescription Providing a simple listing of cities within the platform.
+ * @apiDescription Provides a simple listing of cities within the platform.
  *
  * @apiParam {string} [country] Limit results by a certain country.
  *
- * @apiSuccess {string}   country     2 digit ISO country code containing measurement
- * @apiSuccess {string}   locations   Number of locations in this city
- * @apiSuccess {string}   count       Number of measurements for this city
  * @apiSuccess {string}   city        Name of the city
+ * @apiSuccess {string}   country     Country containing city, in 2 letter ISO code
+ * @apiSuccess {number}   count       Number of measurements for this city
+ * @apiSuccess {number}   locations   Number of locations in this city
  * @apiSuccessExample {json} Success Response:
+ *
  *   [
  *     {
- *       "locations": 14,
- *       "count": 21301,
+ *       "city": "Amsterdam",
  *       "country": "NL",
- *       "city": "Amsterdam"
+ *       "count": 21301,
+ *       "locations": 14
  *     },
  *     {
- *       "locations": 1,
- *       "count": 2326,
+ *       "city": "Badhoevedorp",
  *       "country": "NL",
- *       "city": "Badhoevedorp"
+ *       "count": 2326,
+ *       "locations": 1
  *     },
  *     ...
  *   ]
