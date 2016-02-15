@@ -189,7 +189,10 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
-          website: 'https://docs.openaq.org/'
+          website: 'https://docs.openaq.org/',
+          found: 57,
+          page: 1,
+          limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
         done();
@@ -220,7 +223,55 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
-          website: 'https://docs.openaq.org/'
+          website: 'https://docs.openaq.org/',
+          found: 57,
+          page: 1,
+          limit: 100
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+  });
+
+  describe('/fetches', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'fetches', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(3);
+        // Test top level object
+        expect(res.results[0].results).to.be.an('array');
+        expect(res.results[0].timeStarted).to.be.a('string');
+        expect(res.results[0].timeEnded).to.be.a('string');
+        expect(res.results[0].count).to.be.a('number');
+        // Test individual fetch result
+        expect(res.results[0].results[0]).to.be.an('object');
+        expect(res.results[0].results[0].count).to.be.an('number');
+        expect(res.results[0].results[0].duration).to.be.an('number');
+        expect(res.results[0].results[0].message).to.be.a('string');
+        expect(res.results[0].results[0].sourceName).to.be.a('string');
+        expect(res.results[0].results[0].failures).to.be.an('object');
+        done();
+      });
+    });
+
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'latest', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          found: 57,
+          page: 1,
+          limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
         done();
