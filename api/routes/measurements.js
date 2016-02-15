@@ -4,6 +4,7 @@ var Boom = require('boom');
 var m = require('../controllers/measurements.js');
 var _ = require('lodash');
 var csv = require('csv-stringify');
+import { log } from '../services/logger';
 
 /**
  * @api {get} /measurements GET
@@ -134,7 +135,7 @@ module.exports = [
 
           csv(records, options, function (err, data) {
             if (err) {
-              console.error(err);
+              log(['error'], err);
               return reply(Boom.badImplementation(err));
             }
 

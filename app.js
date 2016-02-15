@@ -2,6 +2,7 @@
 
 require('newrelic');
 var Server = require('./api/services/server.js');
+import { setServer } from './api/services/logger';
 
 // This is a bit of a hacky way to turn on and off caching, just give it
 // an invalid Redis url.
@@ -15,3 +16,4 @@ if (process.env.USE_REDIS) {
 // Start API server
 var server = new Server(3004);
 server.start(redisURL);
+setServer(server);

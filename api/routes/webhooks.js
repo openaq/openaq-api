@@ -2,6 +2,7 @@
 
 var Boom = require('boom');
 var c = require('../controllers/webhooks.js');
+import { log } from '../services/logger';
 
 module.exports = [
   {
@@ -14,7 +15,7 @@ module.exports = [
       // Handle it
       c.handleAction(payload, redis, function (err, records, count) {
         if (err) {
-          console.error(err);
+          log(['error'], err);
           return reply(Boom.badRequest(err.error));
         }
 
