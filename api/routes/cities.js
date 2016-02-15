@@ -15,7 +15,7 @@ var m = require('../controllers/cities.js');
  * @apiSuccess {number}   count       Number of measurements for this city
  * @apiSuccess {number}   locations   Number of locations in this city
  * @apiSuccessExample {json} Success Response:
- * 
+ *
  *   [
  *     {
  *       "city": "Amsterdam",
