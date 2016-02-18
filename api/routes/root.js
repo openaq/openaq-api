@@ -1,12 +1,12 @@
 'use strict';
 
 // List all sub-level endpoints
-const rootRouteHandler = function (request, reply) {
+const rootRouteHandler = (request, reply) => {
   var table = request.server.table(request.server.info.host)[0].table;
   var endpoints = [];
-  table.forEach(function (route) {
+  table.forEach(route => {
     var path = route.public.path;
-    if (path.startsWith(request.path) && path !== request.path) {
+    if (path.startsWith(request.path) && path !== request.path && path.indexOf('webhooks') === -1) {
       endpoints.push({
         'method': route.public.method.toUpperCase(),
         'path': request.server.info.uri + path
@@ -20,7 +20,9 @@ module.exports = [
   {
     method: 'GET',
     path: '/',
-    handler: rootRouteHandler
+    handler: (request, reply) => {
+      reply.redirect('/v1');
+    }
   },
   {
     method: 'GET',
@@ -31,7 +33,7 @@ module.exports = [
   {
     method: 'GET',
     path: '/ping',
-    handler: function (request, reply) {
+    handler: (request, reply) => {
       return reply('pong');
     }
   }
