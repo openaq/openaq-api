@@ -34,6 +34,49 @@ describe('Testing endpoints', function () {
     self.server.hapi.stop(null, done);
   });
 
+  describe('/', function () {
+    it('should redirect to latest version', function (done) {
+      var options = {
+        url: 'http://127.0.0.1:' + testPort + '/',
+        followRedirect: false
+      };
+
+      request(options, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(302);
+        expect(response.headers['location']).to.equal('/v1');
+        done();
+      });
+    });
+  });
+
+  describe('/v1', function () {
+    it('should list available endpoints', function (done) {
+      request(self.baseURL, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var endpointsList = [
+          'cities',
+          'countries',
+          'fetches',
+          'latest',
+          'locations',
+          'measurements'
+        ];
+
+        var res = JSON.parse(body);
+        expect(res.results).to.be.instanceof(Array);
+        expect(res.results.length).to.equal(endpointsList.length);
+        done();
+      });
+    });
+  });
+
   describe('/countries', function () {
     it('should return properly', function (done) {
       request(self.baseURL + 'countries', function (err, response, body) {
