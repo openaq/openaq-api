@@ -30,8 +30,8 @@ export function queryDatabase (cb) {
 * @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-export function query (query, redis, cb) {
-  countries.query(query, redis, cb);
+export function query (query, cb) {
+  countries.query(query, cb);
 }
 
 /**

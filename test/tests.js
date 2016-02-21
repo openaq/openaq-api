@@ -25,7 +25,7 @@ describe('Testing endpoints', function () {
         console.info('Seed data inserted, starting tests.');
         // Start API server once we have a DB connection
         self.server = new Server(testPort);
-        self.server.start('redis://foo', done);
+        self.server.start(done);
       });
     });
   });
