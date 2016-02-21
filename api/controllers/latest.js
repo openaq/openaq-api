@@ -26,8 +26,8 @@ export function queryDatabase (cb) {
 * @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-export function query (query, redis, cb) {
-  latest.query(query, redis, cb);
+export function query (query, cb) {
+  latest.query(query, cb);
 }
 
 /**

@@ -6,6 +6,7 @@ var GoodWinston = require('good-winston');
 var winston = require('winston');
 require('winston-papertrail').Papertrail;
 var os = require('os');
+import { getLastUpdated } from './redis';
 
 // Configure Keen instance
 var keen = new Keen({
@@ -31,7 +32,7 @@ var Server = function (port) {
   });
 };
 
-Server.prototype.start = function (redisURL, cb) {
+Server.prototype.start = function (cb) {
   var self = this;
   self.hapi.connection({ port: this.port });
 
@@ -79,18 +80,6 @@ Server.prototype.start = function (redisURL, cb) {
     if (err) throw err;
   });
 
-  // Register hapi-redis
-  self.hapi.register({
-    register: require('hapi-redis'),
-    options: {
-      connection: redisURL
-    }
-  }, function (err) {
-    if (err) {
-      console.error(err);
-    }
-  });
-
   // Setup loggin
   var logger = new winston.Logger({
     level: 'info',
@@ -131,10 +120,10 @@ Server.prototype.start = function (redisURL, cb) {
     if (err) throw err;
   });
 
-  // Add Google Analytics to endpoints
+  // Add analytics to endpoints
   var KeenPlugin = {
     register: function (server, options, next) {
-      server.ext('onPreResponse', function (request, reply) {
+      server.ext('onPreHandler', function (request, reply) {
         // Pass along route view, exclude ping
         if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico' && request.route.path.indexOf('webhooks') === -1) {
           var components = request.route.path.split('/');
@@ -158,6 +147,52 @@ Server.prototype.start = function (redisURL, cb) {
     version: '0.0.1'
   };
   self.hapi.register(KeenPlugin, function (err) {
+    if (err) throw err;
+  });
+
+  // Handle dynamic CloudFront caching
+  var CloudFrontPlugin = {
+    register: function (server, options, next) {
+      server.ext('onPreHandler', function (request, reply) {
+        console.log(request.headers);
+        // Don't catch webhooks or this whole thing will never update
+        if (request.route.path.indexOf('webhooks') !== -1) {
+          console.log('saw webhooks, let it through');
+          return reply.continue();
+        }
+
+        // Return 304 if If-Modified-Since is newer than our last updated time
+        try {
+          let ifModifiedSince = request.headers['if-modified-since'];
+          if (!ifModifiedSince) {
+            return reply.continue();
+          }
+
+          console.log(ifModifiedSince, getLastUpdated());
+          if (new Date(ifModifiedSince) < new Date(getLastUpdated())) {
+            console.log('use new');
+            return reply.continue();
+          } else {
+            console.log('use cache');
+            const response = reply('use cache');
+            response.statusCode = 304;
+            return response;
+          }
+        } catch (e) {
+          // If anything went wrong, just continue like normal
+          console.log('cache error');
+          return reply.continue();
+        }
+      });
+
+      next();
+    }
+  };
+  CloudFrontPlugin.register.attributes = {
+    name: 'CloudFrontPlugin',
+    version: '0.0.1'
+  };
+  self.hapi.register(CloudFrontPlugin, function (err) {
     if (err) throw err;
   });
 
