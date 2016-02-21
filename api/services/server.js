@@ -72,7 +72,8 @@ Server.prototype.start = function (redisURL, cb) {
         '/v1/latest',
         '/v1/cities',
         '/v1/countries',
-        '/v1/fetches'
+        '/v1/fetches',
+        '/v1/sources'
       ]
     }
   }, function (err) {

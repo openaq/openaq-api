@@ -66,7 +66,8 @@ describe('Testing endpoints', function () {
           'fetches',
           'latest',
           'locations',
-          'measurements'
+          'measurements',
+          'sources'
         ];
 
         var res = JSON.parse(body);
@@ -303,7 +304,7 @@ describe('Testing endpoints', function () {
     });
 
     it('has a meta block', function (done) {
-      request(self.baseURL + 'latest', function (err, response, body) {
+      request(self.baseURL + 'fetches', function (err, response, body) {
         if (err) {
           console.error(err);
         }
@@ -312,11 +313,29 @@ describe('Testing endpoints', function () {
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
           website: 'https://docs.openaq.org/',
-          found: 57,
+          found: 3,
           page: 1,
           limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+  });
+
+  describe('/sources', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'sources', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(8);
+        expect(res.results[0].country).to.be.an('string');
+        expect(res.results[0].sourceName).to.be.a('string');
+        expect(res.results[0].locations).to.be.a('number');
+        expect(res.results[0].count).to.be.a('number');
         done();
       });
     });
