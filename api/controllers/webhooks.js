@@ -4,6 +4,7 @@ var _ = require('lodash');
 var async = require('async');
 var webhookKey = process.env.WEBHOOK_KEY || '123';
 import { log } from '../services/logger';
+import redis from '../services/redis';
 
 /**
 * Handle incoming webhooks. Implements all protocols supported by /webhooks endpoint
@@ -12,7 +13,7 @@ import { log } from '../services/logger';
 * @param {Object} redis - Refernce to Redis object
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.handleAction = function (payload, redis, cb) {
+module.exports.handleAction = function (payload, cb) {
   // Make sure we have an action and a good key
   if (payload.action === undefined || payload.key === undefined || payload.key !== webhookKey) {
     return cb({error: 'No action or invalid key provided.'});
