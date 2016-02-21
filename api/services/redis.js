@@ -10,8 +10,7 @@
 let redis = require('redis');
 
 let client;
- // Set to sometime far in future to force updates initially
-let updated = 'Sat, 20 Feb 2096 15:12:22 GMT';
+let updated;
 if (process.env.USE_REDIS) {
   console.info('Connecting to Redis');
   let redisURL = process.env.REDIS_URL || 'redis://localhost:6379';
