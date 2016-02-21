@@ -154,10 +154,8 @@ Server.prototype.start = function (cb) {
   var CloudFrontPlugin = {
     register: function (server, options, next) {
       server.ext('onPreHandler', function (request, reply) {
-        console.log(request.headers);
         // Don't catch webhooks or this whole thing will never update
         if (request.route.path.indexOf('webhooks') !== -1) {
-          console.log('saw webhooks, let it through');
           return reply.continue();
         }
 
@@ -168,19 +166,15 @@ Server.prototype.start = function (cb) {
             return reply.continue();
           }
 
-          console.log(ifModifiedSince, getLastUpdated());
           if (!getLastUpdated() || new Date(ifModifiedSince) < new Date(getLastUpdated())) {
-            console.log('use new');
             return reply.continue();
           } else {
-            console.log('use cache');
             const response = reply('use cache');
             response.statusCode = 304;
             return response;
           }
         } catch (e) {
           // If anything went wrong, just continue like normal
-          console.log('cache error');
           return reply.continue();
         }
       });
