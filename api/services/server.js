@@ -169,7 +169,7 @@ Server.prototype.start = function (cb) {
           }
 
           console.log(ifModifiedSince, getLastUpdated());
-          if (new Date(ifModifiedSince) < new Date(getLastUpdated())) {
+          if (!getLastUpdated() || new Date(ifModifiedSince) < new Date(getLastUpdated())) {
             console.log('use new');
             return reply.continue();
           } else {
@@ -193,6 +193,29 @@ Server.prototype.start = function (cb) {
     version: '0.0.1'
   };
   self.hapi.register(CloudFrontPlugin, function (err) {
+    if (err) throw err;
+  });
+
+  // Handle dynamic CloudFront caching
+  var LastModifiedPlugin = {
+    register: function (server, options, next) {
+      server.ext('onPreResponse', function (request, reply) {
+        // Add the LastModified header
+        if (getLastUpdated()) {
+          request.response.header('Last-Modified', new Date(getLastUpdated()).toUTCString());
+        }
+
+        reply.continue();
+      });
+
+      next();
+    }
+  };
+  LastModifiedPlugin.register.attributes = {
+    name: 'LastModifiedPlugin',
+    version: '0.0.1'
+  };
+  self.hapi.register(LastModifiedPlugin, function (err) {
     if (err) throw err;
   });
 
