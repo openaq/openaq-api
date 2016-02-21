@@ -93,11 +93,19 @@ var runCachedQueries = function (redis) {
         multi.set(k, v);
       });
       multi.exec(function (err, replies) {
-        if (err) {
-          log(['error'], err);
-        }
         log(['debug'], replies);
         log(['info'], 'Cache completed rebuilding.');
+        if (err) {
+          return log(['error'], err);
+        }
+
+        // Send a Redis update to let all other instances know of last time
+        // updated
+        let message = {
+          type: 'DATABASE_UPDATED',
+          updatedAt: new Date()
+        };
+        redis.publish('SYSTEM_UPDATES', JSON.stringify(message));
       });
     });
   });
