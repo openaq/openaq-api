@@ -22,7 +22,6 @@ Last month:
   ./measurements-csv.sh '1 month ago' today
 "
 
-DATABASE="openaq-local"
 COLUMNS="quote_ident(location) as location,city,country,date_utc as utc,parameter,value,unit"
 
 if [ -n "$1" ] && [ -n "$2" ]
@@ -44,8 +43,10 @@ SELECT_MEASUREMENTS="
   FROM measurements
   $DATEFILTER"
 
+PGPASSWORD=$PSQL_PASSWORD
 
-psql -d $DATABASE \
+psql -d $PSQL_DATABASE \
+    -U $PSQL_USER \
     -P format=unaligned -P footer -P fieldsep=\, \
     -c "${SELECT_MEASUREMENTS}"
 
