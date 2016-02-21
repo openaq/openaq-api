@@ -1,6 +1,7 @@
 'use strict';
 
 import { log } from '../services/logger';
+import redis from '../services/redis';
 
 /**
  * Generic base class for aggregation endpoints, provides a mechanism to
@@ -40,14 +41,14 @@ export class AggregationEndpoint {
   * @param {Object} query - Payload contains query paramters and their values
   * @param {recordsCallback} cb - The callback that returns the records
   */
-  query (query, redis, cb) {
+  query (query, cb) {
     var sendResults = function (err, data) {
       cb(err, data, data.length);
     };
 
     // Check to see if we have the intermeditate aggregation result cached, use
     // if it's there
-    if (redis.ready) {
+    if (redis && redis.ready) {
       redis.get(this.cacheName, (err, reply) => {
         if (err) {
           log(['error'], err);
