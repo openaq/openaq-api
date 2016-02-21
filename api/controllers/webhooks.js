@@ -103,7 +103,7 @@ var runCachedQueries = function (redis) {
         // updated
         let message = {
           type: 'DATABASE_UPDATED',
-          updatedAt: new Date()
+          updatedAt: new Date().toUTCString()
         };
         redis.publish('SYSTEM_UPDATES', JSON.stringify(message));
       });
