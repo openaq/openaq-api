@@ -26,8 +26,8 @@ export function queryDatabase (cb) {
 * @param {Object} query - Payload contains query paramters and their values
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (query, redis, cb) {
-  locations.query(query, redis, cb);
+module.exports.query = function (query, cb) {
+  locations.query(query, cb);
 };
 
 /**

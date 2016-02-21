@@ -1,4 +1,4 @@
-sudo: true
+sudo: required
 language: node_js
 node_js:
 - '4.1'
@@ -15,8 +15,6 @@ services:
 before_install:
 - chmod +x ./.build_scripts/build.sh
 - chmod +x ./.build_scripts/deploy.sh
-- sudo apt-get -qq update
-- sudo apt-get install -y jq
 - touch local.env
 install: npm install apidoc
 script: npm run docker-test
