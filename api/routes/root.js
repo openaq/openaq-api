@@ -9,7 +9,7 @@ const rootRouteHandler = (request, reply) => {
     if (path.startsWith(request.path) && path !== request.path && path.indexOf('webhooks') === -1) {
       endpoints.push({
         'method': route.public.method.toUpperCase(),
-        'path': request.server.info.uri + path
+        'path': request.server.app.url + path
       });
     }
   });
