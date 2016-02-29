@@ -35,6 +35,7 @@ var Server = function (port) {
 Server.prototype.start = function (cb) {
   var self = this;
   self.hapi.connection({ port: this.port });
+  self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
 
   // Register hapi-router
   self.hapi.register({
