@@ -24,10 +24,12 @@ export function queryDatabase (cb) {
 * Query distinct Locations. Implements all protocols supported by /locations endpoint
 *
 * @param {Object} query - Payload contains query paramters and their values
+* @param {integer} page - Page number
+* @param {integer} limit - Items per page
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.query = function (query, cb) {
-  locations.query(query, cb);
+module.exports.query = function (query, page, limit, cb) {
+  locations.query(query, page, limit, cb);
 };
 
 /**

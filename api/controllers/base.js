@@ -1,5 +1,7 @@
 'use strict';
 
+import { slice } from 'lodash';
+
 import { log } from '../services/logger';
 import redis from '../services/redis';
 
@@ -39,11 +41,14 @@ export class AggregationEndpoint {
   * Query distinct cities. Implements all protocols supported by /cities endpoint
   *
   * @param {Object} query - Payload contains query paramters and their values
+  * @param {integer} page - Page number
+  * @param {integer} limit - Items per page
   * @param {recordsCallback} cb - The callback that returns the records
   */
-  query (query, cb) {
+  query (query, page, limit, cb) {
     var sendResults = function (err, data) {
-      cb(err, data, data.length);
+      var paged = slice(data, (page - 1) * limit, page * limit);
+      cb(err, paged, data.length);
     };
 
     // Check to see if we have the intermeditate aggregation result cached, use
