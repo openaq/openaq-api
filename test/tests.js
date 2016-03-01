@@ -89,6 +89,36 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'countries', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          page: 1,
+          limit: 100,
+          found: 6
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+    it('has pages', function (done) {
+      request(self.baseURL + 'countries?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
   });
 
   describe('/cities', function () {
@@ -100,6 +130,36 @@ describe('Testing endpoints', function () {
 
         var res = JSON.parse(body);
         expect(res.results.length).to.equal(39);
+        done();
+      });
+    });
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'cities', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          page: 1,
+          limit: 100,
+          found: 39
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+    it('has pages', function (done) {
+      request(self.baseURL + 'cities?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
         done();
       });
     });
@@ -133,6 +193,19 @@ describe('Testing endpoints', function () {
           found: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'measurements?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
         done();
       });
     });
@@ -275,6 +348,19 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'latest?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
   });
 
   describe('/fetches', function () {
@@ -303,7 +389,7 @@ describe('Testing endpoints', function () {
     });
 
     it('has a meta block', function (done) {
-      request(self.baseURL + 'latest', function (err, response, body) {
+      request(self.baseURL + 'fetches', function (err, response, body) {
         if (err) {
           console.error(err);
         }
@@ -312,11 +398,24 @@ describe('Testing endpoints', function () {
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
           website: 'https://docs.openaq.org/',
-          found: 57,
+          found: 3,
           page: 1,
           limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'fetches?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
         done();
       });
     });
