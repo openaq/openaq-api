@@ -105,6 +105,7 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
     it('has pages', function (done) {
       request(self.baseURL + 'countries?limit=1', function (err, response, body) {
         if (err) {
@@ -204,6 +205,42 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.meta.limit).to.deep.equal(1);
         expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles bad coordinates param', function (done) {
+      request(self.baseURL + 'measurements?coordinates=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(100);
+        done();
+      });
+    });
+
+    it('handles bad radius param', function (done) {
+      request(self.baseURL + 'measurements?radius=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(100);
+        done();
+      });
+    });
+
+    it('handles a coordinates search', function (done) {
+      request(self.baseURL + 'measurements?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(3);
         done();
       });
     });
@@ -345,6 +382,31 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'locations?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
@@ -389,6 +451,18 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.meta.limit).to.deep.equal(1);
         expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search', function (done) {
+      request(self.baseURL + 'latest?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
         done();
       });
     });
@@ -545,6 +619,7 @@ describe('Testing endpoints', function () {
             }
           ],
           nulls: [],
+          geo: {},
           notNulls: [ { column: 'coordinates' } ]
         };
 
@@ -560,6 +635,7 @@ describe('Testing endpoints', function () {
           'betweens': [],
           'notNulls': [],
           'nulls': [],
+          'geo': {},
           'operators': [
             {
               column: 'date_utc',
@@ -578,6 +654,7 @@ describe('Testing endpoints', function () {
           'betweens': [],
           'notNulls': [],
           'nulls': [],
+          'geo': {},
           'operators': [
             {
               column: 'date_utc',
@@ -591,12 +668,84 @@ describe('Testing endpoints', function () {
         done();
       });
 
+      it('should handle geo searches properly', (done) => {
+        const expected = {
+          'betweens': [],
+          'notNulls': [],
+          'nulls': [],
+          'geo': {},
+          'operators': [],
+          'payload': {}
+        };
+
+        //
+        // Good search
+        //
+        let payload = {
+          coordinates: '41.23,23.03',
+          radius: 10
+        };
+        let exp = Object.assign({}, expected);
+        exp.geo = {
+          coordinates: {latitude: 41.23, longitude: 23.03},
+          radius: 10
+        };
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad coordinates
+        //
+        payload = {
+          coordinates: '41.23',
+          radius: 10
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad coordinates
+        //
+        payload = {
+          coordinates: '41.23,',
+          radius: 10
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad coordinates
+        //
+        payload = {
+          coordinates: 'foo',
+          radius: 10
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad radius
+        //
+        payload = {
+          coordinates: '41.23',
+          radius: 'foo'
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+        done();
+      });
+
       it('should convert ug/m3 to be nice', function (done) {
         var payload = {
           unit: 'ug/m3'
         };
         var expected = {
           'betweens': [],
+          'geo': {},
           'notNulls': [],
           'nulls': [],
           'operators': [],
@@ -623,6 +772,41 @@ describe('Testing endpoints', function () {
       it('should convert name properly', function (done) {
         expect(utils.prettyCountryName('US')).to.equal('United States');
         expect(utils.prettyCountryName('FOO')).to.equal(undefined);
+        done();
+      });
+    });
+
+    describe('isGeoPayloadOK', function () {
+      it('should correctly handle geo payloads', function (done) {
+        let payload = {
+          coordinates: '40.02,21.23',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
+
+        payload = {
+          coordinates: '40.02',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
+
+        payload = {
+          coordinates: 'foo',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
+
+        payload = {
+          coordinates: '40.02,21.23',
+          radius: 'foo'
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
         done();
       });
     });

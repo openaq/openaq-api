@@ -1,9 +1,12 @@
 'use strict';
 
 import { filter, has, groupBy, forEach } from 'lodash';
+import distance from 'turf-distance';
+import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
+import { isGeoPayloadOK } from '../../lib/utils';
 
 // Generate intermediate aggregated result
 let resultsQuery = db.select(db.raw('distinct on (location, city, parameter) location, city, country, parameter, value, unit, date_utc, ST_AsGeoJSON(coordinates) as coordinates from measurements order by location, city, parameter, date_utc desc'));
@@ -69,6 +72,21 @@ function filterResultsForQuery (results, query) {
     } else {
       results = filter(results, (r) => {
         return r.coordinates !== undefined;
+      });
+    }
+  }
+  if (has(query, 'coordinates') && has(query, 'radius')) {
+    // Make sure geo payload is ok first
+    if (isGeoPayloadOK(query)) {
+      results = filter(results, (r, i) => {
+        if (!r.coordinates) {
+          return false;
+        }
+
+        const p1 = point(JSON.parse(r.coordinates)['coordinates']);
+        const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
+        const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
+        return d <= query.radius;
       });
     }
   }
