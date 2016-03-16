@@ -170,6 +170,39 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('should include attribution if not asked for with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
+    it('should include attribution if asked for alone with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv&include_fields=attribution', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
+    it('should include attribution if not asked for but something else is with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv&include_fields=sourceName', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
     it('should return all entries in csv when no limit is set', function (done) {
       request(self.baseURL + 'measurements?format=csv', function (err, response, body) {
         if (err) {
