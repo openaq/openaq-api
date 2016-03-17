@@ -10,7 +10,8 @@ let resultsQuery = db
                     .from('measurements')
                     .select('country')
                     .count('value')
-                    .groupBy('country');
+                    .groupBy('country')
+                    .orderBy('country');
 
 // Create the endpoint from the class
 let countries = new AggregationEndpoint('COUNTRIES', resultsQuery, filterResultsForQuery, groupResults);
