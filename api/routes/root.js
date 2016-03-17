@@ -4,7 +4,7 @@
 const rootRouteHandler = (request, reply) => {
   var table = request.server.table(request.server.info.host)[0].table;
   var endpoints = [];
-  table.forEach(route => {
+  table.forEach((route) => {
     var path = route.public.path;
     if (path.startsWith(request.path) && path !== request.path && path.indexOf('webhooks') === -1) {
       endpoints.push({
