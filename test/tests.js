@@ -2,13 +2,11 @@
 'use strict';
 
 var expect = require('chai').expect;
-// let knexConfig = require('../knexfile');
 import { db } from '../api/services/db';
 let knexConfig = require('../knexfile');
 var Server = require('../api/services/server');
 var testPort = 2000;
 var request = require('request');
-// var measurements = require('./data/measurements');
 var utils = require('../lib/utils');
 
 describe('Testing endpoints', function () {
