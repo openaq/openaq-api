@@ -24,10 +24,12 @@ export function queryDatabase (cb) {
 * Get latest for all locations. Implements all protocols supported by /latest endpoint
 *
 * @param {Object} query - Payload contains query paramters and their values
+* @param {integer} page - Page number
+* @param {integer} limit - Items per page
 * @param {recordsCallback} cb - The callback that returns the records
 */
-export function query (query, cb) {
-  latest.query(query, cb);
+export function query (query, page, limit, cb) {
+  latest.query(query, page, limit, cb);
 }
 
 /**

@@ -76,11 +76,11 @@ module.exports = [
         params = request.query;
       }
 
-      // Don't use a limit for this endpoint
-      request.limit = undefined;
+      // Set max limit to 1000
+      request.limit = Math.min(request.limit, 1000);
 
       // Handle it
-      m.query(params, function (err, records, count) {
+      m.query(params, request.page, request.limit, function (err, records, count) {
         if (err) {
           log(['error'], err);
           return reply(Boom.badImplementation(err));

@@ -9,6 +9,8 @@ var utils = require('../../lib/utils');
 * Query Measurements. Implements all protocols supported by /measurements endpoint
 *
 * @param {Object} query - Payload contains query paramters and their values
+* @param {integer} page - Page number
+* @param {integer} limit - Items per page
 * @param {recordsCallback} cb - The callback that returns the records
 */
 module.exports.query = function (query, page, limit, cb) {
