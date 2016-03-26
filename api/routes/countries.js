@@ -42,6 +42,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/countries',
+    config: {
+      description: 'An aggregation of countries included in platform.'
+    },
     handler: function (request, reply) {
       var params = {};
 
