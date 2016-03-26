@@ -196,8 +196,12 @@ Server.prototype.start = function (cb) {
     register: function (server, options, next) {
       server.ext('onPreResponse', function (request, reply) {
         // Add the LastModified header
-        if (getLastUpdated()) {
-          request.response.header('Last-Modified', new Date(getLastUpdated()).toUTCString());
+        if (getLastUpdated && getLastUpdated()) {
+          try {
+            request.response.header('Last-Modified', new Date(getLastUpdated()).toUTCString());
+          } catch (e) {
+            // Don't need to do anything here, just keep from crashing
+          }
         }
 
         reply.continue();
