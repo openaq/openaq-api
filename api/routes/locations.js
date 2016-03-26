@@ -73,6 +73,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/locations',
+    config: {
+      description: 'An aggregation of the data for each location.'
+    },
     handler: function (request, reply) {
       var params = {};
 

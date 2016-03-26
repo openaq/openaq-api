@@ -85,6 +85,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/measurements',
+    config: {
+      description: 'Retrieve data for individual measurements.'
+    },
     handler: function (request, reply) {
       var params = {};
 
@@ -109,6 +112,16 @@ module.exports = [
         // regardless of what was just set above
         let limit = request.url.query.limit || 65536;
         request.limit = Math.min(limit, 65536);
+
+        // Force to include attribution, handle case where it may have already
+        // been present.
+        if (params.include_fields === undefined) {
+          params.include_fields = 'attribution';
+        } else {
+          if (params.include_fields.indexOf('attribution') === -1) {
+            params.include_fields += ',attribution';
+          }
+        }
       }
       params = _.omit(params, 'format');
 
@@ -121,7 +134,7 @@ module.exports = [
         if (formatForCSV) {
           var options = {
             header: true,
-            columns: ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit']
+            columns: ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit', 'attribution']
           };
 
           records = records.map(function (r) {

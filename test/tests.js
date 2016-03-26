@@ -2,13 +2,11 @@
 'use strict';
 
 var expect = require('chai').expect;
-// let knexConfig = require('../knexfile');
 import { db } from '../api/services/db';
 let knexConfig = require('../knexfile');
 var Server = require('../api/services/server');
 var testPort = 2000;
 var request = require('request');
-// var measurements = require('./data/measurements');
 var utils = require('../lib/utils');
 
 describe('Testing endpoints', function () {
@@ -239,6 +237,39 @@ describe('Testing endpoints', function () {
 
         var lines = body.split('\n');
         expect(lines.length).to.equal(3);
+        done();
+      });
+    });
+
+    it('should include attribution if not asked for with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
+    it('should include attribution if asked for alone with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv&include_fields=attribution', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
+    it('should include attribution if not asked for but something else is with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv&include_fields=sourceName', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
         done();
       });
     });

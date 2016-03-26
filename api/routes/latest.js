@@ -65,6 +65,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/latest',
+    config: {
+      description: 'An aggregation of the latest measurements for each location.'
+    },
     handler: function (request, reply) {
       var params = {};
 

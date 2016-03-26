@@ -80,6 +80,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/fetches',
+    config: {
+      description: 'See history of data update attempts by the platform.'
+    },
     handler: function (request, reply) {
       var params = {};
 
