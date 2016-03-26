@@ -85,6 +85,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/measurements',
+    config: {
+      description: 'Retrieve data for individual measurements.'
+    },
     handler: function (request, reply) {
       var params = {};
 
