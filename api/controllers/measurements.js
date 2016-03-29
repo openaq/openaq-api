@@ -15,7 +15,7 @@ var utils = require('../../lib/utils');
 */
 module.exports.query = function (query, page, limit, cb) {
   // Turn the payload into something we can use with psql
-  let { payload, operators, betweens, nulls, notNulls } = utils.queryFromParameters(query);
+  let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(query);
 
   //
   // Handle include_fields cases
@@ -71,7 +71,8 @@ module.exports.query = function (query, page, limit, cb) {
   let countQuery = db
                     .count('location')
                     .from('measurements');
-  countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls);
+  countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls, geo);
+
   countQuery.then((count) => {
     return Number(count[0].count); // PostgreSQL returns count as string
   })
@@ -83,7 +84,7 @@ module.exports.query = function (query, page, limit, cb) {
                         .limit(limit).offset(skip)
                         .orderBy(sort.column, sort.direction);
     // Build on base query
-    resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
+    resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls, geo);
 
     // Run the query
     resultsQuery.then((results) => {
