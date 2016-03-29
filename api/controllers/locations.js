@@ -7,6 +7,7 @@ import point from 'turf-point';
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
 import { isGeoPayloadOK } from '../../lib/utils';
+import { defaultGeoRadius } from '../constants';
 
 // Generate intermediate aggregated result
 let resultsQuery = db.select(db.raw('location, city, parameter, source_name, country, count(value), max(date_utc) as last_updated, min(date_utc) as first_updated, ST_AsGeoJSON(coordinates) as coordinates from measurements group by location, city, parameter, source_name, ST_AsGeoJSON(coordinates), country'));
@@ -75,9 +76,14 @@ function filterResultsForQuery (results, query) {
       });
     }
   }
-  if (has(query, 'coordinates') && has(query, 'radius')) {
+  if (has(query, 'coordinates')) {
     // Make sure geo payload is ok first
     if (isGeoPayloadOK(query)) {
+      // Look for custom radius
+      let radius = defaultGeoRadius;
+      if (has(query, 'radius')) {
+        radius = query.radius;
+      }
       results = filter(results, (r, i) => {
         if (!r.coordinates) {
           return false;
@@ -86,7 +92,7 @@ function filterResultsForQuery (results, query) {
         const p1 = point(JSON.parse(r.coordinates)['coordinates']);
         const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
         const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
-        return d <= query.radius;
+        return d <= radius;
       });
     }
   }

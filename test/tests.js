@@ -245,6 +245,18 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('handles a coordinates search without radius', function (done) {
+      request(self.baseURL + 'measurements?coordinates=51.83,20.78', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(3);
+        done();
+      });
+    });
+
     it('should return an object like a good API', function (done) {
       request(self.baseURL + 'measurements?limit=1', function (err, response, body) {
         if (err) {
@@ -407,6 +419,18 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('handles a coordinates search with no radius', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
@@ -457,6 +481,18 @@ describe('Testing endpoints', function () {
 
     it('handles a coordinates search', function (done) {
       request(self.baseURL + 'latest?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search with no radius', function (done) {
+      request(self.baseURL + 'latest?coordinates=51.83,20.78', function (err, response, body) {
         if (err) {
           console.error(err);
         }
@@ -781,6 +817,11 @@ describe('Testing endpoints', function () {
         let payload = {
           coordinates: '40.02,21.23',
           radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,21.23'
         };
         expect(utils.isGeoPayloadOK(payload)).to.be.true;
 
