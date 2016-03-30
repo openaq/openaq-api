@@ -29,10 +29,12 @@ export function queryDatabase (cb) {
 * Query distinct cities. Implements all protocols supported by /cities endpoint
 *
 * @param {Object} query - Payload contains query paramters and their values
+* @param {integer} page - Page number
+* @param {integer} limit - Items per page
 * @param {recordsCallback} cb - The callback that returns the records
 */
-export function query (query, cb) {
-  cities.query(query, cb);
+export function query (query, page, limit, cb) {
+  cities.query(query, page, limit, cb);
 }
 
 /**

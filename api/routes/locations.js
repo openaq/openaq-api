@@ -14,6 +14,8 @@ import { log } from '../services/logger';
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to only a certain parameter.
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
+ * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get measurements within a certain area. (ex. `coordinates=40.23,34.17`)
+ * @apiParam {number} [radius=2500] Radius (in meters) used to get measurements within a certain area, must be used with `coordinates`.
  *
  * @apiSuccess {string}   location      Location identifier
  * @apiSuccess {string}   country       Country containing location in 2 letter ISO code
@@ -84,11 +86,11 @@ module.exports = [
         params = request.query;
       }
 
-      // Don't use a limit for this endpoint
-      request.limit = undefined;
+      // Set max limit to 1000
+      request.limit = Math.min(request.limit, 1000);
 
       // Handle it
-      m.query(params, function (err, records, count) {
+      m.query(params, request.page, request.limit, function (err, records, count) {
         if (err) {
           log(['error'], err);
           return reply(Boom.badImplementation(err));
