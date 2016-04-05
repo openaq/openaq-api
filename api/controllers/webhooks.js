@@ -44,7 +44,7 @@ var runCachedQueries = function (redis) {
           log(['error'], err);
         }
         log(['info'], 'LOCATIONS cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     },
     'LATEST': function (done) {
@@ -53,7 +53,7 @@ var runCachedQueries = function (redis) {
           log(['info'], err);
         }
         log(['info'], 'LATEST cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     },
     'CITIES': function (done) {
@@ -62,7 +62,7 @@ var runCachedQueries = function (redis) {
           log(['error'], err);
         }
         log(['info'], 'CITIES cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     },
     'COUNTRIES': function (done) {
@@ -71,13 +71,14 @@ var runCachedQueries = function (redis) {
           log(['error'], err);
         }
         log(['info'], 'COUNTRIES cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     }
   },
   function (err, results) {
     if (err) {
       log(['error'], err);
+      return log(['error'], 'New cache queries had errors, keeping current cache');
     }
 
     log(['info'], 'New cache queries done, dumping current cache.');
