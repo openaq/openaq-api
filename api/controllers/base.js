@@ -75,31 +75,9 @@ export class AggregationEndpoint {
           }
         }
 
-        // If we're here, try a database query since Redis failed us, most likely
-        // because the key was missing
-        this.queryDatabase((err, results) => {
-          if (err) {
-            return sendResults(err);
-          }
-
-          // This data should be in the cache, so save it
-          redis.set(this.cacheName, JSON.stringify(results), (err, res) => {
-            if (err) {
-              log(['error'], err);
-            }
-
-            log(['info'], `Saved Redis cache for ${this.cacheName} after it was missing.`);
-          });
-
-          // Build specific result from aggregated data
-          results = this.filterResultsForQuery(results, query);
-
-          // Group the results to a nicer output
-          results = this.groupResults(results);
-
-          // Send back results
-          sendResults(null, results);
-        });
+        // If we're here, we tried to use Redis but it failed us, return an
+        // error so we don't overload the database with aggregation queries
+        return sendResults('No cached results available.');
       });
     } else {
       // Query database if we have no Redis connection or don't want to hit it
