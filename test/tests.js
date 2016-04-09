@@ -431,6 +431,19 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    // https://github.com/openaq/openaq-api/issues/232
+    it('handles has_geo searches', function (done) {
+      request(self.baseURL + 'locations?has_geo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(56);
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
@@ -499,6 +512,19 @@ describe('Testing endpoints', function () {
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    // https://github.com/openaq/openaq-api/issues/232
+    it('handles has_geo searches', function (done) {
+      request(self.baseURL + 'latest?has_geo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(56);
         done();
       });
     });
