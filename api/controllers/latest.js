@@ -68,11 +68,11 @@ function filterResultsForQuery (results, query) {
   if (has(query, 'has_geo')) {
     if (query.has_geo === false || query.has_geo === 'false') {
       results = filter(results, (r) => {
-        return r.coordinates === undefined;
+        return !r.coordinates;
       });
     } else {
       results = filter(results, (r) => {
-        return r.coordinates !== undefined;
+        return !!r.coordinates;
       });
     }
   }
