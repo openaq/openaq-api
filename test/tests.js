@@ -64,7 +64,8 @@ describe('Testing endpoints', function () {
           'fetches',
           'latest',
           'locations',
-          'measurements'
+          'measurements',
+          'sources'
         ];
 
         var res = JSON.parse(body);
@@ -582,6 +583,53 @@ describe('Testing endpoints', function () {
 
         var res = JSON.parse(body);
         expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+  });
+
+  describe('/sources', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'sources', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(3);
+        expect(res.results[0]).to.be.an('object');
+        done();
+      });
+    });
+
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'sources', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          found: 3,
+          page: 1,
+          limit: 100
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'sources?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.equal(1);
         expect(res.results.length).to.equal(1);
         done();
       });
