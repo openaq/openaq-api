@@ -64,7 +64,8 @@ describe('Testing endpoints', function () {
           'fetches',
           'latest',
           'locations',
-          'measurements'
+          'measurements',
+          'sources'
         ];
 
         var res = JSON.parse(body);
@@ -583,6 +584,24 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.meta.limit).to.deep.equal(1);
         expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+  });
+
+  describe('/sources', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'sources', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(8);
+        expect(res.results[0].country).to.be.an('string');
+        expect(res.results[0].sourceName).to.be.a('string');
+        expect(res.results[0].locations).to.be.a('number');
+        expect(res.results[0].count).to.be.a('number');
         done();
       });
     });
