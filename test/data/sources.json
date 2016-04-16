@@ -1,0 +1,51 @@
+{
+"meta": {
+"name": "openaq-api",
+"license": "CC BY 4.0",
+"website": "https://docs.openaq.org/",
+"page": 1,
+"limit": 1,
+"found": 30
+},
+"results": [
+{
+"url": "http://airquality.environment.nsw.gov.au/aquisnetnswphp/getPage.php?reportid=2",
+"adapter": "nsw",
+"name": "Australia - New South Wales",
+"city": "",
+"country": "AU",
+"description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
+"resolution": "1 hr",
+"sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
+"contacts": [
+"foo@foo.com"
+]
+},
+{
+"url": "http://airquality.environment.nsw.gov.au/aquisnetnswphp/getPage.php?reportid=2",
+"adapter": "nsw",
+"name": "Australia - New South Wales",
+"city": "",
+"country": "AU",
+"description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
+"resolution": "1 hr",
+"sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
+"contacts": [
+"foo@foo.com"
+]
+},
+{
+"url": "http://airquality.environment.nsw.gov.au/aquisnetnswphp/getPage.php?reportid=2",
+"adapter": "nsw",
+"name": "Australia - New South Wales",
+"city": "",
+"country": "AU",
+"description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
+"resolution": "1 hr",
+"sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
+"contacts": [
+"foo@foo.com"
+]
+}
+]
+}
