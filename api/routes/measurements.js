@@ -27,7 +27,6 @@ import { log } from '../services/logger';
  * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
  * @apiParam {number} [page=1] Paginate through results.
- * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string=csv, json} [format=json] Format for data return. Note that `csv` will return a max of 65,536 results when no limit is set.
  *
  * @apiSuccess {object}   date            Date and time of measurement in both local and UTC `default`
