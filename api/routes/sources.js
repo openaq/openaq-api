@@ -33,7 +33,7 @@ var m = require('../controllers/sources.js');
  *     "description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
  *     "resolution": "1 hr",
  *     "sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
- *     "contacts": 
+ *     "contacts":
  *       [
  *         "olaf@developmentseed.org"
  *       ]
@@ -46,7 +46,7 @@ var m = require('../controllers/sources.js');
  *     "country": "BD",
  *     "description": "",
  *     "sourceURL": "http://stateair.net/dos/",
- *     "contacts": 
+ *     "contacts":
  *       [
  *         "info@openaq.org"
  *       ]
