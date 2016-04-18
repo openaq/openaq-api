@@ -9,6 +9,9 @@ import { log } from '../services/logger';
  * @apiGroup Countries
  * @apiDescription Provides a simple listing of countries within the platform.
  *
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [page=1] Paginate through results.
+ *
  * @apiSuccess {string}   code     2 letter ISO code
  * @apiSuccess {string}   name     Country name
  * @apiSuccess {number}   count    Number of measurements for the country
