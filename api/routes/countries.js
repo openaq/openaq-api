@@ -12,15 +12,21 @@ import { log } from '../services/logger';
  * @apiSuccess {string}   code     2 letter ISO code
  * @apiSuccess {string}   name     Country name
  * @apiSuccess {number}   count    Number of measurements for the country
+ * @apiSuccess {number}   cities   Number of cities
+ * @apiSuccess {number}  locations Number of locations
  * @apiSuccessExample {json} Success Response:
  * [
  *   {
  *     "count": 40638,
+ *     "cities": 10,
+ *     "locations": 26,
  *     "code": "AU",
  *     "name": "Australia"
  *   },
  *   {
  *     "count": 78681,
+ *     "cities": 33,
+ *     "locations": 55,
  *     "code": "BR",
  *     "name": "Brazil"
  *   },
