@@ -10,6 +10,8 @@ let resultsQuery = db
                     .from('measurements')
                     .select('country')
                     .count('value')
+                    .select(db.raw('count(distinct city) as cities'))
+                    .select(db.raw('count(distinct location) as locations'))
                     .groupBy('country')
                     .orderBy('country');
 
@@ -61,6 +63,8 @@ function groupResults (results) {
   // Convert numbers to Numbers
   return results.map((r) => {
     r.count = Number(r.count);
+    r.cities = Number(r.cities);
+    r.locations = Number(r.locations);
     r.code = r.country;
     r.name = prettyCountryName(r.code);
     delete r.country;
