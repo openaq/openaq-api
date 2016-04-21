@@ -10,10 +10,10 @@ import { isGeoPayloadOK } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 
 // Generate intermediate aggregated result
-let resultsQuery = db.select(db.raw('distinct on (location, city, parameter) location, city, country, parameter, value, unit, date_utc, ST_AsGeoJSON(coordinates) as coordinates from measurements order by location, city, parameter, date_utc desc'));
+let resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) max_date, location, city, parameter from measurements group by location, city, parameter) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = max_date'));
 
 // Create the endpoint from the class
-let latest = new AggregationEndpoint('LATEST', resultsQuery, filterResultsForQuery, groupResults);
+let latest = new AggregationEndpoint('LATEST', resultsQuery, handleDataMapping, filterResultsForQuery, groupResults);
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -34,6 +34,35 @@ export function queryDatabase (cb) {
 */
 export function query (query, page, limit, cb) {
   latest.query(query, page, limit, cb);
+}
+
+/**
+ * A function to handle mapping db results to useful data
+ *
+ * @param {array} results A results array from db
+ * return {array} An array of modified results, useful to the system
+ */
+function handleDataMapping (results) {
+  // Do a top level pass to handle some data transformation
+  results = results.map((r) => {
+    let o = {
+      location: r.location,
+      city: r.city,
+      country: r.country,
+      parameter: r.parameter,
+      value: r.value,
+      unit: r.unit,
+      date_utc: r.date_utc
+    };
+
+    if (r.data.coordinates) {
+      o.coordinates = r.data.coordinates;
+    }
+
+    return o;
+  });
+
+  return results;
 }
 
 /**
@@ -89,7 +118,7 @@ function filterResultsForQuery (results, query) {
           return false;
         }
 
-        const p1 = point(JSON.parse(r.coordinates)['coordinates']);
+        const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
         const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
         const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
         return d <= radius;
@@ -127,10 +156,7 @@ function groupResults (results) {
 
     // If we have coordinates, add them
     if (m[0].coordinates) {
-      f.coordinates = {
-        longitude: JSON.parse(m[0].coordinates).coordinates[0],
-        latitude: JSON.parse(m[0].coordinates).coordinates[1]
-      };
+      f.coordinates = m[0].coordinates;
     }
 
     final.push(f);

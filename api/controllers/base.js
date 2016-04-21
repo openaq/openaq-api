@@ -12,13 +12,15 @@ import redis from '../services/redis';
  *
  * @param {string} cacheName Name of cache key
  * @param {object} resultsQuery A knex generated db query
+ * @param {function} handleDataMapping A function to handle mapping db results to useful data
  * @param {function} filterResultsForQuery A function to filter returned results
  * @param {function} groupResults A function to group returned results
  */
 export class AggregationEndpoint {
-  constructor (cacheName, resultsQuery, filterResultsForQuery, groupResults) {
+  constructor (cacheName, resultsQuery, handleDataMapping, filterResultsForQuery, groupResults) {
     this.cacheName = cacheName;
     this.resultsQuery = resultsQuery;
+    this.handleDataMapping = handleDataMapping;
     this.filterResultsForQuery = filterResultsForQuery;
     this.groupResults = groupResults;
   }
@@ -30,6 +32,7 @@ export class AggregationEndpoint {
    */
   queryDatabase (cb) {
     this.resultsQuery.then((results) => {
+      results = this.handleDataMapping(results);
       cb(null, results);
     })
     .catch((err) => {
@@ -38,7 +41,7 @@ export class AggregationEndpoint {
   }
 
   /**
-  * Query distinct cities. Implements all protocols supported by /cities endpoint
+  * Runs the query.
   *
   * @param {Object} query - Payload contains query paramters and their values
   * @param {integer} page - Page number
@@ -47,8 +50,12 @@ export class AggregationEndpoint {
   */
   query (query, page, limit, cb) {
     var sendResults = function (err, data) {
+      if (err) {
+        return cb(err);
+      }
+
       var paged = slice(data, (page - 1) * limit, page * limit);
-      cb(err, paged, data.length);
+      cb(null, paged, data.length);
     };
 
     // Check to see if we have the intermeditate aggregation result cached, use

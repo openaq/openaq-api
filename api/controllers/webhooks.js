@@ -56,15 +56,6 @@ var runCachedQueries = function (redis) {
         done(err, JSON.stringify(results));
       });
     },
-    'CITIES': function (done) {
-      require('./cities').queryDatabase((err, results) => {
-        if (err) {
-          log(['error'], err);
-        }
-        log(['info'], 'CITIES cache query done');
-        done(err, JSON.stringify(results));
-      });
-    },
     'COUNTRIES': function (done) {
       require('./countries').queryDatabase((err, results) => {
         if (err) {
