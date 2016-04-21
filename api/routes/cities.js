@@ -10,6 +10,8 @@ import { log } from '../services/logger';
  * @apiDescription Provides a simple listing of cities within the platform.
  *
  * @apiParam {string} [country] Limit results by a certain country.
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [page=1] Paginate through results.
  *
  * @apiSuccess {string}   city        Name of the city
  * @apiSuccess {string}   country     Country containing city, in 2 letter ISO code

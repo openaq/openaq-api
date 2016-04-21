@@ -16,6 +16,8 @@ import { log } from '../services/logger';
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get measurements within a certain area. (ex. `coordinates=40.23,34.17`)
  * @apiParam {number} [radius=2500] Radius (in meters) used to get measurements within a certain area, must be used with `coordinates`.
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [page=1] Paginate through results.
  *
  * @apiSuccess {string}   location      Location identifier
  * @apiSuccess {string}   country       Country containing location in 2 letter ISO code
