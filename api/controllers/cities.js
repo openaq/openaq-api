@@ -97,7 +97,7 @@ function groupResults (results) {
       final.push({
         city: key,
         country: cityGrouped[key][0].country,
-        loations: locations.length,
+        locations: locations.length,
         count: count
       });
     });

@@ -92,7 +92,7 @@ function groupResults (results) {
       name: prettyCountryName(key),
       code: key,
       cities: cities.length,
-      loations: locations.length,
+      locations: locations.length,
       count: count
     });
   });
