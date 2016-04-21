@@ -12,9 +12,11 @@ import { log } from '../services/logger';
  * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
  * @apiParam {number} [page=1] Paginate through results.
  *
- * @apiSuccess {string}   code     2 letter ISO code
- * @apiSuccess {string}   name     Country name
- * @apiSuccess {number}   count    Number of measurements for the country
+ * @apiSuccess {string}   code      2 letter ISO code
+ * @apiSuccess {string}   name      Country name
+ * @apiSuccess {number}   count     Number of measurements for the country
+ * @apiSuccess {number}   cities    Number of cities in this country
+ * @apiSuccess {number}   locations Number of locations in this country
  * @apiSuccessExample {json} Success Response:
  * [
  *   {
