@@ -133,9 +133,10 @@ module.exports = [
         }
 
         if (formatForCSV) {
+          var columns = ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit'];
           var options = {
             header: true,
-            columns: ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit', 'attribution']
+            columns: columns.concat(params.include_fields.split(','))
           };
 
           records = records.map(function (r) {
