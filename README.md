@@ -25,6 +25,7 @@ For production deployment, you will need to have certain environment variables s
 
 | Name | Description | Default |
 |---|---|---|
+| API_URL | Base API URL after deployment | http://<hostname>:3004 | 
 | NEW_RELIC_LICENSE_KEY | New Relic API key for system monitoring | not set |
 | WEBHOOK_KEY | Secret key to interact with openaq-api | '123' |
 | USE_REDIS | Use Redis for caching? | not set (so not used) |

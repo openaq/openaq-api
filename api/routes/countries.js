@@ -9,9 +9,14 @@ import { log } from '../services/logger';
  * @apiGroup Countries
  * @apiDescription Provides a simple listing of countries within the platform.
  *
- * @apiSuccess {string}   code     2 letter ISO code
- * @apiSuccess {string}   name     Country name
- * @apiSuccess {number}   count    Number of measurements for the country
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [page=1] Paginate through results.
+ *
+ * @apiSuccess {string}   code      2 letter ISO code
+ * @apiSuccess {string}   name      Country name
+ * @apiSuccess {number}   count     Number of measurements for the country
+ * @apiSuccess {number}   cities    Number of cities in this country
+ * @apiSuccess {number}   locations Number of locations in this country
  * @apiSuccessExample {json} Success Response:
  * [
  *   {
@@ -42,6 +47,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/countries',
+    config: {
+      description: 'An aggregation of countries included in platform.'
+    },
     handler: function (request, reply) {
       var params = {};
 
@@ -50,12 +58,11 @@ module.exports = [
         params = request.query;
       }
 
-      // Don't use a limit for this endpoint
-      request.limit = undefined;
+      // Set max limit to 1000
+      request.limit = Math.min(request.limit, 1000);
 
       // Handle it
-      var redis = request.server.plugins['hapi-redis'].client;
-      m.query(params, redis, function (err, records, count) {
+      m.query(params, request.page, request.limit, function (err, records, count) {
         if (err) {
           log(['error'], err);
           return reply(Boom.badImplementation(err));

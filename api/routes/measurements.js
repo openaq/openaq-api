@@ -15,17 +15,18 @@ import { log } from '../services/logger';
  * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [location] Limit results by a certain location.
  * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to only a certain parameter.
- * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
+ * @apiParam {boolean=true, false} [has_geo] Filter out items that have or do not have geographic information.
+ * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get measurements within a certain area. (ex. `coordinates=40.23,34.17`)
+ * @apiParam {number} [radius=2500] Radius (in meters) used to get measurements within a certain area, must be used with `coordinates`.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
  * @apiParam {string} [date_from] Show results after a certain date. (ex. `2015-12-20`)
  * @apiParam {string} [date_to] Show results before a certain date. (ex. `2015-12-20`)
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
  * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
- * @apiParam {array}  [include_fields=location,parameter,date,value,unit,coordinates,country,city] Include extra fields in the output in addition to default values.
+ * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
  * @apiParam {number} [page=1] Paginate through results.
- * @apiParam {number} [skip] Number of records to skip.
  * @apiParam {string=csv, json} [format=json] Format for data return. Note that `csv` will return a max of 65,536 results when no limit is set.
  *
  * @apiSuccess {object}   date            Date and time of measurement in both local and UTC `default`
@@ -85,6 +86,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/measurements',
+    config: {
+      description: 'Retrieve data for individual measurements.'
+    },
     handler: function (request, reply) {
       var params = {};
 
@@ -109,6 +113,16 @@ module.exports = [
         // regardless of what was just set above
         let limit = request.url.query.limit || 65536;
         request.limit = Math.min(limit, 65536);
+
+        // Force to include attribution, handle case where it may have already
+        // been present.
+        if (params.include_fields === undefined) {
+          params.include_fields = 'attribution';
+        } else {
+          if (params.include_fields.indexOf('attribution') === -1) {
+            params.include_fields += ',attribution';
+          }
+        }
       }
       params = _.omit(params, 'format');
 
@@ -119,9 +133,10 @@ module.exports = [
         }
 
         if (formatForCSV) {
+          var columns = ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit'];
           var options = {
             header: true,
-            columns: ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit']
+            columns: columns.concat(params.include_fields.split(','))
           };
 
           records = records.map(function (r) {

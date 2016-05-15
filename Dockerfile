@@ -44,7 +44,7 @@ COPY package.json /app/package.json
 WORKDIR /app
 RUN source $NVM_DIR/nvm.sh; npm install
 # Copy the app
-COPY ["newrelic.js", ".babelrc", "knexfile.js", "index.js", "/app/"]
+COPY ["newrelic.js", ".eslintrc", ".eslintignore", ".babelrc", "knexfile.js", "index.js", "/app/"]
 COPY ["app.js", "/app/"]
 COPY lib /app/lib/
 COPY test /app/test/

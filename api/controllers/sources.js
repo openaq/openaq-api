@@ -4,7 +4,7 @@ import { db } from '../services/db';
 var utils = require('../../lib/utils');
 
 /**
-* Query Fetches. Implements all protocols supported by /fetches endpoint
+* Query Sources. Implements all protocols supported by /sources endpoint
 *
 * @param {Object} query - Payload contains query paramters and their values
 * @param {integer} page - Page number
@@ -25,7 +25,7 @@ module.exports.query = function (query, page, limit, cb) {
   //
   let countQuery = db
                     .count('id')
-                    .from('fetches');
+                    .from('sources');
   countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls);
   countQuery.then((count) => {
     return Number(count[0].count); // PostgreSQL returns count as string
@@ -33,22 +33,16 @@ module.exports.query = function (query, page, limit, cb) {
   .then((count) => {
     // Base query
     let resultsQuery = db
-                        .select(['time_started', 'time_ended', 'count', 'results'])
-                        .from('fetches')
-                        .orderBy('id', 'desc')
+                        .select('data')
+                        .from('sources')
                         .limit(limit).offset(skip);
     // Build on base query
     resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls);
 
     // Run the query
     resultsQuery.then((results) => {
-      // Move data obj to top level and handle projections
       results = results.map((r) => {
-        r.timeStarted = r.time_started;
-        delete r.time_started;
-        r.timeEnded = r.time_ended;
-        delete r.time_ended;
-        return r;
+        return r.data;
       });
       return cb(null, results, count);
     })

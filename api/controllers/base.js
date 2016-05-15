@@ -1,6 +1,9 @@
 'use strict';
 
+import { slice } from 'lodash';
+
 import { log } from '../services/logger';
+import redis from '../services/redis';
 
 /**
  * Generic base class for aggregation endpoints, provides a mechanism to
@@ -9,13 +12,15 @@ import { log } from '../services/logger';
  *
  * @param {string} cacheName Name of cache key
  * @param {object} resultsQuery A knex generated db query
+ * @param {function} handleDataMapping A function to handle mapping db results to useful data
  * @param {function} filterResultsForQuery A function to filter returned results
  * @param {function} groupResults A function to group returned results
  */
 export class AggregationEndpoint {
-  constructor (cacheName, resultsQuery, filterResultsForQuery, groupResults) {
+  constructor (cacheName, resultsQuery, handleDataMapping, filterResultsForQuery, groupResults) {
     this.cacheName = cacheName;
     this.resultsQuery = resultsQuery;
+    this.handleDataMapping = handleDataMapping;
     this.filterResultsForQuery = filterResultsForQuery;
     this.groupResults = groupResults;
   }
@@ -27,6 +32,7 @@ export class AggregationEndpoint {
    */
   queryDatabase (cb) {
     this.resultsQuery.then((results) => {
+      results = this.handleDataMapping(results);
       cb(null, results);
     })
     .catch((err) => {
@@ -35,19 +41,26 @@ export class AggregationEndpoint {
   }
 
   /**
-  * Query distinct cities. Implements all protocols supported by /cities endpoint
+  * Runs the query.
   *
   * @param {Object} query - Payload contains query paramters and their values
+  * @param {integer} page - Page number
+  * @param {integer} limit - Items per page
   * @param {recordsCallback} cb - The callback that returns the records
   */
-  query (query, redis, cb) {
+  query (query, page, limit, cb) {
     var sendResults = function (err, data) {
-      cb(err, data, data.length);
+      if (err) {
+        return cb(err);
+      }
+
+      var paged = slice(data, (page - 1) * limit, page * limit);
+      cb(null, paged, data.length);
     };
 
     // Check to see if we have the intermeditate aggregation result cached, use
     // if it's there
-    if (redis.ready) {
+    if (redis && redis.ready) {
       redis.get(this.cacheName, (err, reply) => {
         if (err) {
           log(['error'], err);
@@ -69,31 +82,9 @@ export class AggregationEndpoint {
           }
         }
 
-        // If we're here, try a database query since Redis failed us, most likely
-        // because the key was missing
-        this.queryDatabase((err, results) => {
-          if (err) {
-            return sendResults(err);
-          }
-
-          // This data should be in the cache, so save it
-          redis.set(this.cacheName, JSON.stringify(results), (err, res) => {
-            if (err) {
-              log(['error'], err);
-            }
-
-            log(['info'], `Saved Redis cache for ${this.cacheName} after it was missing.`);
-          });
-
-          // Build specific result from aggregated data
-          results = this.filterResultsForQuery(results, query);
-
-          // Group the results to a nicer output
-          results = this.groupResults(results);
-
-          // Send back results
-          sendResults(null, results);
-        });
+        // If we're here, we tried to use Redis but it failed us, return an
+        // error so we don't overload the database with aggregation queries
+        return sendResults('No cached results available.');
       });
     } else {
       // Query database if we have no Redis connection or don't want to hit it

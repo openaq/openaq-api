@@ -4,6 +4,7 @@ var _ = require('lodash');
 var async = require('async');
 var webhookKey = process.env.WEBHOOK_KEY || '123';
 import { log } from '../services/logger';
+import redis from '../services/redis';
 
 /**
 * Handle incoming webhooks. Implements all protocols supported by /webhooks endpoint
@@ -12,7 +13,7 @@ import { log } from '../services/logger';
 * @param {Object} redis - Refernce to Redis object
 * @param {recordsCallback} cb - The callback that returns the records
 */
-module.exports.handleAction = function (payload, redis, cb) {
+module.exports.handleAction = function (payload, cb) {
   // Make sure we have an action and a good key
   if (payload.action === undefined || payload.key === undefined || payload.key !== webhookKey) {
     return cb({error: 'No action or invalid key provided.'});
@@ -20,7 +21,7 @@ module.exports.handleAction = function (payload, redis, cb) {
 
   switch (payload.action) {
     case 'DATABASE_UPDATED':
-      if (redis.ready) {
+      if (redis && redis.ready) {
         // Rebuild cache instead of waiting for first query
         runCachedQueries(redis);
       }
@@ -43,7 +44,7 @@ var runCachedQueries = function (redis) {
           log(['error'], err);
         }
         log(['info'], 'LOCATIONS cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     },
     'LATEST': function (done) {
@@ -52,16 +53,7 @@ var runCachedQueries = function (redis) {
           log(['info'], err);
         }
         log(['info'], 'LATEST cache query done');
-        done(null, JSON.stringify(results));
-      });
-    },
-    'CITIES': function (done) {
-      require('./cities').queryDatabase((err, results) => {
-        if (err) {
-          log(['error'], err);
-        }
-        log(['info'], 'CITIES cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     },
     'COUNTRIES': function (done) {
@@ -70,13 +62,14 @@ var runCachedQueries = function (redis) {
           log(['error'], err);
         }
         log(['info'], 'COUNTRIES cache query done');
-        done(null, JSON.stringify(results));
+        done(err, JSON.stringify(results));
       });
     }
   },
   function (err, results) {
     if (err) {
       log(['error'], err);
+      return log(['error'], 'New cache queries had errors, keeping current cache');
     }
 
     log(['info'], 'New cache queries done, dumping current cache.');
@@ -92,11 +85,19 @@ var runCachedQueries = function (redis) {
         multi.set(k, v);
       });
       multi.exec(function (err, replies) {
-        if (err) {
-          log(['error'], err);
-        }
         log(['debug'], replies);
         log(['info'], 'Cache completed rebuilding.');
+        if (err) {
+          return log(['error'], err);
+        }
+
+        // Send a Redis update to let all other instances know of last time
+        // updated
+        let message = {
+          type: 'DATABASE_UPDATED',
+          updatedAt: new Date().toUTCString()
+        };
+        redis.publish('SYSTEM_UPDATES', JSON.stringify(message));
       });
     });
   });

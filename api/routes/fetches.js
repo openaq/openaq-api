@@ -9,6 +9,9 @@ var m = require('../controllers/fetches.js');
  * @apiDescription Providing data about individual fetch operations that are
  * used to populate data in the platform.
  *
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [page=1] Paginate through results.
+ *
  * @apiSuccess {datetime}   timeStarted     Start time of fetch task in UTC
  * @apiSuccess {datetime}   timeEnded       End time of fetch task in UTC
  * @apiSuccess {number}     count           Count of new, inserted measurements
@@ -80,6 +83,9 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/fetches',
+    config: {
+      description: 'See history of data update attempts by the platform.'
+    },
     handler: function (request, reply) {
       var params = {};
 

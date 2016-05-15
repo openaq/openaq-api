@@ -1,27 +1,40 @@
 'use strict';
 
+// List all sub-level endpoints
+const rootRouteHandler = (request, reply) => {
+  var table = request.server.table(request.server.info.host)[0].table;
+  var endpoints = [];
+  table.forEach((route) => {
+    var path = route.public.path;
+    if (path.startsWith(request.path) && path !== request.path && path.indexOf('webhooks') === -1) {
+      endpoints.push({
+        'method': route.public.method.toUpperCase(),
+        'path': request.server.app.url + path,
+        'description': route.settings.description
+      });
+    }
+  });
+  return reply(endpoints);
+};
+
 module.exports = [
-  // Redirect to docs
   {
     method: 'GET',
     path: '/',
-    handler: function (request, reply) {
-      return reply.redirect('https://docs.openaq.org');
+    handler: (request, reply) => {
+      reply.redirect('/v1');
     }
   },
-  // Redirect to docs
   {
     method: 'GET',
     path: '/v1',
-    handler: function (request, reply) {
-      return reply.redirect('https://docs.openaq.org');
-    }
+    handler: rootRouteHandler
   },
   // Health endpoint
   {
     method: 'GET',
     path: '/ping',
-    handler: function (request, reply) {
+    handler: (request, reply) => {
       return reply('pong');
     }
   }

@@ -2,13 +2,11 @@
 'use strict';
 
 var expect = require('chai').expect;
-// let knexConfig = require('../knexfile');
 import { db } from '../api/services/db';
 let knexConfig = require('../knexfile');
 var Server = require('../api/services/server');
 var testPort = 2000;
 var request = require('request');
-// var measurements = require('./data/measurements');
 var utils = require('../lib/utils');
 
 describe('Testing endpoints', function () {
@@ -25,13 +23,57 @@ describe('Testing endpoints', function () {
         console.info('Seed data inserted, starting tests.');
         // Start API server once we have a DB connection
         self.server = new Server(testPort);
-        self.server.start('redis://foo', done);
+        self.server.start(done);
       });
     });
   });
 
   after(function (done) {
     self.server.hapi.stop(null, done);
+  });
+
+  describe('/', function () {
+    it('should redirect to latest version', function (done) {
+      var options = {
+        url: 'http://127.0.0.1:' + testPort + '/',
+        followRedirect: false
+      };
+
+      request(options, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(302);
+        expect(response.headers['location']).to.equal('/v1');
+        done();
+      });
+    });
+  });
+
+  describe('/v1', function () {
+    it('should list available endpoints', function (done) {
+      request(self.baseURL, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var endpointsList = [
+          'cities',
+          'countries',
+          'fetches',
+          'latest',
+          'locations',
+          'measurements',
+          'sources'
+        ];
+
+        var res = JSON.parse(body);
+        expect(res.results).to.be.instanceof(Array);
+        expect(res.results.length).to.equal(endpointsList.length);
+        done();
+      });
+    });
   });
 
   describe('/countries', function () {
@@ -46,6 +88,37 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'countries', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          page: 1,
+          limit: 100,
+          found: 6
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'countries?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
   });
 
   describe('/cities', function () {
@@ -57,6 +130,36 @@ describe('Testing endpoints', function () {
 
         var res = JSON.parse(body);
         expect(res.results.length).to.equal(39);
+        done();
+      });
+    });
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'cities', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          page: 1,
+          limit: 100,
+          found: 39
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+    it('has pages', function (done) {
+      request(self.baseURL + 'cities?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
         done();
       });
     });
@@ -94,6 +197,67 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('has pages', function (done) {
+      request(self.baseURL + 'measurements?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles bad coordinates param', function (done) {
+      request(self.baseURL + 'measurements?coordinates=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(100);
+        done();
+      });
+    });
+
+    it('handles bad radius param', function (done) {
+      request(self.baseURL + 'measurements?radius=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(100);
+        done();
+      });
+    });
+
+    it('handles a coordinates search', function (done) {
+      request(self.baseURL + 'measurements?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(3);
+        done();
+      });
+    });
+
+    it('handles a coordinates search without radius', function (done) {
+      request(self.baseURL + 'measurements?coordinates=51.83,20.78', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(3);
+        done();
+      });
+    });
+
     it('should return an object like a good API', function (done) {
       request(self.baseURL + 'measurements?limit=1', function (err, response, body) {
         if (err) {
@@ -123,6 +287,39 @@ describe('Testing endpoints', function () {
 
         var lines = body.split('\n');
         expect(lines.length).to.equal(3);
+        done();
+      });
+    });
+
+    it('should include attribution if not asked for with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
+    it('should include attribution if asked for alone with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv&include_fields=attribution', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
+        done();
+      });
+    });
+
+    it('should include attribution if not asked for but something else is with csv', function (done) {
+      request(self.baseURL + 'measurements?format=csv&include_fields=sourceName', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(body.indexOf('attribution')).to.not.equal(-1);
         done();
       });
     });
@@ -198,6 +395,56 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'locations?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search with no radius', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    // https://github.com/openaq/openaq-api/issues/232
+    it('handles has_geo searches', function (done) {
+      request(self.baseURL + 'locations?has_geo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(56);
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
@@ -232,6 +479,56 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'latest?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search', function (done) {
+      request(self.baseURL + 'latest?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search with no radius', function (done) {
+      request(self.baseURL + 'latest?coordinates=51.83,20.78', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    // https://github.com/openaq/openaq-api/issues/232
+    it('handles has_geo searches', function (done) {
+      request(self.baseURL + 'latest?has_geo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(56);
+        done();
+      });
+    });
   });
 
   describe('/fetches', function () {
@@ -260,7 +557,7 @@ describe('Testing endpoints', function () {
     });
 
     it('has a meta block', function (done) {
-      request(self.baseURL + 'latest', function (err, response, body) {
+      request(self.baseURL + 'fetches', function (err, response, body) {
         if (err) {
           console.error(err);
         }
@@ -269,11 +566,71 @@ describe('Testing endpoints', function () {
         var testMeta = { name: 'openaq-api',
           license: 'CC BY 4.0',
           website: 'https://docs.openaq.org/',
-          found: 57,
+          found: 3,
           page: 1,
           limit: 100
         };
         expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'fetches?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.deep.equal(1);
+        expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+  });
+
+  describe('/sources', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'sources', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(3);
+        expect(res.results[0]).to.be.an('object');
+        done();
+      });
+    });
+
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'sources', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/',
+          found: 3,
+          page: 1,
+          limit: 100
+        };
+        expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('has pages', function (done) {
+      request(self.baseURL + 'sources?limit=1', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.limit).to.equal(1);
+        expect(res.results.length).to.equal(1);
         done();
       });
     });
@@ -372,6 +729,7 @@ describe('Testing endpoints', function () {
             }
           ],
           nulls: [],
+          geo: {},
           notNulls: [ { column: 'coordinates' } ]
         };
 
@@ -387,6 +745,7 @@ describe('Testing endpoints', function () {
           'betweens': [],
           'notNulls': [],
           'nulls': [],
+          'geo': {},
           'operators': [
             {
               column: 'date_utc',
@@ -405,6 +764,7 @@ describe('Testing endpoints', function () {
           'betweens': [],
           'notNulls': [],
           'nulls': [],
+          'geo': {},
           'operators': [
             {
               column: 'date_utc',
@@ -418,12 +778,84 @@ describe('Testing endpoints', function () {
         done();
       });
 
+      it('should handle geo searches properly', (done) => {
+        const expected = {
+          'betweens': [],
+          'notNulls': [],
+          'nulls': [],
+          'geo': {},
+          'operators': [],
+          'payload': {}
+        };
+
+        //
+        // Good search
+        //
+        let payload = {
+          coordinates: '41.23,23.03',
+          radius: 10
+        };
+        let exp = Object.assign({}, expected);
+        exp.geo = {
+          coordinates: {latitude: 41.23, longitude: 23.03},
+          radius: 10
+        };
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad coordinates
+        //
+        payload = {
+          coordinates: '41.23',
+          radius: 10
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad coordinates
+        //
+        payload = {
+          coordinates: '41.23,',
+          radius: 10
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad coordinates
+        //
+        payload = {
+          coordinates: 'foo',
+          radius: 10
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+
+        //
+        // Bad radius
+        //
+        payload = {
+          coordinates: '41.23',
+          radius: 'foo'
+        };
+        exp = Object.assign({}, expected);
+
+        expect(utils.queryFromParameters(payload)).to.deep.equal(exp);
+        done();
+      });
+
       it('should convert ug/m3 to be nice', function (done) {
         var payload = {
           unit: 'ug/m3'
         };
         var expected = {
           'betweens': [],
+          'geo': {},
           'notNulls': [],
           'nulls': [],
           'operators': [],
@@ -450,6 +882,46 @@ describe('Testing endpoints', function () {
       it('should convert name properly', function (done) {
         expect(utils.prettyCountryName('US')).to.equal('United States');
         expect(utils.prettyCountryName('FOO')).to.equal(undefined);
+        done();
+      });
+    });
+
+    describe('isGeoPayloadOK', function () {
+      it('should correctly handle geo payloads', function (done) {
+        let payload = {
+          coordinates: '40.02,21.23',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,21.23'
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
+
+        payload = {
+          coordinates: '40.02',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
+
+        payload = {
+          coordinates: 'foo',
+          radius: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
+
+        payload = {
+          coordinates: '40.02,21.23',
+          radius: 'foo'
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
         done();
       });
     });
