@@ -1,4 +1,4 @@
-# OpenAQ Platform API 
+# OpenAQ Platform API
 [![Build Status](https://travis-ci.org/openaq/openaq-api.svg?branch=master)](https://travis-ci.org/openaq/openaq-api)
 
 ## Overview
@@ -25,13 +25,14 @@ For production deployment, you will need to have certain environment variables s
 
 | Name | Description | Default |
 |---|---|---|
-| API_URL | Base API URL after deployment | http://<hostname>:3004 | 
+| API_URL | Base API URL after deployment | http://<hostname>:3004 |
 | NEW_RELIC_LICENSE_KEY | New Relic API key for system monitoring | not set |
 | WEBHOOK_KEY | Secret key to interact with openaq-api | '123' |
 | USE_REDIS | Use Redis for caching? | not set (so not used) |
 | REDIS_URL | Redis instance URL | redis://localhost:6379 |
 | KEEN_PROJECT_ID | Keen project ID for analytics. | not set |
 | KEEN_WRITE_KEY | Keen write key for analytics. | not set |
+| DO_NOT_UPDATE_CACHE | Ignore updating cache, but still use older cached results. | not set |
 
 ## Tests
 To confirm that everything is working as expected, you can run the tests with
@@ -45,6 +46,6 @@ There is a Dockerfile included that will turn the project into a Docker containe
 There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).
 
 ## Projects using the API
-- openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data. 
+- openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data.
 - py-openaq [code](https://github.com/dhhagan/py-openaq) - A Python wrapper for the API
-- Ropenaq [code](https://github.com/masalmon/Ropenaq) - An R package for the API
+- ropenaq [code](https://github.com/ropenscilabs/ropenaq) - An R package for the API
