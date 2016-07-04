@@ -35,6 +35,12 @@ module.exports.handleAction = function (payload, cb) {
 };
 
 var runCachedQueries = function (redis) {
+  // Short circuit this based on env var in case we're having problems with generating the
+  // aggregations. This will just keep using the old cache.
+  if (process.env.DO_NOT_UPDATE_CACHE) {
+    return log(['info'], 'Database updated, but not running any cache queries for now.');
+  }
+
   // Run the queries to build up the cache.
   log(['info'], 'Database updated, running new cache queries.');
   async.parallel({
