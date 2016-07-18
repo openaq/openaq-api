@@ -20,8 +20,8 @@ import { log } from '../services/logger';
  * @apiParam {number} [radius=2500] Radius (in meters) used to get measurements within a certain area, must be used with `coordinates`.
  * @apiParam {number} [value_from] Show results above value threshold, useful in combination with `parameter`.
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
- * @apiParam {string} [date_from] Show results after a certain date. (ex. `2015-12-20`)
- * @apiParam {string} [date_to] Show results before a certain date. (ex. `2015-12-20`)
+ * @apiParam {string} [date_from] Show results after a certain date. This acts on the `utc` timestamp of each measurement. (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
+ * @apiParam {string} [date_to] Show results before a certain date. This acts on the `utc` timestamp of each measurement. (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
  * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
  * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
  * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
