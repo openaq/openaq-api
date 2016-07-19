@@ -26,7 +26,7 @@ export class AggregationEndpoint {
   }
 
   /**
-   * Query the database and recieve back somewhat aggregated results
+   * Query the database and receive back somewhat aggregated results
    *
    * @params {function} cb Callback of form (err, results)
    */
@@ -43,7 +43,7 @@ export class AggregationEndpoint {
   /**
   * Runs the query.
   *
-  * @param {Object} query - Payload contains query paramters and their values
+  * @param {Object} query - Payload contains query parameters and their values
   * @param {integer} page - Page number
   * @param {integer} limit - Items per page
   * @param {recordsCallback} cb - The callback that returns the records
@@ -58,7 +58,7 @@ export class AggregationEndpoint {
       cb(null, paged, data.length);
     };
 
-    // Check to see if we have the intermeditate aggregation result cached, use
+    // Check to see if we have the intermediate aggregation result cached, use
     // if it's there
     if (redis && redis.ready) {
       redis.get(this.cacheName, (err, reply) => {

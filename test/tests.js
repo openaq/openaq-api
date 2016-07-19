@@ -409,6 +409,18 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('handles multiple values', function (done) {
+      request(self.baseURL + 'locations?country=NL,PL', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(12);
+        done();
+      });
+    });
+
     it('handles a coordinates search', function (done) {
       request(self.baseURL + 'locations?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
         if (err) {
@@ -901,12 +913,6 @@ describe('Testing endpoints', function () {
 
         payload = {
           coordinates: '40.02,',
-          radius: 10
-        };
-        expect(utils.isGeoPayloadOK(payload)).to.be.false;
-
-        payload = {
-          coordinates: '40.02',
           radius: 10
         };
         expect(utils.isGeoPayloadOK(payload)).to.be.false;

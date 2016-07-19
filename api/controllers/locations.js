@@ -1,6 +1,6 @@
 'use strict';
 
-import { filter, has, groupBy, forEach, unique } from 'lodash';
+import { filter, has, groupBy, forEach, unique, includes } from 'lodash';
 import distance from 'turf-distance';
 import point from 'turf-point';
 
@@ -76,34 +76,22 @@ function handleDataMapping (results) {
  */
 function filterResultsForQuery (results, query) {
   if (has(query, 'city')) {
-    results = filter(results, (r) => {
-      return r.city === query.city;
-    });
+    results = filter(results, (r) => includes(query.city, r.city));
   }
   if (has(query, 'country')) {
-    results = filter(results, (r) => {
-      return r.country === query.country;
-    });
+    results = filter(results, (r) => includes(query.country, r.country));
   }
   if (has(query, 'location')) {
-    results = filter(results, (r) => {
-      return r.location === query.location;
-    });
+    results = filter(results, (r) => includes(query.location, r.location));
   }
   if (has(query, 'parameter')) {
-    results = filter(results, (r) => {
-      return r.parameter === query.parameter;
-    });
+    results = filter(results, (r) => includes(query.parameter, r.parameter));
   }
   if (has(query, 'has_geo')) {
     if (query.has_geo === false || query.has_geo === 'false') {
-      results = filter(results, (r) => {
-        return !r.coordinates;
-      });
+      results = filter(results, (r) => !r.coordinates);
     } else {
-      results = filter(results, (r) => {
-        return !!r.coordinates;
-      });
+      results = filter(results, (r) => !!r.coordinates);
     }
   }
   if (has(query, 'coordinates')) {
@@ -118,7 +106,6 @@ function filterResultsForQuery (results, query) {
         if (!r.coordinates) {
           return false;
         }
-
         const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
         const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
         const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
@@ -126,7 +113,6 @@ function filterResultsForQuery (results, query) {
       });
     }
   }
-
   return results;
 }
 
