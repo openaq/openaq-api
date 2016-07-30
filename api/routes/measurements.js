@@ -97,8 +97,8 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 1000
-      request.limit = Math.min(request.limit, 1000);
+      // Set max limit based on env var or default to 10000
+      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
 
       // Check if this is supposed to be formatted as csv
       var formatForCSV = false;
