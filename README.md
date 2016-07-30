@@ -33,6 +33,7 @@ For production deployment, you will need to have certain environment variables s
 | KEEN_PROJECT_ID | Keen project ID for analytics. | not set |
 | KEEN_WRITE_KEY | Keen write key for analytics. | not set |
 | DO_NOT_UPDATE_CACHE | Ignore updating cache, but still use older cached results. | not set |
+| REQUEST_LIMIT | Max number of items that can be requested at one time. | 10000 |
 
 ## Tests
 To confirm that everything is working as expected, you can run the tests with
