@@ -65,6 +65,7 @@ describe('Testing endpoints', function () {
           'latest',
           'locations',
           'measurements',
+          'parameters',
           'sources'
         ];
 
@@ -116,6 +117,35 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.meta.limit).to.deep.equal(1);
         expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+  });
+
+  describe('/parameters', function () {
+    it('should return properly', function (done) {
+      request(self.baseURL + 'parameters', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.length).to.equal(7);
+        done();
+      });
+    });
+    it('has a meta block', function (done) {
+      request(self.baseURL + 'parameters', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        var testMeta = { name: 'openaq-api',
+          license: 'CC BY 4.0',
+          website: 'https://docs.openaq.org/'
+        };
+        expect(res.meta).to.deep.equal(testMeta);
         done();
       });
     });

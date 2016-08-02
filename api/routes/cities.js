@@ -10,7 +10,7 @@ import { log } from '../services/logger';
  * @apiDescription Provides a simple listing of cities within the platform.
  *
  * @apiParam {string} [country] Limit results by a certain country.
- * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *
  * @apiSuccess {string}   city        Name of the city
@@ -61,8 +61,8 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 1000
-      request.limit = Math.min(request.limit, 1000);
+      // Set max limit based on env var or default to 10000
+      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
 
       // Handle it
       m.query(params, request.page, request.limit, function (err, records, count) {

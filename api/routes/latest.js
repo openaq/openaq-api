@@ -16,7 +16,7 @@ import { log } from '../services/logger';
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get measurements within a certain area. (ex. `coordinates=40.23,34.17`)
  * @apiParam {number} [radius=2500] Radius (in meters) used to get measurements within a certain area, must be used with `coordinates`.
- * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *
  * @apiSuccess {string}   location      Location identifier.
@@ -80,8 +80,8 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 1000
-      request.limit = Math.min(request.limit, 1000);
+      // Set max limit based on env var or default to 10000
+      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
 
       // Handle it
       m.query(params, request.page, request.limit, function (err, records, count) {
