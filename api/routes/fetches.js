@@ -9,7 +9,7 @@ var m = require('../controllers/fetches.js');
  * @apiDescription Providing data about individual fetch operations that are
  * used to populate data in the platform.
  *
- * @apiParam {number} [limit=100] Change the number of results returned, max is 1000.
+ * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *
  * @apiSuccess {datetime}   timeStarted     Start time of fetch task in UTC
@@ -94,8 +94,8 @@ module.exports = [
         params = request.query;
       }
 
-      // Set max limit to 1000
-      request.limit = Math.min(request.limit, 1000);
+      // Set max limit based on env var or default to 10000
+      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
 
       // Handle it
       m.query(params, request.page, request.limit, function (err, records, count) {
