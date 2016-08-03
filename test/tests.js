@@ -439,6 +439,54 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('handles multiple countries', function (done) {
+      request(self.baseURL + 'locations?country[]=NL&country[]=PL', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(12);
+        done();
+      });
+    });
+
+    it('handles multiple parameters', function (done) {
+      request(self.baseURL + 'locations?parameter[]=co&parameter[]=pm25', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(49);
+        done();
+      });
+    });
+
+    it('handles multiple cities', function (done) {
+      request(self.baseURL + 'locations?city[]=Siedlce&city[]=Kolkata', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(2);
+        done();
+      });
+    });
+
+    it('handles multiple locations', function (done) {
+      request(self.baseURL + 'locations?location[]=Reja&location[]=Tochtermana', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(2);
+        done();
+      });
+    });
+
     it('handles a coordinates search', function (done) {
       request(self.baseURL + 'locations?coordinates=51.83,20.78&radius=1000', function (err, response, body) {
         if (err) {
@@ -931,12 +979,6 @@ describe('Testing endpoints', function () {
 
         payload = {
           coordinates: '40.02,',
-          radius: 10
-        };
-        expect(utils.isGeoPayloadOK(payload)).to.be.false;
-
-        payload = {
-          coordinates: '40.02',
           radius: 10
         };
         expect(utils.isGeoPayloadOK(payload)).to.be.false;
