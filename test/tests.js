@@ -439,14 +439,50 @@ describe('Testing endpoints', function () {
       });
     });
 
-    it('handles multiple values', function (done) {
-      request(self.baseURL + 'locations?country=NL,PL', function (err, response, body) {
+    it('handles multiple countries', function (done) {
+      request(self.baseURL + 'locations?country[]=NL&country[]=PL', function (err, response, body) {
         if (err) {
           console.error(err);
         }
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(12);
+        done();
+      });
+    });
+
+    it('handles multiple parameters', function (done) {
+      request(self.baseURL + 'locations?parameter[]=co&parameter[]=pm25', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(49);
+        done();
+      });
+    });
+
+    it('handles multiple cities', function (done) {
+      request(self.baseURL + 'locations?city[]=Siedlce&city[]=Kolkata', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(2);
+        done();
+      });
+    });
+
+    it('handles multiple locations', function (done) {
+      request(self.baseURL + 'locations?location[]=Reja&location[]=Tochtermana', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(2);
         done();
       });
     });
