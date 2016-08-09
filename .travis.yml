@@ -3,7 +3,6 @@ language: node_js
 node_js:
 - '4.1'
 env:
-  DOCKER_COMPOSE_VERSION: 1.4.2
   global:
   - STAGING_BRANCH=develop
   - PRODUCTION_BRANCH=master
@@ -14,13 +13,12 @@ cache:
 services:
 - docker
 before_install:
-- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-- chmod +x docker-compose
-- sudo mv docker-compose /usr/local/bin
 - chmod +x ./.build_scripts/build.sh
 - chmod +x ./.build_scripts/deploy.sh
 - touch local.env
-install: npm install apidoc
+install:
+- npm install apidoc
+- sudo pip install docker-compose
 script: npm run docker-test
 after_success:
 - ".build_scripts/build.sh"
