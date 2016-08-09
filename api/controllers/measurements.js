@@ -3,7 +3,50 @@
 var _ = require('lodash');
 
 import { db } from '../services/db';
+import redis from '../services/redis';
 var utils = require('../../lib/utils');
+import { log } from '../services/logger';
+
+/**
+* Query Measurements just for count.
+*
+* @param {Object} query - Payload contains query paramters and their values
+* @param {Boolean} skipRedis - Should we check Redis for cached count value? Useful for forcing query from DB.
+* @param {countCallback} cb - The callback that returns the count
+*/
+module.exports.queryCount = function (query, skipRedis = false, cb) {
+  const queryDBCount = function (query, cb) {
+    let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(query);
+
+    let countQuery = db
+                      .count('location')
+                      .from('measurements');
+    countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls, geo);
+    countQuery.then((count) => {
+      return cb(null, Number(count[0].count)); // PostgreSQL returns count as string
+    })
+    .catch((err) => {
+      return cb(err);
+    });
+  };
+
+  // Check to see if we should use Redis, fall back to DB query if there was an issue
+  // Right now we only want to use Redis for total measurements, but this could be changed in the future for certain query combinations
+  query = _.omit(query, ['sort', 'limit', 'page', 'order_by', 'include_fields']); // These items don't change returned count
+  if (skipRedis === false && redis && redis.ready && _.isEqual(query, {})) {
+    redis.get('COUNT', (err, count) => {
+      if (err || count === null || count === undefined) {
+        log(['error'], 'Failure to use cached records count.');
+        return queryDBCount(query, cb);
+      }
+
+      // Got count from Redis
+      return cb(null, Number(count));
+    });
+  } else {
+    queryDBCount(query, cb);
+  }
+};
 
 /**
 * Query Measurements. Implements all protocols supported by /measurements endpoint
@@ -68,15 +111,11 @@ module.exports.query = function (query, page, limit, cb) {
   //
   // Run the queries, first do a count for paging, then get results
   //
-  let countQuery = db
-                    .count('location')
-                    .from('measurements');
-  countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls, geo);
+  module.exports.queryCount(query, false, (err, count) => {
+    if (err) {
+      return cb(err);
+    }
 
-  countQuery.then((count) => {
-    return Number(count[0].count); // PostgreSQL returns count as string
-  })
-  .then((count) => {
     // Base query
     let resultsQuery = db
                         .select('data')
@@ -95,11 +134,8 @@ module.exports.query = function (query, page, limit, cb) {
       });
       return cb(null, results, count);
     })
-      .catch((err) => {
-        return cb(err);
-      });
-  })
-  .catch((err) => {
-    return cb(err);
+    .catch((err) => {
+      return cb(err);
+    });
   });
 };
