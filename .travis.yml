@@ -16,7 +16,9 @@ before_install:
 - chmod +x ./.build_scripts/build.sh
 - chmod +x ./.build_scripts/deploy.sh
 - touch local.env
-install: npm install apidoc
+install:
+- npm install apidoc
+- sudo pip install docker-compose
 script: npm run docker-test
 after_success:
 - ".build_scripts/build.sh"

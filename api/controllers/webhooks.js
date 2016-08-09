@@ -70,6 +70,16 @@ var runCachedQueries = function (redis) {
         log(['info'], 'COUNTRIES cache query done');
         done(err, JSON.stringify(results));
       });
+    },
+    'COUNT': function (done) {
+      const query = {};
+      require('./measurements').queryCount(query, true, (err, results) => {
+        if (err) {
+          log(['error'], err);
+        }
+        log(['info'], `${JSON.stringify(query)} COUNT cache query done`);
+        done(err, JSON.stringify(results));
+      });
     }
   },
   function (err, results) {
