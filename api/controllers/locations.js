@@ -1,6 +1,6 @@
 'use strict';
 
-import { filter, has, groupBy, forEach, unique, includes } from 'lodash';
+import { filter, has, groupBy, forEach, unique, isArray } from 'lodash';
 import distance from 'turf-distance';
 import point from 'turf-point';
 
@@ -75,17 +75,31 @@ function handleDataMapping (results) {
  * @todo this could be better optimized for sure
  */
 function filterResultsForQuery (results, query) {
+  // A comparison function to check for matches for array and strings, a bit different
+  // than lodash's includes() since we look for exact string match
+  const compare = function (collection, value) {
+    if (isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        if (collection[i] === value) {
+          return true;
+        }
+      }
+      return false;
+    } else {
+      return collection === value;
+    }
+  };
   if (has(query, 'city')) {
-    results = filter(results, (r) => includes(query.city, r.city));
+    results = filter(results, (r) => compare(query.city, r.city));
   }
   if (has(query, 'country')) {
-    results = filter(results, (r) => includes(query.country, r.country));
+    results = filter(results, (r) => compare(query.country, r.country));
   }
   if (has(query, 'location')) {
-    results = filter(results, (r) => includes(query.location, r.location));
+    results = filter(results, (r) => compare(query.location, r.location));
   }
   if (has(query, 'parameter')) {
-    results = filter(results, (r) => includes(query.parameter, r.parameter));
+    results = filter(results, (r) => compare(query.parameter, r.parameter));
   }
   if (has(query, 'has_geo')) {
     if (query.has_geo === false || query.has_geo === 'false') {
