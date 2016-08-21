@@ -559,6 +559,19 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    // https://github.com/openaq/openaq-api/issues/278
+    it('returns correct number for similar locations', function (done) {
+      request(self.baseURL + 'locations?location=Coyhaique%20II', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
