@@ -14,7 +14,7 @@ import { log } from '../services/logger';
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [location] Limit results by a certain location.
- * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to only a certain parameter.
+ * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to certain one or more parameters (ex. `parameter=pm25` or `parameter[]=co&parameter[]=pm25`)
  * @apiParam {boolean=true, false} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get measurements within a certain area. (ex. `coordinates=40.23,34.17`)
  * @apiParam {number} [radius=2500] Radius (in meters) used to get measurements within a certain area, must be used with `coordinates`.
