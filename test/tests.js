@@ -391,6 +391,42 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('should respect parameter query parameter', function (done) {
+      request(self.baseURL + 'measurements?parameter=co', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.found).to.equal(56);
+        done();
+      });
+    });
+
+    it('should respect parameter as array query parameter', function (done) {
+      request(self.baseURL + 'measurements?parameter[]=co&parameter[]=pm25', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.found).to.equal(71);
+        done();
+      });
+    });
+
+    it('should respect mix of query parameters', function (done) {
+      request(self.baseURL + 'measurements?parameter[]=co&country=CL&parameter[]=so2&parameter[]=pm25', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.meta.found).to.equal(32);
+        done();
+      });
+    });
   });
 
   describe('/locations', function () {
@@ -520,6 +556,19 @@ describe('Testing endpoints', function () {
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(56);
+        done();
+      });
+    });
+
+    // https://github.com/openaq/openaq-api/issues/278
+    it('returns correct number for similar locations', function (done) {
+      request(self.baseURL + 'locations?location=Coyhaique%20II', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(1);
         done();
       });
     });

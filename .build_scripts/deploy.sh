@@ -17,6 +17,7 @@ if [[ $TRAVIS_BRANCH == ${PRODUCTION_BRANCH} ]]; then
   export ECS_CLUSTER="default"
   export ENV_FILE="production.env"
   export DESIRED_INSTANCE_COUNT=2
+  export MINIMUM_HEALTHY_PERCENT=50
 fi
 
 echo "Installing aws cli"
