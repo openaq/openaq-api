@@ -98,9 +98,6 @@ function filterResultsForQuery (results, query) {
   if (has(query, 'location')) {
     results = filter(results, (r) => compare(query.location, r.location));
   }
-  if (has(query, 'parameter')) {
-    results = filter(results, (r) => compare(query.parameter, r.parameter));
-  }
   if (has(query, 'has_geo')) {
     if (query.has_geo === false || query.has_geo === 'false') {
       results = filter(results, (r) => !r.coordinates);
@@ -127,6 +124,13 @@ function filterResultsForQuery (results, query) {
       });
     }
   }
+  if (has(query, 'parameter')) {
+    // We need to capture all parameters for each location when it has one of the matched
+    // parameters, so some logic to do that https://github.com/openaq/openaq-api/issues/266
+    const okLocations = filter(results, (r) => compare(query.parameter, r.parameter)).map((r) => r.location);
+    results = filter(results, (r) => compare(okLocations, r.location));
+  }
+
   return results;
 }
 

@@ -572,6 +572,19 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    // https://github.com/openaq/openaq-api/issues/278
+    it('returns all available parameters when including a parameter in the query', function (done) {
+      request(self.baseURL + 'locations?location=ENAP Price&parameter=co', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.results[0].parameters.length).to.equal(3);
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
