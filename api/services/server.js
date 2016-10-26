@@ -126,8 +126,8 @@ Server.prototype.start = function (cb) {
   var KeenPlugin = {
     register: function (server, options, next) {
       server.ext('onPreHandler', function (request, reply) {
-        // Pass along route view, exclude ping
-        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico' && request.route.path.indexOf('webhooks') === -1) {
+        // Pass along route view, exclude ping, webhooks and status
+        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico' && request.route.path.indexOf('webhooks') === -1 && request.route.path !== '/status') {
           var components = request.route.path.split('/');
           var rEvent = {
             endpoint: components[2],
