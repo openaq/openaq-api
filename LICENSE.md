@@ -1,4 +1,4 @@
-**The data** is licensed under the [Creative Commons Attribution 4.0 Generic License](https://creativecommons.org/licenses/by/4.0/). It is attributed to the OpenAQ community. For more information about the data sources of this project, please check [openaq.org](https://openaq.org/#/sources).
+**The data** is licensed under the [Creative Commons Attribution 4.0 Generic License](https://creativecommons.org/licenses/by/4.0/). It is attributed to the OpenAQ community. For more information about the data sources of this project, please check [openaq.org](https://openaq.org/).
 
 **Software** is licensed as below.
 
