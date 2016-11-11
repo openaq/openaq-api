@@ -151,6 +151,52 @@ describe('Testing endpoints', function () {
     });
   });
 
+  describe('/upload', function () {
+    it('should handle missing token', function (done) {
+      request(self.baseURL + 'upload?filename=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(400);
+        done();
+      });
+    });
+
+    it('should handle missing filename', function (done) {
+      request(self.baseURL + 'upload?token=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(400);
+        done();
+      });
+    });
+
+    it('should handle missing filename and token', function (done) {
+      request(self.baseURL + 'upload', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(400);
+        done();
+      });
+    });
+
+    it('should handle invalid token', function (done) {
+      request(self.baseURL + 'upload?token=bar&filename=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(401);
+        done();
+      });
+    });
+  });
+
   describe('/cities', function () {
     it('should return properly', function (done) {
       request(self.baseURL + 'cities', function (err, response, body) {
