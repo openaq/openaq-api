@@ -714,6 +714,23 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    // https://github.com/openaq/openaq.org/issues/137
+    it('returns source name for a measurement', function (done) {
+      request(self.baseURL + 'latest', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        body.results.forEach((r) => {
+          r.measurements.forEach((m) => {
+            expect(m.sourceName).to.exist;
+          });
+        });
+        done();
+      });
+    });
   });
 
   describe('/fetches', function () {
