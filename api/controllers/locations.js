@@ -1,6 +1,6 @@
 'use strict';
 
-import { filter, has, groupBy, forEach, uniq, isArray, uniqBy } from 'lodash';
+import { filter, has, groupBy, forEach, uniq, isArray, uniqBy, sortBy } from 'lodash';
 import distance from 'turf-distance';
 import point from 'turf-point';
 
@@ -111,20 +111,45 @@ function filterResultsForQuery (results, query) {
   if (has(query, 'coordinates')) {
     // Make sure geo payload is ok first
     if (isGeoPayloadOK(query)) {
-      // Look for custom radius
-      let radius = defaultGeoRadius;
-      if (has(query, 'radius')) {
-        radius = query.radius;
-      }
-      results = filter(results, (r, i) => {
-        if (!r.coordinates) {
-          return false;
+      // Branch here depending on whether it's a radius or nearest search,
+      // let nearest win if it's present
+      if (has(query, 'nearest')) {
+        // Sort results by distance from coordinates, first filter out measurements
+        // without coordinates
+        results = filter(results, 'coordinates');
+        results = sortBy(results, (r) => {
+          const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
+          const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
+          const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
+          r.distance = d;
+          return d;
+        });
+
+        // A little magic here to make sure when things are grouped by location,
+        // we have the desired number of locations
+        let grouped = [];
+        results.forEach((r) => {
+          if (uniqBy(grouped, 'location').length < query.nearest) {
+            grouped.push(r);
+          }
+        });
+        results = grouped;
+      } else {
+        // Look for custom radius
+        let radius = defaultGeoRadius;
+        if (has(query, 'radius')) {
+          radius = query.radius;
         }
-        const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
-        const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
-        const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
-        return d <= radius;
-      });
+        results = filter(results, (r, i) => {
+          if (!r.coordinates) {
+            return false;
+          }
+          const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
+          const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
+          const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
+          return d <= radius;
+        });
+      }
     }
   }
   return results;
@@ -166,6 +191,11 @@ function groupResults (results) {
       firstUpdated: firstUpdated,
       parameters: uniq(parameters)
     };
+
+    // If we have distance, add it to be nice
+    if (m[0].distance) {
+      f.distance = Number(m[0].distance.toFixed(0));
+    }
 
     // For sourceName, use the latest measurement to get the source
     // https://github.com/openaq/openaq.org/issues/137

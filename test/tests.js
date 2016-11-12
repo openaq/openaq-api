@@ -605,6 +605,30 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('handles a coordinates search with nearest', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78&nearest=10', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(10);
+        done();
+      });
+    });
+
+    it('handles a coordinates search with bad nearest', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78&nearest=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(57);
+        done();
+      });
+    });
+
     // https://github.com/openaq/openaq-api/issues/232
     it('handles has_geo searches', function (done) {
       request(self.baseURL + 'locations?has_geo', function (err, response, body) {
@@ -1095,6 +1119,18 @@ describe('Testing endpoints', function () {
           radius: 10
         };
         expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,21.23',
+          nearest: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,21.23',
+          nearest: 'foo'
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
 
         payload = {
           coordinates: '40.02,21.23'
