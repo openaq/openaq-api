@@ -193,6 +193,33 @@
 "sourceName": "Poland"
 },
 {
+"location": "Tochtermana",
+"parameter": "co",
+"date": {
+"utc": "2016-01-17T15:00:00.000Z",
+"local": "2016-01-17T16:00:00+01:00"
+},
+"value": 1082,
+"unit": "µg/m³",
+"coordinates": {
+"latitude": 51.39909556,
+"longitude": 21.13916667
+},
+"country": "PL",
+"city": "Radom",
+"attribution": [
+{
+"name": "WIOS",
+"url": "http://sojp.wios.warszawa.pl/"
+}
+],
+"averagingPeriod": {
+"value": 1,
+"unit": "hours"
+},
+"sourceName": "Poland2"
+},
+{
 "location": "IGFPAN",
 "parameter": "co",
 "date": {
@@ -207,33 +234,6 @@
 },
 "country": "PL",
 "city": "Belsk",
-"attribution": [
-{
-"name": "WIOS",
-"url": "http://sojp.wios.warszawa.pl/"
-}
-],
-"averagingPeriod": {
-"value": 1,
-"unit": "hours"
-},
-"sourceName": "Poland"
-},
-{
-"location": "Targówek",
-"parameter": "co",
-"date": {
-"utc": "2016-01-18T15:00:00.000Z",
-"local": "2016-01-18T16:00:00+01:00"
-},
-"value": 881,
-"unit": "µg/m³",
-"coordinates": {
-"latitude": 52.29085889,
-"longitude": 21.03916667
-},
-"country": "PL",
-"city": "Warszawa",
 "attribution": [
 {
 "name": "WIOS",

@@ -34,6 +34,11 @@ For production deployment, you will need to have certain environment variables s
 | KEEN_WRITE_KEY | Keen write key for analytics. | not set |
 | DO_NOT_UPDATE_CACHE | Ignore updating cache, but still use older cached results. | not set |
 | REQUEST_LIMIT | Max number of items that can be requested at one time. | 10000 |
+| UPLOADS_ENCRYPTION_KEY | Key used to encrypt upload token for /upload in database. | 'not_secure' |
+| S3_UPLOAD_BUCKET | The bucket to upload external files to for /upload. | not set |
+
+## Uploads & Generating S3 presigned URLs
+Via an undocumented `/upload` endpoint, there is the ability to generate presigned S3 PUT URLs so that external clients can authenticate using tokens stored in the database and upload data to be ingested by `openaq-fetch`. There is a small utility file called `encrypt.js` that you can use like `UPLOADS_ENCRYPTION_KEY=foo node index.js your_token_here` to generate encrytped tokens to be manually stored in database.
 
 ## Tests
 To confirm that everything is working as expected, you can run the tests with

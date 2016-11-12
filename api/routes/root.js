@@ -6,7 +6,7 @@ const rootRouteHandler = (request, reply) => {
   var endpoints = [];
   table.forEach((route) => {
     var path = route.public.path;
-    if (path.startsWith(request.path) && path !== request.path && path.indexOf('webhooks') === -1) {
+    if (path.startsWith(request.path) && path !== request.path && path.indexOf('webhooks') === -1 && path.indexOf('upload') === -1) {
       endpoints.push({
         'method': route.public.method.toUpperCase(),
         'path': request.server.app.url + path,

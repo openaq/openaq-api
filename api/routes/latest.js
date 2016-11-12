@@ -35,19 +35,22 @@ import { log } from '../services/logger';
  *              "parameter": "so2",
  *              "value": "7.8",
  *              "lastUpdated": "2015-07-24T11:30:00.000Z",
- *               "unit": "µg/m3"
+ *              "unit": "µg/m3",
+ *              "sourceName": "Punjabi Bagh"
  *             },
  *             {
  *               "parameter": "co",
  *               "value": 1.3,
  *               "lastUpdated": "2015-08-18T23:30:00.000Z",
- *               "unit": "mg/m3"
+ *               "unit": "mg/m3",
+ *               "sourceName": "CPCB"
  *             },
  *             {
  *               "parameter": "pm25",
  *               "value": 79,
  *               "lastUpdated": "2015-10-02T21:45:00.000Z",
- *               "unit": "µg/m3"
+ *               "unit": "µg/m3",
+ *               "sourceName": "CPCB"
  *             }
  *           ]
  *             ...

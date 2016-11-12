@@ -52,7 +52,8 @@ function handleDataMapping (results) {
       parameter: r.parameter,
       value: r.value,
       unit: r.unit,
-      date_utc: r.date_utc
+      date_utc: r.date_utc,
+      source_name: r.source_name
     };
 
     if (r.data.coordinates) {
@@ -144,7 +145,8 @@ function groupResults (results) {
         parameter: m.parameter,
         value: m.value,
         lastUpdated: m.date_utc,
-        unit: m.unit
+        unit: m.unit,
+        sourceName: m.source_name
       };
     });
     let f = {
