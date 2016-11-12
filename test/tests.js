@@ -533,6 +533,18 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('handles multiple sources', function (done) {
+      request(self.baseURL + 'locations?location=Tochtermana', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.results[0].sourceNames.length).to.equal(2);
+        done();
+      });
+    });
+
     it('handles multiple parameters', function (done) {
       request(self.baseURL + 'locations?parameter[]=co&parameter[]=pm25', function (err, response, body) {
         if (err) {

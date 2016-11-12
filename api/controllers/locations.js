@@ -1,6 +1,6 @@
 'use strict';
 
-import { filter, has, groupBy, forEach, unique, isArray } from 'lodash';
+import { filter, has, groupBy, forEach, uniq, isArray, uniqBy } from 'lodash';
 import distance from 'turf-distance';
 import point from 'turf-point';
 
@@ -10,7 +10,7 @@ import { isGeoPayloadOK } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 
 // Generate intermediate aggregated result
-let resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) last_updated, min(date_utc) first_updated, count(date_utc), location, city, parameter from measurements group by location, city, parameter) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = last_updated'));
+let resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) last_updated, min(date_utc) first_updated, count(date_utc), location, city, parameter, source_name from measurements group by location, city, parameter, source_name) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = last_updated'));
 
 // Create the endpoint from the class
 let locations = new AggregationEndpoint('LOCATIONS', resultsQuery, handleDataMapping, filterResultsForQuery, groupResults);
@@ -155,16 +155,25 @@ function groupResults (results) {
       // Sum up value counts
       count += Number(item.count);
     });
+
     let f = {
       location: m[0].location,
       city: m[0].city,
       country: m[0].country,
-      sourceName: m[0].source_name,
       count: count,
+      sourceNames: uniqBy(m, 'source_name').map((u) => { return u.source_name; }),
       lastUpdated: lastUpdated,
       firstUpdated: firstUpdated,
-      parameters: unique(parameters)
+      parameters: uniq(parameters)
     };
+
+    // For sourceName, use the latest measurement to get the source
+    // https://github.com/openaq/openaq.org/issues/137
+    m.forEach((item) => {
+      if (item.last_updated === lastUpdated) {
+        f.sourceName = item.source_name;
+      }
+    });
 
     // If we have coordinates, add them
     if (m[0].coordinates) {
