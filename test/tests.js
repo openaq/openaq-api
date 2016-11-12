@@ -533,6 +533,18 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('handles multiple sources', function (done) {
+      request(self.baseURL + 'locations?location=Tochtermana', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.results[0].sourceNames.length).to.equal(2);
+        done();
+      });
+    });
+
     it('handles multiple parameters', function (done) {
       request(self.baseURL + 'locations?parameter[]=co&parameter[]=pm25', function (err, response, body) {
         if (err) {
@@ -589,6 +601,30 @@ describe('Testing endpoints', function () {
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(1);
+        done();
+      });
+    });
+
+    it('handles a coordinates search with nearest', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78&nearest=10', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(10);
+        done();
+      });
+    });
+
+    it('handles a coordinates search with bad nearest', function (done) {
+      request(self.baseURL + 'locations?coordinates=51.83,20.78&nearest=foo', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        expect(body.meta.found).to.equal(57);
         done();
       });
     });
@@ -699,6 +735,23 @@ describe('Testing endpoints', function () {
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(56);
+        done();
+      });
+    });
+
+    // https://github.com/openaq/openaq.org/issues/137
+    it('returns source name for a measurement', function (done) {
+      request(self.baseURL + 'latest', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        body.results.forEach((r) => {
+          r.measurements.forEach((m) => {
+            expect(m.sourceName).to.exist;
+          });
+        });
         done();
       });
     });
@@ -1066,6 +1119,18 @@ describe('Testing endpoints', function () {
           radius: 10
         };
         expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,21.23',
+          nearest: 10
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.true;
+
+        payload = {
+          coordinates: '40.02,21.23',
+          nearest: 'foo'
+        };
+        expect(utils.isGeoPayloadOK(payload)).to.be.false;
 
         payload = {
           coordinates: '40.02,21.23'
