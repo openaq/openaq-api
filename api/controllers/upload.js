@@ -35,7 +35,7 @@ module.exports.getURL = function (query, cb) {
     }
 
     // If we're here, we're authorized so generate presigned URL for S3 PUT
-    const params = {Bucket: process.env.S3_UPLOAD_BUCKET, Key: query.filename};
+    const params = {Bucket: process.env.S3_UPLOAD_BUCKET, Key: query.filename, ContentType: 'text/csv'};
     s3.getSignedUrl('putObject', params, (err, url) => {
       if (err) {
         return cb(Boom.badImplementation());
