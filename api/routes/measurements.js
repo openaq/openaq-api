@@ -133,16 +133,19 @@ module.exports = [
         }
 
         if (formatForCSV) {
-          var columns = ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit'];
+          var columns = ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit', 'latitude', 'longitude'];
           var options = {
             header: true,
             columns: columns.concat(params.include_fields.split(','))
           };
-
           records = records.map(function (r) {
             r.utc = r.date.utc;
             r.local = r.date.local;
-            r = _.omit(r, 'date');
+            if (r.coordinates) {
+              r.latitude = r.coordinates.latitude;
+              r.longitude = r.coordinates.longitude;
+            }
+            r = _.omit(r, ['date', 'coordinates']);
             return r;
           });
 
