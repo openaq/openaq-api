@@ -20,6 +20,7 @@ var m = require('../controllers/sources.js');
  * @apiSuccess {string}   resolution  Source update frequency (deprecated)
  * @apiSuccess {string}   sourceURL   A related URL about the source
  * @apiSuccess {string[]} contacts    Addresses you may send inquiries about the source
+ * @apiSuccess {boolean}  active      Whether the source is used at this time
 
  * @apiSuccessExample {json} Success Response:
  *
@@ -36,7 +37,8 @@ var m = require('../controllers/sources.js');
  *     "contacts":
  *       [
  *         "olaf@developmentseed.org"
- *       ]
+ *       ],
+ *     "active": true
  *   },
  *   {
  *     "url": "http://stateair.net/dos/RSS/Dhaka/Dhaka-PM2.5.xml",
@@ -49,7 +51,8 @@ var m = require('../controllers/sources.js');
  *     "contacts":
  *       [
  *         "info@openaq.org"
- *       ]
+ *       ],
+ *     "active": false
  *   }
  * ]
  *
