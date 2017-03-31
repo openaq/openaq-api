@@ -24,6 +24,7 @@ import { log } from '../services/logger';
  * @apiSuccess {string}   country       Country containing location in 2 letter ISO code
  * @apiSuccess {string}   city          City containing location
  * @apiSuccess {number}   count         Number of measurements, cumulative by specificity level
+ * @apiSuccess {number}   distance      Distance to the specified coordinates (present when `nearest` and `coordinates` parameters are used, measured by meters)
  * @apiSuccess {string}   sourceName    Can follow this to determine active adapter used for this location
  * @apiSuccess {array}    sourceNames   Array of sourceName, both active and unused ones
  * @apiSuccess {date}     firstUpdated  When was data first grabbed for this location (in UTC)?
