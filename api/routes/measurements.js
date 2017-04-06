@@ -90,7 +90,7 @@ module.exports = [
       description: 'Retrieve data for individual measurements.'
     },
     handler: function (request, reply) {
-      console.log(request.info);
+      console.log(request);
       var params = {};
 
       // For GET
