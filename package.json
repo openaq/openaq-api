@@ -10,8 +10,8 @@
     "local-test": "PSQL_DATABASE=openaq-test npm test",
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/",
-    "docker": "docker-compose --project openaq run --rm --service-ports api",
-    "docker-test": "docker-compose --project openaq run --rm api-test npm test"
+    "docker": "docker-compose -p openaq run --rm --service-ports api",
+    "docker-test": "docker-compose -p openaq run --rm api-test npm test"
   },
   "author": "Joe Flasher",
   "license": "MIT",
