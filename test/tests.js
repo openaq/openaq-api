@@ -29,7 +29,7 @@ describe('Testing endpoints', function () {
   });
 
   after(function (done) {
-    self.server.hapi.stop(null, done);
+    self.server.hapi.stop(done);
   });
 
   describe('/', function () {

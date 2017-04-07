@@ -4,9 +4,21 @@ var Hapi = require('hapi');
 var Keen = require('keen-js');
 var GoodWinston = require('good-winston');
 var winston = require('winston');
+var Bluebird = require('bluebird');
+var Redis = require('redis'); // Specifically used for rate limiting
 require('winston-papertrail').Papertrail;
 var os = require('os');
 import { getLastUpdated } from './redis';
+
+// Rate limiting default rates
+const defaultRate = {
+  limit: process.env.IP_RATE_LIMIT || 30,
+  window: 60
+};
+
+// Promisfy Redis
+Bluebird.promisifyAll(Redis.RedisClient.prototype);
+Bluebird.promisifyAll(Redis.Multi.prototype);
 
 // Configure Keen instance
 var keen = new Keen({
@@ -121,6 +133,23 @@ Server.prototype.start = function (cb) {
   }, function (err) {
     if (err) throw err;
   });
+
+  // IP rate limiting
+  if (process.env.USE_REDIS) {
+    const redisURL = process.env.REDIS_URL || 'redis://localhost:6379';
+    const RedisClient = Redis.createClient(redisURL);
+    self.hapi.register({
+      register: require('hapi-rate-limiter'),
+      options: {
+        rateLimitKey: (request) => request.headers['x-forwarded-for'],
+        defaultRate: (request) => defaultRate,
+        redisClient: RedisClient,
+        overLimitError: (rate) => []
+      }
+    }, (err) => {
+      if (err) throw err;
+    });
+  }
 
   // Add analytics to endpoints
   var KeenPlugin = {
