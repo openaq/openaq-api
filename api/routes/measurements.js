@@ -87,10 +87,15 @@ module.exports = [
     method: ['GET'],
     path: '/v1/measurements',
     config: {
-      description: 'Retrieve data for individual measurements.'
+      description: 'Retrieve data for individual measurements.',
+      plugins: {
+        rateLimit: {
+          enabled: true
+        }
+      }
     },
     handler: function (request, reply) {
-      console.log(request);
+      console.log('heyo');
       var params = {};
 
       // For GET
