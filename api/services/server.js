@@ -142,8 +142,8 @@ Server.prototype.start = function (cb) {
       register: require('hapi-rate-limiter'),
       options: {
         rateLimitKey: (request) => {
-          console.log(request.headers['x-forwarded-for'])
-          return request.headers['x-forwarded-for']
+          console.log(request.headers['x-forwarded-for']);
+          return request.headers['x-forwarded-for'];
         },
         defaultRate: (request) => defaultRate,
         redisClient: RedisClient,
