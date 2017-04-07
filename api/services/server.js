@@ -12,7 +12,7 @@ import { getLastUpdated } from './redis';
 
 // Rate limiting default rates
 const defaultRate = {
-  limit: 2,
+  limit: process.env.IP_RATE_LIMIT || 30,
   window: 60
 };
 
@@ -141,10 +141,7 @@ Server.prototype.start = function (cb) {
     self.hapi.register({
       register: require('hapi-rate-limiter'),
       options: {
-        rateLimitKey: (request) => {
-          console.log(request.headers['x-forwarded-for']);
-          return request.headers['x-forwarded-for'];
-        },
+        rateLimitKey: (request) => request.headers['x-forwarded-for'],
         defaultRate: (request) => defaultRate,
         redisClient: RedisClient,
         overLimitError: (rate) => []
