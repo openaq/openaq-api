@@ -26,7 +26,7 @@
     "csv-stringify": "0.0.8",
     "good": "^6.3.0",
     "good-winston": "^1.0.0",
-    "hapi": "^13.5.3",
+    "hapi": "^11.1.4",
     "hapi-paginate": "github:developmentseed/hapi-paginate#cfa9067d634e2bcef9a631ee71646cc9dbf2f5f7",
     "hapi-rate-limiter": "^2.0.0",
     "hapi-response-meta": "^0.3.0",

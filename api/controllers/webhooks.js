@@ -15,7 +15,7 @@ import redis from '../services/redis';
 */
 module.exports.handleAction = function (payload, cb) {
   // Make sure we have an action and a good key
-  if (payload.action === undefined || payload.key === undefined || payload.key !== webhookKey) {
+  if (!payload || payload.action === undefined || payload.key === undefined || payload.key !== webhookKey) {
     return cb({error: 'No action or invalid key provided.'});
   }
 
