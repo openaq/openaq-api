@@ -9,7 +9,7 @@ import { log } from '../services/logger';
 /**
  * @api {get} /measurements GET
  * @apiGroup Measurements
- * @apiDescription Provides data about individual measurements. Note that this endpoint is rate limited at 30 requests per minute.
+ * @apiDescription Provides data about individual measurements
  *
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [city] Limit results by a certain city.
@@ -81,30 +81,13 @@ import { log } from '../services/logger';
  *      "error": "Bad Request",
  *      "message": "Oops!"
  *     }
- *
- * @apiError (Rate Limiting) {Number} x-rate-limit-limit Limit of requests for this endpoint, found in header
- * @apiError (Rate Limiting) {Number} x-rate-limit-remaining Remaining number of requests, found in header
- * @apiError (Rate Limiting) {Number} x-rate-limit-reset Time when rate-limiter will reset, found in header
- * @apiErrorExample {json} Rate Limited:
- *     You can find rate limiting info in the response headers fields:
- *     `x-rate-limit-limit`: total number of requests allowed within the window
- *     `x-rate-limit-remaining`: remaining number of requests allows within current window
- *     `x-rate-limit-reset`: time when rate-limiter will reset (UTC seconds-since-epoch)
- *
- *     Output JSON when rate limited will contain an empty `results` array.
- *     {"meta":{"name":"openaq-api","license":"CC BY 4.0","website":"https://docs.openaq.org/","page":1,"limit":100,"found":246},"results":[]}
  */
 module.exports = [
   {
     method: ['GET'],
     path: '/v1/measurements',
     config: {
-      description: 'Retrieve data for individual measurements.',
-      plugins: {
-        rateLimit: {
-          enabled: true
-        }
-      }
+      description: 'Retrieve data for individual measurements.'
     },
     handler: function (request, reply) {
       var params = {};
@@ -113,6 +96,7 @@ module.exports = [
       if (request.query) {
         params = request.query;
       }
+      console.log(request.headers['x-forwarded-for'], params);
 
       // Set max limit based on env var or default to 10000
       request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
