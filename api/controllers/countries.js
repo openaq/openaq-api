@@ -2,7 +2,7 @@
 
 import { prettyCountryName } from '../../lib/utils';
 import { db } from '../services/db';
-import { groupBy, uniq } from 'lodash';
+import { groupBy, uniqBy } from 'lodash';
 
 import { AggregationEndpoint } from './base';
 
@@ -75,10 +75,10 @@ function groupResults (results) {
   const grouped = groupBy(results, 'country');
   Object.keys(grouped).forEach((key) => {
     // Get uniques of cities and locations
-    const cities = uniq(grouped[key], (loc) => {
+    const cities = uniqBy(grouped[key], (loc) => {
       return loc.city;
     });
-    const locations = uniq(grouped[key], (loc) => {
+    const locations = uniqBy(grouped[key], (loc) => {
       return loc.location;
     });
 

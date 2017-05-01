@@ -89,6 +89,24 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+    // https://github.com/openaq/openaq-fetch/issues/291
+    it('should properly handle locations and cities counts', function (done) {
+      request(self.baseURL + 'countries', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        // Get MN country
+        res.results.forEach((country) => {
+          if (country.code === 'MN') {
+            expect(country.cities).to.equal(1);
+            expect(country.locations).to.equal(9);
+            done();
+          }
+        });
+      });
+    });
     it('has a meta block', function (done) {
       request(self.baseURL + 'countries', function (err, response, body) {
         if (err) {
