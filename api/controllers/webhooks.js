@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+import { forEach, includes } from 'lodash';
 import { parallel, series } from 'async';
 var webhookKey = process.env.WEBHOOK_KEY || '123';
 import { log } from '../services/logger';
@@ -70,7 +70,7 @@ var runCachedQueries = function (redis) {
     }
     console.log(results);
     // Check now to see if we have any active aggregations
-    if (results.includes(true)) {
+    if (includes(results, true)) {
       return log(['info'], 'Database updated but not running any cache queries because one is already running.');
     }
 
@@ -131,7 +131,7 @@ var runCachedQueries = function (redis) {
 
         // Do a multi-insert into Redis
         var multi = redis.multi();
-        _.forEach(results, function (v, k) {
+        forEach(results, function (v, k) {
           multi.set(k, v);
         });
         multi.exec(function (err, replies) {
