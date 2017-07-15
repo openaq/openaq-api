@@ -17,12 +17,13 @@ import redis from '../services/redis';
  * @param {function} groupResults A function to group returned results
  */
 export class AggregationEndpoint {
-  constructor (cacheName, resultsQuery, handleDataMapping, filterResultsForQuery, groupResults) {
+  constructor (cacheName, resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults) {
     this.cacheName = cacheName;
     this.resultsQuery = resultsQuery;
     this.handleDataMapping = handleDataMapping;
     this.filterResultsForQuery = filterResultsForQuery;
     this.groupResults = groupResults;
+    this.activeQuery = activeQuery;
   }
 
   /**
@@ -34,6 +35,21 @@ export class AggregationEndpoint {
     this.resultsQuery.then((results) => {
       results = this.handleDataMapping(results);
       cb(null, results);
+    })
+    .catch((err) => {
+      cb(err);
+    });
+  }
+
+  /**
+   * Query the database to see if aggregation is active
+   *
+   * @params {function} cb Callback of form (err, tf)
+   */
+  isActive (cb) {
+    this.activeQuery.then((results) => {
+      const active = results.length !== 0;
+      cb(null, active);
     })
     .catch((err) => {
       cb(err);
