@@ -49,6 +49,29 @@ module.exports.queryCount = function (query, skipRedis = false, cb) {
 };
 
 /**
+* Query database to see if count aggregation is active
+*
+* @param {Object} query - Payload contains query paramters and their values
+* @param {countCallback} cb - The callback that returns the count
+*/
+module.exports.isActive = function (query, cb) {
+  let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(query);
+
+  let countQuery = db
+                    .count('location')
+                    .from('measurements');
+  countQuery = utils.buildSQLQuery(countQuery, payload, operators, betweens, nulls, notNulls, geo);
+  const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${countQuery.toString()}'`));
+  activeQuery.then((results) => {
+    const active = results.length !== 0;
+    return cb(null, active);
+  })
+  .catch((err) => {
+    return cb(err);
+  });
+};
+
+/**
 * Query Measurements. Implements all protocols supported by /measurements endpoint
 *
 * @param {Object} query - Payload contains query paramters and their values

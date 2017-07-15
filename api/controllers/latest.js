@@ -10,10 +10,13 @@ import { isGeoPayloadOK } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 
 // Generate intermediate aggregated result
-let resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) max_date, location, city, parameter from measurements group by location, city, parameter) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = max_date'));
+const resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) max_date, location, city, parameter from measurements group by location, city, parameter) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = max_date'));
+
+// Query to see if aggregation is active
+const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
 
 // Create the endpoint from the class
-let latest = new AggregationEndpoint('LATEST', resultsQuery, handleDataMapping, filterResultsForQuery, groupResults);
+const latest = new AggregationEndpoint('LATEST', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults);
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -22,6 +25,15 @@ let latest = new AggregationEndpoint('LATEST', resultsQuery, handleDataMapping, 
  */
 export function queryDatabase (cb) {
   latest.queryDatabase(cb);
+}
+
+/**
+ * Query the database to see if aggregation is still active
+ *
+ * @params {function} cb Callback of form (err, tf)
+ */
+export function isActive (cb) {
+  latest.isActive(cb);
 }
 
 /**
