@@ -15,7 +15,7 @@ let resultsQuery = db
 
 // Create the endpoint from the class, purposefully using a different cache
 // name here since we can reuse the data from the countries query
-let cities = new AggregationEndpoint('COUNTRIES', resultsQuery, handleDataMapping, filterResultsForQuery, groupResults);
+let cities = new AggregationEndpoint('COUNTRIES', resultsQuery, null, handleDataMapping, filterResultsForQuery, groupResults);
 
 /**
  * Query the database and recieve back somewhat aggregated results

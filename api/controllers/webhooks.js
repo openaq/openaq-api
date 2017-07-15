@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var async = require('async');
+import { parallel, series } from 'async';
 var webhookKey = process.env.WEBHOOK_KEY || '123';
 import { log } from '../services/logger';
 import redis from '../services/redis';
@@ -38,82 +38,117 @@ var runCachedQueries = function (redis) {
   // Short circuit this based on env var in case we're having problems with generating the
   // aggregations. This will just keep using the old cache.
   if (process.env.DO_NOT_UPDATE_CACHE) {
-    return log(['info'], 'Database updated, but not running any cache queries for now.');
+    return log(['info'], 'Database updated but not running any cache queries for now.');
   }
 
-  // Run the queries to build up the cache.
-  log(['info'], 'Database updated, running new cache queries.');
-  async.parallel({
-    'LOCATIONS': function (done) {
-      require('./locations').queryDatabase((err, results) => {
-        if (err) {
-          log(['error'], err);
-        }
-        log(['info'], 'LOCATIONS cache query done');
-        done(err, JSON.stringify(results));
+  // Check to make sure none of the aggregations are already running
+  parallel([
+    (done) => {
+      require('./locations').isActive((err, active) => {
+        done(err, active);
       });
     },
-    'LATEST': function (done) {
-      require('./latest').queryDatabase((err, results) => {
-        if (err) {
-          log(['info'], err);
-        }
-        log(['info'], 'LATEST cache query done');
-        done(err, JSON.stringify(results));
+    (done) => {
+      require('./latest').isActive((err, active) => {
+        done(err, active);
       });
     },
-    'COUNTRIES': function (done) {
-      require('./countries').queryDatabase((err, results) => {
-        if (err) {
-          log(['error'], err);
-        }
-        log(['info'], 'COUNTRIES cache query done');
-        done(err, JSON.stringify(results));
+    (done) => {
+      require('./countries').isActive((err, active) => {
+        done(err, active);
       });
     },
-    'COUNT': function (done) {
+    (done) => {
       const query = {};
-      require('./measurements').queryCount(query, true, (err, results) => {
-        if (err) {
-          log(['error'], err);
-        }
-        log(['info'], `${JSON.stringify(query)} COUNT cache query done`);
-        done(err, JSON.stringify(results));
+      require('./measurements').isActive(query, (err, active) => {
+        done(err, active);
       });
     }
-  },
-  function (err, results) {
+  ], (err, results) => {
     if (err) {
       log(['error'], err);
-      return log(['error'], 'New cache queries had errors, keeping current cache');
+    }
+    console.log(results);
+    // Check now to see if we have any active aggregations
+    if (results.includes(true)) {
+      return log(['info'], 'Database updated but not running any cache queries because one is already running.');
     }
 
-    log(['info'], 'New cache queries done, dumping current cache.');
-    redis.flushall(function (err, reply) {
-      log(['info'], 'Finished dumping cache, updating with new query results.');
+    // Run the queries to build up the cache.
+    // Do them in series to be nicer to the database
+    log(['info'], 'Database updated, running new cache queries.');
+    series({
+      'LOCATIONS': function (done) {
+        require('./locations').queryDatabase((err, results) => {
+          if (err) {
+            log(['error'], err);
+          }
+          log(['info'], 'LOCATIONS cache query done');
+          done(err, JSON.stringify(results));
+        });
+      },
+      'LATEST': function (done) {
+        require('./latest').queryDatabase((err, results) => {
+          if (err) {
+            log(['info'], err);
+          }
+          log(['info'], 'LATEST cache query done');
+          done(err, JSON.stringify(results));
+        });
+      },
+      'COUNTRIES': function (done) {
+        require('./countries').queryDatabase((err, results) => {
+          if (err) {
+            log(['error'], err);
+          }
+          log(['info'], 'COUNTRIES cache query done');
+          done(err, JSON.stringify(results));
+        });
+      },
+      'COUNT': function (done) {
+        const query = {};
+        require('./measurements').queryCount(query, true, (err, results) => {
+          if (err) {
+            log(['error'], err);
+          }
+          log(['info'], `${JSON.stringify(query)} COUNT cache query done`);
+          done(err, JSON.stringify(results));
+        });
+      }
+    },
+    function (err, results) {
       if (err) {
         log(['error'], err);
+        return log(['error'], 'New cache queries had errors, keeping current cache');
       }
 
-      // Do a multi-insert into Redis
-      var multi = redis.multi();
-      _.forEach(results, function (v, k) {
-        multi.set(k, v);
-      });
-      multi.exec(function (err, replies) {
-        log(['debug'], replies);
-        log(['info'], 'Cache completed rebuilding.');
+      log(['info'], 'New cache queries done, dumping current cache.');
+      redis.flushall(function (err, reply) {
+        log(['info'], 'Finished dumping cache, updating with new query results.');
         if (err) {
-          return log(['error'], err);
+          log(['error'], err);
         }
 
-        // Send a Redis update to let all other instances know of last time
-        // updated
-        let message = {
-          type: 'DATABASE_UPDATED',
-          updatedAt: new Date().toUTCString()
-        };
-        redis.publish('SYSTEM_UPDATES', JSON.stringify(message));
+        // Do a multi-insert into Redis
+        var multi = redis.multi();
+        _.forEach(results, function (v, k) {
+          multi.set(k, v);
+        });
+        multi.exec(function (err, replies) {
+          log(['debug'], replies);
+          log(['info'], 'Cache completed rebuilding.');
+          if (err) {
+            return log(['error'], err);
+          }
+
+          // Send a Redis update to let all other instances know of last time
+          // updated
+          let message = {
+            type: 'DATABASE_UPDATED',
+            updatedAt: new Date().toUTCString()
+          };
+          redis.publish('SYSTEM_UPDATES', JSON.stringify(message));
+        });
       });
     });
   });

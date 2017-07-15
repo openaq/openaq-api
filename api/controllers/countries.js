@@ -7,15 +7,18 @@ import { groupBy, uniqBy } from 'lodash';
 import { AggregationEndpoint } from './base';
 
 // Generate intermediate aggregated result
-let resultsQuery = db
+const resultsQuery = db
                     .from('measurements')
                     .select(['country', 'city', 'location'])
                     .count('location')
                     .groupBy(['country', 'location', 'city'])
                     .orderBy('country');
 
+// Query to see if aggregation is active
+const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+
 // Create the endpoint from the class
-let countries = new AggregationEndpoint('COUNTRIES', resultsQuery, handleDataMapping, filterResultsForQuery, groupResults);
+const countries = new AggregationEndpoint('COUNTRIES', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults);
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -24,6 +27,15 @@ let countries = new AggregationEndpoint('COUNTRIES', resultsQuery, handleDataMap
  */
 export function queryDatabase (cb) {
   countries.queryDatabase(cb);
+}
+
+/**
+ * Query the database to see if aggregation is still active
+ *
+ * @params {function} cb Callback of form (err, tf)
+ */
+export function isActive (cb) {
+  countries.isActive(cb);
 }
 
 /**
