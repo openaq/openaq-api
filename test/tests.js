@@ -773,6 +773,22 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('returns averaging period for a measurement', function (done) {
+      request(self.baseURL + 'latest?city=Cabauw', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        body = JSON.parse(body);
+        body.results.forEach((r) => {
+          r.measurements.forEach((m) => {
+            expect(m.averagingPeriod).to.exist;
+          });
+        });
+        done();
+      });
+    });
   });
 
   describe('/fetches', function () {

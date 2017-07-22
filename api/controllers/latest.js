@@ -65,7 +65,8 @@ function handleDataMapping (results) {
       value: r.value,
       unit: r.unit,
       date_utc: r.date_utc,
-      source_name: r.source_name
+      source_name: r.source_name,
+      averagingPeriod: r.data.averagingPeriod
     };
 
     if (r.data.coordinates) {
@@ -158,7 +159,8 @@ function groupResults (results) {
         value: m.value,
         lastUpdated: m.date_utc,
         unit: m.unit,
-        sourceName: m.source_name
+        sourceName: m.source_name,
+        averagingPeriod: m.averagingPeriod
       };
     });
     let f = {
