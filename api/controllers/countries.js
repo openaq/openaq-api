@@ -2,7 +2,7 @@
 
 import { prettyCountryName } from '../../lib/utils';
 import { db } from '../services/db';
-import { groupBy, uniqBy } from 'lodash';
+import { groupBy, sortBy, uniqBy } from 'lodash';
 
 import { AggregationEndpoint } from './base';
 
@@ -108,6 +108,6 @@ function groupResults (results) {
       count: count
     });
   });
-
+  final = sortBy(final, ['name']);
   return final;
 }
