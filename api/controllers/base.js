@@ -17,13 +17,14 @@ import redis from '../services/redis';
  * @param {function} groupResults A function to group returned results
  */
 export class AggregationEndpoint {
-  constructor (cacheName, resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults) {
+  constructor (cacheName, resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, orderResults) {
     this.cacheName = cacheName;
     this.resultsQuery = resultsQuery;
     this.handleDataMapping = handleDataMapping;
     this.filterResultsForQuery = filterResultsForQuery;
     this.groupResults = groupResults;
     this.activeQuery = activeQuery;
+    this.orderResults = orderResults;
   }
 
   /**
@@ -114,6 +115,8 @@ export class AggregationEndpoint {
 
         // Group the results to a nicer output
         results = this.groupResults(results);
+
+        results = this.orderResults(results, query);
 
         // Send back results
         sendResults(null, results);

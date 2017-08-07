@@ -8,6 +8,7 @@ var Server = require('../api/services/server');
 var testPort = 2000;
 var request = require('request');
 var utils = require('../lib/utils');
+import { orderBy } from 'lodash';
 
 describe('Testing endpoints', function () {
   var self = this;
@@ -138,6 +139,31 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}countries?order_by=count&sort=asc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'count', 'asc'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['cities', 'locations'], ['asc', 'desc']));
+        done();
+      });
+    });
+    
   });
 
   describe('/parameters', function () {
