@@ -6,8 +6,10 @@
   "main": "",
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && mocha test/** --require babel-register",
+    "test-only": "mocha test/** --require babel-register",
+    "test": "npm run lint && npm run test-only",
     "local-test": "PSQL_DATABASE=openaq-test npm test",
+    "local-test-only": "PSQL_DATABASE=openaq-test npm run test-only",
     "start": "node index.js",
     "docs": "apidoc -i api/ -o docs/",
     "docker": "docker-compose -p openaq run --rm --service-ports api",
