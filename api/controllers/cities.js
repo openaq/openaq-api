@@ -15,7 +15,7 @@ let resultsQuery = db
 
 // Create the endpoint from the class, purposefully using a different cache
 // name here since we can reuse the data from the countries query
-let cities = new AggregationEndpoint('COUNTRIES', resultsQuery, null, handleDataMapping, filterResultsForQuery, groupResults);
+let cities = new AggregationEndpoint('COUNTRIES', resultsQuery, null, handleDataMapping, filterResultsForQuery, groupResults, orderResults);
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -109,4 +109,8 @@ function groupResults (results) {
   });
 
   return final;
+}
+
+function orderResults (results, query) {
+  return results;
 }
