@@ -163,7 +163,6 @@ describe('Testing endpoints', function () {
         done();
       });
     });
-    
   });
 
   describe('/parameters', function () {

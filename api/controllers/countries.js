@@ -2,7 +2,7 @@
 
 import { prettyCountryName } from '../../lib/utils';
 import { db } from '../services/db';
-import { groupBy, sortBy, uniqBy } from 'lodash';
+import { groupBy, orderBy, uniqBy } from 'lodash';
 
 import { AggregationEndpoint } from './base';
 
@@ -18,7 +18,7 @@ const resultsQuery = db
 const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
 
 // Create the endpoint from the class
-const countries = new AggregationEndpoint('COUNTRIES', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults);
+const countries = new AggregationEndpoint('COUNTRIES', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, orderResults);
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -108,6 +108,17 @@ function groupResults (results) {
       count: count
     });
   });
-  final = sortBy(final, ['name']);
   return final;
+}
+
+/**
+* Order results after grouping them
+*
+* @param {array|string} results - The grouped results
+* @param {object} query - Query object from Hapi
+* @return {array} results - Ordered results
+*/
+function orderResults (results, query) {
+  results = orderBy(results, query.order_by || 'name', query.sort);
+  return results;
 }
