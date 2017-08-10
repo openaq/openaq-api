@@ -1,5 +1,7 @@
 'use strict';
 
+import { orderBy } from 'lodash';
+
 var p = require('../../lib/parameters.json');
 
 /**
@@ -47,6 +49,7 @@ module.exports = [
       description: 'The list of parameters that OpenAQ collects.'
     },
     handler: function (request, reply) {
+      p = orderBy(p, request.query.order_by || 'name', request.query.sort || 'asc');
       return reply(p);
     }
   }

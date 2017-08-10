@@ -16,7 +16,7 @@ const resultsQuery = db.select(db.raw('* from measurements join (select max(date
 const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
 
 // Create the endpoint from the class
-const latest = new AggregationEndpoint('LATEST', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, orderResults);
+const latest = new AggregationEndpoint('LATEST', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, 'location');
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -179,8 +179,4 @@ function groupResults (results) {
   });
 
   return final;
-}
-
-function orderResults (results, query) {
-  return results;
 }

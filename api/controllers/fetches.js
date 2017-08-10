@@ -1,5 +1,7 @@
 'use strict';
 
+import { orderBy } from 'lodash';
+
 import { db } from '../services/db';
 var utils = require('../../lib/utils');
 
@@ -12,6 +14,10 @@ var utils = require('../../lib/utils');
 * @param {recordsCallback} cb - The callback that returns the records
 */
 module.exports.query = function (query, page, limit, cb) {
+  const orderByField = query.order_by;
+  delete query.order_by;
+  const sort = query.sort;
+  delete query.sort;
   // Turn the payload into something we can use with psql
   let { payload, operators, betweens, nulls, notNulls } = utils.queryFromParameters(query);
 
@@ -50,6 +56,7 @@ module.exports.query = function (query, page, limit, cb) {
         delete r.time_ended;
         return r;
       });
+      results = orderBy(results, orderByField || 'timeStarted', sort || 'asc');
       return cb(null, results, count);
     })
       .catch((err) => {
