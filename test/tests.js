@@ -163,6 +163,17 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('should not complain about wrong order query', (done) => {
+      request(`${self.baseURL}countries?order_by=non-existing-field`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
   });
 
   describe('/parameters', function () {
@@ -549,6 +560,58 @@ describe('Testing endpoints', function () {
 
         var res = JSON.parse(body);
         expect(res.meta.found).to.equal(32);
+        done();
+      });
+    });
+
+    it('can be ordered', function (done) {
+      request(`${self.baseURL}measurements?order_by=value&sort=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results[0].value).to.be.above(res.results[1].value);
+        expect(res.results[0].value).to.be.above(res.results[res.results.length-1].value);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'value', 'desc'));
+        done();
+      });
+    });
+
+    it('can be ordered with multiple fields and directions', function (done) {
+      request(`${self.baseURL}measurements?order_by[]=country&order_by[]=sourceName&sort[]=desc&sort=[]=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results[0].value).to.be.below(res.results[1].value);
+        expect(res.results).to.equal(orderBy(res.results, ['country', 'sourceName'], ['desc', 'desc']));
+        done();
+      });
+    });
+
+    it('should not require sorting direction when ordering', function (done) {
+      request(`${self.baseURL}measurements?order_by=value`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results[0].value).to.be.below(res.results[1].value);
+        expect(res.results[0].value).to.be.below(res.results[res.results.length-1].value);
+        expect(res.results).to.equal(orderBy(res.results, 'value'));
+        done();
+      });
+    });
+
+    it('should not complain about wrong order query', (done) => {
+      request(`${self.baseURL}measurements?order_by=non-existing-field&sort=asc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(200);
         done();
       });
     });
