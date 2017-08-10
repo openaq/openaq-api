@@ -101,29 +101,29 @@ module.exports.query = function (query, page, limit, cb) {
   }
 
   //
-  // Handle custom sorts, starting with default of most recent measurements
-  // first. Do nothing if we don't have both sort and order_by.
+  // Handle custom sorts, starting with default of most recent measurements first.
   //
   var sort = { column: 'date_utc', direction: 'desc' };
-  if (_.has(payload, 'sort') && _.has(payload, 'order_by')) {
-    // Catch case where order_by is provided as 'date'
-    if (payload.order_by === 'date') { payload.order_by = 'date_utc'; }
+  // Catch case where order_by is provided as 'date'
+  if (payload.order_by === 'date') { payload.order_by = 'date_utc'; }
 
-    // Custom sort, overwrite default
-    sort = {
-      column: payload.order_by,
-      direction: payload.sort
-    };
+  // Custom sort, overwrite default
+  sort = {
+    column: payload.order_by,
+    direction: payload.sort
+  };
 
+  if (_.has(payload, 'sort')) {
     // sanitized payload
     payload = _.omit(payload, 'sort');
-    payload = _.omit(payload, 'order_by');
-  } else if (_.has(payload, 'sort')) {
-    // sanitized payload
-    payload = _.omit(payload, 'sort');
-  } else if (_.has(payload, 'order_by')) {
+  }
+  if (_.has(payload, 'order_by')) {
     // sanitized payload
     payload = _.omit(payload, 'order_by');
+  }
+  // remove unknown sorting keywords
+  if (projection.indexOf(sort.column) === -1) {
+    sort.column = 'date_utc';
   }
 
   //

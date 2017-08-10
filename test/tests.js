@@ -600,7 +600,7 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.results[0].value).to.be.below(res.results[1].value);
         expect(res.results[0].value).to.be.below(res.results[res.results.length-1].value);
-        expect(res.results).to.equal(orderBy(res.results, 'value'));
+        expect(res.results).to.deep.equal(orderBy(res.results, 'value'));
         done();
       });
     });
