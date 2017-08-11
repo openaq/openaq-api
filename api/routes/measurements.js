@@ -22,8 +22,8 @@ import { log } from '../services/logger';
  * @apiParam {number} [value_to] Show results below value threshold, useful in combination with `parameter`.
  * @apiParam {string} [date_from] Show results after a certain date. This acts on the `utc` timestamp of each measurement. (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
  * @apiParam {string} [date_to] Show results before a certain date. This acts on the `utc` timestamp of each measurement. (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
- * @apiParam {string} [sort=desc] The sort order, asc or desc. Must be used with `order_by`.
- * @apiParam {string} [order_by=date] Field to sort by. Must be used with `sort`.
+ * @apiParam {string[]} [order_by=date] Order by one or more fields (ex. `order_by=date` or `order_by[]=value&order_by[]=parameter`).
+ * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
