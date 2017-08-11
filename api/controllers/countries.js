@@ -2,7 +2,7 @@
 
 import { prettyCountryName } from '../../lib/utils';
 import { db } from '../services/db';
-import { groupBy, sortBy, uniqBy } from 'lodash';
+import { groupBy, uniqBy } from 'lodash';
 
 import { AggregationEndpoint } from './base';
 
@@ -18,7 +18,7 @@ const resultsQuery = db
 const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
 
 // Create the endpoint from the class
-const countries = new AggregationEndpoint('COUNTRIES', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults);
+const countries = new AggregationEndpoint('COUNTRIES', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, 'name');
 
 /**
  * Query the database and recieve back somewhat aggregated results
@@ -108,6 +108,5 @@ function groupResults (results) {
       count: count
     });
   });
-  final = sortBy(final, ['name']);
   return final;
 }

@@ -8,6 +8,7 @@ var Server = require('../api/services/server');
 var testPort = 2000;
 var request = require('request');
 var utils = require('../lib/utils');
+import { orderBy } from 'lodash';
 
 describe('Testing endpoints', function () {
   var self = this;
@@ -138,6 +139,41 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}countries?order_by=count&sort=asc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'count', 'asc'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['cities', 'locations'], ['asc', 'desc']));
+        done();
+      });
+    });
+
+    it('should not complain about wrong order query', (done) => {
+      request(`${self.baseURL}countries?order_by=non-existing-field`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
   });
 
   describe('/parameters', function () {
@@ -164,6 +200,30 @@ describe('Testing endpoints', function () {
           website: 'https://docs.openaq.org/'
         };
         expect(res.meta).to.deep.equal(testMeta);
+        done();
+      });
+    });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}parameters?order_by=preferredUnit`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'preferredUnit'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}parameters?order_by[]=id&order_by[]=name&sort[]=asc&sort[]=desc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['id', 'name'], ['asc', 'desc']));
         done();
       });
     });
@@ -254,6 +314,18 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.meta.limit).to.deep.equal(1);
         expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}cities?order_by=country&sort=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'country', 'desc'));
         done();
       });
     });
@@ -491,6 +563,57 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('can be ordered', function (done) {
+      request(`${self.baseURL}measurements?order_by=value&sort=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results[0].value).to.be.above(res.results[1].value);
+        expect(res.results[0].value).to.be.above(res.results[res.results.length - 1].value);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'value', 'desc'));
+        done();
+      });
+    });
+
+    it('can be ordered with multiple fields and directions', function (done) {
+      request(`${self.baseURL}measurements?order_by[]=country&order_by[]=sourceName&sort[]=desc&sort[]=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['country', 'sourceName'], ['desc', 'desc']));
+        done();
+      });
+    });
+
+    it('should not require sorting direction when ordering', function (done) {
+      request(`${self.baseURL}measurements?order_by=value`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results[0].value).to.be.below(res.results[1].value);
+        expect(res.results[0].value).to.be.below(res.results[res.results.length - 1].value);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'value'));
+        done();
+      });
+    });
+
+    it('should not complain about wrong order query', (done) => {
+      request(`${self.baseURL}measurements?order_by=non-existing-field&sort=asc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
   });
 
   describe('/locations', function () {
@@ -672,6 +795,30 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}locations?order_by=count&sort=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'count', 'desc'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}parameters?order_by[]=lastUpdated&order_by[]=country&sort[]=desc&sort[]=asc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['lastUpdated', 'country'], ['desc', 'asc']));
+        done();
+      });
+    });
   });
 
   describe('/latest', function () {
@@ -789,6 +936,30 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}latest?order_by=city`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'city'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}parameters?order_by[]=country&order_by[]=city&sort[]=desc&sort[]=asc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['country', 'city'], ['desc', 'asc']));
+        done();
+      });
+    });
   });
 
   describe('/fetches', function () {
@@ -847,6 +1018,30 @@ describe('Testing endpoints', function () {
         done();
       });
     });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}fetches?order_by=timeEnded&sort=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'timeEnded', 'desc'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}fetches?order_by[]=timeStarted&order_by[]=count&sort[]=desc&sort[]=desc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['timeStarted', 'count'], ['desc', 'desc']));
+        done();
+      });
+    });
   });
 
   describe('/sources', function () {
@@ -891,6 +1086,56 @@ describe('Testing endpoints', function () {
         var res = JSON.parse(body);
         expect(res.meta.limit).to.equal(1);
         expect(res.results.length).to.equal(1);
+        done();
+      });
+    });
+
+    it('can be ordered', (done) => {
+      request(`${self.baseURL}sources?order_by=country`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'country'));
+        done();
+      });
+    });
+
+    it('can be ordered by multiple fields and directions', (done) => {
+      request(`${self.baseURL}sources?order_by[]=adapter&order_by[]=country&sort[]=asc&sort[]=asc]`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, ['adapter', 'country'], ['asc', 'asc']));
+        done();
+      });
+    });
+
+    it('can be ordered by boolean field, false first', (done) => {
+      request(`${self.baseURL}sources?order_by=active&sort=asc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'active', 'asc'));
+        expect(res.results[0].active).to.equal(false);
+        done();
+      });
+    });
+
+    it('can be ordered by boolean field, true first', (done) => {
+      request(`${self.baseURL}sources?order_by=active&sort=desc`, (err, response, body) => {
+        if (err) {
+          console.error(err);
+        }
+
+        const res = JSON.parse(body);
+        expect(res.results).to.deep.equal(orderBy(res.results, 'active', 'desc'));
+        expect(res.results[0].active).to.equal(true);
         done();
       });
     });

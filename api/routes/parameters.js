@@ -1,11 +1,16 @@
 'use strict';
 
+import { orderBy } from 'lodash';
+
 var p = require('../../lib/parameters.json');
 
 /**
  * @api {get} /parameters GET
  * @apiGroup Parameters
  * @apiDescription Provides a simple listing of parameters within the platform.
+ *
+ * @apiParam {string[]} [order_by=name] Order by one or more fields (ex. `order_by=name` or `order_by[]=preferredUnit&order_by[]=id`).
+ * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  *
  * @apiSuccess {string}   id            Parameter ID
  * @apiSuccess {string}   name          The parameter name
@@ -47,6 +52,7 @@ module.exports = [
       description: 'The list of parameters that OpenAQ collects.'
     },
     handler: function (request, reply) {
+      p = orderBy(p, request.query.order_by || 'name', request.query.sort || 'asc');
       return reply(p);
     }
   }

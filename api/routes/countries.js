@@ -9,6 +9,8 @@ import { log } from '../services/logger';
  * @apiGroup Countries
  * @apiDescription Provides a simple listing of countries within the platform.
  *
+ * @apiParam {string[]} [order_by=name] Order by one or more fields (ex. `order_by=cities` or `order_by[]=cities&order_by[]=locations`).
+ * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *

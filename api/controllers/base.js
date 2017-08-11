@@ -1,6 +1,6 @@
 'use strict';
 
-import { slice } from 'lodash';
+import { orderBy, slice } from 'lodash';
 
 import { log } from '../services/logger';
 import redis from '../services/redis';
@@ -15,15 +15,17 @@ import redis from '../services/redis';
  * @param {function} handleDataMapping A function to handle mapping db results to useful data
  * @param {function} filterResultsForQuery A function to filter returned results
  * @param {function} groupResults A function to group returned results
+ * @param {string|list} defaultOrderByProperty Default ordering field
  */
 export class AggregationEndpoint {
-  constructor (cacheName, resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults) {
+  constructor (cacheName, resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, defaultOrderByProperty) {
     this.cacheName = cacheName;
     this.resultsQuery = resultsQuery;
     this.handleDataMapping = handleDataMapping;
     this.filterResultsForQuery = filterResultsForQuery;
     this.groupResults = groupResults;
     this.activeQuery = activeQuery;
+    this.defaultOrderByProperty = defaultOrderByProperty;
   }
 
   /**
@@ -54,6 +56,18 @@ export class AggregationEndpoint {
     .catch((err) => {
       cb(err);
     });
+  }
+
+  /**
+   * Order results after grouping them
+   *
+   * @param {array|string} results - The grouped results
+   * @param {object} query - Query object from Hapi
+   * @return {array} results - Ordered results
+   */
+  orderResults (results, query) {
+    results = orderBy(results, query.order_by || this.defaultOrderByProperty, query.sort || 'asc');
+    return results;
   }
 
   /**
@@ -90,6 +104,7 @@ export class AggregationEndpoint {
 
             // Group the results to a nicer output
             data = this.groupResults(data);
+            data = this.orderResults(data, query);
 
             // Send back results
             return sendResults(null, data);
@@ -114,6 +129,7 @@ export class AggregationEndpoint {
 
         // Group the results to a nicer output
         results = this.groupResults(results);
+        results = this.orderResults(results, query);
 
         // Send back results
         sendResults(null, results);

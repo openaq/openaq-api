@@ -9,6 +9,8 @@ var m = require('../controllers/fetches.js');
  * @apiDescription Providing data about individual fetch operations that are
  * used to populate data in the platform.
  *
+ * @apiParam {string[]} [order_by=timeStarted] Order by one or more fields (ex. `order_by=timeEnded` or `order_by[]=timeEnded&order_by[]=count`).
+ * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *
