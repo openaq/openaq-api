@@ -8,6 +8,8 @@ var m = require('../controllers/sources.js');
  * @apiGroup Sources
  * @apiDescription Provides a list of data sources.
  *
+ * @apiParam {string[]} [order_by=name] Order by one or more fields (ex. `order_by=country` or `order_by[]=active&order_by[]=country`).
+ * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *
