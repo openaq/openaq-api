@@ -127,15 +127,16 @@ function filterResultsForQuery (results, query) {
       if (has(query, 'radius')) {
         radius = query.radius;
       }
-      results = filter(results, (r, i) => {
-        if (!r.coordinates) {
-          return false;
-        }
-
+      results = filter(results, 'coordinates');
+      results = results.map((r, i) => {
         const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
         const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
         const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
-        return d <= radius;
+        r.distance = d;
+        return r;
+      });
+      results = filter(results, (r, i) => {
+        return r.distance <= radius;
       });
     }
   }
@@ -167,6 +168,7 @@ function groupResults (results) {
       location: m[0].location,
       city: m[0].city,
       country: m[0].country,
+      distance: m[0].distance,
       measurements: measurements
     };
 
