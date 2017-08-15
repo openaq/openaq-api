@@ -10,6 +10,8 @@ import { log } from '../services/logger';
  * @apiDescription Provides a simple listing of cities within the platform.
  *
  * @apiParam {string} [country] Limit results by a certain country.
+ * @apiParam {string[]} [order_by=country] Order by one or more fields (ex. `order_by=country` or `order_by[]=country&order_by[]=locations`).
+ * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *

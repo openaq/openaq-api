@@ -1,51 +1,53 @@
 {
-"meta": {
-"name": "openaq-api",
-"license": "CC BY 4.0",
-"website": "https://docs.openaq.org/",
-"page": 1,
-"limit": 1,
-"found": 30
-},
-"results": [
-{
-"url": "http://airquality.environment.nsw.gov.au/aquisnetnswphp/getPage.php?reportid=2",
-"adapter": "nsw",
-"name": "Australia - New South Wales",
-"city": "",
-"country": "AU",
-"description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
-"resolution": "1 hr",
-"sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
-"contacts": [
-"foo@foo.com"
-]
-},
-{
-"url": "http://airquality.environment.nsw.gov.au/aquisnetnswphp/getPage.php?reportid=2",
-"adapter": "nsw",
-"name": "Australia - New South Wales",
-"city": "",
-"country": "AU",
-"description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
-"resolution": "1 hr",
-"sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
-"contacts": [
-"foo@foo.com"
-]
-},
-{
-"url": "http://airquality.environment.nsw.gov.au/aquisnetnswphp/getPage.php?reportid=2",
-"adapter": "nsw",
-"name": "Australia - New South Wales",
-"city": "",
-"country": "AU",
-"description": "Measurements from the Office of Environment & Heritage of the New South Wales government.",
-"resolution": "1 hr",
-"sourceURL": "http://www.environment.nsw.gov.au/AQMS/hourlydata.htm",
-"contacts": [
-"foo@foo.com"
-]
-}
-]
+    "meta": {
+        "name": "openaq-api",
+        "license": "CC BY 4.0",
+        "website": "https://docs.openaq.org/",
+        "page": 1,
+        "limit": 3,
+        "found": 69
+    },
+    "results": [
+        {
+            "url": null,
+            "adapter": "eea",
+            "name": "EEA Andora",
+            "city": "",
+            "country": "AD",
+            "description": "Andoran data from UTD service",
+            "sourceURL": "http://www.eea.europa.eu/themes/air/air-quality",
+            "contacts": [
+                "olaf.veerman@gmail.com",
+                "info@openaq.org"
+            ],
+            "active": false
+        },
+        {
+            "url": "http://www.buenosaires.gob.ar/areas/med_ambiente/apra/calidad_amb/red_monitoreo/index.php?",
+            "adapter": "buenos-aires",
+            "name": "Buenos Aires",
+            "country": "AR",
+            "city": "Buenos Aires",
+            "description": "Air quality data for Buenos Aires",
+            "sourceURL": "http://www.buenosaires.gob.ar/agenciaambiental",
+            "contacts": [
+                "info@openaq.org"
+            ],
+            "active": true
+        },
+        {
+            "url": null,
+            "adapter": "eea",
+            "name": "EEA Austria",
+            "city": "",
+            "country": "AT",
+            "description": "Austrian data from UTD service",
+            "sourceURL": "http://www.eea.europa.eu/themes/air/air-quality",
+            "contacts": [
+                "olaf.veerman@gmail.com",
+                "info@openaq.org"
+            ],
+            "active": false
+        }
+    ]
 }

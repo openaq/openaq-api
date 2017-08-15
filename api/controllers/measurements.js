@@ -101,29 +101,49 @@ module.exports.query = function (query, page, limit, cb) {
   }
 
   //
-  // Handle custom sorts, starting with default of most recent measurements
-  // first. Do nothing if we don't have both sort and order_by.
+  // Handle custom sorts, starting with default of most recent measurements first.
   //
-  var sort = { column: 'date_utc', direction: 'desc' };
-  if (_.has(payload, 'sort') && _.has(payload, 'order_by')) {
-    // Catch case where order_by is provided as 'date'
-    if (payload.order_by === 'date') { payload.order_by = 'date_utc'; }
+  const defaultSort = [{ column: 'date_utc', direction: 'desc' }];
+  let sort = [];
+  if (_.has(payload, 'order_by')) {
+    payload.order_by = [].concat(payload.order_by);
+    if (_.has(payload, 'sort')) {
+      payload.sort = [].concat(payload.sort);
+    }
+    payload.order_by.forEach((column, i, columns) => {
+      // skip unknown columns
+      if (projection.indexOf(column) === -1) { return; }
 
-    // Custom sort, overwrite default
-    sort = {
-      column: payload.order_by,
-      direction: payload.sort
-    };
+      // Catch case where order_by is provided as 'date'
+      if (column === 'date') {
+        column = 'date_utc';
+      }
+      if (column === 'sourceName') {
+        column = 'source_name';
+      }
+      let direction;
+      try {
+        direction = payload.sort[i];
+      } catch (err) {
+        direction = 'asc';
+      }
+      sort.push({
+        column: column,
+        direction: direction
+      });
+    });
 
+    if (_.isEmpty(sort)) {
+      sort = defaultSort;
+    }
+
+    // sanitized payload
+    payload = _.omit(payload, 'order_by');
+  }
+
+  if (_.has(payload, 'sort')) {
     // sanitized payload
     payload = _.omit(payload, 'sort');
-    payload = _.omit(payload, 'order_by');
-  } else if (_.has(payload, 'sort')) {
-    // sanitized payload
-    payload = _.omit(payload, 'sort');
-  } else if (_.has(payload, 'order_by')) {
-    // sanitized payload
-    payload = _.omit(payload, 'order_by');
   }
 
   //
@@ -143,8 +163,11 @@ module.exports.query = function (query, page, limit, cb) {
     let resultsQuery = db
                         .select('data')
                         .from('measurements')
-                        .limit(limit).offset(skip)
-                        .orderBy(sort.column, sort.direction);
+                        .limit(limit).offset(skip);
+    sort.forEach((s) => {
+      resultsQuery = resultsQuery.orderBy(s.column, s.direction);
+    });
+
     // Build on base query
     resultsQuery = utils.buildSQLQuery(resultsQuery, payload, operators, betweens, nulls, notNulls, geo);
 
