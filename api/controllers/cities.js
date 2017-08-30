@@ -4,7 +4,7 @@ import { filter, has, groupBy, uniq } from 'lodash';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import client from '../services/owl';
+import client from '../services/athena';
 
 // Generate intermediate aggregated result
 var resultsQuery = db
@@ -15,7 +15,7 @@ var resultsQuery = db
                     .orderBy('country');
 
 if (process.env.USE_ATHENA) {
-  resultsQuery = client.query('SELECT country, city, location, count(location) as count from fetches.fetches_daily GROUP BY country, city, location ORDER BY country');
+  resultsQuery = client.query('SELECT country, city, location, count(location) as count from fetches.fetches_realtime GROUP BY country, city, location ORDER BY country');
 }
 
 // Create the endpoint from the class, purposefully using a different cache

@@ -51,16 +51,32 @@ class AthenaClient {
   }
 
   query (sql) {
+    var active = true;
+    var client = this;
     return {
-      // Interface similar to knex
+      // Provide a thenable to chain the next function
       then: fn => {
-        this.submitQuery(sql)
-          .then(this._getAllResults.bind(this))
+        return client.submitQuery(sql)
+          .then(queryId => {
+            active = !active;
+            return queryId;
+          })
+          .then(client._getAllResults.bind(client))
           .then(fn)
           .catch(function (err) {
-            console.error(err, err.stack);
             throw new Error(err);
           });
+      },
+
+      // Provide an active query that can check the active
+      // variable. The active query returns a thenable interface
+      activeQuery: () => {
+        return {
+          then: fn => {
+            let results = active ? ['query'] : [];
+            return Promise.resolve(results).then(fn);
+          }
+        };
       }
     };
   }
