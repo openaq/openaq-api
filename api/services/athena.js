@@ -39,6 +39,7 @@ class AthenaClient {
             })
             .catch(err => callback(err));
         },
+        function () { return (nextToken !== undefined); },
         function (err) {
           if (err) {
             reject(err);
@@ -51,19 +52,21 @@ class AthenaClient {
   }
 
   query (sql) {
-    var active = true;
+    var active = false;
     var client = this;
     return {
       // Provide a thenable to chain the next function
       then: fn => {
+        active = true;
         return client.submitQuery(sql)
           .then(queryId => {
-            active = !active;
+            active = false;
             return queryId;
           })
           .then(client._getAllResults.bind(client))
           .then(fn)
           .catch(function (err) {
+            active = false;
             throw new Error(err);
           });
       },
