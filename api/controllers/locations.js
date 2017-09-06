@@ -6,7 +6,7 @@ import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import { isGeoPayloadOK } from '../../lib/utils';
+import { isGeoPayloadOK, hiveParse } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 import client from '../services/athena';
 
@@ -76,14 +76,18 @@ if (process.env.USE_ATHENA) {
         city: r.city,
         country: r.country,
         parameter: r.parameter,
-        count: r.count,
+        count: Number(r.count),
         last_updated: r.last_updated,
         first_updated: r.first_updated,
         source_name: r.sourcename
       };
 
       if (r.coordinates) {
-        o.coordinates = r.coordinates;
+        let coordsObj = hiveParse(r.coordinates);
+        o.coordinates = {
+          latitude: Number(coordsObj.latitude),
+          longitude: Number(coordsObj.longitude)
+        };
       }
 
       return o;
