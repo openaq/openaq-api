@@ -891,6 +891,17 @@ describe('Testing endpoints', function () {
       });
     });
 
+    it('includes distance on coordinates search', function (done) {
+      request(`${self.baseURL}latest?coordinates=51.83,20.78`, function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+        body = JSON.parse(body);
+        expect(body.results[0]).to.have.property('distance');
+        done();
+      });
+    });
+
     // https://github.com/openaq/openaq-api/issues/232
     it('handles has_geo searches', function (done) {
       request(self.baseURL + 'latest?has_geo', function (err, response, body) {
