@@ -1,20 +1,31 @@
-api:
-  build: .
-  volumes:
-  - .:/local
-  env_file: ./local.env
-  ports:
-  - "80:3004"
-api-test:
-  build: .
-  volumes:
-  - .:/local
-  environment:
-  - PSQL_HOST=postgis
-  - PSQL_USER=docker
-  - PSQL_PASSWORD=docker
-  - PSQL_DATABASE=gis
-  links:
-  - postgis
-postgis:
-  image: kartoza/postgis:9.4-2.1
+version: "3"
+
+services:
+  api:
+    build: .
+    ports:
+    - "3004:3004"
+    environment:
+    - PSQL_HOST=db
+    - PSQL_USER=docker
+    - PSQL_PASSWORD=docker
+    - PSQL_DATABASE=docker
+    depends_on:
+    - db
+  db:
+    image: mdillon/postgis
+    environment:
+    - POSTGRES_USER=docker
+    - POSTGRES_PASSWORD=docker
+    - POSTGRES_DB=docker
+    volumes:
+    - pg-dir:/var/lib/postgresql/
+    ports:
+    - "8001:5432"
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+volumes:
+  pg-dir:
