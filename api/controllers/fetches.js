@@ -56,8 +56,10 @@ module.exports.query = function (query, page, limit, cb) {
         delete r.time_ended;
         // TMP - ensure that detailed measurements are not returned
         // can be removed after fix for #351 is implemented in openaq-fetch
-        if (r.results) {
-          delete r.results;
+        for (let key in r.results) {
+          if (r.results[key] && r.results[key]['results']) {
+            delete r.results[key].results;
+          }
         }
         return r;
       });
