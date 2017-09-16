@@ -54,8 +54,11 @@ module.exports.query = function (query, page, limit, cb) {
         delete r.time_started;
         r.timeEnded = r.time_ended;
         delete r.time_ended;
-        // ensure that detailed measurements are not returned
-        if (r.results) { delete r.results };
+        // TMP - ensure that detailed measurements are not returned
+        // can be removed after fix for #351 is implemented in openaq-fetch
+        if (r.results) {
+          delete r.results;
+        }
         return r;
       });
       results = orderBy(results, orderByField || 'timeStarted', sort || 'asc');
