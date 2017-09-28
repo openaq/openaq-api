@@ -19,7 +19,8 @@ var resultsQuery = db
 var activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
 
 if (process.env.USE_ATHENA) {
-  resultsQuery = client.query('SELECT country, city, location, count(location) as count from fetches.fetches_realtime GROUP BY country, city, location ORDER BY country');
+  let query = 'SELECT country, city, location, count(location) as count from ' + client.fetchesTable + ' GROUP BY country, city, location ORDER BY country';
+  resultsQuery = client.query(query);
   activeQuery = resultsQuery.activeQuery();
 }
 

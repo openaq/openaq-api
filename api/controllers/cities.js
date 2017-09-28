@@ -15,7 +15,8 @@ var resultsQuery = db
                     .orderBy('country');
 
 if (process.env.USE_ATHENA) {
-  resultsQuery = client.query('SELECT country, city, location, count(location) as count from fetches.fetches_realtime GROUP BY country, city, location ORDER BY country');
+  let query = 'SELECT country, city, location, count(location) as count from ' + client.fetchesTable + ' GROUP BY country, city, location ORDER BY country';
+  resultsQuery = client.query(query);
 }
 
 // Create the endpoint from the class, purposefully using a different cache

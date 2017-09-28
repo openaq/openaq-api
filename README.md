@@ -44,6 +44,7 @@ If `USE_ATHENA` is set, the API will use AWS Athena instead of creating Postgres
 - `ATHENA_ACCESS_KEY_ID`: An AWS Access Key that has permissions to create Athena Queries and store them in S3.
 - `ATHENA_SECRET_ACCESS_KEY`: The corresponding secret.
 - `ATHENA_OUTPUT_BUCKET`: The S3 location (in the form of `s3://bucket/folder`) where the results of the Athena queries should be stored before caching them.
+- `ATHENA_FETCHES_TABLE`: The name of the table registed in AWS Athena, default is `fetches.fetches_realtime`
 
 The Athena table is `fetches_realtime` that represents the fetches from `openaq-data` and has the following schema:
 

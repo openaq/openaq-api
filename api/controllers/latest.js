@@ -48,14 +48,15 @@ var handleDataMapping = (results) => {
 };
 
 if (process.env.USE_ATHENA) {
-  resultsQuery = client.query('select * from fetches.fetches_realtime join ' +
-  '(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from fetches.fetches_realtime ' +
+  const query = 'select * from ' + client.fetchesTable + ' as db join ' +
+  '(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from ' + client.fetchesTable + ' ' +
   'group by location, city, parameter) as temp ' +
-  'on fetches.fetches_realtime.location = temp.location ' +
-  'and fetches.fetches_realtime.city = temp.city ' +
-  'and fetches.fetches_realtime.parameter = temp.parameter ' +
-  'and from_iso8601_timestamp(fetches.fetches_realtime.date.utc) = max_date');
+  'on db.location = temp.location ' +
+  'and db.city = temp.city ' +
+  'and db.parameter = temp.parameter ' +
+  'and from_iso8601_timestamp(db.date.utc) = max_date';
 
+  resultsQuery = client.query(query);
   activeQuery = resultsQuery.activeQuery();
 
   handleDataMapping = (results) => {
