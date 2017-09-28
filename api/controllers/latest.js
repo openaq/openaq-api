@@ -68,7 +68,7 @@ if (process.env.USE_ATHENA) {
         parameter: r.parameter,
         value: Number(r.value),
         unit: r.unit,
-        date_utc: r.date.utc,
+        date_utc: hiveParse(r.date).utc,
         source_name: r.sourcename
       };
 
