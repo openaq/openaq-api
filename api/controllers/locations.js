@@ -6,10 +6,9 @@ import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import { isGeoPayloadOK, hiveParse } from '../../lib/utils';
+import { isGeoPayloadOK, hiveObjParse, hiveDateParse } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 import client from '../services/athena';
-import { parse as parseDate } from 'date-fns';
 
 // Generate intermediate aggregated result
 var resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) last_updated, min(date_utc) first_updated, count(date_utc), location, city, parameter, source_name from measurements group by location, city, parameter, source_name) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = last_updated'));
@@ -79,13 +78,13 @@ if (process.env.USE_ATHENA) {
         country: r.country,
         parameter: r.parameter,
         count: Number(r.count),
-        last_updated: parseDate(r.last_updated).toISOString(),
-        first_updated: parseDate(r.first_updated).toISOString(),
+        last_updated: hiveDateParse(r.last_updated),
+        first_updated: hiveDateParse(r.first_updated),
         source_name: r.sourcename
       };
 
       if (r.coordinates) {
-        let coordsObj = hiveParse(r.coordinates);
+        let coordsObj = hiveObjParse(r.coordinates);
         o.coordinates = {
           latitude: Number(coordsObj.latitude),
           longitude: Number(coordsObj.longitude)
