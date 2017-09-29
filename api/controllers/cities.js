@@ -15,7 +15,7 @@ var resultsQuery = db
                     .orderBy('country');
 
 if (process.env.USE_ATHENA) {
-  let query = 'SELECT country, city, location, count(location) as count from ' + client.fetchesTable + ' GROUP BY country, city, location ORDER BY country';
+  let query = `SELECT country, city, location, count(location) as count from ${client.fetchesTable} GROUP BY country, city, location ORDER BY country`;
   resultsQuery = client.query(query);
 }
 

@@ -48,8 +48,8 @@ var handleDataMapping = (results) => {
 };
 
 if (process.env.USE_ATHENA) {
-  const query = 'select * from ' + client.fetchesTable + ' as db join ' +
-  '(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from ' + client.fetchesTable + ' ' +
+  const query = `select * from ${client.fetchesTable} as db join ` +
+  `(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from ${client.fetchesTable} ` +
   'group by location, city, parameter) as temp ' +
   'on db.location = temp.location ' +
   'and db.city = temp.city ' +

@@ -50,7 +50,7 @@ var handleDataMapping = (results) => {
 };
 
 if (process.env.USE_ATHENA) {
-  const query = 'select * from ' + client.fetchesTable + ' as db join ' +
+  const query = `select * from ${client.fetchesTable} as db join ` +
   '(select ' +
      'max(from_iso8601_timestamp(date.utc)) last_updated, ' +
      'min(from_iso8601_timestamp(date.utc)) first_updated, ' +
@@ -59,12 +59,13 @@ if (process.env.USE_ATHENA) {
      'city, ' +
      'parameter, ' +
      'sourceName ' +
-     'from ' + client.fetchesTable + ' group by location, city, parameter, sourceName ' +
+     `from ${client.fetchesTable} group by location, city, parameter, sourceName ` +
   ') temp ' +
   'on db.location = temp.location ' +
   'and db.city = temp.city ' +
   'and db.parameter = temp.parameter ' +
   'and from_iso8601_timestamp(db.date.utc) = last_updated';
+
   resultsQuery = client.query(query);
 
   activeQuery = resultsQuery.activeQuery();
