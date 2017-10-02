@@ -6,7 +6,7 @@ import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import { isGeoPayloadOK, hiveParse } from '../../lib/utils';
+import { isGeoPayloadOK, hiveObjParse, hiveDateParse } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 import client from '../services/athena';
 
@@ -50,7 +50,7 @@ var handleDataMapping = (results) => {
 };
 
 if (process.env.USE_ATHENA) {
-  resultsQuery = client.query('select * from fetches.fetches_realtime join ' +
+  const query = `select * from ${client.fetchesTable} as db join ` +
   '(select ' +
      'max(from_iso8601_timestamp(date.utc)) last_updated, ' +
      'min(from_iso8601_timestamp(date.utc)) first_updated, ' +
@@ -59,12 +59,14 @@ if (process.env.USE_ATHENA) {
      'city, ' +
      'parameter, ' +
      'sourceName ' +
-     'from fetches.fetches_realtime group by location, city, parameter, sourceName ' +
+     `from ${client.fetchesTable} group by location, city, parameter, sourceName ` +
   ') temp ' +
-  'on fetches.fetches_realtime.location = temp.location ' +
-  'and fetches.fetches_realtime.city = temp.city ' +
-  'and fetches.fetches_realtime.parameter = temp.parameter ' +
-  'and from_iso8601_timestamp(fetches.fetches_realtime.date.utc) = last_updated');
+  'on db.location = temp.location ' +
+  'and db.city = temp.city ' +
+  'and db.parameter = temp.parameter ' +
+  'and from_iso8601_timestamp(db.date.utc) = last_updated';
+
+  resultsQuery = client.query(query);
 
   activeQuery = resultsQuery.activeQuery();
 
@@ -77,13 +79,13 @@ if (process.env.USE_ATHENA) {
         country: r.country,
         parameter: r.parameter,
         count: Number(r.count),
-        last_updated: r.last_updated,
-        first_updated: r.first_updated,
+        last_updated: hiveDateParse(r.last_updated),
+        first_updated: hiveDateParse(r.first_updated),
         source_name: r.sourcename
       };
 
       if (r.coordinates) {
-        let coordsObj = hiveParse(r.coordinates);
+        let coordsObj = hiveObjParse(r.coordinates);
         o.coordinates = {
           latitude: Number(coordsObj.latitude),
           longitude: Number(coordsObj.longitude)

@@ -6,7 +6,7 @@ import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import { isGeoPayloadOK, hiveParse } from '../../lib/utils';
+import { isGeoPayloadOK, hiveObjParse } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
 import client from '../services/athena';
 
@@ -48,14 +48,15 @@ var handleDataMapping = (results) => {
 };
 
 if (process.env.USE_ATHENA) {
-  resultsQuery = client.query('select * from fetches.fetches_realtime join ' +
-  '(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from fetches.fetches_realtime ' +
+  const query = `select * from ${client.fetchesTable} as db join ` +
+  `(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from ${client.fetchesTable} ` +
   'group by location, city, parameter) as temp ' +
-  'on fetches.fetches_realtime.location = temp.location ' +
-  'and fetches.fetches_realtime.city = temp.city ' +
-  'and fetches.fetches_realtime.parameter = temp.parameter ' +
-  'and from_iso8601_timestamp(fetches.fetches_realtime.date.utc) = max_date');
+  'on db.location = temp.location ' +
+  'and db.city = temp.city ' +
+  'and db.parameter = temp.parameter ' +
+  'and from_iso8601_timestamp(db.date.utc) = max_date';
 
+  resultsQuery = client.query(query);
   activeQuery = resultsQuery.activeQuery();
 
   handleDataMapping = (results) => {
@@ -67,17 +68,17 @@ if (process.env.USE_ATHENA) {
         parameter: r.parameter,
         value: Number(r.value),
         unit: r.unit,
-        date_utc: r.date.utc,
+        date_utc: hiveObjParse(r.date).utc,
         source_name: r.sourcename
       };
 
       if (r.averagingperiod) {
-        let ap = hiveParse(r.averagingperiod);
+        let ap = hiveObjParse(r.averagingperiod);
         o.averagingPeriod = {value: Number(ap.value), unit: ap.unit};
       }
 
       if (r.coordinates) {
-        let coordsObj = hiveParse(r.coordinates);
+        let coordsObj = hiveObjParse(r.coordinates);
         o.coordinates = {
           latitude: Number(coordsObj.latitude),
           longitude: Number(coordsObj.longitude)

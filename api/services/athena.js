@@ -7,7 +7,8 @@ import { doWhilst } from 'async';
 const athenaConfig = {
   accessKeyId: process.env.ATHENA_ACCESS_KEY_ID,
   secretAccessKey: process.env.ATHENA_SECRET_ACCESS_KEY,
-  outputBucket: process.env.ATHENA_OUTPUT_BUCKET
+  outputBucket: process.env.ATHENA_OUTPUT_BUCKET,
+  fetchesTable: process.env.ATHENA_FETCHES_TABLE || 'fetches.fetches_realtime'
 };
 
 class AthenaClient {
@@ -15,6 +16,7 @@ class AthenaClient {
     const o = owl(opts);
     this.submitQuery = pify(o.submitQuery.bind(o));
     this.getQueryResults = pify(o.getQueryResults.bind(o));
+    this.fetchesTable = opts.fetchesTable;
   }
 
   _getAllResults (queryId) {
