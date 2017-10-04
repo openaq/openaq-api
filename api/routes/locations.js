@@ -15,7 +15,7 @@ import { log } from '../services/logger';
  * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to certain one or more parameters (ex. `parameter=pm25` or `parameter[]=co&parameter[]=pm25`)
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
  * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get locations within/near a certain area. (ex. `coordinates=40.23,34.17`)
- * @apiParam {number} [nearest] Get the X nearest locations to coordinates, must be used with `coordinates`. Wins over `radius` if both are present. Will add `distance` property to locations.
+ * @apiParam {number} [nearest] Get the X nearest locations to coordinates, must be used with `coordinates`. Wins over `radius` if both are present. Will add `distance` property to locations. DEPRECATED: Use `order_by=distance` with `limit=X` instead.
  * @apiParam {number} [radius=2500] Radius (in meters) used to get locations within a certain area, must be used with `coordinates`.
  * @apiParam {string[]} [order_by=location] Order by one or more fields (ex. `order_by=count` or `order_by[]=country&order_by[]=count`).
  * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).

@@ -4,18 +4,24 @@ import { filter, has, groupBy, uniq } from 'lodash';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
+import client from '../services/athena';
 
 // Generate intermediate aggregated result
-let resultsQuery = db
+var resultsQuery = db
                     .from('measurements')
                     .select(['country', 'city', 'location'])
                     .count('location')
                     .groupBy(['country', 'location', 'city'])
                     .orderBy('country');
 
+if (process.env.USE_ATHENA) {
+  let query = `SELECT country, city, location, count(location) as count from ${client.fetchesTable} GROUP BY country, city, location ORDER BY country`;
+  resultsQuery = client.query(query);
+}
+
 // Create the endpoint from the class, purposefully using a different cache
 // name here since we can reuse the data from the countries query
-let cities = new AggregationEndpoint('COUNTRIES', resultsQuery, null, handleDataMapping, filterResultsForQuery, groupResults, 'country');
+var cities = new AggregationEndpoint('COUNTRIES', resultsQuery, null, handleDataMapping, filterResultsForQuery, groupResults, 'country');
 
 /**
  * Query the database and recieve back somewhat aggregated results

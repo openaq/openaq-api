@@ -5,9 +5,10 @@ import { db } from '../services/db';
 import { groupBy, uniqBy } from 'lodash';
 
 import { AggregationEndpoint } from './base';
+import client from '../services/athena';
 
 // Generate intermediate aggregated result
-const resultsQuery = db
+var resultsQuery = db
                     .from('measurements')
                     .select(['country', 'city', 'location'])
                     .count('location')
@@ -15,7 +16,13 @@ const resultsQuery = db
                     .orderBy('country');
 
 // Query to see if aggregation is active
-const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+var activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+
+if (process.env.USE_ATHENA) {
+  let query = `SELECT country, city, location, count(location) as count from ${client.fetchesTable} GROUP BY country, city, location ORDER BY country`;
+  resultsQuery = client.query(query);
+  activeQuery = resultsQuery.activeQuery();
+}
 
 // Create the endpoint from the class
 const countries = new AggregationEndpoint('COUNTRIES', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, 'name');

@@ -6,14 +6,91 @@ import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import { isGeoPayloadOK } from '../../lib/utils';
+import { isGeoPayloadOK, hiveObjParse } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
+import client from '../services/athena';
 
 // Generate intermediate aggregated result
-const resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) max_date, location, city, parameter from measurements group by location, city, parameter) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = max_date'));
+var resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) max_date, location, city, parameter from measurements group by location, city, parameter) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = max_date'));
 
 // Query to see if aggregation is active
-const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+var activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+
+/**
+ * A function to handle mapping db results to useful data
+ *
+ * @param {array} results A results array from db
+ * return {array} An array of modified results, useful to the system
+ */
+var handleDataMapping = (results) => {
+  // Do a top level pass to handle some data transformation
+  results = results.map((r) => {
+    let o = {
+      location: r.location,
+      city: r.city,
+      country: r.country,
+      parameter: r.parameter,
+      value: r.value,
+      unit: r.unit,
+      date_utc: r.date_utc,
+      source_name: r.source_name,
+      averagingPeriod: r.data.averagingPeriod
+    };
+
+    if (r.data.coordinates) {
+      o.coordinates = r.data.coordinates;
+    }
+
+    return o;
+  });
+
+  return results;
+};
+
+if (process.env.USE_ATHENA) {
+  const query = `select * from ${client.fetchesTable} as db join ` +
+  `(select max(from_iso8601_timestamp(date.utc)) max_date, location, city, parameter from ${client.fetchesTable} ` +
+  'group by location, city, parameter) as temp ' +
+  'on db.location = temp.location ' +
+  'and db.city = temp.city ' +
+  'and db.parameter = temp.parameter ' +
+  'and from_iso8601_timestamp(db.date.utc) = max_date';
+
+  resultsQuery = client.query(query);
+  activeQuery = resultsQuery.activeQuery();
+
+  handleDataMapping = (results) => {
+    results = results.map((r) => {
+      let o = {
+        location: r.location,
+        city: r.city,
+        country: r.country,
+        parameter: r.parameter,
+        value: Number(r.value),
+        unit: r.unit,
+        date_utc: hiveObjParse(r.date).utc,
+        source_name: r.sourcename
+      };
+
+      if (r.averagingperiod) {
+        let ap = hiveObjParse(r.averagingperiod);
+        o.averagingPeriod = {value: Number(ap.value), unit: ap.unit};
+      }
+
+      if (r.coordinates) {
+        let coordsObj = hiveObjParse(r.coordinates);
+        o.coordinates = {
+          latitude: Number(coordsObj.latitude),
+          longitude: Number(coordsObj.longitude)
+        };
+      }
+
+      return o;
+    });
+
+    return results;
+  };
+}
 
 // Create the endpoint from the class
 const latest = new AggregationEndpoint('LATEST', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, 'location');
@@ -46,37 +123,6 @@ export function isActive (cb) {
 */
 export function query (query, page, limit, cb) {
   latest.query(query, page, limit, cb);
-}
-
-/**
- * A function to handle mapping db results to useful data
- *
- * @param {array} results A results array from db
- * return {array} An array of modified results, useful to the system
- */
-function handleDataMapping (results) {
-  // Do a top level pass to handle some data transformation
-  results = results.map((r) => {
-    let o = {
-      location: r.location,
-      city: r.city,
-      country: r.country,
-      parameter: r.parameter,
-      value: r.value,
-      unit: r.unit,
-      date_utc: r.date_utc,
-      source_name: r.source_name,
-      averagingPeriod: r.data.averagingPeriod
-    };
-
-    if (r.data.coordinates) {
-      o.coordinates = r.data.coordinates;
-    }
-
-    return o;
-  });
-
-  return results;
 }
 
 /**
@@ -127,15 +173,16 @@ function filterResultsForQuery (results, query) {
       if (has(query, 'radius')) {
         radius = query.radius;
       }
-      results = filter(results, (r, i) => {
-        if (!r.coordinates) {
-          return false;
-        }
-
+      results = filter(results, 'coordinates');
+      results = results.map((r, i) => {
         const p1 = point([r.coordinates.longitude, r.coordinates.latitude]);
         const p2 = point([Number(query.coordinates.split(',')[1]), Number(query.coordinates.split(',')[0])]);
         const d = distance(p1, p2, 'kilometers') * 1000; // convert to meters
-        return d <= radius;
+        r.distance = d;
+        return r;
+      });
+      results = filter(results, (r, i) => {
+        return r.distance <= radius;
       });
     }
   }
@@ -167,6 +214,7 @@ function groupResults (results) {
       location: m[0].location,
       city: m[0].city,
       country: m[0].country,
+      distance: m[0].distance,
       measurements: measurements
     };
 

@@ -6,14 +6,98 @@ import point from 'turf-point';
 
 import { db } from '../services/db';
 import { AggregationEndpoint } from './base';
-import { isGeoPayloadOK } from '../../lib/utils';
+import { isGeoPayloadOK, hiveObjParse, hiveDateParse } from '../../lib/utils';
 import { defaultGeoRadius } from '../constants';
+import client from '../services/athena';
 
 // Generate intermediate aggregated result
-const resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) last_updated, min(date_utc) first_updated, count(date_utc), location, city, parameter, source_name from measurements group by location, city, parameter, source_name) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = last_updated'));
+var resultsQuery = db.select(db.raw('* from measurements join (select max(date_utc) last_updated, min(date_utc) first_updated, count(date_utc), location, city, parameter, source_name from measurements group by location, city, parameter, source_name) temp on measurements.location = temp.location and measurements.city = temp.city and measurements.parameter = temp.parameter and measurements.date_utc = last_updated'));
 
 // Query to see if aggregation is active
-const activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+var activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
+
+/**
+ * A function to handle mapping db results to useful data
+ *
+ * @param {array} results A results array from db
+ * return {array} An array of modified results, useful to the system
+ */
+var handleDataMapping = (results) => {
+  // Do a top level pass to handle some data transformation
+  results = results.map((r) => {
+    let o = {
+      location: r.location,
+      city: r.city,
+      country: r.country,
+      parameter: r.parameter,
+      count: r.count,
+      last_updated: r.last_updated,
+      first_updated: r.first_updated,
+      source_name: r.source_name || r.data.sourceName
+    };
+
+    if (r.data && r.data.coordinates) {
+      o.coordinates = r.data.coordinates;
+    }
+    if (r.latitude) {
+      o.coordinates = {latitude: r.latitude, longitude: r.longitude};
+    }
+
+    return o;
+  });
+
+  return results;
+};
+
+if (process.env.USE_ATHENA) {
+  const query = `select * from ${client.fetchesTable} as db join ` +
+  '(select ' +
+     'max(from_iso8601_timestamp(date.utc)) last_updated, ' +
+     'min(from_iso8601_timestamp(date.utc)) first_updated, ' +
+     'count(date.utc) as count, ' +
+     'location, ' +
+     'city, ' +
+     'parameter, ' +
+     'sourceName ' +
+     `from ${client.fetchesTable} group by location, city, parameter, sourceName ` +
+  ') temp ' +
+  'on db.location = temp.location ' +
+  'and db.city = temp.city ' +
+  'and db.parameter = temp.parameter ' +
+  'and from_iso8601_timestamp(db.date.utc) = last_updated';
+
+  resultsQuery = client.query(query);
+
+  activeQuery = resultsQuery.activeQuery();
+
+  handleDataMapping = (results) => {
+    // Do a top level pass to handle some data transformation
+    results = results.map((r) => {
+      let o = {
+        location: r.location,
+        city: r.city,
+        country: r.country,
+        parameter: r.parameter,
+        count: Number(r.count),
+        last_updated: hiveDateParse(r.last_updated),
+        first_updated: hiveDateParse(r.first_updated),
+        source_name: r.sourcename
+      };
+
+      if (r.coordinates) {
+        let coordsObj = hiveObjParse(r.coordinates);
+        o.coordinates = {
+          latitude: Number(coordsObj.latitude),
+          longitude: Number(coordsObj.longitude)
+        };
+      }
+
+      return o;
+    });
+
+    return results;
+  };
+}
 
 // Create the endpoint from the class
 const locations = new AggregationEndpoint('LOCATIONS', resultsQuery, activeQuery, handleDataMapping, filterResultsForQuery, groupResults, 'location');
@@ -47,36 +131,6 @@ export function isActive (cb) {
 module.exports.query = function (query, page, limit, cb) {
   locations.query(query, page, limit, cb);
 };
-
-/**
- * A function to handle mapping db results to useful data
- *
- * @param {array} results A results array from db
- * return {array} An array of modified results, useful to the system
- */
-function handleDataMapping (results) {
-  // Do a top level pass to handle some data transformation
-  results = results.map((r) => {
-    let o = {
-      location: r.location,
-      city: r.city,
-      country: r.country,
-      parameter: r.parameter,
-      count: r.count,
-      last_updated: r.last_updated,
-      first_updated: r.first_updated,
-      source_name: r.data.sourceName
-    };
-
-    if (r.data.coordinates) {
-      o.coordinates = r.data.coordinates;
-    }
-
-    return o;
-  });
-
-  return results;
-}
 
 /**
  * Filter over larger results set to get only get specific values if requested
