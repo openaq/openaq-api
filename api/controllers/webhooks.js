@@ -2,9 +2,10 @@
 
 import { forEach, includes } from 'lodash';
 import { parallel } from 'async';
-var webhookKey = process.env.WEBHOOK_KEY || '123';
+const webhookKey = process.env.WEBHOOK_KEY || '123';
+const aggregationRefreshPeriod = process.env.AGGREGATION_REFRESH_PERIOD || 45 * 60 * 1000;
 import { log } from '../services/logger';
-import redis from '../services/redis';
+import { default as redis, getLastUpdated } from '../services/redis';
 
 /**
 * Handle incoming webhooks. Implements all protocols supported by /webhooks endpoint
@@ -39,6 +40,11 @@ var runCachedQueries = function (redis) {
   // aggregations. This will just keep using the old cache.
   if (process.env.DO_NOT_UPDATE_CACHE) {
     return log(['info'], 'Database updated but not running any cache queries for now.');
+  }
+
+  // Check if we need to run cached queries based on last time cache was updated
+  if (getLastUpdated() && (new Date() - new Date(getLastUpdated())) < aggregationRefreshPeriod) {
+    return log(['info'], `Database updated but not running any cache queries since we're within the refresh period: ${(new Date() - new Date(getLastUpdated())) / 60 / 1000} < ${aggregationRefreshPeriod / 60 / 1000}`);
   }
 
   // Check to make sure none of the aggregations are already running
