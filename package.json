@@ -62,6 +62,10 @@
     "url": "https://api.openaq.org/v1",
     "template": {
       "withCompare": false
+    },
+    "header": {
+      "title": "Getting Started",
+      "filename": "./header.md"
     }
   }
 }
