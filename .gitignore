@@ -7,3 +7,4 @@ dump
 dump.rdb
 local.env
 ecs-task-generated.json
+/package-lock.json
