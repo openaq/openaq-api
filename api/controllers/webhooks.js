@@ -1,7 +1,7 @@
 'use strict';
 
 import { forEach, includes } from 'lodash';
-import { parallel, series } from 'async';
+import { parallel } from 'async';
 var webhookKey = process.env.WEBHOOK_KEY || '123';
 import { log } from '../services/logger';
 import redis from '../services/redis';
@@ -75,9 +75,9 @@ var runCachedQueries = function (redis) {
     }
 
     // Run the queries to build up the cache.
-    // Do them in series to be nicer to the database
+    // Run 3 major aggregations in parallel and handle count at the end
     log(['info'], 'Database updated, running new cache queries.');
-    series({
+    parallel({
       'LOCATIONS': function (done) {
         require('./locations').queryDatabase((err, results) => {
           if (err) {
@@ -104,16 +104,6 @@ var runCachedQueries = function (redis) {
           log(['info'], 'COUNTRIES cache query done');
           done(err, JSON.stringify(results));
         });
-      },
-      'COUNT': function (done) {
-        const query = {};
-        require('./measurements').queryCount(query, true, (err, results) => {
-          if (err) {
-            log(['error'], err);
-          }
-          log(['info'], `${JSON.stringify(query)} COUNT cache query done`);
-          done(err, JSON.stringify(results));
-        });
       }
     },
     function (err, results) {
@@ -121,6 +111,14 @@ var runCachedQueries = function (redis) {
         log(['error'], err);
         return log(['error'], 'New cache queries had errors, keeping current cache');
       }
+
+      // Generate COUNT from COUNTRIES query
+      const query = {};
+      results['COUNT'] = 0;
+      JSON.parse(results['COUNTRIES']).map((c) => {
+        results['COUNT'] += parseInt(c.count);
+      });
+      log(['info'], `${JSON.stringify(query)} COUNT cache query done`);
 
       log(['info'], 'New cache queries done, dumping current cache.');
       redis.flushall(function (err, reply) {
