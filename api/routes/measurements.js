@@ -24,7 +24,9 @@ import { log } from '../services/logger';
  * @apiParam {string} [date_to] Show results before a certain date. This acts on the `utc` timestamp of each measurement. (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
  * @apiParam {string[]} [order_by=date] Order by one or more fields (ex. `order_by=date` or `order_by[]=value&order_by[]=parameter`).
  * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
- * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
+ * @apiParam {array=attribution, averagingPeriod, mobile, sourceName, sourceType}  [include_fields] Include extra fields in the output in addition to default values.
+ * @apiParam {string} [source_type] Filter results by source type. One of: `government`, `research`, `other`.
+ * @apiParam {boolean} [mobile] Filter results by sensor mobility.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  * @apiParam {string=csv, json} [format=json] Format for data return. Note that `csv` will return a max of 65,536 results when no limit is set.
