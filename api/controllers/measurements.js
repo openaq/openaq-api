@@ -133,10 +133,6 @@ module.exports.query = function (query, page, limit, cb) {
       });
     });
 
-    if (_.isEmpty(sort)) {
-      sort = defaultSort;
-    }
-
     // sanitized payload
     payload = _.omit(payload, 'order_by');
   }
@@ -144,6 +140,10 @@ module.exports.query = function (query, page, limit, cb) {
   if (_.has(payload, 'sort')) {
     // sanitized payload
     payload = _.omit(payload, 'sort');
+  }
+
+  if (_.isEmpty(sort)) {
+    sort = defaultSort;
   }
 
   //
