@@ -11,3 +11,7 @@ There are IP-based limits imposed of ~2000 requests over a 5 minute period. If y
 ### License
 
 For the most up to date license information, please see [here](https://github.com/openaq/openaq-api/blob/develop/LICENSE.md).
+
+### Data Retention to the API vs S3 Access
+
+Currently the API only supports a rolling 90 day archive of the data. For access to the full dataset, you can access directly S3 by going [here](https://openaq-fetches.s3.amazonaws.com/index.html) or [here](https://openaq-data.s3.amazonaws.com/index.html).
