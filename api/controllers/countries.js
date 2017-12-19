@@ -10,16 +10,15 @@ import client from '../services/athena';
 // Generate intermediate aggregated result
 var resultsQuery = db
                     .from('measurements')
-                    .select(['country', 'city', 'location'])
+                    .select(db.raw('UPPER(country) as country, city, location'))
                     .count('location')
-                    .groupBy(['country', 'location', 'city'])
-                    .orderBy('country');
+                    .groupByRaw('UPPER(country), location, city')
+                    .orderByRaw('UPPER(country)');
 
 // Query to see if aggregation is active
 var activeQuery = db.select(db.raw(`* from pg_stat_activity where state = 'active' and query = '${resultsQuery.toString()}'`));
-
 if (process.env.USE_ATHENA) {
-  let query = `SELECT country, city, location, count(location) as count from ${client.fetchesTable} GROUP BY country, city, location ORDER BY country`;
+  let query = `SELECT UPPER(country) as country, city, location, count(location) as count from ${client.fetchesTable} GROUP BY UPPER(country), city, location ORDER BY UPPER(country)`;
   resultsQuery = client.query(query);
   activeQuery = resultsQuery.activeQuery();
 }
