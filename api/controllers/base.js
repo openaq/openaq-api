@@ -4,6 +4,7 @@ import { orderBy, slice } from 'lodash';
 
 import { log } from '../services/logger';
 import redis from '../services/redis';
+import { getLocalCache, setLocalCache } from '../services/localCache';
 
 /**
  * Generic base class for aggregation endpoints, provides a mechanism to
@@ -88,9 +89,22 @@ export class AggregationEndpoint {
       cb(null, paged, data.length);
     };
 
-    // Check to see if we have the intermediate aggregation result cached, use
-    // if it's there
-    if (redis && redis.ready) {
+    // Check to see if we have locally cached data
+    if (getLocalCache(this.cacheName)) {
+      // Grab from local cache
+      let data = getLocalCache(this.cacheName);
+
+      // Build specific result from aggregated data
+      data = this.filterResultsForQuery(data, query);
+
+      // Group the results to a nicer output
+      data = this.groupResults(data);
+      data = this.orderResults(data, query);
+
+      // Send back results
+      return sendResults(null, data);
+    } else if (redis && redis.ready) {
+      // If we're using Redis, check there for the cached data
       redis.get(this.cacheName, (err, reply) => {
         if (err) {
           log(['error'], err);
@@ -98,6 +112,9 @@ export class AggregationEndpoint {
           // Wrap in a try catch because you can never be too careful
           try {
             let data = JSON.parse(reply);
+
+            // Set result on localCache so we don't need to get it again until it is updated
+            setLocalCache(this.cacheName, data);
 
             // Build specific result from aggregated data
             data = this.filterResultsForQuery(data, query);
@@ -132,7 +149,7 @@ export class AggregationEndpoint {
         results = this.orderResults(results, query);
 
         // Send back results
-        sendResults(null, results);
+        return sendResults(null, results);
       });
     }
   }

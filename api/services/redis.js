@@ -7,6 +7,8 @@
 * via pubsub model.
 */
 
+import { flushLocalCache } from './localCache';
+
 let redis = require('redis');
 
 let client;
@@ -27,7 +29,11 @@ if (process.env.USE_REDIS) {
       try {
         message = JSON.parse(message);
         if (message.type === 'DATABASE_UPDATED') {
+          // Set last updated time
           updated = message.updatedAt;
+
+          // Flush local cache since results are now out of date
+          flushLocalCache();
         }
       } catch (e) {
         // Nothing needed for now
