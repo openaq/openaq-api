@@ -17,6 +17,8 @@ Install necessary Node.js packages by running
 
 Make sure you have a PostgreSQL database available (with PostGIS extension) and have the DB settings in `knexfile.js`.
 
+`npm test` to seed the database.
+
 Now you can get started with:
 
 `npm start`
