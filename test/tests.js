@@ -52,6 +52,33 @@ describe('Testing endpoints', function () {
     });
   });
 
+  describe('/query', function () {
+    it.only('should return properly', function (done) {
+      request.post(self.baseURL + 'query', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
+
+        var res = JSON.parse(body);
+        expect(res.results.s3DownloadUrl).to.equal('');
+        done();
+      });
+    });
+
+    // this should have options both to test against a real Athena endpoint as
+    // well as to stub the response from Athena.
+    it('should return an S3 url');
+
+    describe('when 10 queries are already running', function (done) {
+      it('does not run a query');
+      it('returns a helpful message');
+    });
+  });
+
+  describe('query controller', function () {
+    it('converts request parameters to an athena query');
+  });
+
   describe('/v1', function () {
     it('should list available endpoints', function (done) {
       request(self.baseURL, function (err, response, body) {
