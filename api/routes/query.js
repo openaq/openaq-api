@@ -65,6 +65,7 @@ module.exports = [
     },
     handler: function (request, reply) {
       let initQuery = db.select('*').from(athenaConfig.table);
+
       let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(request.query);
       let athenaQuery = utils.buildSQLQuery(initQuery, payload, operators, betweens, nulls, notNulls, geo);
       athenaQuery = athenaQuery.toString().replace(/"/gi, '');

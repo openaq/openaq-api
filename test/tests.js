@@ -84,7 +84,8 @@ describe('Testing endpoints', function () {
           'locations',
           'measurements',
           'parameters',
-          'sources'
+          'sources',
+          'query'
         ];
 
         var res = JSON.parse(body);
