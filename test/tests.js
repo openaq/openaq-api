@@ -53,8 +53,6 @@ describe('Testing endpoints', function () {
   });
 
   describe('/query', function () {
-    // this should have options both to test against a real Athena endpoint as
-    // well as to stub the response from Athena.
     it('should return the expected object', function (done) {
       request(self.baseURL + 'query?limit=0', function (err, response, body) {
         if (err) {
