@@ -64,11 +64,13 @@ module.exports = [
       description: 'Query all results using Athena.'
     },
     handler: function (request, reply) {
+      let limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
       let initQuery = db.select('*').from(athenaConfig.table);
 
       let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(request.query);
       let athenaQuery = utils.buildSQLQuery(initQuery, payload, operators, betweens, nulls, notNulls, geo);
       athenaQuery = athenaQuery.toString().replace(/"/gi, '');
+      athenaQuery += ` limit ${limit}`;
 
       const athenaParams = {
         QueryString: athenaQuery,
