@@ -33,8 +33,6 @@ For production deployment, you will need to have certain environment variables s
 | USE_REDIS | Use Redis for caching? | not set (so not used) |
 | USE_ATHENA | Use AWS Athena for aggregations? | not set (so not used) |
 | REDIS_URL | Redis instance URL | redis://localhost:6379 |
-| KEEN_PROJECT_ID | Keen project ID for analytics. | not set |
-| KEEN_WRITE_KEY | Keen write key for analytics. | not set |
 | DO_NOT_UPDATE_CACHE | Ignore updating cache, but still use older cached results. | not set |
 | AGGREGATION_REFRESH_PERIOD | How long to wait before refreshing cached aggregations? (in ms) | 45 minutes |
 | REQUEST_LIMIT | Max number of items that can be requested at one time. | 10000 |
