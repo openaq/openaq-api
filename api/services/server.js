@@ -1,18 +1,11 @@
 'use strict';
 
 var Hapi = require('hapi');
-var Keen = require('keen-js');
 var GoodWinston = require('good-winston');
 var winston = require('winston');
 require('winston-papertrail').Papertrail;
 var os = require('os');
 import { getLastUpdated } from './redis';
-
-// Configure Keen instance
-var keen = new Keen({
-  projectId: process.env.KEEN_PROJECT_ID,
-  writeKey: process.env.KEEN_WRITE_KEY
-});
 
 var Server = function (port) {
   this.port = port;
@@ -119,36 +112,6 @@ Server.prototype.start = function (cb) {
     register: require('good'),
     options: options
   }, function (err) {
-    if (err) throw err;
-  });
-
-  // Add analytics to endpoints
-  var KeenPlugin = {
-    register: function (server, options, next) {
-      server.ext('onPreHandler', function (request, reply) {
-        // Pass along route view, exclude ping, webhooks and status
-        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico' && request.route.path.indexOf('webhooks') === -1 && request.route.path !== '/status') {
-          var components = request.route.path.split('/');
-          var rEvent = {
-            endpoint: components[2],
-            version: components[1],
-            query: request.query,
-            ip: request.info.remoteAddress
-          };
-          keen.addEvent('requests', rEvent);
-        }
-
-        return reply.continue();
-      });
-
-      next();
-    }
-  };
-  KeenPlugin.register.attributes = {
-    name: 'KeenPlugin',
-    version: '0.0.1'
-  };
-  self.hapi.register(KeenPlugin, function (err) {
     if (err) throw err;
   });
 
