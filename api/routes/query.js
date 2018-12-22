@@ -69,7 +69,7 @@ module.exports = [
       let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(request.query);
       let athenaQuery = utils.buildSQLQuery(initQuery, payload, operators, betweens, nulls, notNulls, geo);
       athenaQuery = athenaQuery.toString().replace(/"/gi, '');
-      athenaQuery += ` order by date.utc`;
+      athenaQuery += ` order by date.utc`; // eslint-disable-line quotes
       athenaQuery += ` limit ${limit}`;
 
       const athenaParams = {
