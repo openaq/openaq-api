@@ -52,20 +52,22 @@ describe('Testing endpoints', function () {
     });
   });
 
-  describe('/query', function () {
-    it('should return the expected object', function (done) {
-      request(self.baseURL + 'query?limit=0', function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+  if (process.env.ATHENA_OUTPUT_BUCKET) {
+    describe('/query', function () {
+      it('should return the expected object', function (done) {
+        request(self.baseURL + 'query?limit=0', function (err, response, body) {
+          if (err) {
+            console.error(err);
+          }
 
-        var res = JSON.parse(body);
-        expect(res.results.s3Uri).to.match(/s3:\/\/.+\.csv/);
-        expect(res.results.downloadUrl).to.match(/https:\/\/.+\.csv/);
-        done();
+          var res = JSON.parse(body);
+          expect(res.results.s3Uri).to.match(/s3:\/\/.+\.csv/);
+          expect(res.results.downloadUrl).to.match(/https:\/\/.+\.csv/);
+          done();
+        });
       });
     });
-  });
+  }
 
   describe('/v1', function () {
     it('should list available endpoints', function (done) {
