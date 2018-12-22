@@ -7,10 +7,9 @@ const athena = new AWS.Athena({region: 'us-east-1'});
 var Boom = require('boom');
 import { log } from '../services/logger';
 
-// TODO(aimee): store these in a config
-const outputBucket = 'aws-athena-query-results-openaq';
+const outputBucket = process.env.ATHENA_OUTPUT_BUCKET;
 const athenaConfig = {
-  table: '"openaq_realtime_gzipped"."fetches_realtime_gzipped"',
+  table: process.env.ATHENA_FETCHES_TABLE,
   outputLocation: `s3://${outputBucket}`,
   outputUrl: `https://${outputBucket}.s3.amazonaws.com`
 };
@@ -70,6 +69,7 @@ module.exports = [
       let { payload, operators, betweens, nulls, notNulls, geo } = utils.queryFromParameters(request.query);
       let athenaQuery = utils.buildSQLQuery(initQuery, payload, operators, betweens, nulls, notNulls, geo);
       athenaQuery = athenaQuery.toString().replace(/"/gi, '');
+      athenaQuery += ` order by date.utc`;
       athenaQuery += ` limit ${limit}`;
 
       const athenaParams = {
