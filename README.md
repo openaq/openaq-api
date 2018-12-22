@@ -69,6 +69,25 @@ CREATE EXTERNAL TABLE fetches.fetches_realtime (
  LOCATION 's3://EXAMPLE_BUCKET'
 ```
 
+### AWS Athena for historical data via `/query` endpoint
+
+The `/v1/query` endpoint makes it possible to access all historical measurements data via the API and using the same query parameters as are available to `/v1/measurements`.
+
+To configure the query endpoint, first create a table in your AWS Athena which matches the schema (`fetches.fetches_realtime`) above, where location is:
+
+```sql
+  LOCATION 's3://openaq-fetches/realtime-gzipped'
+```
+
+Find or create a bucket to store the query outputs. This example uses `aws-athena-query-results`.
+
+Then set the following variables before starting the API server (given your database has the name `openaq_realtime`:
+
+```bash
+export ATHENA_FETCHES_TABLE=fetches.fetches_realtime
+export ATHENA_OUTPUT_BUCKET=aws-athena-query-results
+```
+
 ## Uploads & Generating S3 presigned URLs
 Via an undocumented `/upload` endpoint, there is the ability to generate presigned S3 PUT URLs so that external clients can authenticate using tokens stored in the database and upload data to be ingested by `openaq-fetch`. There is a small utility file called `encrypt.js` that you can use like `UPLOADS_ENCRYPTION_KEY=foo node index.js your_token_here` to generate encrytped tokens to be manually stored in database.
 
