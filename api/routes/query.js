@@ -82,9 +82,14 @@ module.exports = [
       athena.startQueryExecution(athenaParams, function (err, data) {
         if (err) {
           log(['error'], err);
-          return reply(Boom.badImplementation(err));
+          if (err.message === 'Rate exceeded') {
+            return reply(Boom.tooManyRequests(err));
+          } else {
+            return reply(Boom.badImplementation(err));
+          }
         } else {
           return reply({
+            queryId: data.QueryExecutionId,
             downloadUrl: `${athenaConfig.outputUrl}/${data.QueryExecutionId}.csv`,
             s3Uri: `${athenaConfig.outputLocation}/${data.QueryExecutionId}.csv`
           });
