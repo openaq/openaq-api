@@ -73,13 +73,13 @@ CREATE EXTERNAL TABLE fetches.fetches_realtime (
 
 The `/v1/query` endpoint makes it possible to access all historical measurements data via the API and using the same query parameters as are available to `/v1/measurements`.
 
-To configure the query endpoint, first create a table in your AWS Athena which matches the schema (`fetches.fetches_realtime`) above, where location is:
+To configure the query endpoint, first create a table in your AWS Athena which matches the schema `fetches.fetches_realtime` above, where location is:
 
 ```sql
   LOCATION 's3://openaq-fetches/realtime-gzipped'
 ```
 
-Find or create a bucket to store the query outputs. This example uses `aws-athena-query-results`.
+Second, find or create a bucket to store the query outputs. This example uses `aws-athena-query-results`.
 
 Then set the following variables before starting the API server (given your database has the name `openaq_realtime`:
 
