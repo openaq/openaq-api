@@ -79,13 +79,13 @@ To configure the query endpoint, first create a table in your AWS Athena which m
   LOCATION 's3://openaq-fetches/realtime-gzipped'
 ```
 
-Second, find or create a bucket to store the query outputs. This example uses `aws-athena-query-results`.
+Second, find or create a bucket to store the query outputs. This example uses `athena-query-output`.
 
 Then set the following variables before starting the API server, given your database has the name `fetches` and your measurements table is `fetches_realtime`:
 
 ```bash
 export ATHENA_FETCHES_TABLE=fetches.fetches_realtime
-export ATHENA_OUTPUT_BUCKET=aws-athena-query-results
+export ATHENA_QUERY_OUTPUT_BUCKET=athena-query-output
 ```
 
 ## Uploads & Generating S3 presigned URLs

@@ -7,7 +7,7 @@ const athena = new AWS.Athena({region: 'us-east-1'});
 var Boom = require('boom');
 import { log } from '../services/logger';
 
-const outputBucket = process.env.ATHENA_OUTPUT_BUCKET;
+const outputBucket = process.env.ATHENA_QUERY_OUTPUT_BUCKET;
 const athenaConfig = {
   table: process.env.ATHENA_FETCHES_TABLE,
   outputLocation: `s3://${outputBucket}`,

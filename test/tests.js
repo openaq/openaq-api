@@ -52,7 +52,7 @@ describe('Testing endpoints', function () {
     });
   });
 
-  if (process.env.ATHENA_OUTPUT_BUCKET) {
+  if (process.env.ATHENA_QUERY_OUTPUT_BUCKET) {
     describe('/query', function () {
       it('should return the expected object', function (done) {
         request(self.baseURL + 'query?limit=0', function (err, response, body) {
