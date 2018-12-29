@@ -32,7 +32,6 @@
     "hapi-response-meta": "^0.3.0",
     "hapi-router": "^3.0.1",
     "hiredis": "^0.4.1",
-    "keen-js": "^3.3.0",
     "knex": "^0.9.0",
     "knex-postgis": "^0.1.8",
     "little-owl": "^1.0.0",
