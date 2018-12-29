@@ -81,7 +81,7 @@ To configure the query endpoint, first create a table in your AWS Athena which m
 
 Second, find or create a bucket to store the query outputs. This example uses `aws-athena-query-results`.
 
-Then set the following variables before starting the API server (given your database has the name `openaq_realtime`:
+Then set the following variables before starting the API server, given your database has the name `fetches` and your measurements table is `fetches_realtime`:
 
 ```bash
 export ATHENA_FETCHES_TABLE=fetches.fetches_realtime
