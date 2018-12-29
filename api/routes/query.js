@@ -35,11 +35,13 @@ const athenaConfig = {
  * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  *
+ * @apiSuccess {string}   queryId  Athena Query Id
  * @apiSuccess {string}   downloadUrl  Location of results when using HTTPS protocol
  * @apiSuccess {string}   s3Uri        Location of results when using S3 protocol
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
  *      {
+ *        "queryId": "<uuid>",
  *        "downloadUrl": "https://<bucket>.s3.amazonaws.com/<uuid>.csv",
  *        "s3Uri": "s3://<bucket>/<uuid>.csv"
  *      }
