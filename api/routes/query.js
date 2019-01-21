@@ -70,16 +70,6 @@ module.exports = [
       description: 'Query all results using Athena.'
     },
     handler: function (request, reply) {
-      canRunQuery()
-        .then((queryCheckSuccess) => {
-          if (!queryCheckSuccess) return reply(Boom.tooManyRequests('Too many queries already running'));
-          else null;
-        })
-        .catch((err) => {
-          log(['error'], err);
-          return reply(Boom.badImplementation(err));
-        });
-
       let limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
       let initQuery = db.select('*').from(athenaConfig.table);
 
@@ -96,7 +86,14 @@ module.exports = [
         }
       };
 
-      return module.exports.startQueryExecution(athenaParams)
+      return canRunQuery()
+        .then((queryCheckSuccess) => {
+          if (!queryCheckSuccess) {
+            throw new Error('Rate exceeded');
+          } else {
+            return module.exports.startQueryExecution(athenaParams);
+          }
+        })
         .then((data) => {
           return reply({
             queryId: data.QueryExecutionId,
