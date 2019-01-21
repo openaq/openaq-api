@@ -1,6 +1,7 @@
 'use strict';
 
 const utils = require('../../lib/utils');
+const canRunQuery = require('../../lib/canRunQuery').canRunQuery;
 const { db } = require('../services/db');
 const AWS = require('aws-sdk');
 const athena = new AWS.Athena({region: 'us-east-1'});
@@ -64,7 +65,9 @@ module.exports = [
     config: {
       description: 'Query all results using Athena.'
     },
-    handler: function (request, reply) {
+    handler: async function (request, reply) {
+      if (!(await canRunQuery())) return reply(Boom.tooManyRequests('Too many queries already running'));
+
       let limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
       let initQuery = db.select('*').from(athenaConfig.table);
 
