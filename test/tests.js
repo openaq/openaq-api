@@ -1,14 +1,17 @@
 /* global describe, it, before, after */
 'use strict';
 
-var expect = require('chai').expect;
+const expect = require('chai').expect;
+const sinon = require('sinon');
+const request = require('request');
+import { orderBy } from 'lodash';
+
 import { db } from '../api/services/db';
 let knexConfig = require('../knexfile');
-var Server = require('../api/services/server');
-var testPort = 2000;
-var request = require('request');
-var utils = require('../lib/utils');
-import { orderBy } from 'lodash';
+const Server = require('../api/services/server');
+const testPort = 2000;
+const utils = require('../lib/utils');
+const canRunQuery = require('../lib/canRunQuery');
 
 describe('Testing endpoints', function () {
   var self = this;
@@ -27,10 +30,17 @@ describe('Testing endpoints', function () {
         self.server.start(done);
       });
     });
+
+    sinon.stub(canRunQuery, 'canRunQuery').resolves(true);
+    const queryEndpoint = require('../api/routes/query');
+    sinon.stub(queryEndpoint, 'startQueryExecution').resolves({
+      QueryExecutionId: 'test-query-uuid'
+    });
   });
 
   after(function (done) {
     self.server.hapi.stop(done);
+    sinon.reset();
   });
 
   describe('/', function () {
@@ -52,22 +62,20 @@ describe('Testing endpoints', function () {
     });
   });
 
-  if (process.env.ATHENA_QUERY_OUTPUT_BUCKET) {
-    describe('/query', function () {
-      it('should return the expected object', function (done) {
-        request(self.baseURL + 'query?limit=0', function (err, response, body) {
-          if (err) {
-            console.error(err);
-          }
+  describe('/query', function () {
+    it('should return the expected object', function (done) {
+      request(self.baseURL + 'query?limit=0', function (err, response, body) {
+        if (err) {
+          console.error(err);
+        }
 
-          var res = JSON.parse(body);
-          expect(res.results.s3Uri).to.match(/s3:\/\/.+\.csv/);
-          expect(res.results.downloadUrl).to.match(/https:\/\/.+\.csv/);
-          done();
-        });
+        var res = JSON.parse(body);
+        expect(res.results.s3Uri).to.match(/s3:\/\/.+\.csv/);
+        expect(res.results.downloadUrl).to.match(/https:\/\/.+\.csv/);
+        done();
       });
     });
-  }
+  });
 
   describe('/v1', function () {
     it('should list available endpoints', function (done) {

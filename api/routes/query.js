@@ -15,6 +15,10 @@ const athenaConfig = {
   outputUrl: `https://${outputBucket}.s3.amazonaws.com`
 };
 
+async function startQueryExecution (params) {
+  return athena.startQueryExecution(params).promise();
+}
+
 /**
  * @api {get} /query GET
  * @apiGroup Query
@@ -84,22 +88,23 @@ module.exports = [
         }
       };
 
-      athena.startQueryExecution(athenaParams, function (err, data) {
-        if (err) {
+      return module.exports.startQueryExecution(athenaParams)
+        .then((data) => {
+          return reply({
+            queryId: data.QueryExecutionId,
+            downloadUrl: `${athenaConfig.outputUrl}/${data.QueryExecutionId}.csv`,
+            s3Uri: `${athenaConfig.outputLocation}/${data.QueryExecutionId}.csv`
+          });
+        })
+        .catch((err) => {
           log(['error'], err);
           if (err.message === 'Rate exceeded') {
             return reply(Boom.tooManyRequests(err));
           } else {
             return reply(Boom.badImplementation(err));
           }
-        } else {
-          return reply({
-            queryId: data.QueryExecutionId,
-            downloadUrl: `${athenaConfig.outputUrl}/${data.QueryExecutionId}.csv`,
-            s3Uri: `${athenaConfig.outputLocation}/${data.QueryExecutionId}.csv`
-          });
-        }
-      });
+        });
     }
   }
 ];
+module.exports.startQueryExecution = startQueryExecution;

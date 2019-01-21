@@ -5,7 +5,7 @@ const sinon = require('sinon');
 const expect = require('chai').expect;
 
 process.env.MAX_RUNNING_QUERIES = 2;
-const canRunQuery = require('../lib/canRunQuery');
+const canRunQuery = require('../../lib/canRunQuery');
 
 const runningQueryObject = { Status: { State: 'RUNNING' } };
 const getQueryExecutionIdsStub = sinon.stub(canRunQuery, 'getQueryExecutionIds');
@@ -19,14 +19,11 @@ describe('canRunQuery', () => {
     });
 
     batchGetQueryExecutionStub.resolves({
-      QueryExecutions: Array(2).fill(runningQueryObject)
+      QueryExecutions: Array(1).fill(runningQueryObject)
     });
   });
 
-  afterEach(() => {
-    getQueryExecutionIdsStub.reset();
-    batchGetQueryExecutionStub.reset();
-  });
+  afterEach(sinon.reset);
 
   describe('just enough queries running', () => {
     it('returns true', (done) => {
