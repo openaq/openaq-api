@@ -15,7 +15,7 @@ const athenaConfig = {
   outputUrl: `https://${outputBucket}.s3.amazonaws.com`
 };
 
-async function startQueryExecution (params) {
+function startQueryExecution (params) {
   return athena.startQueryExecution(params).promise();
 }
 
@@ -69,8 +69,16 @@ module.exports = [
     config: {
       description: 'Query all results using Athena.'
     },
-    handler: async function (request, reply) {
-      if (!(await canRunQuery())) return reply(Boom.tooManyRequests('Too many queries already running'));
+    handler: function (request, reply) {
+      canRunQuery()
+        .then((queryCheckSuccess) => {
+          if (!queryCheckSuccess) return reply(Boom.tooManyRequests('Too many queries already running'));
+          else null;
+        })
+        .catch((err) => {
+          log(['error'], err);
+          return reply(Boom.badImplementation(err));
+        });
 
       let limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
       let initQuery = db.select('*').from(athenaConfig.table);
