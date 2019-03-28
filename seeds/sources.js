@@ -8,9 +8,12 @@ let buildSQLObject = function (f) {
   return obj;
 };
 
-exports.seed = function (knex, Promise) {
+exports.seed = async function (knex, Promise) {
+  // Clean up sources db
+  await knex('sources').del();
+
   // Create array of inserts tasks
-  let tasks = sources.results.map((m) => {
+  let tasks = sources.results.map(m => {
     let o = buildSQLObject(m);
     return knex('sources').insert(o);
   });

@@ -8,20 +8,57 @@ Starting with `index.js`, there is a web-accessible API that provides endpoints 
 
 [openaq-fetch](https://github.com/openaq/openaq-fetch) takes care of fetching new data and inserting into the database. Data format is explained in [openaq-data-format](https://github.com/openaq/openaq-data-format).
 
-## Installing & Running
-To run the API locally, you will need both [Node.js](https://nodejs.org) and [PostgreSQL](http://www.postgresql.org/) installed.
+## Getting started
 
-Install necessary Node.js packages by running
+Install prerequisites:
+
+- [git](https://git-scm.com)
+- [nvm](https://github.com/creationix/nvm)
+- [Docker](https://www.docker.com/)
+
+Clone this repository locally (see these [instructions](https://help.github.com/en/articles/cloning-a-repository)) and activate the required Node.js version with:
+
+`nvm install`
+
+The last step can be skipped if the local Node.js version matches the one defined at [.nvmrc](.nvmrc). 
+
+Install module dependencies:
 
 `npm install`
 
-Make sure you have a PostgreSQL database available (with PostGIS extension) and have the DB settings in `knexfile.js`.
+### Development
 
-`npm test` to seed the database.
+Initialize development database:
 
-Now you can get started with:
+`npm run init-dev-db`
 
-`npm start`
+This task will start a PostgreSQL container as daemon, run migrations and seed data. Each of these tasks is available to be run independently, please refer to [package.json](package.json) to learn the options.
+
+After initialization is finished, start the development server:
+
+`npm run dev`
+
+Access http://localhost:3004.
+
+Stop database container after finishing:
+
+`npm run stop-dev-db`
+
+### Testing 
+
+Initialize test database:
+
+`npm run init-dev-db`
+
+This task will start a PostgreSQL container as daemon, run migrations and seed data. After initialization is finished, run tests:
+
+`npm run test`
+
+Stop database container after finishing:
+
+`npm run stop-test-db`
+
+## Deploying to production
 
 For production deployment, you will need to have certain environment variables set as in the table below (for production deployments, these are stored in an S3 bucket).
 
