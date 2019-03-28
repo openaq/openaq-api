@@ -21,8 +21,9 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
 # Install nvm with node and npm
 # http://stackoverflow.com/questions/25899912/install-nvm-in-docker
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 6.11.3
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.26.0/install.sh | bash \
+RUN mkdir -p $NVM_DIR
+ENV NODE_VERSION 10
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash \
     && source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
@@ -49,6 +50,7 @@ COPY ["app.js", "/app/"]
 COPY lib /app/lib/
 COPY test /app/test/
 COPY api /app/api/
+COPY config /app/config/
 COPY migrations /app/migrations/
 COPY seeds /app/seeds/
 
