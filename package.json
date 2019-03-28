@@ -16,6 +16,9 @@
     "docker-test": "docker-compose -p openaq run --rm api-test npm test"
   },
   "author": "Joe Flasher",
+  "engines": {
+    "node": ">=10.x"
+  },
   "license": "MIT",
   "homepage": "https://github.com/openaq/openaq-api#readme",
   "dependencies": {
