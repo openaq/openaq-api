@@ -78,11 +78,11 @@ For production deployment, you will need to have certain environment variables s
 
 ### AWS Athena for aggregations
 
-If `USE_ATHENA` is set, the API will use AWS Athena instead of creating Postgres aggregations tables for queries. The following variables should be set as well:
+If `USE_ATHENA` is set, the API will use AWS Athena instead of creating PostgreSQL aggregations tables for queries. The following variables should be set as well:
 - `ATHENA_ACCESS_KEY_ID`: An AWS Access Key that has permissions to create Athena Queries and store them in S3.
 - `ATHENA_SECRET_ACCESS_KEY`: The corresponding secret.
 - `ATHENA_OUTPUT_BUCKET`: The S3 location (in the form of `s3://bucket/folder`) where the results of the Athena queries should be stored before caching them.
-- `ATHENA_FETCHES_TABLE`: The name of the table registed in AWS Athena, default is `fetches.fetches_realtime`
+- `ATHENA_FETCHES_TABLE`: The name of the table registered in AWS Athena, default is `fetches.fetches_realtime`
 
 The Athena table is `fetches_realtime` that represents the fetches from `openaq-data` and has the following schema:
 
@@ -107,20 +107,18 @@ CREATE EXTERNAL TABLE fetches.fetches_realtime (
 ```
 
 ## Uploads & Generating S3 presigned URLs
-Via an undocumented `/upload` endpoint, there is the ability to generate presigned S3 PUT URLs so that external clients can authenticate using tokens stored in the database and upload data to be ingested by `openaq-fetch`. There is a small utility file called `encrypt.js` that you can use like `UPLOADS_ENCRYPTION_KEY=foo node index.js your_token_here` to generate encrytped tokens to be manually stored in database.
 
-## Tests
-To confirm that everything is working as expected, you can run the tests with
-
-`npm test`
+Via an undocumented `/upload` endpoint, there is the ability to generate presigned S3 PUT URLs so that external clients can authenticate using tokens stored in the database and upload data to be ingested by `openaq-fetch`. There is a small utility file called `encrypt.js` that you can use like `UPLOADS_ENCRYPTION_KEY=foo node index.js your_token_here` to generate encrypted tokens to be manually stored in database.
 
 ## Dockerfile
+
 There is a Dockerfile included that will turn the project into a Docker container. The container can be found [here](https://hub.docker.com/r/flasher/openaq-api/) and is currently mostly used for deployment purposes for [AWS ECS](https://aws.amazon.com/ecs/). If someone wanted to make it better for local development, that'd be a great PR!
 
 ## Contributing
 There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).
 
 ## Projects using the API
+
 - openaq-browser [site](http://dolugen.github.io/openaq-browser) | [code](https://github.com/dolugen/openaq-browser) - A simple browser to provide a graphical interface to the data.
 - openaq [code](https://github.com/nickolasclarke/openaq) - An isomorphic Javascript wrapper for the API
 - py-openaq [code](https://github.com/dhhagan/py-openaq) - A Python wrapper for the API
