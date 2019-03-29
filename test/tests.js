@@ -1,11 +1,9 @@
-/* global describe, it, before, after */
 'use strict';
+import config from 'config';
+
+const testPort = config.get('port');
 
 var expect = require('chai').expect;
-import { db } from '../api/services/db';
-let knexConfig = require('../knexfile');
-var Server = require('../api/services/server');
-var testPort = 2000;
 var request = require('request');
 var utils = require('../lib/utils');
 import { orderBy } from 'lodash';
@@ -13,25 +11,6 @@ import { orderBy } from 'lodash';
 describe('Testing endpoints', function () {
   var self = this;
   self.baseURL = 'http://127.0.0.1:' + testPort + '/v1/';
-
-  before(function (done) {
-    this.timeout(0);  // Disable the timeout
-    db.migrate.latest(knexConfig)
-    .then(() => {
-      console.info('Migrations completed, inserting seed data.');
-      db.seed.run(knexConfig)
-      .then(() => {
-        console.info('Seed data inserted, starting tests.');
-        // Start API server once we have a DB connection
-        self.server = new Server(testPort);
-        self.server.start(done);
-      });
-    });
-  });
-
-  after(function (done) {
-    self.server.hapi.stop(done);
-  });
 
   describe('/', function () {
     it('should redirect to latest version', function (done) {
