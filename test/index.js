@@ -6,8 +6,9 @@ const serverPort = config.get('port');
 const server = new Server(serverPort);
 
 // Export globals
-global.serverPort = serverPort;
 global.server = server;
+global.baseUrl = `http://127.0.0.1:${serverPort}/`;
+global.apiUrl = `${global.baseUrl}v1/`;
 
 describe('OpenAQ API', function () {
   before(async function () {
@@ -16,7 +17,18 @@ describe('OpenAQ API', function () {
     return server.start();
   });
 
-  require('./tests.js');
+  require('./api-meta.js');
+  require('./countries.js');
+  require('./parameters.js');
+  require('./upload.js');
+  require('./cities.js');
+  require('./measurements.js');
+  require('./locations.js');
+  require('./latest.js');
+  require('./fetches.js');
+  require('./sources.js');
+  require('./webhooks.js');
+  require('./utils.js');
 
   after(async function () {
     await server.hapi.stop();
