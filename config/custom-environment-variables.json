@@ -1,0 +1,15 @@
+{
+  "knex": {
+    "connection": {
+      "host": "PSQL_HOST",
+      "user": "PSQL_USER",
+      "port": "PSQL_PORT",
+      "password": "PSQL_PASSWORD",
+      "database": "PSQL_DATABASE"
+    },
+    "pool": {
+      "min": "PSQL_POOL_MIN",
+      "max": "PSQL_POOL_MAX"
+    }
+  }
+}

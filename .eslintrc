@@ -4,6 +4,9 @@
     "es6": true,
     "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },  
   "rules": {
     "semi": [2, "always"],
     "no-extra-semi": 2,
