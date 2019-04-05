@@ -11,5 +11,10 @@
       "min": "PSQL_POOL_MIN",
       "max": "PSQL_POOL_MAX"
     }
+  },
+  "adminToken": "ADMIN_TOKEN",
+  "athena": {
+    "accessKeyId": "ATHENA_ACCESS_KEY_ID",
+    "secretAccessKey": "ATHENA_SECRET_ACCESS_KEY"
   }
 }

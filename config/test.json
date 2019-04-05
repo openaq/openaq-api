@@ -8,5 +8,6 @@
       "database": "gis"
     }
   },
-  "port": 2000
+  "port": 2000,
+  "adminToken": "adminToken"
 }
