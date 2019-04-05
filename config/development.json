@@ -1,19 +1,11 @@
 {
   "knex": {
-    "client": "pg",
     "connection": {
       "host": "localhost",
       "user": "docker",
       "port": "15432",
       "password": "docker",
       "database": "gis"
-    },
-    "pool": {
-      "min": 2,
-      "max": 10
-    },
-    "migrations": {
-      "tableName": "migrations"
     }
   }
 }
