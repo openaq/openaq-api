@@ -14,4 +14,4 @@ if (knexConfig.pool) {
   }
 }
 
-module.exports = knexConfig;
+module.exports = Object.freeze(knexConfig);
