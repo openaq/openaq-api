@@ -1,4 +1,5 @@
 import config from 'config';
+import path from 'path';
 import Server from '../api/services/server';
 import { db } from '../api/services/db';
 
@@ -9,6 +10,7 @@ const server = new Server(serverPort);
 global.server = server;
 global.baseUrl = `http://127.0.0.1:${serverPort}/`;
 global.apiUrl = `${global.baseUrl}v1/`;
+global.fixturesPath = path.join(__dirname, 'fixtures');
 
 describe('OpenAQ API', function () {
   before(async function () {
@@ -29,6 +31,7 @@ describe('OpenAQ API', function () {
   require('./sources.js');
   require('./webhooks.js');
   require('./utils.js');
+  require('./update-locations.js');
 
   after(async function () {
     await server.hapi.stop();

@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable('locations', function (table) {
-    table.string('id');
+    table.string('id').primary();
     table.string('name');
     table.string('country');
     table.string('city');
@@ -10,7 +10,7 @@ exports.up = function (knex) {
     table.specificType('coordinates', 'GEOGRAPHY(Point, 4326)');
     table.dateTime('firstUpdated');
     table.dateTime('lastUpdated');
-    table.primary(['country', 'lon', 'lat']);
+    table.index(['country', 'lon', 'lat']);
   });
 };
 
