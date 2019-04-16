@@ -1,4 +1,8 @@
 {
+  "athena": {
+    "accessKeyId": "",
+    "secretAccessKey": ""
+  },
   "knex": {
     "client": "pg",
     "pool": {
