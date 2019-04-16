@@ -8,5 +8,6 @@
     "migrations": {
       "tableName": "migrations"
     }
-  }
+  },
+  "port": 3004
 }

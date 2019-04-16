@@ -1,4 +1,9 @@
 {
+  "adminToken": "ADMIN_TOKEN",
+  "athena": {
+    "accessKeyId": "ATHENA_ACCESS_KEY_ID",
+    "secretAccessKey": "ATHENA_SECRET_ACCESS_KEY"
+  },
   "knex": {
     "connection": {
       "host": "PSQL_HOST",
@@ -12,9 +17,5 @@
       "max": "PSQL_POOL_MAX"
     }
   },
-  "adminToken": "ADMIN_TOKEN",
-  "athena": {
-    "accessKeyId": "ATHENA_ACCESS_KEY_ID",
-    "secretAccessKey": "ATHENA_SECRET_ACCESS_KEY"
-  }
+  "port": "PORT"
 }
