@@ -1,4 +1,5 @@
 {
+  "adminToken": "adminToken",
   "knex": {
     "connection": {
       "host": "localhost",
@@ -8,6 +9,5 @@
       "database": "gis"
     }
   },
-  "port": 2000,
-  "adminToken": "adminToken"
+  "port": 2000
 }

@@ -1,4 +1,5 @@
 {
+  "adminToken": "adminToken",
   "knex": {
     "connection": {
       "host": "localhost",
