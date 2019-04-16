@@ -12,28 +12,28 @@ describe('Update locations task', function () {
     await db.delete().from('locations');
 
     // Load data from athena up to 2016
-    const queryResults = await readJson(
+    const queryResults2016 = await readJson(
       path.join(fixturesPath, 'athena-query-results/locations-up-to-2016.json')
     );
 
-    // Pass query results to insert task
-    await upsertLocations(queryResults);
+    // Pass query results to upsert task
+    await upsertLocations(queryResults2016);
 
     // Verify total count
-    const { count: totalCount } = await db
+    const { count: totalCount2016 } = await db
       .count('id')
       .from('locations')
       .first();
-    expect(totalCount).equal('4761');
+    expect(totalCount2016).equal('4761');
 
     // Verify locations count per country
-    let locationsPerCountry = await db
+    const locationsPerCountry2016 = await db
       .select(db.raw('country, count(country)'))
       .from('locations')
       .orderBy('country')
       .groupBy('country');
-    expect(locationsPerCountry).to.have.length(44);
-    expect(locationsPerCountry).to.have.deep.members([
+    expect(locationsPerCountry2016).to.have.length(44);
+    expect(locationsPerCountry2016).to.have.deep.members([
       { country: 'AR', count: '1' },
       { country: 'AT', count: '173' },
       { country: 'AU', count: '28' },
@@ -81,7 +81,7 @@ describe('Update locations task', function () {
     ]);
 
     // Only one location with null coordinates can exist per country
-    let noCoordsLocations = await db
+    const noCoordsLocations2016 = await db
       .select(db.raw('country, count(country)'))
       .from('locations')
       .where({
@@ -90,12 +90,55 @@ describe('Update locations task', function () {
       })
       .orderBy('country')
       .groupBy('country');
-    expect(noCoordsLocations).to.have.length(4);
-    expect(noCoordsLocations).to.have.deep.members([
+    expect(noCoordsLocations2016).to.have.length(4);
+    expect(noCoordsLocations2016).to.have.deep.members([
       { country: 'BR', count: '1' },
       { country: 'PL', count: '1' },
       { country: 'TH', count: '1' },
       { country: 'IN', count: '1' }
+    ]);
+
+    // Load data from athena up to 2016
+    const queryResults2018 = await readJson(
+      path.join(fixturesPath, 'athena-query-results/locations-up-to-2018.json')
+    );
+
+    // Pass query results to upsert task
+    await upsertLocations(queryResults2018);
+
+    // Verify total count
+    const { count: totalCount } = await db
+      .count('id')
+      .from('locations')
+      .first();
+    expect(totalCount).equal('9833');
+
+    // Only one location with null coordinates can exist per country
+    const noCoordsLocations2018 = await db
+      .select(db.raw('country, count(country)'))
+      .from('locations')
+      .where({
+        lon: null,
+        lat: null
+      })
+      .orderBy('country')
+      .groupBy('country');
+
+    expect(noCoordsLocations2018).to.have.length(13);
+    expect(noCoordsLocations2018).to.have.deep.members([
+      { country: 'AU', count: '1' },
+      { country: 'BA', count: '1' },
+      { country: 'BR', count: '1' },
+      { country: 'CN', count: '1' },
+      { country: 'ES', count: '1' },
+      { country: 'IL', count: '1' },
+      { country: 'IN', count: '1' },
+      { country: 'NL', count: '1' },
+      { country: 'PL', count: '1' },
+      { country: 'RU', count: '1' },
+      { country: 'SE', count: '1' },
+      { country: 'TH', count: '1' },
+      { country: 'ZA', count: '1' }
     ]);
   });
 });
