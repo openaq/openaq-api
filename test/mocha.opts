@@ -1,3 +1,2 @@
 --bail
---timeout 10000
 --exit

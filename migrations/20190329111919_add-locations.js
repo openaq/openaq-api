@@ -10,6 +10,9 @@ exports.up = function (knex) {
     table.specificType('coordinates', 'GEOGRAPHY(Point, 4326)');
     table.dateTime('firstUpdated');
     table.dateTime('lastUpdated');
+    table.specificType('parameters', 'text ARRAY');
+    table.specificType('countsByMeasurement', 'json ARRAY');
+    table.integer('count');
     table.index(['country', 'lon', 'lat']);
   });
 };
