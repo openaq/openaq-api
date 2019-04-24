@@ -31,7 +31,7 @@ describe('OpenAQ API', function () {
   require('./sources.js');
   require('./webhooks.js');
   require('./utils.js');
-  require('./update-locations.js');
+  require('./locations-update.js');
 
   after(async function () {
     await server.hapi.stop();

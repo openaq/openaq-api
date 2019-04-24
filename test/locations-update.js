@@ -5,12 +5,12 @@ import {
   upsertLocations,
   reconcileLocationIds,
   applyParametersMeta
-} from '../lib/update-locations';
+} from '../api/services/locations-update';
 import { expect } from 'chai';
 
 /* global fixturesPath */
 
-describe('Update locations task', function () {
+describe('Update locations service', function () {
   it('Upsert locations of 2016, and then, 2018', async function () {
     // Increase timeout for this test
     this.timeout(6000);

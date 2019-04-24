@@ -8,7 +8,10 @@ import {
   map,
   uniq
 } from 'lodash';
-import { db } from '../api/services/db';
+import { db } from './db';
+import athena from './athena';
+import { log } from './logger';
+import queries from '../../lib/athena-queries';
 
 export const reconcileLocationIds = async function (athenaQueryResults) {
   // Get current locations, convert coordinates to float when not null
@@ -172,7 +175,7 @@ export const upsertLocations = async function (locations) {
       l.coordinates = `POINT(${l.lon} ${l.lat})`;
     }
 
-    // White list location properties
+    // Pick allowed location properties
     l = pick(l, [
       'id',
       'city',
@@ -207,4 +210,41 @@ export const upsertLocations = async function (locations) {
         .where({ id: existingLocation.id });
     }
   });
+};
+
+// Flow control variable
+let updating = false;
+export const startLocationsUpdate = async function () {
+  if (!updating) {
+    // Update flow control flag to avoid restart update unnecessarily
+    updating = true;
+
+    // Enclose in try..catch block to help control execution with
+    // "updating" variable
+    try {
+      log('info', 'Update locations task started.');
+
+      // Get locations metadata using Athena
+      const locationsMeta = await athena.query(queries.locationsMetadata);
+
+      // Reconcile ids from existing locations
+      let locations = await reconcileLocationIds(locationsMeta);
+
+      // Get parameters metadata from Athena
+      const parametersMeta = await athena.query(queries.parametersByLocation);
+
+      // Merge parameters to locations
+      locations = await applyParametersMeta(locations, parametersMeta);
+
+      // Perform locations upsert
+      await upsertLocations(locations);
+
+      log('info', 'Update locations task finished successfully.');
+    } catch (err) {
+      log('error', `Update locations task error: ${err.message}`);
+    } finally {
+      // Update flow control flag
+      updating = false;
+    }
+  }
 };

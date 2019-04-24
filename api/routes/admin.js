@@ -2,7 +2,7 @@
 import boom from 'boom';
 import config from 'config';
 import Joi from 'joi';
-import { fetchLocations } from '../services/locations';
+import { startLocationsUpdate } from '../services/locations-update';
 
 const adminToken = config.get('adminToken');
 
@@ -19,19 +19,23 @@ module.exports = [
       }
     },
     handler: function (request, reply) {
-      const { adminToken: queryAdminToken } = request.query;
+      try {
+        const { adminToken: queryAdminToken } = request.query;
 
-      if (!queryAdminToken) {
-        return reply(boom.badRequest('Parameter "adminToken" is required.'));
+        if (!queryAdminToken) {
+          return reply(boom.badRequest('Parameter "adminToken" is required.'));
+        }
+
+        if (adminToken !== queryAdminToken) {
+          return reply(boom.badRequest('Invalid parameter "adminToken".'));
+        }
+
+        startLocationsUpdate();
+
+        return reply({});
+      } catch (err) {
+        return reply(boom.badImplementation(err));
       }
-
-      if (adminToken !== queryAdminToken) {
-        return reply(boom.badRequest('Invalid parameter "adminToken".'));
-      }
-
-      fetchLocations();
-
-      return reply({});
     }
   }
 ];
