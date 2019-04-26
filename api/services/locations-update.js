@@ -52,8 +52,8 @@ export const reconcileLocationIds = async function (athenaQueryResults) {
       (acc, i) => {
         if (i.city) acc.city.push(i.city);
         if (i.location) acc.location.push(i.location);
-        if (i.sourceName) acc.sourceName.push(i.sourceName);
-        if (i.sourceType) acc.sourceType.push(i.sourceType);
+        if (i.sourceName) acc.sourceNames.push(i.sourceName);
+        if (i.sourceType) acc.sourceTypes.push(i.sourceType);
         if (acc.firstUpdated > i.firstUpdated) {
           acc.firstUpdated = i.firstUpdated;
         }
@@ -70,16 +70,16 @@ export const reconcileLocationIds = async function (athenaQueryResults) {
         lastUpdated,
         city: [],
         location: [],
-        sourceName: [],
-        sourceType: []
+        sourceNames: [],
+        sourceTypes: []
       }
     );
 
     // Discard duplicates
     l.city = uniq(l.city);
     l.location = uniq(l.location);
-    l.sourceName = uniq(l.sourceName);
-    l.sourceType = uniq(l.sourceType);
+    l.sourceNames = uniq(l.sourceNames);
+    l.sourceTypes = uniq(l.sourceTypes);
 
     if (typeof lon !== 'undefined') l.lon = parseFloat(lon);
     if (typeof lat !== 'undefined') l.lat = parseFloat(lat);
@@ -189,8 +189,8 @@ export const upsertLocations = async function (locations) {
       'location',
       'lon',
       'parameters',
-      'sourceName',
-      'sourceType'
+      'sourceNames',
+      'sourceTypes'
     ]);
 
     // Check to insert or update location

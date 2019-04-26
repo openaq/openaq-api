@@ -5,8 +5,8 @@ exports.up = function (knex) {
     table.string('country');
     table.specificType('city', 'text ARRAY');
     table.specificType('location', 'text ARRAY');
-    table.specificType('sourceName', 'text ARRAY');
-    table.specificType('sourceType', 'text ARRAY');
+    table.specificType('sourceNames', 'text ARRAY');
+    table.specificType('sourceTypes', 'text ARRAY');
     table.decimal('lon', null);
     table.decimal('lat', null);
     table.specificType('coordinates', 'GEOGRAPHY(Point, 4326)');

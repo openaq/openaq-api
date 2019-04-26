@@ -19,5 +19,6 @@
       "max": "PSQL_POOL_MAX"
     }
   },
+  "defaultRequestLimit": "REQUEST_LIMIT",
   "port": "PORT"
 }

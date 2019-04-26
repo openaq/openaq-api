@@ -1,18 +1,23 @@
 import { orderBy } from 'lodash';
 import { expect } from 'chai';
 import request from 'request';
+import fixtures from './fixtures';
 
 /* global apiUrl */
 
 describe('/locations', function () {
+  before(async function () {
+    await fixtures('locations-2016');
+  });
+
   it('should return properly', function (done) {
     request(apiUrl + 'locations', function (err, response, body) {
       if (err) {
         console.error(err);
       }
 
-      var res = JSON.parse(body);
-      expect(res.results.length).to.equal(57);
+      const res = JSON.parse(body);
+      expect(res.results.length).to.equal(100);
       expect(res.results).to.be.instanceof(Array);
       done();
     });
@@ -24,12 +29,12 @@ describe('/locations', function () {
         console.error(err);
       }
 
-      var res = JSON.parse(body);
-      var testMeta = {
+      const res = JSON.parse(body);
+      const testMeta = {
         name: 'openaq-api',
         license: 'CC BY 4.0',
         website: 'https://docs.openaq.org/',
-        found: 57,
+        found: 269,
         page: 1,
         limit: 100
       };
@@ -44,7 +49,7 @@ describe('/locations', function () {
         console.error(err);
       }
 
-      var res = JSON.parse(body);
+      const res = JSON.parse(body);
       expect(res.meta.limit).to.deep.equal(1);
       expect(res.results.length).to.equal(1);
       done();
@@ -62,13 +67,13 @@ describe('/locations', function () {
       }
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(12);
+      expect(body.meta.found).to.equal(108);
       done();
     });
   });
 
   it('handles multiple sources', function (done) {
-    request(apiUrl + 'locations?location=Tochtermana', function (
+    request(apiUrl + 'locations?location=London Hillingdon', function (
       err,
       response,
       body
@@ -78,28 +83,14 @@ describe('/locations', function () {
       }
 
       body = JSON.parse(body);
+      console.log(body);
       expect(body.results[0].sourceNames.length).to.equal(2);
       done();
     });
   });
 
   it('handles multiple parameters', function (done) {
-    request(
-      apiUrl + 'locations?parameter[]=co&parameter[]=pm25',
-      function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
-
-        body = JSON.parse(body);
-        expect(body.meta.found).to.equal(49);
-        done();
-      }
-    );
-  });
-
-  it('handles multiple cities', function (done) {
-    request(apiUrl + 'locations?city[]=Siedlce&city[]=Kolkata', function (
+    request(apiUrl + 'locations?parameter[]=co&parameter[]=pm25', function (
       err,
       response,
       body
@@ -109,7 +100,23 @@ describe('/locations', function () {
       }
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(2);
+      expect(body.meta.found).to.equal(141);
+      done();
+    });
+  });
+
+  it('handles multiple cities', function (done) {
+    request(apiUrl + 'locations?city[]=London&city[]=Warszawa', function (
+      err,
+      response,
+      body
+    ) {
+      if (err) {
+        console.error(err);
+      }
+
+      body = JSON.parse(body);
+      expect(body.meta.found).to.equal(25);
       done();
     });
   });
@@ -130,18 +137,19 @@ describe('/locations', function () {
   });
 
   it('handles a coordinates search', function (done) {
-    request(
-      apiUrl + 'locations?coordinates=51.83,20.78&radius=1000',
-      function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
-
-        body = JSON.parse(body);
-        expect(body.meta.found).to.equal(1);
-        done();
+    request(apiUrl + 'locations?coordinates=51.83,20.78&radius=1000', function (
+      err,
+      response,
+      body
+    ) {
+      if (err) {
+        console.error(err);
       }
-    );
+
+      body = JSON.parse(body);
+      expect(body.meta.found).to.equal(1);
+      done();
+    });
   });
 
   it('handles a coordinates search with no radius', function (done) {
@@ -155,57 +163,13 @@ describe('/locations', function () {
       }
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(1);
+      expect(body.meta.found).to.equal(269);
       done();
     });
   });
 
   it('handles a coordinates search with nearest', function (done) {
-    request(
-      apiUrl + 'locations?coordinates=51.83,20.78&nearest=10',
-      function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
-
-        body = JSON.parse(body);
-        expect(body.meta.found).to.equal(10);
-        done();
-      }
-    );
-  });
-
-  it('handles a coordinates search with bad nearest', function (done) {
-    request(
-      apiUrl + 'locations?coordinates=51.83,20.78&nearest=foo',
-      function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
-
-        body = JSON.parse(body);
-        expect(body.meta.found).to.equal(57);
-        done();
-      }
-    );
-  });
-
-  // https://github.com/openaq/openaq-api/issues/232
-  it('handles has_geo searches', function (done) {
-    request(apiUrl + 'locations?has_geo', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
-      body = JSON.parse(body);
-      expect(body.meta.found).to.equal(56);
-      done();
-    });
-  });
-
-  // https://github.com/openaq/openaq-api/issues/278
-  it('returns correct number for similar locations', function (done) {
-    request(apiUrl + 'locations?location=Coyhaique%20II', function (
+    request(apiUrl + 'locations?coordinates=51.83,20.78&nearest=10', function (
       err,
       response,
       body
@@ -214,11 +178,54 @@ describe('/locations', function () {
         console.error(err);
       }
 
+      expect(response.statusCode).to.equal(400);
+
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(1);
+      expect(body.message).to.equal('"nearest" is not allowed');
       done();
     });
   });
+
+  it('handles has_geo=true searches', function (done) {
+    request(apiUrl + 'locations?has_geo=true', function (err, response, body) {
+      if (err) {
+        console.error(err);
+      }
+
+      body = JSON.parse(body);
+      expect(body.meta.found).to.equal(267);
+      done();
+    });
+  });
+
+  it('handles has_geo=false searches', function (done) {
+    request(apiUrl + 'locations?has_geo=false', function (err, response, body) {
+      if (err) {
+        console.error(err);
+      }
+
+      body = JSON.parse(body);
+      expect(body.meta.found).to.equal(2);
+      done();
+    });
+  });
+
+  // https://github.com/openaq/openaq-api/issues/278
+  // it('returns correct number for similar locations', function (done) {
+  //   request(apiUrl + 'locations?location=Coyhaique%20II', function (
+  //     err,
+  //     response,
+  //     body
+  //   ) {
+  //     if (err) {
+  //       console.error(err);
+  //     }
+
+  //     body = JSON.parse(body);
+  //     expect(body.meta.found).to.equal(1);
+  //     done();
+  //   });
+  // });
 
   it('can be ordered', done => {
     request(
@@ -239,9 +246,7 @@ describe('/locations', function () {
 
   it('can be ordered by multiple fields and directions', done => {
     request(
-      `${
-        apiUrl
-      }parameters?order_by[]=lastUpdated&order_by[]=country&sort[]=desc&sort[]=asc]`,
+      `${apiUrl}parameters?order_by[]=lastUpdated&order_by[]=country&sort[]=desc&sort[]=asc]`,
       (err, response, body) => {
         if (err) {
           console.error(err);

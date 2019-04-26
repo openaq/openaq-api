@@ -1,21 +1,27 @@
 'use strict';
+import Boom from 'boom';
+import Joi from 'joi';
+import { db } from '../services/db';
+import { lonLatRegex } from '../../lib/utils';
+import config from 'config';
 
-var Boom = require('boom');
-var m = require('../controllers/locations.js');
-import { log } from '../services/logger';
+const defaultGeoRadius = config.get('geoRadius');
+const maxRequestLimit = config.get('maxRequestLimit');
+const defaultRequestLimit = config.get('defaultRequestLimit');
+const orderableColumns = ['city', 'country', 'location', 'distance'];
 
 /**
  * @api {get} /locations GET
  * @apiGroup Locations
  * @apiDescription Provides a list of measurement locations and their meta data.
  *
- * @apiParam {string} [city] Limit results by one or more cities (ex. `city[]=Lisboa&city[]=Porto`)
+ * @apiParam {string or string[]} [city] Limit results by one or more cities (ex. `city[]=Lisboa&city[]=Porto`)
  * @apiParam {string} [country] Limit results by one or more countries (ex. `country[]=NL&country[]=PL`)
  * @apiParam {string} [location] Limit results by one or more locations (ex. `location[]=Reja&location[]=Nijmegen-Graafseweg`)
  * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to certain one or more parameters (ex. `parameter=pm25` or `parameter[]=co&parameter[]=pm25`)
  * @apiParam {boolean} [has_geo] Filter out items that have or do not have geographic information.
- * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get locations within/near a certain area. (ex. `coordinates=40.23,34.17`)
- * @apiParam {number} [nearest] Get the X nearest locations to coordinates, must be used with `coordinates`. Wins over `radius` if both are present. Will add `distance` property to locations. DEPRECATED: Use `order_by=distance` with `limit=X` instead.
+ * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get locations within/near a certain area. (ex. `coordinates=40.23,34.17`). Must be used with `order_by=distance` or `radius=2500`, otherwise won't affect query.
+ * @apiParam {number} [nearest] DEPRECATED: Use `order_by=distance` with `limit=X` instead.
  * @apiParam {number} [radius=2500] Radius (in meters) used to get locations within a certain area, must be used with `coordinates`.
  * @apiParam {string[]} [order_by=location] Order by one or more fields (ex. `order_by=count` or `order_by[]=country&order_by[]=count`).
  * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
@@ -83,29 +89,163 @@ module.exports = [
     method: ['GET'],
     path: '/v1/locations',
     config: {
-      description: 'An aggregation of the data for each location.'
-    },
-    handler: function (request, reply) {
-      var params = {};
-
-      // For GET
-      if (request.query) {
-        params = request.query;
+      description: 'An aggregation of the data for each location.',
+      validate: {
+        query: {
+          city: [Joi.string(), Joi.array().items(Joi.string())],
+          coordinates: Joi.string().regex(lonLatRegex),
+          country: [Joi.string(), Joi.array().items(Joi.string())],
+          has_geo: Joi.boolean(),
+          limit: Joi.number()
+            .default(defaultRequestLimit)
+            .max(maxRequestLimit),
+          location: [Joi.string(), Joi.array().items(Joi.string())],
+          name: [Joi.string(), Joi.array().items(Joi.string())],
+          order_by: [
+            Joi.string().allow(orderableColumns),
+            Joi.array().items(Joi.string().allow(orderableColumns))
+          ],
+          page: Joi.number(),
+          parameter: [Joi.string(), Joi.array().items(Joi.string())],
+          radius: Joi.number(),
+          sort: Joi.string().allow('asc', 'desc')
+        }
       }
+    },
+    handler: async function (request, reply) {
+      try {
+        const { query, page, limit } = request;
+        const {
+          city,
+          coordinates,
+          country,
+          has_geo: hasGeo,
+          location,
+          order_by,
+          sort,
+          parameter,
+          radius
+        } = query;
+        const selectedColumns = ['*'];
+        const offset = (page - 1) * limit;
 
-      // Set max limit based on env var or default to 10000
-      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
+        /*
+         * Handle sorting
+         */
+        let orderBy;
+        let sortBy = sort ? [].concat(sort) : [];
 
-      // Handle it
-      m.query(params, request.page, request.limit, function (err, records, count) {
-        if (err) {
-          log(['error'], err);
-          return reply(Boom.badImplementation(err));
+        // eslint-disable-next-line
+        if (typeof order_by !== 'undefined') {
+          // Map orderBy as described in: https://knexjs.org/#Builder-orderBy
+          orderBy = [].concat(order_by).map((column, i) => {
+            // If 'distance' is an order parameter, calculate it for each field
+            if (column === 'distance') {
+              if (coordinates) {
+                const [lat, lon] = coordinates.split(',');
+                selectedColumns.push(
+                  db.raw(`
+                    ST_Distance(
+                      'SRID=4326;POINT(${lon} ${lat})'::geography,
+                      coordinates::geography
+                    ) as distance
+                  `)
+                );
+              } else {
+                reply(
+                  Boom.badRequest(
+                    'Parameter "coordinates" must be set when ordering by distance.'
+                  )
+                );
+              }
+            }
+
+            return {
+              column,
+              order: sortBy[i] || 'asc'
+            };
+          });
+        } else {
+          // Default sort order
+          orderBy = ['country', 'city', 'location'];
         }
 
-        request.count = count;
-        return reply(records);
-      });
+        /*
+         * Build base query, to be used to fetch results and total count.
+         */
+        const dbQuery = db('locations').where(builder => {
+          if (country) {
+            builder.where('country', 'IN', [].concat(country));
+          }
+
+          if (city) {
+            builder.where('city', '&&', [].concat(city));
+          }
+
+          if (location) {
+            builder.where('location', '&&', [].concat(location));
+          }
+
+          if (parameter) {
+            builder.where('parameters', '&&', [].concat(parameter));
+          }
+
+          if (typeof hasGeo !== 'undefined') {
+            hasGeo
+              ? builder.whereNotNull('coordinates')
+              : builder.whereNull('coordinates');
+          }
+
+          if (typeof radius !== 'undefined') {
+            if (coordinates) {
+              const [lat, lon] = coordinates.split(',');
+              builder.whereRaw(`ST_DWithin(
+                  coordinates, 
+                  ST_MakePoint(
+                    ${parseFloat(lon)},${parseFloat(lat)}), 
+                    ${radius || defaultGeoRadius}
+                  )
+                `);
+            } else {
+              reply(
+                Boom.badRequest(
+                  '"coordinates" must be passed with "radius" parameter.'
+                )
+              );
+            }
+          }
+        });
+
+        /*
+         * Fetch results
+         */
+        const results = await dbQuery
+          .clone()
+          .select(selectedColumns)
+          .offset(offset)
+          .orderBy(orderBy)
+          .limit(limit)
+          .map(l => {
+            l.lat !== null ? (l.lat = parseFloat(l.lat)) : null;
+            l.lon !== null ? (l.lon = parseFloat(l.lon)) : null;
+            return l;
+          });
+
+        /*
+         * Fetch total count
+         */
+        request.count = parseInt((await dbQuery.count('id').first()).count);
+
+        /*
+         * Return results
+         */
+        reply(results);
+      } catch (err) {
+        /*
+         * Unexpected error, log message internally.
+         */
+        reply(Boom.badImplementation(err.message));
+      }
     }
   }
 ];
