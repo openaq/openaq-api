@@ -5,7 +5,7 @@ import {
   upsertLocations,
   reconcileLocationIds,
   applyParametersMeta
-} from '../../api/services/locations-update';
+} from '../../api/services/athena-sync';
 
 /* global fixturesPath */
 

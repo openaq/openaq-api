@@ -31,7 +31,7 @@ describe('OpenAQ API', function () {
   require('./test-sources.js');
   require('./test-webhooks.js');
   require('./test-utils.js');
-  require('./test-locations-update.js');
+  require('./test-athena-sync.js');
 
   after(async function () {
     await server.hapi.stop();

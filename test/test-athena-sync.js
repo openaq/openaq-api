@@ -4,14 +4,15 @@ import { db } from '../api/services/db';
 import {
   upsertLocations,
   reconcileLocationIds,
-  applyParametersMeta
-} from '../api/services/locations-update';
+  applyParametersMeta,
+  upsertCities
+} from '../api/services/athena-sync';
 import { expect } from 'chai';
 
 /* global fixturesPath */
 
-describe('Update locations service', function () {
-  it('Upsert locations of 2016, and then, 2018', async function () {
+describe('Athena sync tasks', function () {
+  it('Update Locations', async function () {
     // Increase timeout for this test
     this.timeout(6000);
 
@@ -240,6 +241,75 @@ describe('Update locations service', function () {
         { parameter: 'pm25', count: 3113 }
       ],
       count: 26441
+    });
+  });
+
+  it('Update Cities', async function () {
+    // Clean up table
+    await db.delete().from('cities');
+
+    // Get cities list of 2016
+    const athenaGetCities2016 = await readJson(
+      path.join(fixturesPath, 'athena-query-results/get-cities-2016.json')
+    );
+
+    // Upsert
+    await upsertCities(athenaGetCities2016);
+
+    // Verify resulting total count
+    const { count: totalCount2016 } = await db
+      .count('name')
+      .from('cities')
+      .first();
+    expect(totalCount2016).equal('187');
+
+    // Get one city
+    const [city2016] = await db
+      .select('*')
+      .from('cities')
+      .where({
+        country: 'GB',
+        name: 'Liverpool'
+      });
+
+    // Verify data integrity
+    expect(city2016).to.deep.equal({
+      country: 'GB',
+      name: 'Liverpool',
+      locations: 3,
+      count: 54197
+    });
+
+    // Get cities list of 2018
+    const athenaGetCities2018 = await readJson(
+      path.join(fixturesPath, 'athena-query-results/get-cities-2018.json')
+    );
+
+    // Upsert
+    await upsertCities(athenaGetCities2018);
+
+    // Verify resulting total count
+    const { count: totalCount2018 } = await db
+      .count('name')
+      .from('cities')
+      .first();
+    expect(totalCount2018).equal('388');
+
+    // Get one city
+    const [city2018] = await db
+      .select('*')
+      .from('cities')
+      .where({
+        country: 'GB',
+        name: 'Liverpool'
+      });
+
+    // Verify data integrity
+    expect(city2018).to.deep.equal({
+      country: 'GB',
+      name: 'Liverpool',
+      locations: 3,
+      count: 163818
     });
   });
 });

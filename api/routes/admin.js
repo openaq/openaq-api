@@ -2,16 +2,17 @@
 import boom from 'boom';
 import config from 'config';
 import Joi from 'joi';
-import { startLocationsUpdate } from '../services/locations-update';
+import { startAthenaSyncTask } from '../services/athena-sync';
 
 const adminToken = config.get('adminToken');
 
 module.exports = [
   {
     method: ['GET'],
-    path: '/admin/update-locations',
+    path: '/admin/athena-sync',
     config: {
-      description: 'Update locations from measurement data.',
+      description:
+        'Update locations and cities from measurement data on Athena .',
       validate: {
         query: {
           adminToken: Joi.string()
@@ -30,7 +31,7 @@ module.exports = [
           return reply(boom.badRequest('Invalid parameter "adminToken".'));
         }
 
-        startLocationsUpdate();
+        startAthenaSyncTask();
 
         return reply({});
       } catch (err) {

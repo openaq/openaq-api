@@ -99,3 +99,41 @@ GROUP BY
   round(coordinates.latitude,5),
   parameter
 ```
+
+### File: get-cities-2016.json
+
+```
+SELECT 
+  UPPER(country) as country,
+  city as name, 
+  count(DISTINCT location) as locations, 
+  count(parameter) as count
+FROM ${fetchesTable} 
+WHERE
+  (coordinates.longitude BETWEEN -180 AND 180) AND
+  (coordinates.latitude BETWEEN -90 AND 90) AND
+  UPPER(country) = ANY (VALUES 'BR', 'GB', 'PL', 'NL', 'IT') AND
+  year(from_iso8601_timestamp(date.local)) <= 2016
+GROUP BY 
+  UPPER(country),
+  city
+```
+
+### File: get-cities-2018.json
+
+```
+SELECT 
+  UPPER(country) as country,
+  city as name, 
+  count(DISTINCT location) as locations, 
+  count(parameter) as count
+FROM ${fetchesTable} 
+WHERE
+  (coordinates.longitude BETWEEN -180 AND 180) AND
+  (coordinates.latitude BETWEEN -90 AND 90) AND
+  UPPER(country) = ANY (VALUES 'BR', 'GB', 'PL', 'NL', 'IT') AND
+  year(from_iso8601_timestamp(date.local)) <= 2018
+GROUP BY 
+  UPPER(country),
+  city
+```

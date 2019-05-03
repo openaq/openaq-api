@@ -1,11 +1,12 @@
 import {
-  find,
   filter,
-  pick,
-  isNumber,
-  sortBy,
+  find,
   groupBy,
+  isNumber,
   map,
+  omit,
+  pick,
+  sortBy,
   uniq
 } from 'lodash';
 import { db } from './db';
@@ -212,17 +213,56 @@ export const upsertLocations = async function (locations) {
   });
 };
 
-// Flow control variable
+export const upsertCities = async function (athenaQueryResults) {
+  const existingCitiesTemporaryKey = await db
+    .select('country', 'name')
+    .from('cities')
+    .map(c => c.country + c.name);
+
+  const citiesToInsert = [];
+  const citiesToUpdate = [];
+  for (let c of athenaQueryResults) {
+    // Pick allowed city properties
+    c = pick(c, ['country', 'name', 'locations', 'count']);
+
+    // Create temporary key
+    c.temporaryKey = c.country + c.name;
+
+    // Check to insert or update city
+    existingCitiesTemporaryKey.includes(c.temporaryKey)
+      ? citiesToUpdate.push(omit(c, 'temporaryKey'))
+      : citiesToInsert.push(omit(c, 'temporaryKey'));
+  }
+
+  // Wrap change in transaction
+  await db.transaction(async trx => {
+    // Insert new cities
+    await db.batchInsert('cities', citiesToInsert).transacting(trx);
+
+    // Update existing cities
+    for (const existingCity of citiesToUpdate) {
+      await trx('cities')
+        .update(existingCity)
+        .where({ country: existingCity.country, name: existingCity.name });
+    }
+  });
+};
+
+/*
+ * The following task will fetch data about locations and cities from Athena
+ * and will update the database, add new objects and updating metadata about
+ * existing ones.
+ */
 let updating = false;
-export const startLocationsUpdate = async function () {
+export const startAthenaSyncTask = async function () {
   if (!updating) {
     // Update flow control flag to avoid restart update unnecessarily
     updating = true;
 
-    // Enclose in try..catch block to help control execution with
-    // "updating" variable
+    // Enclosed in a try/catch block to help control execution with
+    // "updating" variable.
     try {
-      log('info', 'Update locations task started.');
+      log('info', 'Athena sync task started.');
 
       // Get locations metadata using Athena
       const locationsMeta = await athena.query(queries.locationsMetadata);
@@ -239,9 +279,15 @@ export const startLocationsUpdate = async function () {
       // Perform locations upsert
       await upsertLocations(locations);
 
-      log('info', 'Update locations task finished successfully.');
+      // Fetch cities data from Athena
+      const citiesMeta = await athena.query(queries.getCities);
+
+      // Update available cities and related metadata
+      await upsertCities(citiesMeta);
+
+      log('info', 'Athena sync task finished successfully.');
     } catch (err) {
-      log('error', `Update locations task error: ${err.message}`);
+      log('error', `Athena sync task error: ${err.message}`);
     } finally {
       // Update flow control flag
       updating = false;
