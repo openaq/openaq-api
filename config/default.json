@@ -2,7 +2,7 @@
   "athena": {
     "accessKeyId": "",
     "secretAccessKey": "",
-    "fetchesTable": "fetches.fetches_realtime"
+    "fetchesTable": "fetches.fetches_realtime_gzipped"
   },
   "knex": {
     "client": "pg",
