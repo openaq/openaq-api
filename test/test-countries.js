@@ -12,7 +12,7 @@ describe('/countries', function () {
       }
 
       var res = JSON.parse(body);
-      expect(res.results.length).to.equal(6);
+      expect(res.results.length).to.equal(5);
       done();
     });
   });
@@ -24,11 +24,11 @@ describe('/countries', function () {
       }
 
       var res = JSON.parse(body);
-      // Get MN country
+      // Get PL country
       res.results.forEach(country => {
-        if (country.code === 'MN') {
-          expect(country.cities).to.equal(1);
-          expect(country.locations).to.equal(9);
+        if (country.code === 'PL') {
+          expect(country.cities).to.equal(133);
+          expect(country.locations).to.equal(181);
           done();
         }
       });
@@ -47,7 +47,7 @@ describe('/countries', function () {
         website: 'https://docs.openaq.org/',
         page: 1,
         limit: 100,
-        found: 6
+        found: 5
       };
       expect(res.meta).to.deep.equal(testMeta);
       done();
@@ -55,11 +55,7 @@ describe('/countries', function () {
   });
 
   it('has pages', function (done) {
-    request(apiUrl + 'countries?limit=1', function (
-      err,
-      response,
-      body
-    ) {
+    request(apiUrl + 'countries?limit=1', function (err, response, body) {
       if (err) {
         console.error(err);
       }
@@ -80,9 +76,7 @@ describe('/countries', function () {
         }
 
         const res = JSON.parse(body);
-        expect(res.results).to.deep.equal(
-          orderBy(res.results, 'count', 'asc')
-        );
+        expect(res.results).to.deep.equal(orderBy(res.results, 'count', 'asc'));
         done();
       }
     );
@@ -90,9 +84,7 @@ describe('/countries', function () {
 
   it('can be ordered by multiple fields and directions', done => {
     request(
-      `${
-        apiUrl
-      }countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc]`,
+      `${apiUrl}countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc]`,
       (err, response, body) => {
         if (err) {
           console.error(err);
@@ -107,7 +99,7 @@ describe('/countries', function () {
     );
   });
 
-  it('should not complain about wrong order query', done => {
+  it('should complain about wrong order query', done => {
     request(
       `${apiUrl}countries?order_by=non-existing-field`,
       (err, response, body) => {
@@ -115,7 +107,11 @@ describe('/countries', function () {
           console.error(err);
         }
 
-        expect(response.statusCode).to.equal(200);
+        body = JSON.parse(body);
+        expect(response.statusCode).to.equal(400);
+        expect(body.message).to.equal(
+          'child "order_by" fails because ["order_by" must be one of [code, name, count, cities, locations], "order_by" must be an array]'
+        );
         done();
       }
     );

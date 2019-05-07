@@ -1,8 +1,20 @@
 'use strict';
-
-var Boom = require('boom');
-var m = require('../controllers/countries.js');
+import { db } from '../services/db';
 import { log } from '../services/logger';
+import config from 'config';
+import Boom from 'boom';
+import Joi from 'joi';
+
+const maxRequestLimit = config.get('maxRequestLimit');
+const defaultRequestLimit = config.get('defaultRequestLimit');
+const orderableColumns = ['code', 'name', 'count', 'cities', 'locations'];
+
+// Load country names
+let countries = require('../../lib/country-list.json');
+countries = countries.reduce((acc, c) => {
+  acc[c.Code] = c.Name;
+  return acc;
+}, {});
 
 /**
  * @api {get} /countries GET
@@ -50,29 +62,86 @@ module.exports = [
     method: ['GET'],
     path: '/v1/countries',
     config: {
-      description: 'An aggregation of countries included in platform.'
-    },
-    handler: function (request, reply) {
-      var params = {};
-
-      // For GET
-      if (request.query) {
-        params = request.query;
+      description: 'An aggregation of countries included in platform.',
+      validate: {
+        query: {
+          limit: Joi.number()
+            .default(defaultRequestLimit)
+            .max(maxRequestLimit),
+          order_by: [
+            Joi.string().valid(orderableColumns),
+            Joi.array().items(Joi.string().valid(orderableColumns))
+          ],
+          page: Joi.number(),
+          sort: [
+            Joi.string().allow('asc', 'desc'),
+            Joi.array().items(Joi.string().allow('asc', 'desc'))
+          ]
+        }
       }
+    },
+    handler: async function (request, reply) {
+      try {
+        const { query, page, limit } = request;
+        let { order_by, sort } = query;
+        const offset = (page - 1) * limit;
 
-      // Set max limit based on env var or default to 10000
-      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
-
-      // Handle it
-      m.query(params, request.page, request.limit, function (err, records, count) {
-        if (err) {
-          log(['error'], err);
-          return reply(Boom.badImplementation(err));
+        // Sort parameters
+        let orderBy;
+        let sortBy = sort ? [].concat(sort) : [];
+        // eslint-disable-next-line
+        if (typeof order_by !== 'undefined') {
+          // Map orderBy as described in: https://knexjs.org/#Builder-orderBy
+          orderBy = [].concat(order_by).map((column, i) => {
+            return {
+              column,
+              order: sortBy[i] || 'asc'
+            };
+          });
+        } else {
+          // Default sort order
+          orderBy = ['code', 'count'];
         }
 
-        request.count = count;
-        return reply(records);
-      });
+        // Base query
+        const dbQuery = db.from(function () {
+          this.from('cities')
+            .select('country as code')
+            .sum('count as count')
+            .sum('locations as locations')
+            .count('name as cities')
+            .groupBy('country')
+            .as('countries');
+        });
+
+        // Query results
+        const results = await dbQuery
+          .clone()
+          .select('*')
+          .offset(offset)
+          .orderBy(orderBy)
+          .limit(limit)
+          .map(r => {
+            // Add country name
+            r.name = countries[r.code];
+            r.count = parseInt(r.count);
+            r.locations = parseInt(r.locations);
+            r.cities = parseInt(r.cities);
+            return r;
+          });
+
+        // Query count
+        request.count = parseInt(
+          (await dbQuery.count('count').first()).count
+        );
+
+        // Return results
+        reply(results);
+      } catch (err) {
+        // Unexpected error
+        log(['error'], err);
+        reply(Boom.badImplementation(err.message));
+      }
     }
   }
 ];
