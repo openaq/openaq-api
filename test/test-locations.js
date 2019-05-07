@@ -18,6 +18,20 @@ describe('/locations', function () {
       const res = JSON.parse(body);
       expect(res.results.length).to.equal(100);
       expect(res.results).to.be.instanceof(Array);
+
+      // Check location lon, lat and coordinates as GeoJSON
+      const location = res.results[10];
+      expect(location.lon).to.eq(-2.35416);
+      expect(location.lat).to.eq(51.39113);
+      expect(location.coordinates).to.deep.eq({
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          coordinates: [-2.35416, 51.39113],
+          type: 'Point'
+        }
+      });
+
       done();
     });
   });

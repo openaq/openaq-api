@@ -230,8 +230,26 @@ module.exports = [
           .orderBy(orderBy)
           .limit(limit)
           .map(l => {
-            l.lat !== null ? (l.lat = parseFloat(l.lat)) : null;
-            l.lon !== null ? (l.lon = parseFloat(l.lon)) : null;
+            if (l.lat !== null) {
+              l.lat = parseFloat(l.lat);
+            }
+
+            if (l.lon !== null) {
+              l.lon = parseFloat(l.lon);
+            }
+
+            // Set coordinates as GeoJSON Feature
+            if (l.coordinates && l.lon !== null && l.lat !== null) {
+              l.coordinates = {
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'Point',
+                  coordinates: [l.lon, l.lat]
+                }
+              };
+            }
+
             return l;
           });
 
