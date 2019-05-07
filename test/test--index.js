@@ -20,18 +20,18 @@ describe('OpenAQ API', function () {
   });
 
   require('./test-api-meta.js');
-  require('./test-countries.js');
-  require('./test-parameters.js');
-  require('./test-upload.js');
-  require('./test-cities.js');
-  require('./test-measurements.js');
-  require('./test-locations.js');
-  require('./test-latest.js');
-  require('./test-fetches.js');
-  require('./test-sources.js');
-  require('./test-webhooks.js');
-  require('./test-utils.js');
   require('./test-athena-sync.js');
+  require('./test-cities.js');
+  require('./test-countries.js');
+  require('./test-fetches.js');
+  require('./test-latest.js');
+  require('./test-locations.js');
+  require('./test-measurements.js');
+  require('./test-parameters.js');
+  require('./test-sources.js');
+  require('./test-upload.js');
+  require('./test-utils.js');
+  require('./test-webhooks.js');
 
   after(async function () {
     await server.hapi.stop();

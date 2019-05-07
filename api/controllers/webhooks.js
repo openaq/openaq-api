@@ -74,7 +74,7 @@ var runCachedQueries = function (redis) {
     if (err) {
       log(['error'], err);
     }
-    console.log(results);
+
     // Check now to see if we have any active aggregations
     if (includes(results, true)) {
       return log(['info'], 'Database updated but not running any cache queries because one is already running.');

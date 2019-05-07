@@ -7,9 +7,8 @@ import { orderBy } from 'lodash';
 describe('/sources', function () {
   it('should return properly', function (done) {
     request(apiUrl + 'sources', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results.length).to.equal(3);
@@ -20,9 +19,8 @@ describe('/sources', function () {
 
   it('has a meta block', function (done) {
     request(apiUrl + 'sources', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       var testMeta = {
@@ -40,9 +38,8 @@ describe('/sources', function () {
 
   it('has pages', function (done) {
     request(apiUrl + 'sources?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.limit).to.equal(1);
@@ -53,9 +50,8 @@ describe('/sources', function () {
 
   it('can be ordered', done => {
     request(`${apiUrl}sources?order_by=country`, (err, response, body) => {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       const res = JSON.parse(body);
       expect(res.results).to.deep.equal(orderBy(res.results, 'country'));
@@ -67,9 +63,8 @@ describe('/sources', function () {
     request(
       `${apiUrl}sources?order_by[]=adapter&order_by[]=country&sort[]=asc&sort[]=asc]`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
@@ -84,9 +79,8 @@ describe('/sources', function () {
     request(
       `${apiUrl}sources?order_by=active&sort=asc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
@@ -102,9 +96,8 @@ describe('/sources', function () {
     request(
       `${apiUrl}sources?order_by=active&sort=desc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(

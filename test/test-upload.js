@@ -6,10 +6,7 @@ import request from 'request';
 describe('/upload', function () {
   it('should handle missing token', function (done) {
     request(apiUrl + 'upload?filename=foo', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(400);
       done();
     });
@@ -17,10 +14,7 @@ describe('/upload', function () {
 
   it('should handle missing filename', function (done) {
     request(apiUrl + 'upload?token=foo', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(400);
       done();
     });
@@ -28,10 +22,7 @@ describe('/upload', function () {
 
   it('should handle missing filename and token', function (done) {
     request(apiUrl + 'upload', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(400);
       done();
     });
@@ -43,10 +34,7 @@ describe('/upload', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(401);
       done();
     });

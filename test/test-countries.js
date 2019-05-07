@@ -13,21 +13,20 @@ describe('/countries', function () {
 
   it('should return properly', function (done) {
     request(apiUrl + 'countries', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results.length).to.equal(5);
       done();
     });
   });
+
   // https://github.com/openaq/openaq-fetch/issues/291
   it('should properly handle locations and cities counts', function (done) {
     request(apiUrl + 'countries', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       // Get PL country
@@ -42,9 +41,8 @@ describe('/countries', function () {
   });
   it('has a meta block', function (done) {
     request(apiUrl + 'countries', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       var testMeta = {
@@ -62,9 +60,8 @@ describe('/countries', function () {
 
   it('has pages', function (done) {
     request(apiUrl + 'countries?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.limit).to.deep.equal(1);
@@ -77,9 +74,8 @@ describe('/countries', function () {
     request(
       `${apiUrl}countries?order_by=count&sort=asc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(orderBy(res.results, 'count', 'asc'));
@@ -92,9 +88,8 @@ describe('/countries', function () {
     request(
       `${apiUrl}countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc]`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
@@ -109,9 +104,7 @@ describe('/countries', function () {
     request(
       `${apiUrl}countries?order_by=non-existing-field`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
 
         body = JSON.parse(body);
         expect(response.statusCode).to.equal(400);

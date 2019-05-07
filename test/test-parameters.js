@@ -7,9 +7,8 @@ import { orderBy } from 'lodash';
 describe('/parameters', function () {
   it('should return properly', function (done) {
     request(apiUrl + 'parameters', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results.length).to.equal(7);
@@ -18,9 +17,8 @@ describe('/parameters', function () {
   });
   it('has a meta block', function (done) {
     request(apiUrl + 'parameters', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       var testMeta = {
@@ -37,9 +35,8 @@ describe('/parameters', function () {
     request(
       `${apiUrl}parameters?order_by=preferredUnit`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
@@ -54,9 +51,8 @@ describe('/parameters', function () {
     request(
       `${apiUrl}parameters?order_by[]=id&order_by[]=name&sort[]=asc&sort[]=desc]`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(

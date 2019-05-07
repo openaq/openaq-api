@@ -7,9 +7,8 @@ import { orderBy } from 'lodash';
 describe('/measurements', function () {
   it('should return properly', function (done) {
     request(apiUrl + 'measurements', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results.length).to.equal(100);
@@ -19,9 +18,8 @@ describe('/measurements', function () {
 
   it('has a meta block', function (done) {
     request(apiUrl + 'measurements', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       var testMeta = {
@@ -39,9 +37,8 @@ describe('/measurements', function () {
 
   it('has pages', function (done) {
     request(apiUrl + 'measurements?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.limit).to.deep.equal(1);
@@ -56,9 +53,8 @@ describe('/measurements', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(100);
@@ -67,14 +63,9 @@ describe('/measurements', function () {
   });
 
   it('handles bad radius param', function (done) {
-    request(apiUrl + 'measurements?radius=foo', function (
-      err,
-      response,
-      body
-    ) {
-      if (err) {
-        console.error(err);
-      }
+    request(apiUrl + 'measurements?radius=foo', function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(100);
@@ -86,9 +77,8 @@ describe('/measurements', function () {
     request(
       apiUrl + 'measurements?coordinates=51.83,20.78&radius=1000',
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(3);
@@ -103,9 +93,8 @@ describe('/measurements', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(3);
@@ -115,9 +104,8 @@ describe('/measurements', function () {
 
   it('should return an object like a good API', function (done) {
     request(apiUrl + 'measurements?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results[0]).to.be.an('object');
@@ -140,9 +128,8 @@ describe('/measurements', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var lines = body.split('\n');
       expect(lines.length).to.equal(3);
@@ -151,14 +138,9 @@ describe('/measurements', function () {
   });
 
   it('should include attribution if not asked for with csv', function (done) {
-    request(apiUrl + 'measurements?format=csv', function (
-      err,
-      response,
-      body
-    ) {
-      if (err) {
-        console.error(err);
-      }
+    request(apiUrl + 'measurements?format=csv', function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       expect(body.indexOf('attribution')).to.not.equal(-1);
       done();
@@ -169,9 +151,8 @@ describe('/measurements', function () {
     request(
       apiUrl + 'measurements?format=csv&include_fields=attribution',
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         expect(body.indexOf('attribution')).to.not.equal(-1);
         done();
@@ -183,9 +164,8 @@ describe('/measurements', function () {
     request(
       apiUrl + 'measurements?format=csv&include_fields=sourceName',
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         expect(body.indexOf('attribution')).to.not.equal(-1);
         done();
@@ -194,14 +174,9 @@ describe('/measurements', function () {
   });
 
   it('should return all entries in csv when no limit is set', function (done) {
-    request(apiUrl + 'measurements?format=csv', function (
-      err,
-      response,
-      body
-    ) {
-      if (err) {
-        console.error(err);
-      }
+    request(apiUrl + 'measurements?format=csv', function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var lines = body.split('\n');
       expect(lines.length).to.equal(102);
@@ -215,9 +190,8 @@ describe('/measurements', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var lines = body.split('\n');
       expect(lines.length).to.equal(12);
@@ -229,9 +203,8 @@ describe('/measurements', function () {
     request(
       apiUrl + 'measurements?include_fields=sourceName,attribution',
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         var res = JSON.parse(body);
         expect(res.results[0].sourceName).to.be.a('string');
@@ -248,9 +221,8 @@ describe('/measurements', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.found).to.equal(56);
@@ -264,9 +236,8 @@ describe('/measurements', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.found).to.equal(71);
@@ -279,9 +250,8 @@ describe('/measurements', function () {
       apiUrl +
         'measurements?parameter[]=co&country=CL&parameter[]=so2&parameter[]=pm25',
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         var res = JSON.parse(body);
         expect(res.meta.found).to.equal(32);
@@ -294,9 +264,8 @@ describe('/measurements', function () {
     request(
       `${apiUrl}measurements?order_by=value&sort=desc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         var res = JSON.parse(body);
         expect(res.results[0].value).to.be.above(res.results[1].value);
@@ -315,9 +284,8 @@ describe('/measurements', function () {
     request(
       `${apiUrl}measurements?order_by[]=country&order_by[]=sourceName&sort[]=desc&sort[]=desc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         var res = JSON.parse(body);
         expect(res.results).to.deep.equal(
@@ -330,9 +298,8 @@ describe('/measurements', function () {
 
   it('should not require sorting direction when ordering', function (done) {
     request(`${apiUrl}measurements?order_by=value`, (err, response, body) => {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results[0].value).to.be.below(res.results[1].value);
@@ -348,9 +315,8 @@ describe('/measurements', function () {
     request(
       `${apiUrl}measurements?order_by=non-existing-field&sort=asc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         expect(response.statusCode).to.equal(200);
         done();

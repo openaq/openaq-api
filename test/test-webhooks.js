@@ -6,10 +6,7 @@ import request from 'request';
 describe('/webhooks', function () {
   it('should do nothing on a GET', function (done) {
     request(apiUrl + 'webhooks', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(404);
       done();
     });
@@ -17,10 +14,7 @@ describe('/webhooks', function () {
 
   it('should do nothing without a key', function (done) {
     request.post(apiUrl + 'webhooks', {}, function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(400);
       done();
     });
@@ -32,10 +26,7 @@ describe('/webhooks', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(400);
       done();
     });
@@ -46,10 +37,7 @@ describe('/webhooks', function () {
       apiUrl + 'webhooks',
       { form: { key: 123, action: 'DATABASE_UPDATED' } },
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
-
+        expect(err).to.be.null;
         expect(response.statusCode).to.equal(200);
         done();
       }

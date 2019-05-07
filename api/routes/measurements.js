@@ -96,7 +96,6 @@ module.exports = [
       if (request.query) {
         params = request.query;
       }
-      console.log(request.headers['x-forwarded-for'], params);
 
       // Set max limit based on env var or default to 10000
       request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);

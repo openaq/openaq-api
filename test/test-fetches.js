@@ -7,9 +7,8 @@ import { orderBy } from 'lodash';
 describe('/fetches', function () {
   it('should return properly', function (done) {
     request(apiUrl + 'fetches', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results.length).to.equal(3);
@@ -31,9 +30,8 @@ describe('/fetches', function () {
 
   it('has a meta block', function (done) {
     request(apiUrl + 'fetches', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       var testMeta = {
@@ -51,9 +49,8 @@ describe('/fetches', function () {
 
   it('has pages', function (done) {
     request(apiUrl + 'fetches?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.limit).to.deep.equal(1);
@@ -66,9 +63,8 @@ describe('/fetches', function () {
     request(
       `${apiUrl}fetches?order_by=timeEnded&sort=desc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
@@ -83,9 +79,8 @@ describe('/fetches', function () {
     request(
       `${apiUrl}fetches?order_by[]=timeStarted&order_by[]=count&sort[]=desc&sort[]=desc]`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(

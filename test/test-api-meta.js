@@ -11,10 +11,7 @@ describe('/', function () {
     };
 
     request(options, function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(302);
       expect(response.headers['location']).to.equal('/v1');
       done();
@@ -25,9 +22,8 @@ describe('/', function () {
 describe('/v1', function () {
   it('should list available endpoints', function (done) {
     request(apiUrl, function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var endpointsList = [
         'cities',

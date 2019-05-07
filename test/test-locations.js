@@ -12,9 +12,8 @@ describe('/locations', function () {
 
   it('should return properly', function (done) {
     request(apiUrl + 'locations', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       const res = JSON.parse(body);
       expect(res.results.length).to.equal(100);
@@ -25,9 +24,8 @@ describe('/locations', function () {
 
   it('has a meta block', function (done) {
     request(apiUrl + 'locations', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       const res = JSON.parse(body);
       const testMeta = {
@@ -45,9 +43,8 @@ describe('/locations', function () {
 
   it('has pages', function (done) {
     request(apiUrl + 'locations?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       const res = JSON.parse(body);
       expect(res.meta.limit).to.deep.equal(1);
@@ -62,9 +59,8 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(108);
@@ -78,12 +74,10 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
-      console.log(body);
       expect(body.results[0].sourceNames.length).to.equal(2);
       done();
     });
@@ -95,9 +89,8 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(141);
@@ -111,9 +104,8 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(25);
@@ -125,9 +117,8 @@ describe('/locations', function () {
     request(
       apiUrl + 'locations?location[]=Reja&location[]=Tochtermana',
       function (err, response, body) {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         body = JSON.parse(body);
         expect(body.meta.found).to.equal(2);
@@ -142,9 +133,8 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(1);
@@ -158,9 +148,8 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(269);
@@ -174,10 +163,7 @@ describe('/locations', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
-
+      expect(err).to.be.null;
       expect(response.statusCode).to.equal(400);
 
       body = JSON.parse(body);
@@ -188,9 +174,8 @@ describe('/locations', function () {
 
   it('handles has_geo=true searches', function (done) {
     request(apiUrl + 'locations?has_geo=true', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(267);
@@ -200,9 +185,8 @@ describe('/locations', function () {
 
   it('handles has_geo=false searches', function (done) {
     request(apiUrl + 'locations?has_geo=false', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(2);
@@ -231,10 +215,7 @@ describe('/locations', function () {
     request(
       `${apiUrl}locations?order_by=count&sort=desc`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
-
+        expect(err).to.be.null;
         expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
@@ -250,9 +231,8 @@ describe('/locations', function () {
     request(
       `${apiUrl}parameters?order_by[]=lastUpdated&order_by[]=country&sort[]=desc&sort[]=asc]`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(

@@ -7,9 +7,8 @@ import { orderBy } from 'lodash';
 describe('/latest', function () {
   it('should return properly', function (done) {
     request(apiUrl + 'latest', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.results.length).to.equal(57);
@@ -20,9 +19,8 @@ describe('/latest', function () {
 
   it('has a meta block', function (done) {
     request(apiUrl + 'latest', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       var testMeta = {
@@ -40,9 +38,8 @@ describe('/latest', function () {
 
   it('has pages', function (done) {
     request(apiUrl + 'latest?limit=1', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
       expect(res.meta.limit).to.deep.equal(1);
@@ -57,9 +54,8 @@ describe('/latest', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(1);
@@ -73,9 +69,8 @@ describe('/latest', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(1);
@@ -89,9 +84,9 @@ describe('/latest', function () {
       response,
       body
     ) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
+
       body = JSON.parse(body);
       expect(body.results[0]).to.have.property('distance');
       done();
@@ -101,9 +96,8 @@ describe('/latest', function () {
   // https://github.com/openaq/openaq-api/issues/232
   it('handles has_geo searches', function (done) {
     request(apiUrl + 'latest?has_geo', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       expect(body.meta.found).to.equal(56);
@@ -114,9 +108,8 @@ describe('/latest', function () {
   // https://github.com/openaq/openaq.org/issues/137
   it('returns source name for a measurement', function (done) {
     request(apiUrl + 'latest', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       body.results.forEach(r => {
@@ -130,9 +123,8 @@ describe('/latest', function () {
 
   it('returns averaging period for a measurement', function (done) {
     request(apiUrl + 'latest?city=Cabauw', function (err, response, body) {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
       body.results.forEach(r => {
@@ -146,9 +138,8 @@ describe('/latest', function () {
 
   it('can be ordered', done => {
     request(`${apiUrl}latest?order_by=city`, (err, response, body) => {
-      if (err) {
-        console.error(err);
-      }
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
       const res = JSON.parse(body);
       expect(res.results).to.deep.equal(orderBy(res.results, 'city'));
@@ -160,9 +151,8 @@ describe('/latest', function () {
     request(
       `${apiUrl}parameters?order_by[]=country&order_by[]=city&sort[]=desc&sort[]=asc]`,
       (err, response, body) => {
-        if (err) {
-          console.error(err);
-        }
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
 
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
