@@ -8,7 +8,7 @@ import { upsertCities } from '../api/services/athena-sync';
 
 /* global apiUrl,fixturesPath */
 
-describe.only('/cities', function () {
+describe('/cities', function () {
   // Populate cities table before testing.
   before(async () => {
     // Clear table
