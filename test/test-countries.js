@@ -1,10 +1,16 @@
 import { expect } from 'chai';
-import request from 'request';
 import { orderBy } from 'lodash';
+import request from 'request';
+import fixtures from './fixtures';
 
 /* global apiUrl */
 
 describe('/countries', function () {
+  // Populate cities table before testing.
+  before(async function () {
+    await fixtures('cities-2018');
+  });
+
   it('should return properly', function (done) {
     request(apiUrl + 'countries', function (err, response, body) {
       if (err) {

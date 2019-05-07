@@ -2,9 +2,10 @@ import path from 'path';
 import { readJson } from 'fs-extra';
 import { db } from '../../api/services/db';
 import {
-  upsertLocations,
+  applyParametersMeta,
   reconcileLocationIds,
-  applyParametersMeta
+  upsertLocations,
+  upsertCities
 } from '../../api/services/athena-sync';
 
 /* global fixturesPath */
@@ -40,6 +41,18 @@ const scenarios = {
 
     // Upsert locations
     await upsertLocations(locations2016);
+  },
+  'cities-2018': async function () {
+    // Clear table
+    await db.delete().from('cities');
+
+    // Get 2018 cities from Athena
+    const athenaGetCities2018 = await readJson(
+      path.join(fixturesPath, 'athena-query-results/get-cities-2018.json')
+    );
+
+    // Upsert cities
+    await upsertCities(athenaGetCities2018);
   }
 };
 

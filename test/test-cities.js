@@ -1,26 +1,14 @@
 import { expect } from 'chai';
 import request from 'request';
 import { orderBy } from 'lodash';
-import { db } from '../api/services/db';
-import { readJson } from 'fs-extra';
-import path from 'path';
-import { upsertCities } from '../api/services/athena-sync';
+import fixtures from './fixtures';
 
-/* global apiUrl,fixturesPath */
+/* global apiUrl */
 
 describe('/cities', function () {
   // Populate cities table before testing.
-  before(async () => {
-    // Clear table
-    await db.delete().from('cities');
-
-    // Get 2018 cities from Athena
-    const athenaGetCities2016 = await readJson(
-      path.join(fixturesPath, 'athena-query-results/get-cities-2018.json')
-    );
-
-    // Upsert cities
-    await upsertCities(athenaGetCities2016);
+  before(async function () {
+    await fixtures('cities-2018');
   });
 
   it('should return properly', function (done) {
