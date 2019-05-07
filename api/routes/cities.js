@@ -1,8 +1,9 @@
 'use strict';
+import { db } from '../services/db';
+import { log } from '../services/logger';
+import Boom from 'boom';
 import config from 'config';
 import Joi from 'joi';
-import Boom from 'boom';
-import { db } from '../services/db';
 
 const maxRequestLimit = config.get('maxRequestLimit');
 const defaultRequestLimit = config.get('defaultRequestLimit');
@@ -130,6 +131,7 @@ module.exports = [
         reply(results);
       } catch (err) {
         // Unexpected error
+        log(['error'], err);
         reply(Boom.badImplementation(err.message));
       }
     }

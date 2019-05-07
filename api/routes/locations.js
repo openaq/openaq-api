@@ -1,9 +1,10 @@
 'use strict';
-import Boom from 'boom';
-import Joi from 'joi';
 import { db } from '../services/db';
+import { log } from '../services/logger';
 import { lonLatRegex } from '../../lib/utils';
+import Boom from 'boom';
 import config from 'config';
+import Joi from 'joi';
 
 const defaultGeoRadius = config.get('geoRadius');
 const maxRequestLimit = config.get('maxRequestLimit');
@@ -241,9 +242,8 @@ module.exports = [
          */
         reply(results);
       } catch (err) {
-        /*
-         * Unexpected error, log message internally.
-         */
+        // Unexpected error, log message internally.
+        log(['error'], err);
         reply(Boom.badImplementation(err.message));
       }
     }
