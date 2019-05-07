@@ -67,11 +67,14 @@ module.exports = [
             .default(defaultRequestLimit)
             .max(maxRequestLimit),
           order_by: [
-            Joi.string().allow(orderableColumns),
-            Joi.array().items(Joi.string().allow(orderableColumns))
+            Joi.string().valid(orderableColumns),
+            Joi.array().items(Joi.string().valid(orderableColumns))
           ],
           page: Joi.number(),
-          sort: Joi.string().allow('asc', 'desc')
+          sort: [
+            Joi.string().valid('asc', 'desc'),
+            Joi.array().items(Joi.string().valid('asc', 'desc'))
+          ]
         }
       }
     },

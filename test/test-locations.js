@@ -235,6 +235,8 @@ describe('/locations', function () {
           console.error(err);
         }
 
+        expect(response.statusCode).to.equal(200);
+
         const res = JSON.parse(body);
         expect(res.results).to.deep.equal(
           orderBy(res.results, 'count', 'desc')

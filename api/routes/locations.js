@@ -9,7 +9,7 @@ import Joi from 'joi';
 const defaultGeoRadius = config.get('geoRadius');
 const maxRequestLimit = config.get('maxRequestLimit');
 const defaultRequestLimit = config.get('defaultRequestLimit');
-const orderableColumns = ['city', 'country', 'location', 'distance'];
+const orderableColumns = ['city', 'country', 'location', 'distance', 'count'];
 
 /**
  * @api {get} /locations GET
@@ -103,13 +103,16 @@ module.exports = [
           location: [Joi.string(), Joi.array().items(Joi.string())],
           name: [Joi.string(), Joi.array().items(Joi.string())],
           order_by: [
-            Joi.string().allow(orderableColumns),
-            Joi.array().items(Joi.string().allow(orderableColumns))
+            Joi.string().valid(orderableColumns),
+            Joi.array().items(Joi.string().valid(orderableColumns))
           ],
           page: Joi.number(),
           parameter: [Joi.string(), Joi.array().items(Joi.string())],
           radius: Joi.number(),
-          sort: Joi.string().allow('asc', 'desc')
+          sort: [
+            Joi.string().valid('asc', 'desc'),
+            Joi.array().items(Joi.string().valid('asc', 'desc'))
+          ]
         }
       }
     },
