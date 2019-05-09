@@ -48,7 +48,7 @@ Stop database container after finishing:
 
 Initialize test database:
 
-`npm run init-dev-db`
+`npm run init-test-db`
 
 This task will start a PostgreSQL container as daemon, run migrations and seed data. After initialization is finished, run tests:
 
