@@ -183,11 +183,29 @@ module.exports = [
           }
 
           if (city) {
-            builder.where('city', '&&', [].concat(city));
+            // Ensure city is an array type, to perform map
+            const cities = [].concat(city);
+
+            // Transform "cities" field into string and search in it
+            builder.whereRaw(
+              cities
+                .map(c => "lower(array_to_string(cities,' ')) like ?")
+                .join(' OR '),
+              cities.map(c => `%${c.toLowerCase()}%`)
+            );
           }
 
           if (location) {
-            builder.where('location', '&&', [].concat(location));
+            // Ensure location is an array, to perform map
+            const locations = [].concat(location);
+
+            // Transform "cities" field into string and search in it
+            builder.whereRaw(
+              locations
+                .map(l => "lower(array_to_string(locations,' ')) like ?")
+                .join(' OR '),
+              locations.map(l => `%${l.toLowerCase()}%`)
+            );
           }
 
           if (parameter) {

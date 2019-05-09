@@ -1,11 +1,14 @@
 exports.up = function (knex) {
   return knex.schema.createTable('locations', function (table) {
     table.string('id').primary();
-    table.string('name');
     table.string('country');
-    table.specificType('city', 'text ARRAY');
-    table.specificType('location', 'text ARRAY');
+    table.text('city');
+    table.specificType('cities', 'text ARRAY');
+    table.text('location');
+    table.specificType('locations', 'text ARRAY');
+    table.text('sourceName');
     table.specificType('sourceNames', 'text ARRAY');
+    table.text('sourceType');
     table.specificType('sourceTypes', 'text ARRAY');
     table.decimal('lon', null);
     table.decimal('lat', null);

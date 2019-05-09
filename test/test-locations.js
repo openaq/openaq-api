@@ -209,21 +209,16 @@ describe('/locations', function () {
   });
 
   // https://github.com/openaq/openaq-api/issues/278
-  // it('returns correct number for similar locations', function (done) {
-  //   request(apiUrl + 'locations?location=Coyhaique%20II', function (
-  //     err,
-  //     response,
-  //     body
-  //   ) {
-  //     if (err) {
-  //       console.error(err);
-  //     }
+  it('returns correct number for similar locations', function (done) {
+    request(apiUrl + 'locations?location=lond', function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
 
-  //     body = JSON.parse(body);
-  //     expect(body.meta.found).to.equal(1);
-  //     done();
-  //   });
-  // });
+      body = JSON.parse(body);
+      expect(body.meta.found).to.equal(13);
+      done();
+    });
+  });
 
   it('can be ordered', done => {
     request(

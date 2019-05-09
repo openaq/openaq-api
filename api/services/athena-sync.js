@@ -51,15 +51,23 @@ export const reconcileLocationIds = async function (athenaQueryResults) {
     // Merge properties
     const l = locationRows.reduce(
       (acc, i) => {
-        if (i.city) acc.city.push(i.city);
-        if (i.location) acc.location.push(i.location);
+        if (i.city) acc.cities.push(i.city);
+        if (i.location) acc.locations.push(i.location);
         if (i.sourceName) acc.sourceNames.push(i.sourceName);
         if (i.sourceType) acc.sourceTypes.push(i.sourceType);
         if (acc.firstUpdated > i.firstUpdated) {
           acc.firstUpdated = i.firstUpdated;
         }
+
+        // If incoming location is more up-to-date, use its values for
+        // city, location and sources
         if (acc.lastUpdated < i.lastUpdated) {
           acc.lastUpdated = i.lastUpdated;
+
+          if (i.city) acc.city = i.city;
+          if (i.sourceName) acc.sourceName = i.sourceName;
+          if (i.sourceType) acc.sourceType = i.sourceType;
+          if (i.location) acc.location = i.location;
         }
         return acc;
       },
@@ -69,16 +77,16 @@ export const reconcileLocationIds = async function (athenaQueryResults) {
         country,
         firstUpdated,
         lastUpdated,
-        city: [],
-        location: [],
+        cities: [],
+        locations: [],
         sourceNames: [],
         sourceTypes: []
       }
     );
 
     // Discard duplicates
-    l.city = uniq(l.city);
-    l.location = uniq(l.location);
+    l.cities = uniq(l.cities);
+    l.locations = uniq(l.locations);
     l.sourceNames = uniq(l.sourceNames);
     l.sourceTypes = uniq(l.sourceTypes);
 
@@ -179,6 +187,7 @@ export const upsertLocations = async function (locations) {
     // Pick allowed location properties
     l = pick(l, [
       'id',
+      'cities',
       'city',
       'coordinates',
       'count',
@@ -188,9 +197,12 @@ export const upsertLocations = async function (locations) {
       'lastUpdated',
       'lat',
       'location',
+      'locations',
       'lon',
       'parameters',
+      'sourceName',
       'sourceNames',
+      'sourceType',
       'sourceTypes'
     ]);
 
