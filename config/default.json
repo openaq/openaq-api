@@ -18,5 +18,10 @@
   "port": 3004,
   "defaultRequestLimit": 100,
   "maxRequestLimit": 10000,
-  "geoRadius": 2500
+  "geoRadius": 2500,
+  "auth": {
+    "strategy": "jwt",
+    "audience": "",
+    "issuer": ""
+  }
 }
