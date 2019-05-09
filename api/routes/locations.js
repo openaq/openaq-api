@@ -257,15 +257,14 @@ module.exports = [
             }
 
             // Set coordinates as GeoJSON Feature
-            if (l.coordinates && l.lon !== null && l.lat !== null) {
+            if (typeof l.lon !== 'undefined' && typeof l.lat !== 'undefined') {
               l.coordinates = {
-                type: 'Feature',
-                properties: {},
-                geometry: {
-                  type: 'Point',
-                  coordinates: [l.lon, l.lat]
-                }
+                longitude: l.lon,
+                latitude: l.lat
               };
+
+              delete l.lon;
+              delete l.lat;
             }
 
             return l;

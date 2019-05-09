@@ -21,15 +21,28 @@ describe('/locations', function () {
 
       // Check location lon, lat and coordinates as GeoJSON
       const location = res.results[10];
-      expect(location.lon).to.eq(-2.35416);
-      expect(location.lat).to.eq(51.39113);
-      expect(location.coordinates).to.deep.eq({
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          coordinates: [-2.35416, 51.39113],
-          type: 'Point'
-        }
+      expect(location).to.deep.eq({
+        id: 'GB-123',
+        city: 'Bath',
+        cities: ['Bath'],
+        coordinates: { latitude: 51.39113, longitude: -2.35416 },
+        count: 5240,
+        country: 'GB',
+        countsByMeasurement: [
+          {
+            count: 5240,
+            parameter: 'no2'
+          }
+        ],
+        firstUpdated: '2016-02-27T21:00:00.000Z',
+        lastUpdated: '2016-12-31T22:00:00.000Z',
+        location: 'Bath Roadside',
+        locations: ['Bath Roadside'],
+        parameters: ['no2'],
+        sourceName: 'DEFRA',
+        sourceNames: ['DEFRA'],
+        sourceType: 'government',
+        sourceTypes: ['government']
       });
 
       done();
