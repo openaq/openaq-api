@@ -50,7 +50,7 @@
     "hapi-response-meta": "^0.3.0",
     "hapi-router": "^3.0.1",
     "hiredis": "^0.4.1",
-    "joi": "^14.3.1",
+    "joi": "^10.6.0",
     "jwks-rsa": "^1.4.0",
     "knex": "^0.16.3",
     "knex-postgis": "^0.7.0",
