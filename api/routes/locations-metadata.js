@@ -1,14 +1,15 @@
 'use strict';
 import Boom from 'boom';
-import Joi from 'joi';
+
 import { db } from '../services/db';
+import metadataSchema from '../../lib/location-metadata-schema';
 
 async function checkLocation (id) {
   // Check if the location exists.
   const location = await db('locations')
-  .select('id')
-  .where('id', id)
-  .first();
+    .select('id')
+    .where('id', id)
+    .first();
 
   return !!location;
 }
@@ -51,10 +52,9 @@ module.exports = [
     config: {
       description: 'Updates the metadata associated with a given location',
       auth: 'jwt',
-      // validate: {
-      //   payload: {
-      //   }
-      // }
+      validate: {
+        payload: metadataSchema
+      }
     },
     handler: async function (request, reply) {
       try {
