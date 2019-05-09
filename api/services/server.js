@@ -1,9 +1,15 @@
 'use strict';
-
+import Hapi from 'hapi';
+import GoodWinston from 'good-winston';
+import winston from 'winston';
+require('winston-papertrail').Papertrail;
+import os from 'os';
+import jwksRsa from 'jwks-rsa';
+import hapiAuthJwt2 from 'hapi-auth-jwt2';
 import config from 'config';
+
 import { startAthenaSyncTask } from './athena-sync';
 const athenaConfig = config.get('athena');
-
 var Hapi = require('hapi');
 var GoodWinston = require('good-winston');
 var winston = require('winston');
@@ -33,6 +39,34 @@ Server.prototype.start = function (cb) {
   var self = this;
   self.hapi.connection({ port: this.port });
   self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
+
+  // Register auth servive
+  self.hapi.register({ register: hapiAuthJwt2 }, err => {
+    if (err) return cb(err);
+
+    const { issuer, audience } = config.get('auth');
+
+    self.hapi.auth.strategy('jwt', 'jwt', false, {
+      complete: true,
+      key: jwksRsa.hapiJwt2Key({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `${issuer}.well-known/jwks.json`
+      }),
+      verifyOptions: {
+        audience: audience,
+        issuer: issuer,
+        algorithms: ['RS256']
+      },
+      validateFunc: (decoded, request, callback) => {
+        if (decoded && decoded.sub) {
+          return callback(null, true);
+        }
+        return callback(null, false);
+      }
+    });
+  });
 
   // Register hapi-router
   self.hapi.register({

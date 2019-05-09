@@ -37,5 +37,16 @@ module.exports = [
     handler: (request, reply) => {
       return reply('pong');
     }
+  },
+  // Auth
+  {
+    method: 'GET',
+    path: '/auth-check',
+    config: {
+      auth: 'jwt'
+    },
+    handler: (request, reply) => {
+      return reply(request.auth);
+    }
   }
 ];
