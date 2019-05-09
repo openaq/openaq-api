@@ -74,8 +74,8 @@ module.exports = [
           ],
           page: Joi.number(),
           sort: [
-            Joi.string().allow('asc', 'desc'),
-            Joi.array().items(Joi.string().allow('asc', 'desc'))
+            Joi.string().valid('asc', 'desc'),
+            Joi.array().items(Joi.string().valid('asc', 'desc'))
           ]
         }
       }
