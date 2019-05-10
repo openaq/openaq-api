@@ -67,7 +67,7 @@ The server needs to fetch data about locations and cities in the measurement his
 - `ATHENA_OUTPUT_BUCKET`: S3 location (in the form of `s3://bucket/folder`) where the results of the Athena queries should be stored before caching them;
 - `ATHENA_FETCHES_TABLE`: the name of the table registered in AWS Athena.
 
-Automatic Athena synchronization is disabled by default. It can be enabled by setting env variable `ATHENA_SYNC_ENABLED` equal to `true`. The sync interval can be set using `ATHENA_SYNC_INTERVAL` variable, in miliseconds. The default interval is set in file [config/default.json](config/default.json).
+Automatic Athena synchronization is disabled by default. It can be enabled by setting the environment variable `ATHENA_SYNC_ENABLED` to `true`. The sync interval can be set using `ATHENA_SYNC_INTERVAL` variable, in miliseconds. The default interval is set in file [config/default.json](config/default.json).
 
 If needed, the synchronization can be fired manually. First, the `WEBHOOK_KEY` variable must be set to allow access webhooks endpoint. Sending a POST request to /v1/webhooks, including the parameters `key=<WEBHOOK_KEY>` and `action=ATHENA_SYNC`, will start a sync run. An example with curl:
 
