@@ -86,7 +86,7 @@ describe('/countries', function () {
 
   it('can be ordered by multiple fields and directions', done => {
     request(
-      `${apiUrl}countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc]`,
+      `${apiUrl}countries?order_by[]=cities&order_by[]=locations&sort[]=asc&sort[]=desc`,
       (err, response, body) => {
         expect(err).to.be.null;
         expect(response.statusCode).to.equal(200);
