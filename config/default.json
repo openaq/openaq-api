@@ -3,7 +3,9 @@
   "athena": {
     "accessKeyId": "",
     "secretAccessKey": "",
-    "fetchesTable": "fetches.fetches_realtime_gzipped"
+    "fetchesTable": "fetches.fetches_realtime_gzipped",
+    "syncInterval": 3600000,
+    "syncEnabled": false
   },
   "knex": {
     "client": "pg",

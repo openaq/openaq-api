@@ -4,7 +4,9 @@
     "accessKeyId": "ATHENA_ACCESS_KEY_ID",
     "secretAccessKey": "ATHENA_SECRET_ACCESS_KEY",
     "outputBucket": "ATHENA_OUTPUT_BUCKET",
-    "fetchesTable": "ATHENA_FETCHES_TABLE"
+    "fetchesTable": "ATHENA_FETCHES_TABLE",
+    "syncInterval": "ATHENA_SYNC_INTERVAL",
+    "syncEnabled": "ATHENA_SYNC_ENABLED"
   },
   "knex": {
     "connection": {
