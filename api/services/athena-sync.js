@@ -46,7 +46,17 @@ export const reconcileLocationIds = async function (athenaQueryResults) {
   // Merge distinct values for city, location, source and timestamp
   incomingLocations = map(incomingLocations, locationRows => {
     // Get base properties from first location
-    const { lon, lat, country, firstUpdated, lastUpdated } = locationRows[0];
+    const {
+      lon,
+      lat,
+      country,
+      city,
+      sourceName,
+      sourceType,
+      location,
+      firstUpdated,
+      lastUpdated
+    } = locationRows[0];
 
     // Merge properties
     const l = locationRows.reduce(
@@ -72,14 +82,18 @@ export const reconcileLocationIds = async function (athenaQueryResults) {
         return acc;
       },
       {
-        lon,
-        lat,
+        cities: [],
+        city,
         country,
         firstUpdated,
         lastUpdated,
-        cities: [],
+        lat,
+        location,
         locations: [],
+        lon,
+        sourceName,
         sourceNames: [],
+        sourceType,
         sourceTypes: []
       }
     );
