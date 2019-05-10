@@ -34,32 +34,33 @@ Server.prototype.start = function (cb) {
   self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
 
   // Register auth servive
-  self.hapi.register({ register: hapiAuthJwt2 }, err => {
-    if (err) return cb(err);
+  const { strategy, issuer, audience } = config.get('auth');
+  if (strategy === 'jwt') {
+    self.hapi.register({ register: hapiAuthJwt2 }, err => {
+      if (err) return cb(err);
 
-    const { issuer, audience } = config.get('auth');
-
-    self.hapi.auth.strategy('jwt', 'jwt', false, {
-      complete: true,
-      key: jwksRsa.hapiJwt2Key({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `${issuer}.well-known/jwks.json`
-      }),
-      verifyOptions: {
-        audience: audience,
-        issuer: issuer,
-        algorithms: ['RS256']
-      },
-      validateFunc: (decoded, request, callback) => {
-        if (decoded && decoded.sub) {
-          return callback(null, true);
+      self.hapi.auth.strategy('jwt', 'jwt', false, {
+        complete: true,
+        key: jwksRsa.hapiJwt2Key({
+          cache: true,
+          rateLimit: true,
+          jwksRequestsPerMinute: 5,
+          jwksUri: `${issuer}.well-known/jwks.json`
+        }),
+        verifyOptions: {
+          audience: audience,
+          issuer: issuer,
+          algorithms: ['RS256']
+        },
+        validateFunc: (decoded, request, callback) => {
+          if (decoded && decoded.sub) {
+            return callback(null, true);
+          }
+          return callback(null, false);
         }
-        return callback(null, false);
-      }
+      });
     });
-  });
+  }
 
   // Register hapi-router
   self.hapi.register({
