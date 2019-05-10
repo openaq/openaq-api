@@ -1,5 +1,5 @@
 {
-  "adminToken": "ADMIN_TOKEN",
+  "aggregationRefreshPeriod": "AGGREGATION_REFRESH_PERIOD",
   "athena": {
     "accessKeyId": "ATHENA_ACCESS_KEY_ID",
     "secretAccessKey": "ATHENA_SECRET_ACCESS_KEY",
@@ -20,5 +20,6 @@
     }
   },
   "defaultRequestLimit": "REQUEST_LIMIT",
-  "port": "PORT"
+  "port": "PORT",
+  "webhookKey": "WEBHOOK_KEY"
 }

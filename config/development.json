@@ -8,5 +8,5 @@
       "database": "gis"
     }
   },
-  "adminToken": "adminToken"
+  "webhookKey": "123"
 }

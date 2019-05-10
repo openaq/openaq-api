@@ -1,4 +1,5 @@
 {
+  "aggregationRefreshPeriod": 2700000,
   "athena": {
     "accessKeyId": "",
     "secretAccessKey": "",

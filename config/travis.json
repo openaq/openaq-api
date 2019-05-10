@@ -1,5 +1,4 @@
 {
-  "adminToken": "adminToken",
   "knex": {
     "connection": {
       "host": "localhost",
@@ -8,5 +7,6 @@
       "password": "docker",
       "database": "gis"
     }
-  }
+  },
+  "webhookKey": "123"
 }
