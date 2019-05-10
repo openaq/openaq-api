@@ -8,5 +8,8 @@
       "database": "gis"
     }
   },
-  "webhookKey": "123"
+  "webhookKey": "123",
+  "auth": {
+    "strategy": null
+  }
 }
