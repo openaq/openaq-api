@@ -42,6 +42,42 @@ const scenarios = {
     // Upsert locations
     await upsertLocations(locations2016);
   },
+
+  /*
+   *  Populate database with locations metadata
+   */
+  'locations-metadata': async function () {
+    // Clear table
+    await db.delete().from('locations_metadata');
+    await db.raw('ALTER SEQUENCE locations_metadata_id_seq RESTART WITH 1');
+
+    const userId = 'test|12345';
+    const dateStart = (new Date('2019/01/01')).getTime();
+
+    let inserts = [];
+    for (let i = 0; i < 100; i++) {
+      inserts.push({
+        // Ensure 2 entries per location.
+        locationId: `GB-${Math.floor(i / 2) + 1}`,
+        userId,
+        createdAt: new Date(dateStart + i * 1000),
+        data: {
+          name: `meta-${i}`,
+          instruments: [
+            {
+              type: 'test-instrument',
+              active: true,
+              pollutants: ['03'],
+              serialNumber: `abc${i}`
+            }
+          ]
+        }
+      });
+    }
+
+    await db.batchInsert('locations_metadata', inserts);
+  },
+
   'cities-2018': async function () {
     // Clear table
     await db.delete().from('cities');
