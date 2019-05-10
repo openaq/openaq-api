@@ -9,5 +9,8 @@
     }
   },
   "port": 2000,
-  "webhookKey": "123"
+  "webhookKey": "123",
+  "auth": {
+    "strategy": null
+  }
 }

@@ -1,4 +1,6 @@
 'use strict';
+import config from 'config';
+const { strategy: authStrategy } = config.get('auth');
 
 // List all sub-level endpoints
 const rootRouteHandler = (request, reply) => {
@@ -43,7 +45,7 @@ module.exports = [
     method: 'GET',
     path: '/auth-check',
     config: {
-      auth: 'jwt'
+      auth: authStrategy
     },
     handler: (request, reply) => {
       return reply(request.auth);

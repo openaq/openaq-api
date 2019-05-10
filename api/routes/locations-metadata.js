@@ -1,8 +1,12 @@
 'use strict';
 import Boom from 'boom';
+import config from 'config';
+import _ from 'lodash';
 
 import { db } from '../services/db';
 import metadataSchema from '../../lib/location-metadata-schema';
+
+const { strategy: authStrategy } = config.get('auth');
 
 async function checkLocation (id) {
   // Check if the location exists.
@@ -51,7 +55,7 @@ module.exports = [
     path: '/v1/locations/{id}/metadata',
     config: {
       description: 'Updates the metadata associated with a given location',
-      auth: 'jwt',
+      auth: authStrategy,
       validate: {
         payload: metadataSchema
       }
@@ -63,11 +67,13 @@ module.exports = [
           return reply(Boom.notFound('This location does not exist'));
         }
 
+        const user = _.get(request, 'auth.credentials.sub', 'anonymous');
+
         const res = await db.transaction(async trx => {
           const [insertId] = await trx('locations_metadata')
             .returning('id')
             .insert({
-              userId: request.auth.credentials.sub,
+              userId: user,
               locationId: request.params.id,
               data: request.payload
             });
