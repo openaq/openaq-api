@@ -76,12 +76,6 @@ var runCachedQueries = function (redis) {
         require('./latest').isActive((err, active) => {
           done(err, active);
         });
-      },
-      done => {
-        const query = {};
-        require('./measurements').isActive(query, (err, active) => {
-          done(err, active);
-        });
       }
     ],
     (err, results) => {
@@ -98,7 +92,7 @@ var runCachedQueries = function (redis) {
       }
 
       // Run the queries to build up the cache.
-      // Run 3 major aggregations in parallel and handle count at the end
+      // Run latest aggregation
       log(['info'], 'Database updated, running new cache queries.');
       parallel(
         {
