@@ -8,6 +8,7 @@ import fixtures from './fixtures';
 describe('/cities', function () {
   // Populate cities table before testing.
   before(async function () {
+    // Populate cities table before testing.
     await fixtures('cities-2018');
   });
 
@@ -16,8 +17,17 @@ describe('/cities', function () {
       expect(err).to.be.null;
       expect(response.statusCode).to.equal(200);
 
-      var res = JSON.parse(body);
+      const res = JSON.parse(body);
       expect(res.results.length).to.equal(100);
+
+      const city = res.results[55];
+      expect(city).to.deep.equal({
+        city: 'Central Scotland',
+        name: 'Central Scotland',
+        count: 37394,
+        country: 'GB',
+        locations: 1
+      });
       done();
     });
   });

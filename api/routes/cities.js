@@ -115,15 +115,10 @@ module.exports = [
         // Query results
         const results = await dbQuery
           .clone()
-          .select('*')
+          .select('country', 'name', 'name as city', 'count', 'locations')
           .offset(offset)
           .orderBy(orderBy)
-          .limit(limit)
-          .map(r => {
-            // Handle column name deprecation ("name" instead of "city")
-            r.name = r.city;
-            return r;
-          });
+          .limit(limit);
 
         // Query count
         request.count = parseInt(
