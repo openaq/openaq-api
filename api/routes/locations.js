@@ -1,12 +1,11 @@
 'use strict';
 import { db } from '../services/db';
 import { log } from '../services/logger';
-import { lonLatRegex } from '../../lib/utils';
+import { lonLatRegex, buildLocationsWhere } from '../../lib/utils';
 import Boom from 'boom';
 import config from 'config';
 import Joi from 'joi';
 
-const defaultGeoRadius = config.get('geoRadius');
 const maxRequestLimit = config.get('maxRequestLimit');
 const defaultRequestLimit = config.get('defaultRequestLimit');
 const orderableColumns = ['city', 'country', 'location', 'distance', 'count'];
@@ -120,15 +119,9 @@ module.exports = [
       try {
         const { query, page, limit } = request;
         const {
-          city,
           coordinates,
-          country,
-          has_geo: hasGeo,
-          location,
           order_by,
-          sort,
-          parameter,
-          radius
+          sort
         } = query;
         const selectedColumns = ['*'];
         const offset = (page - 1) * limit;
@@ -177,66 +170,7 @@ module.exports = [
         /*
          * Build base query, to be used to fetch results and total count.
          */
-        const dbQuery = db('locations').where(builder => {
-          if (country) {
-            builder.where('country', 'IN', [].concat(country));
-          }
-
-          if (city) {
-            // Ensure city is an array type, to perform map
-            const cities = [].concat(city);
-
-            // Transform "cities" field into string and search in it
-            builder.whereRaw(
-              cities
-                .map(c => "lower(array_to_string(cities,' ')) like ?")
-                .join(' OR '),
-              cities.map(c => `%${c.toLowerCase()}%`)
-            );
-          }
-
-          if (location) {
-            // Ensure location is an array, to perform map
-            const locations = [].concat(location);
-
-            // Transform "cities" field into string and search in it
-            builder.whereRaw(
-              locations
-                .map(l => "lower(array_to_string(locations,' ')) like ?")
-                .join(' OR '),
-              locations.map(l => `%${l.toLowerCase()}%`)
-            );
-          }
-
-          if (parameter) {
-            builder.where('parameters', '&&', [].concat(parameter));
-          }
-
-          if (typeof hasGeo !== 'undefined') {
-            hasGeo
-              ? builder.whereNotNull('coordinates')
-              : builder.whereNull('coordinates');
-          }
-
-          if (typeof radius !== 'undefined') {
-            if (coordinates) {
-              const [lat, lon] = coordinates.split(',');
-              builder.whereRaw(`ST_DWithin(
-                  coordinates, 
-                  ST_MakePoint(
-                    ${parseFloat(lon)},${parseFloat(lat)}), 
-                    ${radius || defaultGeoRadius}
-                  )
-                `);
-            } else {
-              reply(
-                Boom.badRequest(
-                  '"coordinates" must be passed with "radius" parameter.'
-                )
-              );
-            }
-          }
-        });
+        const dbQuery = db('locations').where(buildLocationsWhere(query));
 
         /*
          * Fetch results
