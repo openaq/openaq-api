@@ -155,7 +155,7 @@ describe('/locations', function () {
   });
 
   it('handles a coordinates search', function (done) {
-    request(apiUrl + 'locations?coordinates=51.83,20.78&radius=1000', function (
+    request(apiUrl + 'locations?coordinates=52.3854,4.87575&radius=50000', function (
       err,
       response,
       body
@@ -164,13 +164,13 @@ describe('/locations', function () {
       expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(1);
+      expect(body.meta.found).to.equal(38);
       done();
     });
   });
 
   it('handles a coordinates search with no radius', function (done) {
-    request(apiUrl + 'locations?coordinates=51.83,20.78', function (
+    request(apiUrl + 'locations?coordinates=52.3854,4.87575', function (
       err,
       response,
       body
@@ -179,7 +179,7 @@ describe('/locations', function () {
       expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(269);
+      expect(body.meta.found).to.equal(6);
       done();
     });
   });

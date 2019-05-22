@@ -1,10 +1,16 @@
 'use strict';
 
-var Boom = require('boom');
-var m = require('../controllers/measurements.js');
-var _ = require('lodash');
-var csv = require('csv-stringify');
+import config from 'config';
+import _ from 'lodash';
 import { log } from '../services/logger';
+import { lonLatRegex } from '../../lib/utils';
+import Boom from 'boom';
+import csv from 'csv-stringify';
+import Joi from 'joi';
+import m from '../controllers/measurements.js';
+
+const maxRequestLimit = config.get('maxRequestLimit');
+const defaultRequestLimit = config.get('defaultRequestLimit');
 
 /**
  * @api {get} /measurements GET
@@ -87,7 +93,32 @@ module.exports = [
     method: ['GET'],
     path: '/v1/measurements',
     config: {
-      description: 'Retrieve data for individual measurements.'
+      description: 'Retrieve data for individual measurements.',
+      validate: {
+        query: {
+          city: [Joi.string(), Joi.array().items(Joi.string())],
+          coordinates: Joi.string()
+            .regex(lonLatRegex)
+            .error(() => 'invalid coordinates pair'),
+          country: [Joi.string(), Joi.array().items(Joi.string())],
+          has_geo: Joi.boolean(),
+          limit: Joi.number()
+            .default(defaultRequestLimit)
+            .max(maxRequestLimit),
+          location: [Joi.string(), Joi.array().items(Joi.string())],
+          name: [Joi.string(), Joi.array().items(Joi.string())],
+          order_by: [Joi.string(), Joi.array().items(Joi.string())],
+          page: Joi.number(),
+          parameter: [Joi.string(), Joi.array().items(Joi.string())],
+          radius: Joi.number(),
+          sort: [
+            Joi.string().valid('asc', 'desc'),
+            Joi.array().items(Joi.string().valid('asc', 'desc'))
+          ],
+          format: Joi.string().valid('json', 'csv'),
+          include_fields: Joi.string()
+        }
+      }
     },
     handler: function (request, reply) {
       var params = {};

@@ -21,16 +21,15 @@ describe('/measurements', function () {
       expect(err).to.be.null;
       expect(response.statusCode).to.equal(200);
 
-      var res = JSON.parse(body);
-      var testMeta = {
+      const res = JSON.parse(body);
+      expect(res.meta).to.deep.equal({
         name: 'openaq-api',
         license: 'CC BY 4.0',
         website: 'https://docs.openaq.org/',
         page: 1,
         limit: 100,
-        found: 100
-      };
-      expect(res.meta).to.deep.equal(testMeta);
+        found: 7546653
+      });
       done();
     });
   });
@@ -54,10 +53,10 @@ describe('/measurements', function () {
       body
     ) {
       expect(err).to.be.null;
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(400);
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(100);
+      expect(body.message).to.equal('child "coordinates" fails because [invalid coordinates pair]');
       done();
     });
   });
@@ -65,23 +64,23 @@ describe('/measurements', function () {
   it('handles bad radius param', function (done) {
     request(apiUrl + 'measurements?radius=foo', function (err, response, body) {
       expect(err).to.be.null;
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(400);
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(100);
+      expect(body.message).to.equal('child "radius" fails because ["radius" must be a number]');
       done();
     });
   });
 
   it('handles a coordinates search', function (done) {
     request(
-      apiUrl + 'measurements?coordinates=51.83,20.78&radius=1000',
+      apiUrl + 'measurements?coordinates=51.83,20.78&radius=500000',
       function (err, response, body) {
         expect(err).to.be.null;
         expect(response.statusCode).to.equal(200);
 
         body = JSON.parse(body);
-        expect(body.meta.found).to.equal(3);
+        expect(body.meta.found).to.equal(514577);
         done();
       }
     );
@@ -97,7 +96,7 @@ describe('/measurements', function () {
       expect(response.statusCode).to.equal(200);
 
       body = JSON.parse(body);
-      expect(body.meta.found).to.equal(3);
+      expect(body.meta.found).to.equal(31457);
       done();
     });
   });
@@ -225,7 +224,7 @@ describe('/measurements', function () {
       expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
-      expect(res.meta.found).to.equal(56);
+      expect(res.meta.found).to.equal(319807);
       done();
     });
   });
@@ -240,7 +239,7 @@ describe('/measurements', function () {
       expect(response.statusCode).to.equal(200);
 
       var res = JSON.parse(body);
-      expect(res.meta.found).to.equal(71);
+      expect(res.meta.found).to.equal(1590566);
       done();
     });
   });
@@ -248,13 +247,13 @@ describe('/measurements', function () {
   it('should respect mix of query parameters', function (done) {
     request(
       apiUrl +
-        'measurements?parameter[]=co&country=CL&parameter[]=so2&parameter[]=pm25',
+        'measurements?parameter[]=co&country=GB&parameter[]=so2&parameter[]=pm25',
       function (err, response, body) {
         expect(err).to.be.null;
         expect(response.statusCode).to.equal(200);
 
         var res = JSON.parse(body);
-        expect(res.meta.found).to.equal(32);
+        expect(res.meta.found).to.equal(630024);
         done();
       }
     );
