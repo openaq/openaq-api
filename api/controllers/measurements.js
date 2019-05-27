@@ -12,52 +12,42 @@ import {
  * Query Measurements just for count.
  *
  * @param {Object} query - Payload contains query parameters and their values
- * @param {Boolean} skipRedis - Should we check Redis for cached count value? Useful for forcing query from DB.
- * @param {countCallback} cb - The callback that returns the count
  */
-const queryCount = function (query, cb) {
-  // Check if query is contains parameter(s)
+const queryCount = async function (query) {
+  let totalCount;
+
+  // Flag if query has "parameter" property defined.
   const countByParameters = query.parameter && query.parameter.length > 0;
 
   // Create query
-  let countQuery = db
+  let counts = await db
     .select(countByParameters ? 'countsByMeasurement' : 'count')
     .from('locations')
     .where(buildLocationsWhere(query));
 
-  // Aggregate counts before callback
-  countQuery
-    .then(counts => {
-      let totalCount;
+  // If querying by parameter, break down count per measurement
+  if (countByParameters) {
+    // Convert parameters to array, if string
+    const queryParameters = [].concat(query.parameter);
 
-      // In query measurement parameters are passed
-      if (countByParameters) {
-        // Ensure query parameters is an array
-        const queryParameters = [].concat(query.parameter);
+    // Add values by parameter
+    totalCount = counts.reduce((count, i) => {
+      return (
+        count +
+        i.countsByMeasurement.reduce((pCount, p) => {
+          // Filter by queried parameters
+          return pCount + (queryParameters.includes(p.parameter) ? p.count : 0);
+        }, 0)
+      );
+    }, 0);
+  } else {
+    // If no parameters were passed, return total count
+    totalCount = counts.reduce((count, i) => {
+      return count + i.count;
+    }, 0);
+  }
 
-        // Aggregate counts returned to a single number
-        totalCount = counts.reduce((count, i) => {
-          return (
-            count +
-            i.countsByMeasurement.reduce((pCount, p) => {
-              // Only sum queries parameters (eg. co, no2)
-              return (
-                pCount + (queryParameters.includes(p.parameter) ? p.count : 0)
-              );
-            }, 0)
-          );
-        }, 0);
-      } else {
-        // No measurement parameters were passed, return total count
-        totalCount = counts.reduce((count, i) => {
-          return count + i.count;
-        }, 0);
-      }
-      cb(null, totalCount);
-    })
-    .catch(err => {
-      return cb(err);
-    });
+  return totalCount;
 };
 
 /**
@@ -68,7 +58,7 @@ const queryCount = function (query, cb) {
  * @param {integer} limit - Items per page
  * @param {recordsCallback} cb - The callback that returns the records
  */
-module.exports.query = function (query, page, limit, cb) {
+module.exports.query = async function (query, page, limit) {
   // Turn the payload into something we can use with psql
   let {
     payload,
@@ -160,44 +150,36 @@ module.exports.query = function (query, page, limit, cb) {
   //
   // Run the queries, first do a count for paging, then get results
   //
-  queryCount(query, (err, count) => {
-    if (err) {
-      return cb(err);
-    }
+  const count = await queryCount(query);
 
-    // Base query
-    let resultsQuery = db
-      .select('data')
-      .from('measurements')
-      .limit(limit)
-      .offset(skip);
-    sort.forEach(s => {
-      resultsQuery = resultsQuery.orderBy(s.column, s.direction);
+  // Base query
+  let resultsQuery = db
+    .select('data')
+    .from('measurements')
+    .limit(limit)
+    .offset(skip);
+  sort.forEach(s => {
+    resultsQuery = resultsQuery.orderBy(s.column, s.direction);
+  });
+
+  // Build on base query
+  resultsQuery = buildSQLQuery(
+    resultsQuery,
+    payload,
+    operators,
+    betweens,
+    nulls,
+    notNulls,
+    geo
+  );
+
+  // Run the query
+  return resultsQuery.then(records => {
+    // Move data obj to top level and handle projections
+    records = records.map(r => {
+      r = r.data;
+      return pick(r, projection);
     });
-
-    // Build on base query
-    resultsQuery = buildSQLQuery(
-      resultsQuery,
-      payload,
-      operators,
-      betweens,
-      nulls,
-      notNulls,
-      geo
-    );
-
-    // Run the query
-    resultsQuery
-      .then(results => {
-        // Move data obj to top level and handle projections
-        results = results.map(r => {
-          r = r.data;
-          return pick(r, projection);
-        });
-        return cb(null, results, count);
-      })
-      .catch(err => {
-        return cb(err);
-      });
+    return { records, count };
   });
 };

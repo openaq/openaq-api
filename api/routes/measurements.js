@@ -120,51 +120,67 @@ module.exports = [
         }
       }
     },
-    handler: function (request, reply) {
-      var params = {};
+    handler: async function (request, reply) {
+      try {
+        var params = {};
 
-      // For GET
-      if (request.query) {
-        params = request.query;
-      }
+        // For GET
+        if (request.query) {
+          params = request.query;
+        }
 
-      // Set max limit based on env var or default to 10000
-      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
+        // Set max limit based on env var or default to 10000
+        request.limit = Math.min(
+          request.limit,
+          process.env.REQUEST_LIMIT || 10000
+        );
 
-      // Check if this is supposed to be formatted as csv
-      var formatForCSV = false;
-      if (params.format === 'csv') {
-        formatForCSV = true;
+        // Check if this is supposed to be formatted as csv
+        var formatForCSV = false;
+        if (params.format === 'csv') {
+          formatForCSV = true;
 
-        // Set a different max limit for CSVs to get a lot of data, but not
-        // all of it, because that's just crazy. Setting to 65,536 since this
-        // is the Excel limit from a while back and is as good as anything.
+          // Set a different max limit for CSVs to get a lot of data, but not
+          // all of it, because that's just crazy. Setting to 65,536 since this
+          // is the Excel limit from a while back and is as good as anything.
 
-        // This gets a bit weird since we want to honor any orig set limit,
-        // regardless of what was just set above
-        let limit = request.url.query.limit || 65536;
-        request.limit = Math.min(limit, 65536);
+          // This gets a bit weird since we want to honor any orig set limit,
+          // regardless of what was just set above
+          let limit = request.url.query.limit || 65536;
+          request.limit = Math.min(limit, 65536);
 
-        // Force to include attribution, handle case where it may have already
-        // been present.
-        if (params.include_fields === undefined) {
-          params.include_fields = 'attribution';
-        } else {
-          if (params.include_fields.indexOf('attribution') === -1) {
-            params.include_fields += ',attribution';
+          // Force to include attribution, handle case where it may have already
+          // been present.
+          if (params.include_fields === undefined) {
+            params.include_fields = 'attribution';
+          } else {
+            if (params.include_fields.indexOf('attribution') === -1) {
+              params.include_fields += ',attribution';
+            }
           }
         }
-      }
-      params = _.omit(params, 'format');
+        params = _.omit(params, 'format');
 
-      // Handle it
-      m.query(params, request.page, request.limit, function (err, records, count) {
-        if (err) {
-          return reply(Boom.badImplementation(err));
-        }
+        // Run query
+        let { records, count } = await m.query(
+          params,
+          request.page,
+          request.limit
+        );
 
         if (formatForCSV) {
-          var columns = ['location', 'city', 'country', 'utc', 'local', 'parameter', 'value', 'unit', 'latitude', 'longitude'];
+          var columns = [
+            'location',
+            'city',
+            'country',
+            'utc',
+            'local',
+            'parameter',
+            'value',
+            'unit',
+            'latitude',
+            'longitude'
+          ];
           var options = {
             header: true,
             columns: columns.concat(params.include_fields.split(','))
@@ -189,13 +205,18 @@ module.exports = [
             // And force the csv to be downloaded in browser
             var response = reply(data);
             response.header('Content-type', 'text/csv');
-            response.header('Content-disposition', 'attachment;filename=openaq.csv');
+            response.header(
+              'Content-disposition',
+              'attachment;filename=openaq.csv'
+            );
           });
         } else {
           request.count = count;
           return reply(records);
         }
-      });
+      } catch (err) {
+        return reply(Boom.badImplementation(err));
+      }
     }
   }
 ];
