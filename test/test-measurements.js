@@ -259,6 +259,35 @@ describe('/measurements', function () {
     );
   });
 
+  it('should allow filter by value_from and value_to', function (done) {
+    request(
+      apiUrl + 'measurements?parameter=co&value_from=100&value_to=500',
+      function (err, response, body) {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        var res = JSON.parse(body);
+        expect(res.meta.found).to.equal(21);
+        done();
+      }
+    );
+  });
+
+  it('should allow filter by date_from and date_to', function (done) {
+    request(
+      apiUrl +
+        'measurements?parameter=pm10&date_from=2016-01-16T09:00:00&date_to=2016-01-18T13:55:00',
+      function (err, response, body) {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        var res = JSON.parse(body);
+        expect(res.meta.found).to.equal(6);
+        done();
+      }
+    );
+  });
+
   it('can be ordered', function (done) {
     request(
       `${apiUrl}measurements?order_by=value&sort=desc`,

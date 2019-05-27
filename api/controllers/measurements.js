@@ -1,6 +1,6 @@
 'use strict';
 
-import { forEach, has, omit, isEmpty, pick } from 'lodash';
+import { forEach, has, omit, isEmpty, intersection, pick } from 'lodash';
 import { db } from '../services/db';
 import {
   buildLocationsWhere,
@@ -9,11 +9,11 @@ import {
 } from '../../lib/utils';
 
 /**
- * Query Measurements just for count.
+ * Query row count via locations table.
  *
  * @param {Object} query - Payload contains query parameters and their values
  */
-const queryCount = async function (query) {
+const queryCountViaLocations = async function (query) {
   let totalCount;
 
   // Flag if query has "parameter" property defined.
@@ -51,14 +51,71 @@ const queryCount = async function (query) {
 };
 
 /**
+ * Query row count via measurements table.
+ *
+ * @param {Object} query - Payload contains query parameters and their values
+ */
+const queryCountViaMeasurements = async function (query) {
+  // Omit query parameters that doesn't affect count
+  query = omit(query, ['sort', 'limit', 'page', 'order_by', 'include_fields']);
+
+  // Parse request as database query
+  let {
+    payload,
+    operators,
+    betweens,
+    nulls,
+    notNulls,
+    geo
+  } = queryFromParameters(query);
+
+  // Get base db query
+  let countQuery = db.count('location').from('measurements');
+
+  // Apply parameters
+  countQuery = buildSQLQuery(
+    countQuery,
+    payload,
+    operators,
+    betweens,
+    nulls,
+    notNulls,
+    geo
+  );
+
+  // Return count
+  return Number((await countQuery)[0].count);
+};
+
+/**
  * Query Measurements. Implements all protocols supported by /measurements endpoint
  *
  * @param {Object} query - Payload contains query parameters and their values
  * @param {integer} page - Page number
  * @param {integer} limit - Items per page
- * @param {recordsCallback} cb - The callback that returns the records
  */
 module.exports.query = async function (query, page, limit) {
+  /**
+   * By default, affected rows count is fetched via locations table, which
+   * includes full count history.
+   *
+   * When query filters by values or date, the count is fetched via
+   * measurements table, which do not include full history.
+   */
+  let count;
+  if (
+    intersection(Object.keys(query), [
+      'value_from',
+      'value_to',
+      'date_from',
+      'date_to'
+    ]).length > 0
+  ) {
+    count = await queryCountViaMeasurements(query);
+  } else {
+    count = await queryCountViaLocations(query);
+  }
+
   // Turn the payload into something we can use with psql
   let {
     payload,
@@ -146,11 +203,6 @@ module.exports.query = async function (query, page, limit) {
   // Apply paging
   //
   var skip = limit * (page - 1);
-
-  //
-  // Run the queries, first do a count for paging, then get results
-  //
-  const count = await queryCount(query);
 
   // Base query
   let resultsQuery = db
