@@ -1,4 +1,13 @@
 {
+  "aggregationRefreshPeriod": "AGGREGATION_REFRESH_PERIOD",
+  "athena": {
+    "accessKeyId": "ATHENA_ACCESS_KEY_ID",
+    "secretAccessKey": "ATHENA_SECRET_ACCESS_KEY",
+    "outputBucket": "ATHENA_OUTPUT_BUCKET",
+    "fetchesTable": "ATHENA_FETCHES_TABLE",
+    "syncInterval": "ATHENA_SYNC_INTERVAL",
+    "syncEnabled": "ATHENA_SYNC_ENABLED"
+  },
   "knex": {
     "connection": {
       "host": "PSQL_HOST",
@@ -11,5 +20,8 @@
       "min": "PSQL_POOL_MIN",
       "max": "PSQL_POOL_MAX"
     }
-  }
+  },
+  "defaultRequestLimit": "REQUEST_LIMIT",
+  "port": "PORT",
+  "webhookKey": "WEBHOOK_KEY"
 }

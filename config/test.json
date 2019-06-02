@@ -7,5 +7,7 @@
       "password": "docker",
       "database": "gis"
     }
-  }
+  },
+  "port": 2000,
+  "webhookKey": "123"
 }

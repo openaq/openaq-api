@@ -48,7 +48,7 @@ Stop database container after finishing:
 
 Initialize test database:
 
-`npm run init-dev-db`
+`npm run init-test-db`
 
 This task will start a PostgreSQL container as daemon, run migrations and seed data. After initialization is finished, run tests:
 
@@ -60,7 +60,22 @@ Stop database container after finishing:
 
 ## Deploying to production
 
-For production deployment, you will need to have certain environment variables set as in the table below (for production deployments, these are stored in an S3 bucket).
+The server needs to fetch data about locations and cities in the measurement history using AWS Athena. This service must be configured via the following environment variables:
+
+- `ATHENA_ACCESS_KEY_ID`: an AWS Access Key that has permissions to create Athena Queries and store them in S3;
+- `ATHENA_SECRET_ACCESS_KEY`: the corresponding secret;
+- `ATHENA_OUTPUT_BUCKET`: S3 location (in the form of `s3://bucket/folder`) where the results of the Athena queries should be stored before caching them;
+- `ATHENA_FETCHES_TABLE`: the name of the table registered in AWS Athena.
+
+Automatic Athena synchronization is disabled by default. It can be enabled by setting the environment variable `ATHENA_SYNC_ENABLED` to `true`. The sync interval can be set using `ATHENA_SYNC_INTERVAL` variable, in miliseconds. The default interval is set in file [config/default.json](config/default.json).
+
+If needed, the synchronization can be fired manually. First, the `WEBHOOK_KEY` variable must be set to allow access webhooks endpoint. Sending a POST request to /v1/webhooks, including the parameters `key=<WEBHOOK_KEY>` and `action=ATHENA_SYNC`, will start a sync run. An example with curl:
+
+```
+curl --data "key=123&action=ATHENA_SYNC" https://localhost:3004/v1/webhooks
+```
+
+Other environment variables available:
 
 | Name | Description | Default |
 |---|---|---|
@@ -78,11 +93,6 @@ For production deployment, you will need to have certain environment variables s
 
 ### AWS Athena for aggregations
 
-If `USE_ATHENA` is set, the API will use AWS Athena instead of creating PostgreSQL aggregations tables for queries. The following variables should be set as well:
-- `ATHENA_ACCESS_KEY_ID`: An AWS Access Key that has permissions to create Athena Queries and store them in S3.
-- `ATHENA_SECRET_ACCESS_KEY`: The corresponding secret.
-- `ATHENA_OUTPUT_BUCKET`: The S3 location (in the form of `s3://bucket/folder`) where the results of the Athena queries should be stored before caching them.
-- `ATHENA_FETCHES_TABLE`: The name of the table registered in AWS Athena, default is `fetches.fetches_realtime`
 
 The Athena table is `fetches_realtime` that represents the fetches from `openaq-data` and has the following schema:
 

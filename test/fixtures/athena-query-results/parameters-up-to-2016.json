@@ -1,0 +1,5221 @@
+[
+  { "country": "BR", "parameter": "no2", "count": "378182" },
+  { "country": "BR", "parameter": "so2", "count": "151764" },
+  { "country": "BR", "parameter": "pm10", "count": "436353" },
+  { "country": "BR", "parameter": "o3", "count": "418033" },
+  { "country": "BR", "parameter": "co", "count": "144579" },
+  { "country": "BR", "parameter": "pm25", "count": "157356" },
+  {
+    "country": "NL",
+    "lon": "4.9233",
+    "lat": "51.9745",
+    "parameter": "co",
+    "count": "10564"
+  },
+  {
+    "country": "NL",
+    "lon": "4.58006",
+    "lat": "51.8694",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.88781",
+    "lat": "52.39",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.40139",
+    "lat": "51.9214",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9884",
+    "lat": "52.3207",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.8107",
+    "lat": "50.9631",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.22802",
+    "lat": "51.932",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.9705",
+    "lat": "50.888",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.87575",
+    "lat": "52.3854",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.39333",
+    "lat": "51.4074",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77077",
+    "lat": "52.28",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.79334",
+    "lat": "52.3668",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.88175",
+    "lat": "50.9023",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.8997",
+    "lat": "52.358",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51527",
+    "lat": "51.6537",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.98685",
+    "lat": "50.9003",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.47992",
+    "lat": "51.9142",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.59338",
+    "lat": "52.4232",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.38881",
+    "lat": "51.8879",
+    "parameter": "no2",
+    "count": "3806"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77348",
+    "lat": "52.428",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77401",
+    "lat": "52.334",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.12194",
+    "lat": "51.9778",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.81671",
+    "lat": "52.448",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.82223",
+    "lat": "50.9844",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85307",
+    "lat": "51.5405",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.05051",
+    "lat": "52.8037",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.84523",
+    "lat": "52.3813",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.18155",
+    "lat": "52.2351",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60184",
+    "lat": "52.463",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.3263",
+    "lat": "51.9105",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "6.40293",
+    "lat": "52.3883",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60537",
+    "lat": "52.0918",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35524",
+    "lat": "51.8674",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35984",
+    "lat": "51.4344",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.72858",
+    "lat": "52.3984",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.45053",
+    "lat": "51.7866",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.83819",
+    "lat": "52.138",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85307",
+    "lat": "51.5405",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.28919",
+    "lat": "52.0771",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.61921",
+    "lat": "52.4487",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.0424",
+    "lat": "51.1192",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "3.74948",
+    "lat": "51.2945",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60894",
+    "lat": "53.2465",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.64232",
+    "lat": "52.3705",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60537",
+    "lat": "52.0918",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.48753",
+    "lat": "51.8936",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.70842",
+    "lat": "52.1116",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.31587",
+    "lat": "52.0751",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "6.93243",
+    "lat": "52.8757",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.88781",
+    "lat": "52.39",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.05051",
+    "lat": "52.8037",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85694",
+    "lat": "51.8382",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.6288",
+    "lat": "52.4744",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12446",
+    "lat": "52.105",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12051",
+    "lat": "52.0677",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.98685",
+    "lat": "50.9003",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.70824",
+    "lat": "51.8007",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.88781",
+    "lat": "52.39",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.72858",
+    "lat": "52.3984",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.46134",
+    "lat": "51.9271",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.88175",
+    "lat": "50.9023",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.83819",
+    "lat": "52.138",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.40139",
+    "lat": "51.9214",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.1082",
+    "lat": "51.4541",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.47992",
+    "lat": "51.9142",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.27681",
+    "lat": "53.3304",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.47235",
+    "lat": "51.4687",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.45053",
+    "lat": "51.7866",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9233",
+    "lat": "51.9745",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.57349",
+    "lat": "52.9169",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.64053",
+    "lat": "52.4893",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.12194",
+    "lat": "51.9778",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.5789",
+    "lat": "53.2178",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.81671",
+    "lat": "52.448",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.14845",
+    "lat": "51.5184",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51082",
+    "lat": "52.2966",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.87016",
+    "lat": "52.394",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.70842",
+    "lat": "52.1116",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.8997",
+    "lat": "52.358",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.82223",
+    "lat": "50.9844",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.14845",
+    "lat": "51.5184",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51082",
+    "lat": "52.2966",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.5789",
+    "lat": "53.2178",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.01757",
+    "lat": "52.6541",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.43069",
+    "lat": "51.9385",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.46134",
+    "lat": "51.9271",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.81671",
+    "lat": "52.448",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.98744",
+    "lat": "52.2015",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.12194",
+    "lat": "51.9778",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.6758",
+    "lat": "50.8521",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.3263",
+    "lat": "51.9105",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60894",
+    "lat": "53.2465",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.78102",
+    "lat": "51.6031",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.31587",
+    "lat": "52.0751",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.82494",
+    "lat": "51.5935",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35524",
+    "lat": "51.8674",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.83206",
+    "lat": "52.4202",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51082",
+    "lat": "52.2966",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.88175",
+    "lat": "50.9023",
+    "parameter": "so2",
+    "count": "9132"
+  },
+  {
+    "country": "NL",
+    "lon": "4.38881",
+    "lat": "51.8879",
+    "parameter": "pm10",
+    "count": "3805"
+  },
+  {
+    "country": "NL",
+    "lon": "4.88781",
+    "lat": "52.39",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.71475",
+    "lat": "50.8459",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.82494",
+    "lat": "51.5935",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.70824",
+    "lat": "51.8007",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.61921",
+    "lat": "52.4487",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86621",
+    "lat": "52.3597",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35984",
+    "lat": "51.4344",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.98744",
+    "lat": "52.2015",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.93243",
+    "lat": "52.8757",
+    "parameter": "pm10",
+    "count": "10559"
+  },
+  {
+    "country": "NL",
+    "lon": "5.14845",
+    "lat": "51.5184",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "3.74948",
+    "lat": "51.2945",
+    "parameter": "so2",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.22802",
+    "lat": "51.932",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77348",
+    "lat": "52.428",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.98685",
+    "lat": "50.9003",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.59338",
+    "lat": "52.4232",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.8617",
+    "lat": "52.5636",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.9705",
+    "lat": "50.888",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.3263",
+    "lat": "51.9105",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.64232",
+    "lat": "52.3705",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.47235",
+    "lat": "51.4687",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.84102",
+    "lat": "52.3395",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9233",
+    "lat": "51.9745",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51527",
+    "lat": "51.6537",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35938",
+    "lat": "52.039",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12051",
+    "lat": "52.0677",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.45053",
+    "lat": "51.7866",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85778",
+    "lat": "51.8414",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60537",
+    "lat": "52.0918",
+    "parameter": "so2",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.84523",
+    "lat": "52.3813",
+    "parameter": "co",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77401",
+    "lat": "52.334",
+    "parameter": "co",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60184",
+    "lat": "52.463",
+    "parameter": "co",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60199",
+    "lat": "52.494",
+    "parameter": "co",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.87016",
+    "lat": "52.394",
+    "parameter": "so2",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60199",
+    "lat": "52.494",
+    "parameter": "so2",
+    "count": "10329"
+  },
+  {
+    "country": "PL",
+    "lon": "20.95555",
+    "lat": "52.40758",
+    "parameter": "no2",
+    "count": "9083"
+  },
+  {
+    "country": "PL",
+    "lon": "19.70528",
+    "lat": "52.55094",
+    "parameter": "pm25",
+    "count": "9164"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.29086",
+    "parameter": "co",
+    "count": "9078"
+  },
+  {
+    "country": "PL",
+    "lon": "22.27278",
+    "lat": "52.17204",
+    "parameter": "pm10",
+    "count": "9125"
+  },
+  { "country": "PL", "parameter": "so2", "count": "1984" },
+  {
+    "country": "PL",
+    "lon": "20.78889",
+    "lat": "51.83518",
+    "parameter": "co",
+    "count": "6488"
+  },
+  {
+    "country": "PL",
+    "lon": "21.13917",
+    "lat": "51.3991",
+    "parameter": "pm25",
+    "count": "9147"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.29086",
+    "parameter": "pm10",
+    "count": "8952"
+  },
+  {
+    "country": "PL",
+    "lon": "20.83889",
+    "lat": "52.19173",
+    "parameter": "so2",
+    "count": "9091"
+  },
+  {
+    "country": "PL",
+    "lon": "21.13917",
+    "lat": "51.3991",
+    "parameter": "so2",
+    "count": "9130"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.29086",
+    "parameter": "o3",
+    "count": "9083"
+  },
+  {
+    "country": "PL",
+    "lon": "20.83889",
+    "lat": "52.19173",
+    "parameter": "o3",
+    "count": "9154"
+  },
+  {
+    "country": "PL",
+    "lon": "21.00583",
+    "lat": "52.21929",
+    "parameter": "co",
+    "count": "9025"
+  },
+  { "country": "PL", "parameter": "o3", "count": "1983" },
+  {
+    "country": "PL",
+    "lon": "22.27278",
+    "lat": "52.17204",
+    "parameter": "so2",
+    "count": "9111"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.29086",
+    "parameter": "so2",
+    "count": "9082"
+  },
+  {
+    "country": "PL",
+    "lon": "21.13917",
+    "lat": "51.3991",
+    "parameter": "pm10",
+    "count": "9146"
+  },
+  {
+    "country": "PL",
+    "lon": "22.27278",
+    "lat": "52.17204",
+    "parameter": "o3",
+    "count": "9102"
+  },
+  {
+    "country": "PL",
+    "lon": "19.70528",
+    "lat": "52.55094",
+    "parameter": "pm10",
+    "count": "9164"
+  },
+  {
+    "country": "PL",
+    "lon": "21.13917",
+    "lat": "51.3991",
+    "parameter": "o3",
+    "count": "9042"
+  },
+  {
+    "country": "PL",
+    "lon": "20.78889",
+    "lat": "51.83518",
+    "parameter": "no2",
+    "count": "6485"
+  },
+  {
+    "country": "PL",
+    "lon": "21.13917",
+    "lat": "51.3991",
+    "parameter": "no2",
+    "count": "9126"
+  },
+  {
+    "country": "PL",
+    "lon": "21.00583",
+    "lat": "52.21929",
+    "parameter": "pm10",
+    "count": "9058"
+  },
+  {
+    "country": "PL",
+    "lon": "20.45555",
+    "lat": "52.28586",
+    "parameter": "o3",
+    "count": "8881"
+  },
+  {
+    "country": "PL",
+    "lon": "19.70528",
+    "lat": "52.55094",
+    "parameter": "co",
+    "count": "9151"
+  },
+  {
+    "country": "PL",
+    "lon": "22.27278",
+    "lat": "52.17204",
+    "parameter": "no2",
+    "count": "9112"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.16077",
+    "parameter": "pm10",
+    "count": "8879"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.16077",
+    "parameter": "no2",
+    "count": "8832"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.16077",
+    "parameter": "pm25",
+    "count": "8813"
+  },
+  {
+    "country": "PL",
+    "lon": "21.89311",
+    "lat": "52.22517",
+    "parameter": "no2",
+    "count": "8955"
+  },
+  {
+    "country": "PL",
+    "lon": "19.68861",
+    "lat": "52.56083",
+    "parameter": "o3",
+    "count": "9119"
+  },
+  {
+    "country": "PL",
+    "lon": "20.95555",
+    "lat": "52.28098",
+    "parameter": "o3",
+    "count": "8373"
+  },
+  {
+    "country": "PL",
+    "lon": "20.95555",
+    "lat": "52.40758",
+    "parameter": "o3",
+    "count": "9031"
+  },
+  {
+    "country": "PL",
+    "lon": "21.89311",
+    "lat": "52.22517",
+    "parameter": "pm10",
+    "count": "7779"
+  },
+  {
+    "country": "PL",
+    "lon": "21.89311",
+    "lat": "52.22517",
+    "parameter": "pm25",
+    "count": "7772"
+  },
+  {
+    "country": "PL",
+    "lon": "19.70528",
+    "lat": "52.55094",
+    "parameter": "o3",
+    "count": "7181"
+  },
+  {
+    "country": "PL",
+    "lon": "21.28917",
+    "lat": "52.94305",
+    "parameter": "o3",
+    "count": "1160"
+  },
+  {
+    "country": "PL",
+    "lon": "21.28917",
+    "lat": "52.94305",
+    "parameter": "no2",
+    "count": "1162"
+  },
+  {
+    "country": "PL",
+    "lon": "21.23917",
+    "lat": "52.11555",
+    "parameter": "so2",
+    "count": "1186"
+  },
+  {
+    "country": "PL",
+    "lon": "21.23917",
+    "lat": "52.11555",
+    "parameter": "no2",
+    "count": "1182"
+  },
+  {
+    "country": "PL",
+    "lon": "21.23917",
+    "lat": "52.11555",
+    "parameter": "pm10",
+    "count": "277"
+  },
+  { "country": "PL", "parameter": "pm25", "count": "8252" },
+  {
+    "country": "PL",
+    "lon": "20.78889",
+    "lat": "51.83518",
+    "parameter": "pm10",
+    "count": "5460"
+  },
+  {
+    "country": "PL",
+    "lon": "20.95555",
+    "lat": "52.40758",
+    "parameter": "so2",
+    "count": "9008"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.29086",
+    "parameter": "no2",
+    "count": "9082"
+  },
+  {
+    "country": "PL",
+    "lon": "20.78889",
+    "lat": "51.83518",
+    "parameter": "o3",
+    "count": "6523"
+  },
+  {
+    "country": "PL",
+    "lon": "22.27278",
+    "lat": "52.17204",
+    "parameter": "co",
+    "count": "9109"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.29086",
+    "parameter": "pm25",
+    "count": "8972"
+  },
+  {
+    "country": "PL",
+    "lon": "20.45555",
+    "lat": "52.28586",
+    "parameter": "so2",
+    "count": "8918"
+  },
+  {
+    "country": "PL",
+    "lon": "20.83889",
+    "lat": "52.19173",
+    "parameter": "no2",
+    "count": "9165"
+  },
+  {
+    "country": "PL",
+    "lon": "20.45555",
+    "lat": "52.28586",
+    "parameter": "no2",
+    "count": "8910"
+  },
+  {
+    "country": "PL",
+    "lon": "19.70528",
+    "lat": "52.55094",
+    "parameter": "so2",
+    "count": "9111"
+  },
+  {
+    "country": "PL",
+    "lon": "20.78889",
+    "lat": "51.83518",
+    "parameter": "so2",
+    "count": "6501"
+  },
+  {
+    "country": "PL",
+    "lon": "20.83889",
+    "lat": "52.19173",
+    "parameter": "pm25",
+    "count": "9080"
+  },
+  {
+    "country": "PL",
+    "lon": "22.27278",
+    "lat": "52.17204",
+    "parameter": "pm25",
+    "count": "9125"
+  },
+  {
+    "country": "PL",
+    "lon": "19.70528",
+    "lat": "52.55094",
+    "parameter": "no2",
+    "count": "9130"
+  },
+  {
+    "country": "PL",
+    "lon": "20.95555",
+    "lat": "52.40758",
+    "parameter": "pm25",
+    "count": "8924"
+  },
+  {
+    "country": "PL",
+    "lon": "21.13917",
+    "lat": "51.3991",
+    "parameter": "co",
+    "count": "9059"
+  },
+  {
+    "country": "PL",
+    "lon": "21.00583",
+    "lat": "52.21929",
+    "parameter": "no2",
+    "count": "9058"
+  },
+  {
+    "country": "PL",
+    "lon": "21.00583",
+    "lat": "52.21929",
+    "parameter": "pm25",
+    "count": "9062"
+  },
+  {
+    "country": "PL",
+    "lon": "19.68861",
+    "lat": "52.56083",
+    "parameter": "no2",
+    "count": "9122"
+  },
+  {
+    "country": "PL",
+    "lon": "19.68861",
+    "lat": "52.56083",
+    "parameter": "so2",
+    "count": "9069"
+  },
+  {
+    "country": "PL",
+    "lon": "19.68861",
+    "lat": "52.56083",
+    "parameter": "co",
+    "count": "8896"
+  },
+  {
+    "country": "PL",
+    "lon": "21.89311",
+    "lat": "52.22517",
+    "parameter": "co",
+    "count": "9019"
+  },
+  { "country": "PL", "parameter": "pm10", "count": "8252" },
+  { "country": "PL", "parameter": "no2", "count": "1984" },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.16077",
+    "parameter": "so2",
+    "count": "8866"
+  },
+  {
+    "country": "PL",
+    "lon": "21.03917",
+    "lat": "52.16077",
+    "parameter": "o3",
+    "count": "8919"
+  },
+  {
+    "country": "PL",
+    "lon": "21.28917",
+    "lat": "52.94305",
+    "parameter": "so2",
+    "count": "1161"
+  },
+  {
+    "country": "PL",
+    "lon": "21.23917",
+    "lat": "52.11555",
+    "parameter": "co",
+    "count": "1184"
+  },
+  {
+    "country": "PL",
+    "lon": "21.23917",
+    "lat": "52.11555",
+    "parameter": "o3",
+    "count": "1185"
+  },
+  {
+    "country": "PL",
+    "lon": "21.23917",
+    "lat": "52.11555",
+    "parameter": "pm25",
+    "count": "278"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.06822",
+    "lat": "51.5993",
+    "parameter": "pm25",
+    "count": "3113"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.15461",
+    "lat": "51.52253",
+    "parameter": "o3",
+    "count": "10024"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.05955",
+    "lat": "51.4805",
+    "parameter": "pm10",
+    "count": "9352"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.17527",
+    "lat": "51.54421",
+    "parameter": "pm10",
+    "count": "9687"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12589",
+    "lat": "51.52229",
+    "parameter": "o3",
+    "count": "10356"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.15461",
+    "lat": "51.52253",
+    "parameter": "pm25",
+    "count": "9947"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.06822",
+    "lat": "51.5993",
+    "parameter": "no2",
+    "count": "10105"
+  },
+  {
+    "country": "GB",
+    "lon": "0.07077",
+    "lat": "51.45258",
+    "parameter": "no2",
+    "count": "10104"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12589",
+    "lat": "51.52229",
+    "parameter": "no2",
+    "count": "10032"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.21349",
+    "lat": "51.52105",
+    "parameter": "o3",
+    "count": "10263"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.21349",
+    "lat": "51.52105",
+    "parameter": "no2",
+    "count": "10292"
+  },
+  {
+    "country": "GB",
+    "lon": "0.18481",
+    "lat": "51.46603",
+    "parameter": "pm25",
+    "count": "8847"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44161",
+    "lat": "51.48879",
+    "parameter": "no2",
+    "count": "8808"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.15461",
+    "lat": "51.52253",
+    "parameter": "no2",
+    "count": "9751"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.05955",
+    "lat": "51.4805",
+    "parameter": "no2",
+    "count": "9737"
+  },
+  {
+    "country": "GB",
+    "lon": "0.18481",
+    "lat": "51.46603",
+    "parameter": "no2",
+    "count": "8001"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.46086",
+    "lat": "51.49633",
+    "parameter": "o3",
+    "count": "10474"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12589",
+    "lat": "51.52229",
+    "parameter": "pm25",
+    "count": "10231"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.33965",
+    "lat": "51.42099",
+    "parameter": "o3",
+    "count": "6951"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.04216",
+    "lat": "51.52253",
+    "parameter": "no2",
+    "count": "8079"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.46086",
+    "lat": "51.49633",
+    "parameter": "no2",
+    "count": "10460"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.33965",
+    "lat": "51.42099",
+    "parameter": "no2",
+    "count": "6759"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44161",
+    "lat": "51.48879",
+    "parameter": "pm10",
+    "count": "6157"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44161",
+    "lat": "51.48879",
+    "parameter": "pm25",
+    "count": "7116"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.84433",
+    "lat": "53.34633",
+    "parameter": "so2",
+    "count": "6380"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.32911",
+    "lat": "55.00122",
+    "parameter": "no2",
+    "count": "93"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.20611",
+    "lat": "55.31531",
+    "parameter": "o3",
+    "count": "6722"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.23788",
+    "lat": "53.48152",
+    "parameter": "o3",
+    "count": "6504"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.68035",
+    "lat": "53.76559",
+    "parameter": "no2",
+    "count": "6938"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.68035",
+    "lat": "53.76559",
+    "parameter": "pm25",
+    "count": "6564"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.33414",
+    "lat": "53.48481",
+    "parameter": "no2",
+    "count": "5872"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.18219",
+    "lat": "55.94559",
+    "parameter": "pm25",
+    "count": "6212"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.2429",
+    "lat": "55.79216",
+    "parameter": "pm25",
+    "count": "6887"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45495",
+    "lat": "53.24413",
+    "parameter": "pm10",
+    "count": "6788"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.23821",
+    "lat": "55.86094",
+    "parameter": "pm10",
+    "count": "5884"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45694",
+    "lat": "53.23172",
+    "parameter": "pm10",
+    "count": "6806"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.24363",
+    "lat": "55.86578",
+    "parameter": "pm10",
+    "count": "6946"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.7044",
+    "lat": "56.01032",
+    "parameter": "no2",
+    "count": "5857"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.7044",
+    "lat": "56.01032",
+    "parameter": "pm25",
+    "count": "6596"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.75201",
+    "lat": "53.40337",
+    "parameter": "o3",
+    "count": "6441"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.75201",
+    "lat": "53.40337",
+    "parameter": "no2",
+    "count": "6751"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.75201",
+    "lat": "53.40337",
+    "parameter": "so2",
+    "count": "6263"
+  },
+  {
+    "country": "GB",
+    "lon": "-6.65456",
+    "lat": "54.35373",
+    "parameter": "pm10",
+    "count": "5852"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.12423",
+    "lat": "52.63868",
+    "parameter": "pm10",
+    "count": "6757"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.12731",
+    "lat": "52.61982",
+    "parameter": "o3",
+    "count": "6605"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.12731",
+    "lat": "52.61982",
+    "parameter": "pm25",
+    "count": "6475"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.14645",
+    "lat": "52.95473",
+    "parameter": "no2",
+    "count": "5549"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.14645",
+    "lat": "52.95473",
+    "parameter": "pm25",
+    "count": "6653"
+  },
+  {
+    "country": "GB",
+    "lon": "1.30198",
+    "lat": "52.61419",
+    "parameter": "pm10",
+    "count": "5196"
+  },
+  {
+    "country": "GB",
+    "lon": "0.67841",
+    "lat": "51.5442",
+    "parameter": "o3",
+    "count": "6386"
+  },
+  {
+    "country": "GB",
+    "lon": "0.67841",
+    "lat": "51.5442",
+    "parameter": "pm25",
+    "count": "6074"
+  },
+  {
+    "country": "GB",
+    "lon": "0.29092",
+    "lat": "52.2985",
+    "parameter": "o3",
+    "count": "6452"
+  },
+  {
+    "country": "GB",
+    "lon": "0.31797",
+    "lat": "51.47707",
+    "parameter": "no2",
+    "count": "6760"
+  },
+  {
+    "country": "GB",
+    "lon": "0.29092",
+    "lat": "52.2985",
+    "parameter": "no2",
+    "count": "6110"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12589",
+    "lat": "51.52229",
+    "parameter": "so2",
+    "count": "6614"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.61053",
+    "lat": "54.97825",
+    "parameter": "o3",
+    "count": "6324"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.22087",
+    "lat": "54.5693",
+    "parameter": "o3",
+    "count": "6849"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.1011",
+    "lat": "56.82266",
+    "parameter": "o3",
+    "count": "6469"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.22087",
+    "lat": "54.5693",
+    "parameter": "pm10",
+    "count": "6846"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.40688",
+    "lat": "54.88361",
+    "parameter": "o3",
+    "count": "6580"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.09428",
+    "lat": "57.15736",
+    "parameter": "pm10",
+    "count": "6781"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.61053",
+    "lat": "54.97825",
+    "parameter": "no2",
+    "count": "5886"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.10647",
+    "lat": "57.14455",
+    "parameter": "no2",
+    "count": "6593"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.09428",
+    "lat": "57.15736",
+    "parameter": "no2",
+    "count": "6415"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.09428",
+    "lat": "57.15736",
+    "parameter": "pm25",
+    "count": "6870"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00717",
+    "lat": "53.80489",
+    "parameter": "o3",
+    "count": "6596"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00717",
+    "lat": "53.80489",
+    "parameter": "no2",
+    "count": "6191"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.47206",
+    "lat": "53.46008",
+    "parameter": "o3",
+    "count": "6811"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.4508",
+    "lat": "54.68423",
+    "parameter": "o3",
+    "count": "5640"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.84433",
+    "lat": "53.34633",
+    "parameter": "o3",
+    "count": "6604"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.84433",
+    "lat": "53.34633",
+    "parameter": "no2",
+    "count": "5901"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.23788",
+    "lat": "53.48152",
+    "parameter": "no2",
+    "count": "4880"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.23788",
+    "lat": "53.48152",
+    "parameter": "pm25",
+    "count": "6431"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.61536",
+    "lat": "53.38928",
+    "parameter": "pm10",
+    "count": "6893"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.32911",
+    "lat": "55.00122",
+    "parameter": "o3",
+    "count": "95"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.20611",
+    "lat": "55.31531",
+    "parameter": "no2",
+    "count": "6698"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.90033",
+    "lat": "54.43951",
+    "parameter": "pm10",
+    "count": "6675"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.32911",
+    "lat": "55.00122",
+    "parameter": "so2",
+    "count": "93"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.19653",
+    "lat": "55.65747",
+    "parameter": "o3",
+    "count": "6953"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.97494",
+    "lat": "54.57259",
+    "parameter": "no2",
+    "count": "6257"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.97494",
+    "lat": "54.57259",
+    "parameter": "pm10",
+    "count": "6871"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.32911",
+    "lat": "55.00122",
+    "parameter": "pm25",
+    "count": "98"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.19653",
+    "lat": "55.65747",
+    "parameter": "no2",
+    "count": "6902"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.14757",
+    "lat": "50.84084",
+    "parameter": "no2",
+    "count": "6681"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.43823",
+    "lat": "51.14962",
+    "parameter": "pm10",
+    "count": "6185"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.06858",
+    "lat": "50.82881",
+    "parameter": "pm10",
+    "count": "4716"
+  },
+  {
+    "country": "GB",
+    "lon": "1.09806",
+    "lat": "51.27399",
+    "parameter": "no2",
+    "count": "5773"
+  },
+  {
+    "country": "GB",
+    "lon": "0.54797",
+    "lat": "51.37426",
+    "parameter": "no2",
+    "count": "6794"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.43823",
+    "lat": "51.14962",
+    "parameter": "pm25",
+    "count": "6750"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.06858",
+    "lat": "50.82881",
+    "parameter": "o3",
+    "count": "6225"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.69146",
+    "lat": "51.78178",
+    "parameter": "pm10",
+    "count": "6713"
+  },
+  {
+    "country": "GB",
+    "lon": "0.54797",
+    "lat": "51.37426",
+    "parameter": "pm25",
+    "count": "5676"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.26028",
+    "lat": "51.7448",
+    "parameter": "no2",
+    "count": "6165"
+  },
+  {
+    "country": "GB",
+    "lon": "0.63489",
+    "lat": "51.45617",
+    "parameter": "pm25",
+    "count": "6188"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.06858",
+    "lat": "50.82881",
+    "parameter": "no2",
+    "count": "5916"
+  },
+  {
+    "country": "GB",
+    "lon": "0.63489",
+    "lat": "51.45617",
+    "parameter": "so2",
+    "count": "6315"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.06858",
+    "lat": "50.82881",
+    "parameter": "pm25",
+    "count": "6462"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.46348",
+    "lat": "50.92027",
+    "parameter": "no2",
+    "count": "6820"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.94407",
+    "lat": "51.45309",
+    "parameter": "no2",
+    "count": "6937"
+  },
+  {
+    "country": "GB",
+    "lon": "0.18125",
+    "lat": "50.7937",
+    "parameter": "o3",
+    "count": "6221"
+  },
+  {
+    "country": "GB",
+    "lon": "0.18125",
+    "lat": "50.7937",
+    "parameter": "no2",
+    "count": "6305"
+  },
+  {
+    "country": "GB",
+    "lon": "0.63489",
+    "lat": "51.45617",
+    "parameter": "no2",
+    "count": "6495"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.39578",
+    "lat": "50.90814",
+    "parameter": "no2",
+    "count": "2071"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.67873",
+    "lat": "51.6381",
+    "parameter": "pm10",
+    "count": "6825"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.69146",
+    "lat": "51.78178",
+    "parameter": "so2",
+    "count": "5510"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.17625",
+    "lat": "51.48178",
+    "parameter": "pm10",
+    "count": "6499"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00695",
+    "lat": "51.6538",
+    "parameter": "no2",
+    "count": "6093"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.77082",
+    "lat": "51.58395",
+    "parameter": "pm10",
+    "count": "6572"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.97728",
+    "lat": "51.6012",
+    "parameter": "no2",
+    "count": "6469"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.58448",
+    "lat": "51.46284",
+    "parameter": "pm10",
+    "count": "6878"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.71651",
+    "lat": "50.5976",
+    "parameter": "o3",
+    "count": "6778"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.04192",
+    "lat": "51.07479",
+    "parameter": "pm25",
+    "count": "6506"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83086",
+    "lat": "52.5122",
+    "parameter": "pm25",
+    "count": "4286"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.82674",
+    "lat": "50.73957",
+    "parameter": "o3",
+    "count": "6945"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.82674",
+    "lat": "50.73957",
+    "parameter": "no2",
+    "count": "6847"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.14236",
+    "lat": "50.37167",
+    "parameter": "no2",
+    "count": "6990"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83058",
+    "lat": "52.51172",
+    "parameter": "no2",
+    "count": "1425"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.58448",
+    "lat": "51.46284",
+    "parameter": "no2",
+    "count": "6692"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.53246",
+    "lat": "50.72508",
+    "parameter": "o3",
+    "count": "5997"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.14236",
+    "lat": "50.37167",
+    "parameter": "o3",
+    "count": "6867"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.73667",
+    "lat": "52.22174",
+    "parameter": "no2",
+    "count": "3952"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.22768",
+    "lat": "50.41146",
+    "parameter": "pm10",
+    "count": "6170"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83058",
+    "lat": "52.51172",
+    "parameter": "pm10",
+    "count": "6598"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83",
+    "lat": "52.43716",
+    "parameter": "pm25",
+    "count": "6803"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83",
+    "lat": "52.43716",
+    "parameter": "o3",
+    "count": "6846"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83086",
+    "lat": "52.5122",
+    "parameter": "o3",
+    "count": "4282"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.17513",
+    "lat": "53.02821",
+    "parameter": "o3",
+    "count": "6864"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.1119",
+    "lat": "52.98043",
+    "parameter": "pm10",
+    "count": "6589"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.73667",
+    "lat": "52.22174",
+    "parameter": "o3",
+    "count": "3876"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.0035",
+    "lat": "52.50244",
+    "parameter": "no2",
+    "count": "2534"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.17513",
+    "lat": "53.02821",
+    "parameter": "pm25",
+    "count": "6745"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.03052",
+    "lat": "52.60562",
+    "parameter": "o3",
+    "count": "6957"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.51044",
+    "lat": "53.56292",
+    "parameter": "o3",
+    "count": "6843"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.34122",
+    "lat": "53.74878",
+    "parameter": "pm25",
+    "count": "6814"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.63681",
+    "lat": "53.58634",
+    "parameter": "no2",
+    "count": "5739"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.51044",
+    "lat": "53.56292",
+    "parameter": "so2",
+    "count": "6262"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.80855",
+    "lat": "54.33495",
+    "parameter": "o3",
+    "count": "6744"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.63681",
+    "lat": "53.58634",
+    "parameter": "so2",
+    "count": "4285"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.30575",
+    "lat": "53.75897",
+    "parameter": "pm10",
+    "count": "6613"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.57636",
+    "lat": "53.81997",
+    "parameter": "no2",
+    "count": "6732"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.57636",
+    "lat": "53.81997",
+    "parameter": "pm25",
+    "count": "6909"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.57636",
+    "lat": "53.81997",
+    "parameter": "pm10",
+    "count": "6910"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.63681",
+    "lat": "53.58634",
+    "parameter": "pm10",
+    "count": "6899"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.07586",
+    "lat": "53.95189",
+    "parameter": "pm10",
+    "count": "6615"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.4781",
+    "lat": "53.37862",
+    "parameter": "no2",
+    "count": "5220"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.4781",
+    "lat": "53.37862",
+    "parameter": "pm25",
+    "count": "6679"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.4781",
+    "lat": "53.37862",
+    "parameter": "pm10",
+    "count": "6742"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.08651",
+    "lat": "53.96751",
+    "parameter": "pm10",
+    "count": "6909"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.71083",
+    "lat": "56.01314",
+    "parameter": "no2",
+    "count": "4544"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.18219",
+    "lat": "55.94559",
+    "parameter": "no2",
+    "count": "5431"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.25889",
+    "lat": "55.85917",
+    "parameter": "no2",
+    "count": "6219"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.55973",
+    "lat": "55.9432",
+    "parameter": "no2",
+    "count": "3584"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.27094",
+    "lat": "55.87204",
+    "parameter": "no2",
+    "count": "5855"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45495",
+    "lat": "53.24413",
+    "parameter": "no2",
+    "count": "5807"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.30031",
+    "lat": "52.13242",
+    "parameter": "no2",
+    "count": "6663"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.8799",
+    "lat": "52.27188",
+    "parameter": "o3",
+    "count": "6222"
+  },
+  {
+    "country": "GB",
+    "lon": "0.31797",
+    "lat": "51.47707",
+    "parameter": "so2",
+    "count": "5883"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.15461",
+    "lat": "51.52253",
+    "parameter": "so2",
+    "count": "6836"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.77658",
+    "lat": "57.73446",
+    "parameter": "o3",
+    "count": "2102"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.21349",
+    "lat": "51.52105",
+    "parameter": "so2",
+    "count": "5255"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.24145",
+    "lat": "57.48131",
+    "parameter": "no2",
+    "count": "5515"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.27504",
+    "lat": "54.60537",
+    "parameter": "no2",
+    "count": "5450"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.59536",
+    "lat": "54.9864",
+    "parameter": "no2",
+    "count": "5249"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00278",
+    "lat": "53.04222",
+    "parameter": "so2",
+    "count": "5859"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.40688",
+    "lat": "54.88361",
+    "parameter": "no2",
+    "count": "6177"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.45272",
+    "lat": "53.74775",
+    "parameter": "no2",
+    "count": "5806"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00278",
+    "lat": "53.04222",
+    "parameter": "no2",
+    "count": "5236"
+  },
+  {
+    "country": "GB",
+    "lon": "-6.65456",
+    "lat": "54.35373",
+    "parameter": "no2",
+    "count": "5849"
+  },
+  {
+    "country": "GB",
+    "lon": "-6.25087",
+    "lat": "54.8616",
+    "parameter": "so2",
+    "count": "3547"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.16773",
+    "lat": "51.16587",
+    "parameter": "no2",
+    "count": "6405"
+  },
+  {
+    "country": "GB",
+    "lon": "0.27161",
+    "lat": "50.80578",
+    "parameter": "pm25",
+    "count": "5049"
+  },
+  {
+    "country": "GB",
+    "lon": "0.27161",
+    "lat": "50.80578",
+    "parameter": "pm10",
+    "count": "6606"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44955",
+    "lat": "50.91693",
+    "parameter": "no2",
+    "count": "2128"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.35416",
+    "lat": "51.39113",
+    "parameter": "no2",
+    "count": "5240"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54291",
+    "lat": "52.29488",
+    "parameter": "no2",
+    "count": "6751"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.39614",
+    "lat": "53.41058",
+    "parameter": "no2",
+    "count": "6310"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.92883",
+    "lat": "54.59965",
+    "parameter": "so2",
+    "count": "5773"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.3159",
+    "lat": "54.56582",
+    "parameter": "no2",
+    "count": "5871"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.92883",
+    "lat": "54.59965",
+    "parameter": "pm10",
+    "count": "6486"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.73168",
+    "lat": "53.36539",
+    "parameter": "no2",
+    "count": "3691"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.92883",
+    "lat": "54.59965",
+    "parameter": "pm25",
+    "count": "6708"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.25746",
+    "lat": "51.75174",
+    "parameter": "no2",
+    "count": "5559"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.63814",
+    "lat": "53.54914",
+    "parameter": "no2",
+    "count": "5798"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.53312",
+    "lat": "52.28881",
+    "parameter": "pm25",
+    "count": "6545"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54291",
+    "lat": "52.29488",
+    "parameter": "pm25",
+    "count": "6815"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.39578",
+    "lat": "50.90814",
+    "parameter": "pm25",
+    "count": "2132"
+  },
+  {
+    "country": "GB",
+    "lon": "0.43955",
+    "lat": "51.51817",
+    "parameter": "pm10",
+    "count": "5623"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.18885",
+    "lat": "52.96938",
+    "parameter": "pm10",
+    "count": "6048"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.8799",
+    "lat": "52.27188",
+    "parameter": "no2",
+    "count": "3537"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.23922",
+    "lat": "53.37131",
+    "parameter": "no2",
+    "count": "5380"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.94531",
+    "lat": "54.89483",
+    "parameter": "no2",
+    "count": "5553"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.23922",
+    "lat": "53.37131",
+    "parameter": "o3",
+    "count": "5400"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.33118",
+    "lat": "55.00282",
+    "parameter": "no2",
+    "count": "5716"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.33118",
+    "lat": "55.00282",
+    "parameter": "pm25",
+    "count": "5640"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.33118",
+    "lat": "55.00282",
+    "parameter": "pm10",
+    "count": "5646"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.18885",
+    "lat": "52.96938",
+    "parameter": "no2",
+    "count": "4669"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.87502",
+    "lat": "52.47609",
+    "parameter": "o3",
+    "count": "1223"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.87502",
+    "lat": "52.47609",
+    "parameter": "no2",
+    "count": "1234"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.87502",
+    "lat": "52.47609",
+    "parameter": "pm10",
+    "count": "1016"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.73442",
+    "lat": "55.94408",
+    "parameter": "no2",
+    "count": "1138"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.02501",
+    "lat": "53.38851",
+    "parameter": "no2",
+    "count": "1190"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.78089",
+    "lat": "50.73545",
+    "parameter": "no2",
+    "count": "1052"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45581",
+    "lat": "53.40495",
+    "parameter": "no2",
+    "count": "1165"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44161",
+    "lat": "51.48879",
+    "parameter": "o3",
+    "count": "8998"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.26562",
+    "lat": "51.51895",
+    "parameter": "pm10",
+    "count": "9736"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.13193",
+    "lat": "51.49467",
+    "parameter": "no2",
+    "count": "7872"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.17527",
+    "lat": "51.54421",
+    "parameter": "pm25",
+    "count": "9925"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.15461",
+    "lat": "51.52253",
+    "parameter": "pm10",
+    "count": "9955"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.34561",
+    "lat": "51.42529",
+    "parameter": "pm25",
+    "count": "9612"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.21349",
+    "lat": "51.52105",
+    "parameter": "pm10",
+    "count": "9452"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12589",
+    "lat": "51.52229",
+    "parameter": "pm10",
+    "count": "10125"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.17527",
+    "lat": "51.54421",
+    "parameter": "no2",
+    "count": "10009"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.29878",
+    "lat": "51.61733",
+    "parameter": "pm25",
+    "count": "9163"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12525",
+    "lat": "51.58413",
+    "parameter": "no2",
+    "count": "9863"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.21349",
+    "lat": "51.52105",
+    "parameter": "pm25",
+    "count": "9855"
+  },
+  {
+    "country": "GB",
+    "lon": "0.07077",
+    "lat": "51.45258",
+    "parameter": "pm25",
+    "count": "9325"
+  },
+  {
+    "country": "GB",
+    "lon": "0.07077",
+    "lat": "51.45258",
+    "parameter": "o3",
+    "count": "9593"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.12525",
+    "lat": "51.58413",
+    "parameter": "o3",
+    "count": "9773"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.90033",
+    "lat": "54.43951",
+    "parameter": "o3",
+    "count": "6682"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.84433",
+    "lat": "53.34633",
+    "parameter": "pm25",
+    "count": "6623"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.84433",
+    "lat": "53.34633",
+    "parameter": "pm10",
+    "count": "6509"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.68035",
+    "lat": "53.76559",
+    "parameter": "o3",
+    "count": "6948"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.2429",
+    "lat": "55.79216",
+    "parameter": "o3",
+    "count": "6738"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.24363",
+    "lat": "55.86578",
+    "parameter": "o3",
+    "count": "7003"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.2429",
+    "lat": "55.79216",
+    "parameter": "pm10",
+    "count": "5903"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.7044",
+    "lat": "56.01032",
+    "parameter": "so2",
+    "count": "5986"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.12423",
+    "lat": "52.63868",
+    "parameter": "no2",
+    "count": "6847"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.20578",
+    "lat": "55.86228",
+    "parameter": "o3",
+    "count": "6880"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.20578",
+    "lat": "55.86228",
+    "parameter": "no2",
+    "count": "6651"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.24363",
+    "lat": "55.86578",
+    "parameter": "pm25",
+    "count": "6941"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.61536",
+    "lat": "53.38928",
+    "parameter": "pm25",
+    "count": "6933"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.23821",
+    "lat": "55.86094",
+    "parameter": "no2",
+    "count": "5601"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.18219",
+    "lat": "55.94559",
+    "parameter": "o3",
+    "count": "6439"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.18219",
+    "lat": "55.94559",
+    "parameter": "pm10",
+    "count": "5926"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.23821",
+    "lat": "55.86094",
+    "parameter": "pm25",
+    "count": "6014"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.24363",
+    "lat": "55.86578",
+    "parameter": "no2",
+    "count": "6886"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45694",
+    "lat": "53.23172",
+    "parameter": "pm25",
+    "count": "6751"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.7044",
+    "lat": "56.01032",
+    "parameter": "pm10",
+    "count": "6760"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45495",
+    "lat": "53.24413",
+    "parameter": "pm25",
+    "count": "6926"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.12731",
+    "lat": "52.61982",
+    "parameter": "no2",
+    "count": "6534"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.02272",
+    "lat": "53.37287",
+    "parameter": "no2",
+    "count": "6455"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.14645",
+    "lat": "52.95473",
+    "parameter": "pm10",
+    "count": "6628"
+  },
+  {
+    "country": "GB",
+    "lon": "1.30198",
+    "lat": "52.61419",
+    "parameter": "no2",
+    "count": "6259"
+  },
+  {
+    "country": "GB",
+    "lon": "1.4635",
+    "lat": "52.2944",
+    "parameter": "o3",
+    "count": "6843"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.77222",
+    "lat": "52.55444",
+    "parameter": "o3",
+    "count": "6287"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.77222",
+    "lat": "52.55444",
+    "parameter": "no2",
+    "count": "6261"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.14645",
+    "lat": "52.95473",
+    "parameter": "o3",
+    "count": "6450"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.14645",
+    "lat": "52.95473",
+    "parameter": "so2",
+    "count": "5803"
+  },
+  {
+    "country": "GB",
+    "lon": "1.30198",
+    "lat": "52.61419",
+    "parameter": "o3",
+    "count": "6315"
+  },
+  {
+    "country": "GB",
+    "lon": "1.30198",
+    "lat": "52.61419",
+    "parameter": "pm25",
+    "count": "5529"
+  },
+  {
+    "country": "GB",
+    "lon": "0.67841",
+    "lat": "51.5442",
+    "parameter": "no2",
+    "count": "6344"
+  },
+  {
+    "country": "GB",
+    "lon": "1.04903",
+    "lat": "51.77798",
+    "parameter": "o3",
+    "count": "6618"
+  },
+  {
+    "country": "GB",
+    "lon": "1.04903",
+    "lat": "51.77798",
+    "parameter": "no2",
+    "count": "6548"
+  },
+  {
+    "country": "GB",
+    "lon": "0.31797",
+    "lat": "51.47707",
+    "parameter": "o3",
+    "count": "6911"
+  },
+  {
+    "country": "GB",
+    "lon": "0.31797",
+    "lat": "51.47707",
+    "parameter": "pm10",
+    "count": "6716"
+  },
+  {
+    "country": "GB",
+    "lon": "1.12202",
+    "lat": "52.95049",
+    "parameter": "o3",
+    "count": "6669"
+  },
+  {
+    "country": "GB",
+    "lon": "0.29092",
+    "lat": "52.2985",
+    "parameter": "so2",
+    "count": "5721"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.18532",
+    "lat": "60.13922",
+    "parameter": "o3",
+    "count": "5732"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.35855",
+    "lat": "54.51667",
+    "parameter": "pm25",
+    "count": "6749"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.22087",
+    "lat": "54.5693",
+    "parameter": "so2",
+    "count": "6321"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.40839",
+    "lat": "54.91839",
+    "parameter": "no2",
+    "count": "3880"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.61053",
+    "lat": "54.97825",
+    "parameter": "pm25",
+    "count": "6441"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.1011",
+    "lat": "56.82266",
+    "parameter": "no2",
+    "count": "6297"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.22087",
+    "lat": "54.5693",
+    "parameter": "no2",
+    "count": "5503"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.35855",
+    "lat": "54.51667",
+    "parameter": "pm10",
+    "count": "5794"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.22087",
+    "lat": "54.5693",
+    "parameter": "pm25",
+    "count": "6591"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.35855",
+    "lat": "54.51667",
+    "parameter": "no2",
+    "count": "5115"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.61053",
+    "lat": "54.97825",
+    "parameter": "pm10",
+    "count": "6320"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.40688",
+    "lat": "54.88361",
+    "parameter": "pm25",
+    "count": "6632"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.09428",
+    "lat": "57.15736",
+    "parameter": "o3",
+    "count": "6908"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.03418",
+    "lat": "52.50385",
+    "parameter": "o3",
+    "count": "6308"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.03418",
+    "lat": "52.50385",
+    "parameter": "no2",
+    "count": "6899"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.47206",
+    "lat": "53.46008",
+    "parameter": "no2",
+    "count": "6886"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00717",
+    "lat": "53.80489",
+    "parameter": "pm25",
+    "count": "6888"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.23788",
+    "lat": "53.48152",
+    "parameter": "so2",
+    "count": "6241"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.33414",
+    "lat": "53.48481",
+    "parameter": "pm25",
+    "count": "6374"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.33414",
+    "lat": "53.48481",
+    "parameter": "pm10",
+    "count": "6106"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.61536",
+    "lat": "53.38928",
+    "parameter": "no2",
+    "count": "6010"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.02272",
+    "lat": "53.37287",
+    "parameter": "o3",
+    "count": "6426"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.32911",
+    "lat": "55.00122",
+    "parameter": "pm10",
+    "count": "98"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.02272",
+    "lat": "53.37287",
+    "parameter": "pm25",
+    "count": "6674"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.14757",
+    "lat": "50.84084",
+    "parameter": "o3",
+    "count": "6450"
+  },
+  {
+    "country": "GB",
+    "lon": "1.09806",
+    "lat": "51.27399",
+    "parameter": "o3",
+    "count": "5905"
+  },
+  {
+    "country": "GB",
+    "lon": "0.63489",
+    "lat": "51.45617",
+    "parameter": "pm10",
+    "count": "6209"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.17625",
+    "lat": "51.48178",
+    "parameter": "o3",
+    "count": "6908"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.94407",
+    "lat": "51.45309",
+    "parameter": "pm10",
+    "count": "6661"
+  },
+  {
+    "country": "GB",
+    "lon": "0.54797",
+    "lat": "51.37426",
+    "parameter": "pm10",
+    "count": "6558"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.43823",
+    "lat": "51.14962",
+    "parameter": "o3",
+    "count": "6806"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.26028",
+    "lat": "51.7448",
+    "parameter": "pm10",
+    "count": "3422"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.17625",
+    "lat": "51.48178",
+    "parameter": "no2",
+    "count": "6812"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.43823",
+    "lat": "51.14962",
+    "parameter": "no2",
+    "count": "6688"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.43823",
+    "lat": "51.14962",
+    "parameter": "so2",
+    "count": "6780"
+  },
+  {
+    "country": "GB",
+    "lon": "0.18125",
+    "lat": "50.7937",
+    "parameter": "so2",
+    "count": "5729"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.26028",
+    "lat": "51.7448",
+    "parameter": "pm25",
+    "count": "1903"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.94407",
+    "lat": "51.45309",
+    "parameter": "o3",
+    "count": "6917"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.94407",
+    "lat": "51.45309",
+    "parameter": "pm25",
+    "count": "6160"
+  },
+  {
+    "country": "GB",
+    "lon": "0.63489",
+    "lat": "51.45617",
+    "parameter": "o3",
+    "count": "5108"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.17625",
+    "lat": "51.48178",
+    "parameter": "pm25",
+    "count": "6679"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.46348",
+    "lat": "50.92027",
+    "parameter": "pm10",
+    "count": "6534"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.00695",
+    "lat": "51.6538",
+    "parameter": "o3",
+    "count": "6982"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.39578",
+    "lat": "50.90814",
+    "parameter": "so2",
+    "count": "2112"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44955",
+    "lat": "50.91693",
+    "parameter": "pm10",
+    "count": "3799"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.44955",
+    "lat": "50.91693",
+    "parameter": "pm25",
+    "count": "3491"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.17625",
+    "lat": "51.48178",
+    "parameter": "so2",
+    "count": "6700"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.94737",
+    "lat": "51.63269",
+    "parameter": "pm25",
+    "count": "6539"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.69146",
+    "lat": "51.78178",
+    "parameter": "no2",
+    "count": "6788"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.67873",
+    "lat": "51.6381",
+    "parameter": "pm25",
+    "count": "6843"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.69146",
+    "lat": "51.78178",
+    "parameter": "o3",
+    "count": "6957"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.58448",
+    "lat": "51.46284",
+    "parameter": "pm25",
+    "count": "6788"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.97728",
+    "lat": "51.6012",
+    "parameter": "pm25",
+    "count": "6744"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.77082",
+    "lat": "51.58395",
+    "parameter": "so2",
+    "count": "5903"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.77082",
+    "lat": "51.58395",
+    "parameter": "o3",
+    "count": "6783"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.77082",
+    "lat": "51.58395",
+    "parameter": "no2",
+    "count": "6340"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.97728",
+    "lat": "51.6012",
+    "parameter": "pm10",
+    "count": "6647"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.77082",
+    "lat": "51.58395",
+    "parameter": "pm25",
+    "count": "6547"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.94737",
+    "lat": "51.63269",
+    "parameter": "pm10",
+    "count": "6550"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.68345",
+    "lat": "51.05625",
+    "parameter": "o3",
+    "count": "6497"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.53246",
+    "lat": "50.72508",
+    "parameter": "no2",
+    "count": "6367"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.71651",
+    "lat": "50.5976",
+    "parameter": "no2",
+    "count": "6947"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.04192",
+    "lat": "51.07479",
+    "parameter": "pm10",
+    "count": "6472"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.58448",
+    "lat": "51.46284",
+    "parameter": "o3",
+    "count": "6816"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.68345",
+    "lat": "51.05625",
+    "parameter": "no2",
+    "count": "6737"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.14236",
+    "lat": "50.37167",
+    "parameter": "pm25",
+    "count": "6578"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83058",
+    "lat": "52.51172",
+    "parameter": "o3",
+    "count": "1422"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.22768",
+    "lat": "50.41146",
+    "parameter": "pm25",
+    "count": "6606"
+  },
+  {
+    "country": "GB",
+    "lon": "-4.14236",
+    "lat": "50.37167",
+    "parameter": "pm10",
+    "count": "6954"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83058",
+    "lat": "52.51172",
+    "parameter": "pm25",
+    "count": "6832"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.1119",
+    "lat": "52.98043",
+    "parameter": "no2",
+    "count": "6727"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83",
+    "lat": "52.43716",
+    "parameter": "no2",
+    "count": "6647"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83058",
+    "lat": "52.51172",
+    "parameter": "so2",
+    "count": "1425"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83086",
+    "lat": "52.5122",
+    "parameter": "pm10",
+    "count": "3754"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.83086",
+    "lat": "52.5122",
+    "parameter": "no2",
+    "count": "4396"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.56023",
+    "lat": "52.41156",
+    "parameter": "o3",
+    "count": "6975"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.56023",
+    "lat": "52.41156",
+    "parameter": "no2",
+    "count": "6946"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.56023",
+    "lat": "52.41156",
+    "parameter": "pm25",
+    "count": "6866"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.17513",
+    "lat": "53.02821",
+    "parameter": "no2",
+    "count": "6861"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.03052",
+    "lat": "52.60562",
+    "parameter": "no2",
+    "count": "6899"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.51044",
+    "lat": "53.56292",
+    "parameter": "no2",
+    "count": "6347"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.13807",
+    "lat": "53.51887",
+    "parameter": "no2",
+    "count": "6840"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.80855",
+    "lat": "54.33495",
+    "parameter": "no2",
+    "count": "6820"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54647",
+    "lat": "53.80378",
+    "parameter": "so2",
+    "count": "6208"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.34122",
+    "lat": "53.74878",
+    "parameter": "o3",
+    "count": "6881"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.34122",
+    "lat": "53.74878",
+    "parameter": "no2",
+    "count": "6906"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.34122",
+    "lat": "53.74878",
+    "parameter": "so2",
+    "count": "6912"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54647",
+    "lat": "53.80378",
+    "parameter": "o3",
+    "count": "6892"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54647",
+    "lat": "53.80378",
+    "parameter": "no2",
+    "count": "6678"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54647",
+    "lat": "53.80378",
+    "parameter": "pm25",
+    "count": "6934"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54647",
+    "lat": "53.80378",
+    "parameter": "pm10",
+    "count": "6846"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.07586",
+    "lat": "53.95189",
+    "parameter": "no2",
+    "count": "6083"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.4781",
+    "lat": "53.37862",
+    "parameter": "o3",
+    "count": "6288"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.08651",
+    "lat": "53.96751",
+    "parameter": "pm25",
+    "count": "6559"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.07586",
+    "lat": "53.95189",
+    "parameter": "pm25",
+    "count": "6587"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.18219",
+    "lat": "55.94559",
+    "parameter": "so2",
+    "count": "5722"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.45694",
+    "lat": "53.23172",
+    "parameter": "no2",
+    "count": "5006"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.53419",
+    "lat": "53.22137",
+    "parameter": "no2",
+    "count": "6892"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.46211",
+    "lat": "51.89229",
+    "parameter": "no2",
+    "count": "5393"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.81472",
+    "lat": "52.93028",
+    "parameter": "o3",
+    "count": "4044"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.30031",
+    "lat": "52.13242",
+    "parameter": "pm10",
+    "count": "6438"
+  },
+  {
+    "country": "GB",
+    "lon": "0.12446",
+    "lat": "52.20237",
+    "parameter": "no2",
+    "count": "4142"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.30031",
+    "lat": "52.13242",
+    "parameter": "pm25",
+    "count": "6819"
+  },
+  {
+    "country": "GB",
+    "lon": "0.43955",
+    "lat": "51.51817",
+    "parameter": "no2",
+    "count": "6598"
+  },
+  {
+    "country": "GB",
+    "lon": "0.43955",
+    "lat": "51.51817",
+    "parameter": "pm25",
+    "count": "6661"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.9625",
+    "lat": "53.44695",
+    "parameter": "no2",
+    "count": "2625"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.29377",
+    "lat": "53.55903",
+    "parameter": "pm10",
+    "count": "6762"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.09379",
+    "lat": "53.57928",
+    "parameter": "no2",
+    "count": "3168"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.61423",
+    "lat": "55.07003",
+    "parameter": "no2",
+    "count": "5570"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.92883",
+    "lat": "54.59965",
+    "parameter": "o3",
+    "count": "6882"
+  },
+  {
+    "country": "GB",
+    "lon": "0.27161",
+    "lat": "50.80578",
+    "parameter": "no2",
+    "count": "6651"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.13351",
+    "lat": "51.68058",
+    "parameter": "no2",
+    "count": "5209"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.39578",
+    "lat": "50.90814",
+    "parameter": "o3",
+    "count": "2172"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.67873",
+    "lat": "51.6381",
+    "parameter": "no2",
+    "count": "6066"
+  },
+  {
+    "country": "GB",
+    "lon": "-9.90392",
+    "lat": "53.32644",
+    "parameter": "o3",
+    "count": "5955"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.1967",
+    "lat": "50.79229",
+    "parameter": "no2",
+    "count": "6867"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.75977",
+    "lat": "53.77124",
+    "parameter": "no2",
+    "count": "6237"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.30575",
+    "lat": "53.75897",
+    "parameter": "no2",
+    "count": "5765"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.0942",
+    "lat": "57.13389",
+    "parameter": "no2",
+    "count": "6416"
+  },
+  {
+    "country": "GB",
+    "lon": "-5.92883",
+    "lat": "54.59965",
+    "parameter": "no2",
+    "count": "6088"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.3159",
+    "lat": "54.56582",
+    "parameter": "pm25",
+    "count": "6741"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.63814",
+    "lat": "53.54914",
+    "parameter": "o3",
+    "count": "6382"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.63814",
+    "lat": "53.54914",
+    "parameter": "pm25",
+    "count": "5751"
+  },
+  {
+    "country": "GB",
+    "lon": "-3.94737",
+    "lat": "51.63269",
+    "parameter": "no2",
+    "count": "6477"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.54291",
+    "lat": "52.29488",
+    "parameter": "pm10",
+    "count": "6689"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.53312",
+    "lat": "52.28881",
+    "parameter": "o3",
+    "count": "6706"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.53312",
+    "lat": "52.28881",
+    "parameter": "no2",
+    "count": "6709"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.53312",
+    "lat": "52.28881",
+    "parameter": "pm10",
+    "count": "6527"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.39578",
+    "lat": "50.90814",
+    "parameter": "pm10",
+    "count": "1908"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.94531",
+    "lat": "54.89483",
+    "parameter": "pm10",
+    "count": "5611"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.94531",
+    "lat": "54.89483",
+    "parameter": "pm25",
+    "count": "5663"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.33118",
+    "lat": "55.00282",
+    "parameter": "so2",
+    "count": "5575"
+  },
+  {
+    "country": "GB",
+    "lon": "-7.33118",
+    "lat": "55.00282",
+    "parameter": "o3",
+    "count": "5736"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.94038",
+    "lat": "51.4549",
+    "parameter": "pm10",
+    "count": "4494"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.94038",
+    "lat": "51.4549",
+    "parameter": "no2",
+    "count": "5875"
+  },
+  {
+    "country": "GB",
+    "lon": "-6.25087",
+    "lat": "54.8616",
+    "parameter": "no2",
+    "count": "4335"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.29377",
+    "lat": "53.55903",
+    "parameter": "no2",
+    "count": "4799"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.87502",
+    "lat": "52.47609",
+    "parameter": "pm25",
+    "count": "953"
+  },
+  {
+    "country": "GB",
+    "lon": "-2.74213",
+    "lat": "53.45182",
+    "parameter": "no2",
+    "count": "1028"
+  },
+  {
+    "country": "GB",
+    "lon": "-0.37992",
+    "lat": "50.83295",
+    "parameter": "no2",
+    "count": "870"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.08651",
+    "lat": "53.96751",
+    "parameter": "no2",
+    "count": "2288"
+  },
+  {
+    "country": "GB",
+    "lon": "-1.98082",
+    "lat": "52.6873",
+    "parameter": "no2",
+    "count": "604"
+  },
+  {
+    "country": "NL",
+    "lon": "4.83819",
+    "lat": "52.138",
+    "parameter": "co",
+    "count": "10553"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35524",
+    "lat": "51.8674",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86032",
+    "lat": "52.3748",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85778",
+    "lat": "51.8414",
+    "parameter": "co",
+    "count": "10564"
+  },
+  {
+    "country": "NL",
+    "lon": "4.48753",
+    "lat": "51.8936",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85694",
+    "lat": "51.8382",
+    "parameter": "co",
+    "count": "10564"
+  },
+  {
+    "country": "NL",
+    "lon": "4.46134",
+    "lat": "51.9271",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9044",
+    "lat": "52.3721",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.31806",
+    "lat": "51.8701",
+    "parameter": "no2",
+    "count": "3824"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60199",
+    "lat": "52.494",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.44483",
+    "lat": "51.4442",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35938",
+    "lat": "52.039",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.43069",
+    "lat": "51.9385",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.2359",
+    "lat": "52.2574",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35984",
+    "lat": "51.4344",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.70842",
+    "lat": "52.1116",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.94382",
+    "lat": "52.3893",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.71501",
+    "lat": "52.3275",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.82494",
+    "lat": "51.5935",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51082",
+    "lat": "52.2966",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.98744",
+    "lat": "52.2015",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86621",
+    "lat": "52.3597",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.78102",
+    "lat": "51.6031",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.70824",
+    "lat": "51.8007",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.57349",
+    "lat": "52.9169",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "3.91662",
+    "lat": "51.6347",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9233",
+    "lat": "51.9745",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.71475",
+    "lat": "50.8459",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.61921",
+    "lat": "52.4487",
+    "parameter": "no2",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85694",
+    "lat": "51.8382",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.83206",
+    "lat": "52.4202",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.28919",
+    "lat": "52.0771",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12446",
+    "lat": "52.105",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.14845",
+    "lat": "51.5184",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "6.01757",
+    "lat": "52.6541",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.47235",
+    "lat": "51.4687",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12818",
+    "lat": "52.1013",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.64232",
+    "lat": "52.3705",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85778",
+    "lat": "51.8414",
+    "parameter": "no2",
+    "count": "10561"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86621",
+    "lat": "52.3597",
+    "parameter": "co",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.58006",
+    "lat": "51.8694",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.88781",
+    "lat": "52.39",
+    "parameter": "co",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "5.6758",
+    "lat": "50.8521",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.12194",
+    "lat": "51.9778",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.0424",
+    "lat": "51.1192",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "3.74948",
+    "lat": "51.2945",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.71501",
+    "lat": "52.3275",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "3.91662",
+    "lat": "51.6347",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12051",
+    "lat": "52.0677",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86621",
+    "lat": "52.3597",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.47992",
+    "lat": "51.9142",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.40139",
+    "lat": "51.9214",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.3263",
+    "lat": "51.9105",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.31806",
+    "lat": "51.8701",
+    "parameter": "pm25",
+    "count": "3823"
+  },
+  {
+    "country": "NL",
+    "lon": "4.22802",
+    "lat": "51.932",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12818",
+    "lat": "52.1013",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.48069",
+    "lat": "51.8911",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.18155",
+    "lat": "52.2351",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.78102",
+    "lat": "51.6031",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9233",
+    "lat": "51.9745",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85307",
+    "lat": "51.5405",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.94382",
+    "lat": "52.3893",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77401",
+    "lat": "52.334",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.05051",
+    "lat": "52.8037",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.71475",
+    "lat": "50.8459",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.78102",
+    "lat": "51.6031",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35938",
+    "lat": "52.039",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.35524",
+    "lat": "51.8674",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.57934",
+    "lat": "52.4789",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.9705",
+    "lat": "50.888",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85694",
+    "lat": "51.8382",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.48753",
+    "lat": "51.8936",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.87016",
+    "lat": "52.394",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60199",
+    "lat": "52.494",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.39333",
+    "lat": "51.4074",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.58006",
+    "lat": "51.8694",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86621",
+    "lat": "52.3597",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77348",
+    "lat": "52.428",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.98744",
+    "lat": "52.2015",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.71381",
+    "lat": "50.8598",
+    "parameter": "pm25",
+    "count": "10420"
+  },
+  {
+    "country": "NL",
+    "lon": "4.40139",
+    "lat": "51.9214",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77077",
+    "lat": "52.28",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60894",
+    "lat": "53.2465",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60184",
+    "lat": "52.463",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.71475",
+    "lat": "50.8459",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.98685",
+    "lat": "50.9003",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.48069",
+    "lat": "51.8911",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.1082",
+    "lat": "51.4541",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.6288",
+    "lat": "52.4744",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.27681",
+    "lat": "53.3304",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.91949",
+    "lat": "52.2345",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.43069",
+    "lat": "51.9385",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.86032",
+    "lat": "52.3748",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.80859",
+    "lat": "51.5359",
+    "parameter": "pm10",
+    "count": "2055"
+  },
+  {
+    "country": "NL",
+    "lon": "4.57934",
+    "lat": "52.4789",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.59338",
+    "lat": "52.4232",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.40293",
+    "lat": "52.3883",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60199",
+    "lat": "52.494",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.39333",
+    "lat": "51.4074",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.84523",
+    "lat": "52.3813",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.18155",
+    "lat": "52.2351",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.64053",
+    "lat": "52.4893",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.44483",
+    "lat": "51.4442",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.84523",
+    "lat": "52.3813",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.81671",
+    "lat": "52.448",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.28919",
+    "lat": "52.0771",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85778",
+    "lat": "51.8414",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.82223",
+    "lat": "50.9844",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.71501",
+    "lat": "52.3275",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "3.74948",
+    "lat": "51.2945",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.93243",
+    "lat": "52.8757",
+    "parameter": "o3",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.22802",
+    "lat": "51.932",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.85307",
+    "lat": "51.5405",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.27681",
+    "lat": "53.3304",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.58006",
+    "lat": "51.8694",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.8997",
+    "lat": "52.358",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.88175",
+    "lat": "50.9023",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.8382",
+    "lat": "51.5475",
+    "parameter": "pm10",
+    "count": "2055"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12818",
+    "lat": "52.1013",
+    "parameter": "pm25",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.31806",
+    "lat": "51.8701",
+    "parameter": "pm10",
+    "count": "3823"
+  },
+  {
+    "country": "NL",
+    "lon": "5.39333",
+    "lat": "51.4074",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.70842",
+    "lat": "52.1116",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.51082",
+    "lat": "52.2966",
+    "parameter": "so2",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77348",
+    "lat": "52.428",
+    "parameter": "so2",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "4.46134",
+    "lat": "51.9271",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60184",
+    "lat": "52.463",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.28919",
+    "lat": "52.0771",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.12446",
+    "lat": "52.105",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.72858",
+    "lat": "52.3984",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.77401",
+    "lat": "52.334",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.50756",
+    "lat": "52.1678",
+    "parameter": "pm10",
+    "count": "1620"
+  },
+  {
+    "country": "NL",
+    "lon": "6.27681",
+    "lat": "53.3304",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.47992",
+    "lat": "51.9142",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.2359",
+    "lat": "52.2574",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.9233",
+    "lat": "51.9745",
+    "parameter": "so2",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.40293",
+    "lat": "52.3883",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.83819",
+    "lat": "52.138",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "5.57349",
+    "lat": "52.9169",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "4.60184",
+    "lat": "52.463",
+    "parameter": "so2",
+    "count": "10329"
+  },
+  {
+    "country": "NL",
+    "lon": "5.05051",
+    "lat": "52.8037",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.60537",
+    "lat": "52.0918",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.01757",
+    "lat": "52.6541",
+    "parameter": "pm10",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.27681",
+    "lat": "53.3304",
+    "parameter": "so2",
+    "count": "10560"
+  },
+  {
+    "country": "NL",
+    "lon": "6.5789",
+    "lat": "53.2178",
+    "parameter": "pm10",
+    "count": "10560"
+  }
+]

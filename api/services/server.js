@@ -1,5 +1,9 @@
 'use strict';
 
+import config from 'config';
+import { startAthenaSyncTask } from './athena-sync';
+const athenaConfig = config.get('athena');
+
 var Hapi = require('hapi');
 var GoodWinston = require('good-winston');
 var winston = require('winston');
@@ -186,6 +190,18 @@ Server.prototype.start = function (cb) {
     self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
     if (cb && typeof cb === 'function') {
       cb();
+    }
+
+    // Start Athena auto sync, if enabled
+    if (athenaConfig.syncEnabled === 'true') {
+      // Wait 5 minutes to start Athena auto sync.
+      // This is a precaution to avoid generate lots of Athena requests
+      // in case the server is restarting frequently due to
+      // some error.
+      setTimeout(() => {
+        // Schedule auto sync task
+        setInterval(startAthenaSyncTask, athenaConfig.syncInterval);
+      }, 5000);
     }
   });
 };

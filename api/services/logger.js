@@ -13,6 +13,7 @@ export function setServer (s) {
 
 export function log (level, message) {
   if (!server) {
+    /* eslint-disable no-console */
     console.error('Missing server for logging.');
     return console.error(level, message);
   }
