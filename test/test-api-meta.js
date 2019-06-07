@@ -32,6 +32,7 @@ describe('/v1', function () {
         'latest',
         'locations',
         'locations-metadata',
+        'locations-metadata list',
         'PUT locations-metadata',
         'measurements',
         'parameters',
