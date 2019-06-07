@@ -28,13 +28,13 @@ describe('/locations/{id}/metadata', function () {
             {
               type: 'test-instrument',
               active: true,
-              pollutants: ['03'],
+              parameters: ['03'],
               serialNumber: 'abc1'
             }
           ]
         },
-        createdAt: '2019-01-01T00:00:00.000Z',
-        updatedAt: '2019-01-01T00:00:01.000Z',
+        createdAt: '2019-01-01T08:00:00.000Z',
+        updatedAt: '2019-01-01T08:00:01.000Z',
         version: '2'
       };
 
@@ -96,23 +96,23 @@ describe('/locations/{id}/metadata', function () {
         type: 'test-sensor',
         serialNumber: '123'
       }]
-    }, 'child "instruments" fails because ["instruments" at position 0 fails because [child "pollutants" fails because ["pollutants" is required]]]');
+    }, 'child "instruments" fails because ["instruments" at position 0 fails because [child "parameters" fails because ["parameters" is required]]]');
     await metadataSchemaTest({
       name: 'test',
       instruments: [{
         type: 'test-sensor',
         serialNumber: '123',
-        pollutants: []
+        parameters: []
       }]
-    }, 'child "instruments" fails because ["instruments" at position 0 fails because [child "pollutants" fails because ["pollutants" does not contain 1 required value(s)]]]');
+    }, 'child "instruments" fails because ["instruments" at position 0 fails because [child "parameters" fails because ["parameters" does not contain 1 required value(s)]]]');
     await metadataSchemaTest({
       name: 'test',
       instruments: [{
         type: 'test-sensor',
         serialNumber: '123',
-        pollutants: ['invalid']
+        parameters: ['invalid']
       }]
-    }, 'child "instruments" fails because ["instruments" at position 0 fails because [child "pollutants" fails because ["pollutants" at position 0 fails because ["0" must be one of [pm25, pm10, co, bc, so2, no2, o3]]]]]');
+    }, 'child "instruments" fails because ["instruments" at position 0 fails because [child "parameters" fails because ["parameters" at position 0 fails because ["0" must be one of [pm25, pm10, co, bc, so2, no2, o3]]]]]');
   });
 
   it('should update a location', function (done) {
@@ -125,7 +125,7 @@ describe('/locations/{id}/metadata', function () {
         instruments: [{
           type: 'test-sensor',
           serialNumber: '123',
-          pollutants: ['o3']
+          parameters: ['o3']
         }]
       }
     }, async function (err, response, body) {
