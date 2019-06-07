@@ -33,8 +33,8 @@ describe('/locations/{id}/metadata', function () {
             }
           ]
         },
-        createdAt: '2019-01-01T08:00:00.000Z',
-        updatedAt: '2019-01-01T08:00:01.000Z',
+        createdAt: '2019-01-01T00:00:00.000Z',
+        updatedAt: '2019-01-01T00:00:01.000Z',
         version: '2'
       };
 
