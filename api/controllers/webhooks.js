@@ -28,10 +28,8 @@ module.exports.handleAction = function (payload, cb) {
   }
 
   switch (payload.action) {
-    case 'ATHENA_SYNC':
-      startAthenaSyncTask();
-      break;
     case 'DATABASE_UPDATED':
+      startAthenaSyncTask();
       if (redis && redis.ready) {
         // Rebuild cache instead of waiting for first query
         runCachedQueries(redis);
