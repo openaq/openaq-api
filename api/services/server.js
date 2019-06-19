@@ -9,13 +9,9 @@ import hapiAuthJwt2 from 'hapi-auth-jwt2';
 import config from 'config';
 
 import { startAthenaSyncTask } from './athena-sync';
-const athenaConfig = config.get('athena');
-var Hapi = require('hapi');
-var GoodWinston = require('good-winston');
-var winston = require('winston');
-require('winston-papertrail').Papertrail;
-var os = require('os');
 import { getLastUpdated } from './redis';
+
+const athenaConfig = config.get('athena');
 
 var Server = function (port) {
   this.port = port;
