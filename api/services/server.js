@@ -57,7 +57,9 @@ Server.prototype.start = function (cb) {
         },
         validateFunc: (decoded, request, callback) => {
           if (decoded && decoded.sub) {
-            return callback(null, true);
+            // Check if the user is active.
+            const isActive = decoded['http://openaq.org/user_metadata'].active;
+            return callback(null, isActive);
           }
           return callback(null, false);
         }
