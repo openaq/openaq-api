@@ -67,7 +67,7 @@ const scenarios = {
             {
               type: 'test-instrument',
               active: true,
-              pollutants: ['03'],
+              parameters: ['03'],
               serialNumber: `abc${i}`
             }
           ]
