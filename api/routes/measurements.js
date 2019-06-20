@@ -26,7 +26,7 @@ import { log } from '../services/logger';
  * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {array=attribution, averagingPeriod, sourceName}  [include_fields] Include extra fields in the output in addition to default values.
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
- * @apiParam {number} [page=1] Paginate through results.
+ * @apiParam {number} [page=1] Paginate through results. Max is set at 100.
  * @apiParam {string=csv, json} [format=json] Format for data return. Note that `csv` will return a max of 65,536 results when no limit is set.
  *
  * @apiSuccess {object}   date            Date and time of measurement in both local and UTC `default`
@@ -100,6 +100,12 @@ module.exports = [
 
       // Set max limit based on env var or default to 10000
       request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
+
+      // 6/20/2019 We're seeing major database issues related to someone trying
+      // to query the API for all the data in the system and making large page requests.
+      if (request.page > (process.env.REQUEST_PAGE || 100)) {
+        return reply(Boom.badRequest('page limit is set too high'));
+      }
 
       // Check if this is supposed to be formatted as csv
       var formatForCSV = false;
