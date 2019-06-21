@@ -8,6 +8,7 @@ import fixtures from './fixtures';
 describe('/locations', function () {
   before(async function () {
     await fixtures('locations-2016');
+    await fixtures('locations-metadata');
   });
 
   it('should return properly', function (done) {
@@ -260,6 +261,46 @@ describe('/locations', function () {
         expect(res.results).to.deep.equal(
           orderBy(res.results, ['lastUpdated', 'country'], ['desc', 'asc'])
         );
+        done();
+      }
+    );
+  });
+
+  it('includes metadata when flag is passed', done => {
+    request(
+      `${apiUrl}locations?metadata=true&limit=2`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.results[0].metadata).to.be.null;
+        expect(res.results[1].metadata).to.deep.equal({
+          name: 'meta-87',
+          instruments: [
+            {
+              type: 'test-instrument',
+              active: true,
+              parameters: ['03'],
+              serialNumber: 'abc87'
+            }
+          ]
+        });
+        done();
+      }
+    );
+  });
+
+  it('does not include metadata by default', done => {
+    request(
+      `${apiUrl}locations?limit=2`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.results[0]).to.not.have.property('metadata');
+        expect(res.results[1]).to.not.have.property('metadata');
         done();
       }
     );

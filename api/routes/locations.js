@@ -110,7 +110,8 @@ module.exports = [
           sort: [
             Joi.string().valid('asc', 'desc'),
             Joi.array().items(Joi.string().valid('asc', 'desc'))
-          ]
+          ],
+          metadata: Joi.boolean()
         }
       }
     },
@@ -120,9 +121,10 @@ module.exports = [
         const {
           coordinates,
           order_by,
-          sort
+          sort,
+          metadata
         } = query;
-        const selectedColumns = ['*'];
+        const selectedColumns = ['locations.*'];
         const offset = (page - 1) * limit;
 
         /*
@@ -177,6 +179,13 @@ module.exports = [
         const results = await dbQuery
           .clone()
           .select(selectedColumns)
+          .modify(query => {
+            // If the metadata flag was passed, join the data.
+            if (metadata) {
+              query.leftJoin('latest_locations_metadata', 'locations.id', '=', 'latest_locations_metadata.locationId')
+                .select('latest_locations_metadata.data as metadata');
+            }
+          })
           .offset(offset)
           .orderBy(orderBy)
           .limit(limit)
