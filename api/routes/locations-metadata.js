@@ -18,38 +18,12 @@ async function checkLocation (id) {
   return !!location;
 }
 
-/**
- * @api {get} /locations/metadata GET
- * @apiGroup Locations
- */
 module.exports = [
-  {
-    method: ['GET'],
-    path: '/v1/locations/{id}/metadata',
-    config: {
-      description: 'Metadata associated with a given location'
-    },
-    handler: async function (request, reply) {
-      try {
-        const res = await db('latest_locations_metadata')
-          .select()
-          .where('locationId', request.params.id)
-          .first();
-
-        // Check if the metadata exists.
-        if (!res) {
-          return reply(Boom.notFound('Location metadata was not found'));
-        }
-
-        reply(res);
-      } catch (err) {
-        /*
-         * Unexpected error, log message internally.
-         */
-        reply(Boom.badImplementation(err.message));
-      }
-    }
-  },
+  /**
+   * @api {put} /locations/metadata PUT
+   * @apiGroup Locations
+   * @apiDescription Allows the user to update the metadata for a given location.
+   */
   {
     method: ['PUT'],
     path: '/v1/locations/{id}/metadata',

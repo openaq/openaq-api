@@ -12,65 +12,6 @@ describe('/locations/{id}/metadata', function () {
     await fixtures('locations-metadata');
   });
 
-  it('should return metadata for location', function (done) {
-    request(`${apiUrl}locations/GB-1/metadata`, function (err, response, body) {
-      expect(err).to.be.null;
-      expect(response.statusCode).to.equal(200);
-
-      const res = JSON.parse(body);
-      const expected = {
-        id: 2,
-        locationId: 'GB-1',
-        userId: 'test|12345',
-        data: {
-          name: 'meta-1',
-          instruments: [
-            {
-              type: 'test-instrument',
-              active: true,
-              parameters: ['03'],
-              serialNumber: 'abc1'
-            }
-          ]
-        },
-        createdAt: '2019-01-01T00:00:00.000Z',
-        updatedAt: '2019-01-01T00:00:01.000Z',
-        version: '2'
-      };
-
-      expect(res.results).to.deep.equal(expected);
-
-      done();
-    });
-  });
-
-  it('has a meta block', function (done) {
-    request(`${apiUrl}locations/GB-1/metadata`, function (err, response, body) {
-      expect(err).to.be.null;
-      expect(response.statusCode).to.equal(200);
-
-      const res = JSON.parse(body);
-      const testMeta = {
-        name: 'openaq-api',
-        license: 'CC BY 4.0',
-        website: 'https://docs.openaq.org/'
-      };
-      expect(res.meta).to.deep.equal(testMeta);
-      done();
-    });
-  });
-
-  it('returns 404 when the location is not found', function (done) {
-    request(`${apiUrl}locations/invalid/metadata`, function (err, response, body) {
-      expect(err).to.be.null;
-      expect(response.statusCode).to.equal(404);
-
-      const res = JSON.parse(body);
-      expect(res.message).to.equal('Location metadata was not found');
-      done();
-    });
-  });
-
   it('should fail when required payload items are missing', async function () {
     await metadataSchemaTest({}, 'child "name" fails because ["name" is required]');
     await metadataSchemaTest({

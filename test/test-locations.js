@@ -306,3 +306,83 @@ describe('/locations', function () {
     );
   });
 });
+
+describe('/locations/:id', function () {
+  before(async function () {
+    await fixtures('locations-2016');
+    await fixtures('locations-metadata');
+  });
+
+  it('should not return metadata by default', function (done) {
+    request(`${apiUrl}locations/GB-1`, function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
+
+      const res = JSON.parse(body);
+      expect(res).to.not.have.property('metadata');
+      done();
+    });
+  });
+
+  it('should return metadata for location', function (done) {
+    request(`${apiUrl}locations/GB-1?metadata=true`, function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
+
+      const res = JSON.parse(body);
+      const expected = {
+        id: 2,
+        locationId: 'GB-1',
+        userId: 'test|12345',
+        data: {
+          name: 'meta-1',
+          instruments: [
+            {
+              type: 'test-instrument',
+              active: true,
+              parameters: ['03'],
+              serialNumber: 'abc1'
+            }
+          ]
+        },
+        createdAt: '2019-01-01T00:00:00.000Z',
+        updatedAt: '2019-01-01T00:00:01.000Z',
+        version: '2'
+      };
+
+      expect(res.results.metadata).to.deep.equal(expected.data);
+      expect(res.results.metadataVersion).to.equal(expected.version);
+      expect(res.results.metadataUserId).to.equal(expected.userId);
+      expect(res.results.metadataUpdatedAt).to.equal(expected.updatedAt);
+
+      done();
+    });
+  });
+
+  it('has a meta block', function (done) {
+    request(`${apiUrl}locations/GB-1?metadata=true`, function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(200);
+
+      const res = JSON.parse(body);
+      const testMeta = {
+        name: 'openaq-api',
+        license: 'CC BY 4.0',
+        website: 'https://docs.openaq.org/'
+      };
+      expect(res.meta).to.deep.equal(testMeta);
+      done();
+    });
+  });
+
+  it('returns 404 when the location is not found', function (done) {
+    request(`${apiUrl}locations/invalid?metadata=true`, function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response.statusCode).to.equal(404);
+
+      const res = JSON.parse(body);
+      expect(res.message).to.equal('Location was not found');
+      done();
+    });
+  });
+});
