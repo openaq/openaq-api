@@ -8,5 +8,10 @@
       "database": "gis"
     }
   },
-  "webhookKey": "123"
+  "webhookKey": "123",
+  "auth": {
+    "strategy": "jwt",
+    "audience": "http://openaq.org",
+    "issuer": "https://dev-59haz2pg.auth0.com/"
+  }
 }
