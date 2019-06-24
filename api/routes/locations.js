@@ -200,7 +200,7 @@ module.exports = [
           .modify(query => {
             // If the metadata flag was passed, join the data.
             if (metadata) {
-              query.leftJoin('latest_locations_metadata', 'locations.id', '=', 'latest_locations_metadata.locationId')
+              query.leftJoin('latest_locations_metadata', 'locations.id', '=', 'latest_locations_metadata.locationId');
             }
           })
           .where(buildLocationsWhere(query));
