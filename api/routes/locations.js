@@ -134,7 +134,9 @@ module.exports = [
             Joi.string().valid('asc', 'desc'),
             Joi.array().items(Joi.string().valid('asc', 'desc'))
           ],
-          metadata: Joi.boolean()
+          metadata: Joi.boolean(),
+          siteType: [Joi.string(), Joi.array().items(Joi.string())],
+          activationDate: Joi.array().items(Joi.date()).length(2)
         }
       }
     },
@@ -194,7 +196,14 @@ module.exports = [
         /*
          * Build base query, to be used to fetch results and total count.
          */
-        const dbQuery = db('locations').where(buildLocationsWhere(query));
+        const dbQuery = db('locations')
+          .modify(query => {
+            // If the metadata flag was passed, join the data.
+            if (metadata) {
+              query.leftJoin('latest_locations_metadata', 'locations.id', '=', 'latest_locations_metadata.locationId')
+            }
+          })
+          .where(buildLocationsWhere(query));
 
         /*
          * Fetch results
@@ -205,8 +214,7 @@ module.exports = [
           .modify(query => {
             // If the metadata flag was passed, join the data.
             if (metadata) {
-              query.leftJoin('latest_locations_metadata', 'locations.id', '=', 'latest_locations_metadata.locationId')
-                .select('latest_locations_metadata.data as metadata');
+              query.select('latest_locations_metadata.data as metadata');
             }
           })
           .offset(offset)
@@ -217,7 +225,7 @@ module.exports = [
         /*
          * Fetch total count
          */
-        request.count = parseInt((await dbQuery.count('id').first()).count);
+        request.count = parseInt((await dbQuery.count('locations.id').first()).count);
 
         /*
          * Return results

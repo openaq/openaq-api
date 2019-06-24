@@ -284,7 +284,9 @@ describe('/locations', function () {
               parameters: ['03'],
               serialNumber: 'abc87'
             }
-          ]
+          ],
+          siteType: 'unlabeled',
+          activationDate: '2019-03-29T00:00:00.000Z'
         });
         done();
       }
@@ -301,6 +303,70 @@ describe('/locations', function () {
         const res = JSON.parse(body);
         expect(res.results[0]).to.not.have.property('metadata');
         expect(res.results[1]).to.not.have.property('metadata');
+        done();
+      }
+    );
+  });
+
+  it('returns locations with correct siteType', done => {
+    request(
+      `${apiUrl}locations?metadata=true&siteType=urban`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(13);
+        expect(res.results[0].metadata.siteType).to.equal('urban');
+        done();
+      }
+    );
+  });
+
+  it('returns locations with correct siteType[]', done => {
+    request(
+      `${apiUrl}locations?metadata=true&siteType=rural&siteType=urban`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(26);
+        // Get all the diferent unique instances of siteType.
+        const siteType = res.results.reduce((set, r) => set.add(r.metadata.siteType), new Set());
+        expect(siteType.size).to.equal(2);
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given activationDate', done => {
+    request(
+      `${apiUrl}locations?metadata=true&activationDate=2019-01-01T00:00:00.000Z&activationDate=2019-01-04T01:00:00.000Z`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(2);
+        expect(res.results[0].metadata.activationDate).to.equal('2019-01-04T00:00:00.000Z');
+        expect(res.results[1].metadata.activationDate).to.equal('2019-01-02T00:00:00.000Z');
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given activationDate regardless of datr order', done => {
+    request(
+      `${apiUrl}locations?metadata=true&activationDate=2019-01-04T01:00:00.000Z&activationDate=2019-01-01T00:00:00.000Z`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(2);
+        expect(res.results[0].metadata.activationDate).to.equal('2019-01-04T00:00:00.000Z');
+        expect(res.results[1].metadata.activationDate).to.equal('2019-01-02T00:00:00.000Z');
         done();
       }
     );
@@ -343,7 +409,9 @@ describe('/locations/:id', function () {
               parameters: ['03'],
               serialNumber: 'abc1'
             }
-          ]
+          ],
+          activationDate: '2019-01-02T00:00:00.000Z',
+          siteType: 'rural'
         },
         createdAt: '2019-01-01T00:00:00.000Z',
         updatedAt: '2019-01-01T00:00:01.000Z',

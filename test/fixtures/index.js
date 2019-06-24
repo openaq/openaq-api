@@ -70,7 +70,9 @@ const scenarios = {
               parameters: ['03'],
               serialNumber: `abc${i}`
             }
-          ]
+          ],
+          siteType: ['rural', 'urban', 'suburban', 'unlabeled'][Math.floor(i / 2) % 4],
+          activationDate: new Date(dateStart + i * 86400000)
         }
       });
     }
