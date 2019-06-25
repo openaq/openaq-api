@@ -29,7 +29,7 @@ module.exports = [
     path: '/v1/locations/{id}/metadata',
     config: {
       description: 'Updates the metadata associated with a given location',
-      // auth: authStrategy,
+      auth: authStrategy,
       validate: {
         payload: metadataSchema
       }
