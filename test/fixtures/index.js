@@ -7,6 +7,7 @@ import {
   upsertLocations,
   upsertCities
 } from '../../api/services/athena-sync';
+import { computeCompleteness } from '../../lib/location-metadata-schema';
 
 /* global fixturesPath */
 
@@ -56,7 +57,7 @@ const scenarios = {
 
     let inserts = [];
     for (let i = 0; i < 100; i++) {
-      inserts.push({
+      const doc = {
         // Ensure 2 entries per location.
         locationId: `GB-${Math.floor(i / 2) + 1}`,
         userId,
@@ -74,7 +75,10 @@ const scenarios = {
           siteType: ['rural', 'urban', 'suburban', 'unlabeled'][Math.floor(i / 2) % 4],
           activationDate: new Date(dateStart + i * 86400000)
         }
-      });
+      };
+      inserts.push(Object.assign({}, doc, {
+        completeness: computeCompleteness(doc.data)
+      }));
     }
 
     await db.batchInsert('locations_metadata', inserts);
