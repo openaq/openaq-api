@@ -2,9 +2,10 @@
 import Boom from 'boom';
 import config from 'config';
 import _ from 'lodash';
+import util from 'util';
 
 import { db } from '../services/db';
-import metadataSchema from '../../lib/location-metadata-schema';
+import metadataSchema, { computeCompleteness } from '../../lib/location-metadata-schema';
 
 const { strategy: authStrategy } = config.get('auth');
 
@@ -29,7 +30,7 @@ module.exports = [
     path: '/v1/locations/{id}/metadata',
     config: {
       description: 'Updates the metadata associated with a given location',
-      auth: authStrategy,
+      // auth: authStrategy,
       validate: {
         payload: metadataSchema
       }
@@ -40,6 +41,8 @@ module.exports = [
         if (!(await checkLocation(request.params.id))) {
           return reply(Boom.notFound('This location does not exist'));
         }
+
+        console.log('Completeness', computeCompleteness(request.payload) * 100);
 
         const user = _.get(request, 'auth.credentials.sub', 'anonymous');
 
