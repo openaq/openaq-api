@@ -2,7 +2,6 @@
 import Boom from 'boom';
 import config from 'config';
 import _ from 'lodash';
-import util from 'util';
 
 import { db } from '../services/db';
 import metadataSchema, { computeCompleteness } from '../../lib/location-metadata-schema';
