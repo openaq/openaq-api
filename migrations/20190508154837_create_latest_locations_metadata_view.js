@@ -24,6 +24,6 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return knex.schema.raw(`
-    DROP VIEW latest_locations_metadata IF EXISTS
+    DROP VIEW IF EXISTS latest_locations_metadata
   `);
 };

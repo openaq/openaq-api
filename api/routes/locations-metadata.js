@@ -42,8 +42,6 @@ module.exports = [
           return reply(Boom.notFound('This location does not exist'));
         }
 
-        console.log('Completeness', computeCompleteness(request.payload) * 100);
-
         const user = _.get(request, 'auth.credentials.sub', 'anonymous');
 
         const res = await db.transaction(async trx => {
@@ -52,7 +50,8 @@ module.exports = [
             .insert({
               userId: user,
               locationId: request.params.id,
-              data: request.payload
+              data: request.payload,
+              completeness: computeCompleteness(request.payload)
             });
 
           // Get result after insertion.
