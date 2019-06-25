@@ -137,7 +137,8 @@ module.exports = [
           metadata: Joi.boolean(),
           siteType: [Joi.string(), Joi.array().items(Joi.string())],
           activationDate: Joi.array().items(Joi.date()).length(2),
-          completeness: Joi.array().items(Joi.number()).length(2)
+          completeness: Joi.array().items(Joi.number()).length(2),
+          inletHeight: Joi.array().items(Joi.number()).length(2)
         }
       }
     },

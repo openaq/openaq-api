@@ -437,6 +437,48 @@ describe('/locations?metadata=true', function () {
       }
     );
   });
+
+  it('returns locations between given inlet height', done => {
+    request(
+      `${apiUrl}locations?metadata=true&inletHeight=1&inletHeight=2`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(1);
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given inlet height 2', done => {
+    request(
+      `${apiUrl}locations?metadata=true&inletHeight=2&inletHeight=10`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(0);
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given inlet height regardless order', done => {
+    request(
+      `${apiUrl}locations?metadata=true&inletHeight=10&inletHeight=1`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(1);
+        done();
+      }
+    );
+  });
 });
 
 describe('/locations/:id', function () {
