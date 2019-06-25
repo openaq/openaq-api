@@ -9,14 +9,9 @@ exports.seed = async function (knex, Promise) {
   // Clean up locations table
   await knex('locations').del();
 
-  for (let l of locations) {
-    // Generate WKT from coordinates, if available
-    if (isNumber(l.coordinates.longitude) && isNumber(l.coordinates.latitude)) {
-      l.coordinates = `POINT(${l.coordinates.longitude} ${l.coordinates.latitude})`;
-    }
-
+  const data = locations.map(loc => {
     // Pick allowed location properties
-    l = pick(l, [
+    let l = pick(loc, [
       'id',
       'cities',
       'city',
@@ -36,13 +31,15 @@ exports.seed = async function (knex, Promise) {
       'sourceType',
       'sourceTypes'
     ]);
-  }
 
-  // Create array of inserts tasks
-  let tasks = locations.map(m => {
-    return knex('locations').insert(m);
+    // Generate WKT from coordinates, if available
+    if (isNumber(l.coordinates.longitude) && isNumber(l.coordinates.latitude)) {
+      l.coordinates = `POINT(${l.coordinates.longitude} ${l.coordinates.latitude})`;
+    }
+
+    return l;
   });
 
-  // Handle all tasks
-  return Promise.all(tasks);
+  // Create array of inserts tasks
+  return knex.batchInsert('locations', data);
 };
