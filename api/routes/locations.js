@@ -136,7 +136,8 @@ module.exports = [
           ],
           metadata: Joi.boolean(),
           siteType: [Joi.string(), Joi.array().items(Joi.string())],
-          activationDate: Joi.array().items(Joi.date()).length(2)
+          activationDate: Joi.array().items(Joi.date()).length(2),
+          completeness: Joi.array().items(Joi.number()).length(2)
         }
       }
     },
@@ -214,7 +215,13 @@ module.exports = [
           .modify(query => {
             // If the metadata flag was passed, join the data.
             if (metadata) {
-              query.select('latest_locations_metadata.data as metadata');
+              query.select(
+                'latest_locations_metadata.data as metadata',
+                'latest_locations_metadata.version as metadataVersion',
+                'latest_locations_metadata.userId as metadataUserId',
+                'latest_locations_metadata.updatedAt as metadataUpdatedAt',
+                'latest_locations_metadata.completeness as metadataCompleteness'
+              );
             }
           })
           .offset(offset)
@@ -312,7 +319,8 @@ module.exports = [
                   'latest_locations_metadata.data as metadata',
                   'latest_locations_metadata.version as metadataVersion',
                   'latest_locations_metadata.userId as metadataUserId',
-                  'latest_locations_metadata.updatedAt as metadataUpdatedAt'
+                  'latest_locations_metadata.updatedAt as metadataUpdatedAt',
+                  'latest_locations_metadata.completeness as metadataCompleteness'
                 );
             }
           })

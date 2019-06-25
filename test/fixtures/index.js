@@ -81,6 +81,52 @@ const scenarios = {
       }));
     }
 
+    // Include a complete one.
+    const doc = {
+      locationId: 'GB-10',
+      userId,
+      createdAt: '2019-02-02T00:00:00.000Z',
+      data: {
+        name: 'EEA Andorra',
+        active: true,
+        siteType: 'urban',
+        elevation: 12,
+        sourceType: 'government',
+        attribution: [
+          {
+            url: 'http://openaq.org',
+            name: 'Open AQ'
+          }
+        ],
+        coordinates: {
+          latitude: 42.50969,
+          longitude: 1.53914
+        },
+        instruments: [
+          {
+            type: 'test-instrument',
+            active: true,
+            modelName: 'az-05',
+            parameters: [
+              'co'
+            ],
+            inletHeight: 1,
+            manufacturer: 'openaq',
+            rawFrequency: 5000,
+            serialNumber: 'abc5',
+            activationDate: '2017-09-13T21:00:00.000Z',
+            measurementStyle: 'automated',
+            reportingFrequency: 7500,
+            calibrationProcedures: 'none'
+          }
+        ],
+        activationDate: '2017-09-13T21:00:00.000Z'
+      }
+    };
+    inserts.push(Object.assign({}, doc, {
+      completeness: computeCompleteness(doc.data)
+    }));
+
     await db.batchInsert('locations_metadata', inserts);
   },
 

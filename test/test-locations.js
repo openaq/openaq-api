@@ -8,7 +8,6 @@ import fixtures from './fixtures';
 describe('/locations', function () {
   before(async function () {
     await fixtures('locations-2016');
-    await fixtures('locations-metadata');
   });
 
   it('should return properly', function (done) {
@@ -265,6 +264,13 @@ describe('/locations', function () {
       }
     );
   });
+});
+
+describe('/locations?metadata=true', function () {
+  before(async function () {
+    await fixtures('locations-2016');
+    await fixtures('locations-metadata');
+  });
 
   it('includes metadata when flag is passed', done => {
     request(
@@ -275,6 +281,10 @@ describe('/locations', function () {
 
         const res = JSON.parse(body);
         expect(res.results[0].metadata).to.be.null;
+        expect(res.results[0].metadataVersion).to.be.null;
+        expect(res.results[0].metadataUserId).to.be.null;
+        expect(res.results[0].metadataUpdatedAt).to.be.null;
+        expect(res.results[0].metadataCompleteness).to.be.null;
         expect(res.results[1].metadata).to.deep.equal({
           name: 'meta-87',
           instruments: [
@@ -288,6 +298,10 @@ describe('/locations', function () {
           siteType: 'unlabeled',
           activationDate: '2019-03-29T00:00:00.000Z'
         });
+        expect(res.results[1].metadataVersion).to.equal('2');
+        expect(res.results[1].metadataUserId).to.equal('test|12345');
+        expect(res.results[1].metadataUpdatedAt).to.equal('2019-01-01T00:01:27.000Z');
+        expect(res.results[1].metadataCompleteness).to.equal(0.318182);
         done();
       }
     );
@@ -302,7 +316,15 @@ describe('/locations', function () {
 
         const res = JSON.parse(body);
         expect(res.results[0]).to.not.have.property('metadata');
+        expect(res.results[0]).to.not.have.property('metadataVersion');
+        expect(res.results[0]).to.not.have.property('metadataUserId');
+        expect(res.results[0]).to.not.have.property('metadataUpdatedAt');
+        expect(res.results[0]).to.not.have.property('metadataCompleteness');
         expect(res.results[1]).to.not.have.property('metadata');
+        expect(res.results[1]).to.not.have.property('metadataVersion');
+        expect(res.results[1]).to.not.have.property('metadataUserId');
+        expect(res.results[1]).to.not.have.property('metadataUpdatedAt');
+        expect(res.results[1]).to.not.have.property('metadataCompleteness');
         done();
       }
     );
@@ -356,7 +378,7 @@ describe('/locations', function () {
     );
   });
 
-  it('returns locations between given activationDate regardless of datr order', done => {
+  it('returns locations between given activationDate regardless order', done => {
     request(
       `${apiUrl}locations?metadata=true&activationDate=2019-01-04T01:00:00.000Z&activationDate=2019-01-01T00:00:00.000Z`,
       (err, response, body) => {
@@ -367,6 +389,50 @@ describe('/locations', function () {
         expect(res.meta.found).to.equal(2);
         expect(res.results[0].metadata.activationDate).to.equal('2019-01-04T00:00:00.000Z');
         expect(res.results[1].metadata.activationDate).to.equal('2019-01-02T00:00:00.000Z');
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given completeness', done => {
+    request(
+      `${apiUrl}locations?metadata=true&completeness=0.5&completeness=1`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(1);
+        expect(res.results[0].metadataCompleteness).to.equal(1);
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given completeness 2', done => {
+    request(
+      `${apiUrl}locations?metadata=true&completeness=0.1&completeness=0.2`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(0);
+        done();
+      }
+    );
+  });
+
+  it('returns locations between given completeness regardless order', done => {
+    request(
+      `${apiUrl}locations?metadata=true&completeness=1&completeness=0.5`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(1);
+        expect(res.results[0].metadataCompleteness).to.equal(1);
         done();
       }
     );
@@ -386,6 +452,10 @@ describe('/locations/:id', function () {
 
       const res = JSON.parse(body);
       expect(res).to.not.have.property('metadata');
+      expect(res).to.not.have.property('metadataVersion');
+      expect(res).to.not.have.property('metadataUserId');
+      expect(res).to.not.have.property('metadataUpdatedAt');
+      expect(res).to.not.have.property('metadataCompleteness');
       done();
     });
   });
