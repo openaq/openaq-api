@@ -438,6 +438,21 @@ describe('/locations?metadata=true', function () {
     );
   });
 
+  it('returns locations with completeness null when starting at 0 - nulls as zeros', done => {
+    request(
+      `${apiUrl}locations?metadata=true&completeness=0.1&completeness=0`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(219);
+        expect(res.results[0].metadataCompleteness).to.be.null;
+        done();
+      }
+    );
+  });
+
   it('returns locations between given inlet height', done => {
     request(
       `${apiUrl}locations?metadata=true&inletHeight=1&inletHeight=2`,
@@ -475,6 +490,20 @@ describe('/locations?metadata=true', function () {
 
         const res = JSON.parse(body);
         expect(res.meta.found).to.equal(1);
+        done();
+      }
+    );
+  });
+
+  it('returns locations with inlet height null when starting at 0 - nulls as zeros', done => {
+    request(
+      `${apiUrl}locations?metadata=true&inletHeight=0&inletHeight=10`,
+      (err, response, body) => {
+        expect(err).to.be.null;
+        expect(response.statusCode).to.equal(200);
+
+        const res = JSON.parse(body);
+        expect(res.meta.found).to.equal(269);
         done();
       }
     );
