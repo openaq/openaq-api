@@ -50,6 +50,10 @@ module.exports = [
    * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
    * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
    * @apiParam {number} [page=1] Paginate through results.
+   * @apiParam {string} [siteType] Filter by metadata property "site type". Supports one or more values.
+   * @apiParam {date} [activationDate] Filter by metadata property "activation date". Has to be a range with a start and end. (ex: `activationDate[]=2019/01/01&activationDate[]=2019/01/05`)
+   * @apiParam {number} [completeness] Filter by metadata completeness. Has to be a range with a start and end bewtween 0 and 1. (ex: `completeness[]=0.9&completeness[]=1`)
+   * @apiParam {number} [inletHeight] Filter by metadata property "inlet height". Has to be a range with a start and end. (ex: `inletHeight[]=1&inletHeight[]=12`)
    *
    * @apiSuccess {string}   location      Location identifier
    * @apiSuccess {string}   country       Country containing location in 2 letter ISO code
@@ -62,6 +66,11 @@ module.exports = [
    * @apiSuccess {date}     lastUpdated   When was data last grabbed for this location (in UTC)?
    * @apiSuccess {array}    parameters    List of parameters present for this location
    * @apiSuccess {object}   coordinates   Coordinates of location
+   * @apiSuccess {object}   metadata             Metadata of this location if metadata flag was provided.
+   * @apiSuccess {string}   metadataVersion      Metadata version of this location if metadata flag was provided.
+   * @apiSuccess {string}   metadataUserId       Last metadata author if metadata flag was provided.
+   * @apiSuccess {string}   metadataUpdatedAt    Last metadata update time if metadata flag was provided.
+   * @apiSuccess {number}   metadataCompleteness Metadata completeness for this location if metadata flag was provided.
    * @apiSuccessExample {json} Success Response:
    * [
    *   {
