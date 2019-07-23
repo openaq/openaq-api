@@ -1,0 +1,1306 @@
+[
+  {
+    "id": "AD-2",
+    "country": "AD",
+    "city": "Escaldes-Engordany",
+    "cities": [
+      "Escaldes-Engordany"
+    ],
+    "location": "AD0942A",
+    "locations": [
+      "AD0942A"
+    ],
+    "sourceName": "EEA Andorra",
+    "sourceNames": [
+      "EEA Andorra"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 1.53914,
+      "latitude": 42.50969
+    },
+    "firstUpdated": "2017-09-13T21:00:00.000Z",
+    "lastUpdated": "2019-06-02T11:00:00.000Z",
+    "parameters": [
+      "co",
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "co",
+        "count": 11361
+      },
+      {
+        "parameter": "no2",
+        "count": 11116
+      },
+      {
+        "parameter": "o3",
+        "count": 11381
+      },
+      {
+        "parameter": "pm10",
+        "count": 11541
+      },
+      {
+        "parameter": "so2",
+        "count": 11184
+      }
+    ],
+    "count": 56583
+  },
+  {
+    "id": "AD-1",
+    "country": "AD",
+    "city": "Escaldes-Engordany",
+    "cities": [
+      "Escaldes-Engordany"
+    ],
+    "location": "AD0944A",
+    "locations": [
+      "AD0944A"
+    ],
+    "sourceName": "EEA Andorra",
+    "sourceNames": [
+      "EEA Andorra"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 1.56525,
+      "latitude": 42.51694
+    },
+    "firstUpdated": "2017-09-13T21:00:00.000Z",
+    "lastUpdated": "2019-06-02T11:00:00.000Z",
+    "parameters": [
+      "o3"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 11024
+      }
+    ],
+    "count": 11024
+  },
+  {
+    "id": "AD-3",
+    "country": "AD",
+    "city": "unused",
+    "cities": [
+      "unused"
+    ],
+    "location": "AD0945A",
+    "locations": [
+      "AD0945A"
+    ],
+    "sourceName": "EEA Andorra",
+    "sourceNames": [
+      "EEA Andorra"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 1.71699,
+      "latitude": 42.53488
+    },
+    "firstUpdated": "2017-09-14T00:00:00.000Z",
+    "lastUpdated": "2019-06-02T11:00:00.000Z",
+    "parameters": [
+      "o3"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 3961
+      }
+    ],
+    "count": 3961
+  },
+  {
+    "id": "AE-1",
+    "country": "AE",
+    "city": "Abu Dhabi",
+    "cities": [
+      "Abu Dhabi"
+    ],
+    "location": "US Diplomatic Post: Abu Dhabi",
+    "locations": [
+      "US Diplomatic Post: Abu Dhabi"
+    ],
+    "sourceName": "StateAir_AbuDhabi",
+    "sourceNames": [
+      "StateAir_AbuDhabi"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 54.43375,
+      "latitude": 24.4244
+    },
+    "firstUpdated": "2017-12-26T22:00:00.000Z",
+    "lastUpdated": "2019-06-02T11:00:00.000Z",
+    "parameters": [
+      "o3",
+      "pm25"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 9303
+      },
+      {
+        "parameter": "pm25",
+        "count": 10858
+      }
+    ],
+    "count": 20161
+  },
+  {
+    "id": "AE-2",
+    "country": "AE",
+    "city": "Dubai",
+    "cities": [
+      "Dubai"
+    ],
+    "location": "US Diplomatic Post: Dubai",
+    "locations": [
+      "US Diplomatic Post: Dubai"
+    ],
+    "sourceName": "StateAir_Dubai",
+    "sourceNames": [
+      "StateAir_Dubai"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 55.30917,
+      "latitude": 25.25848
+    },
+    "firstUpdated": "2018-07-27T15:00:00.000Z",
+    "lastUpdated": "2019-06-02T11:00:00.000Z",
+    "parameters": [
+      "o3",
+      "pm25"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 6138
+      },
+      {
+        "parameter": "pm25",
+        "count": 7007
+      }
+    ],
+    "count": 13145
+  },
+  {
+    "id": "AR-4",
+    "country": "AR",
+    "city": "Buenos Aires",
+    "cities": [
+      "Buenos Aires"
+    ],
+    "location": "CENTENARIO",
+    "locations": [
+      "CENTENARIO"
+    ],
+    "sourceName": "Buenos Aires",
+    "sourceNames": [
+      "Buenos Aires"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": -58.43194,
+      "latitude": -34.60638
+    },
+    "firstUpdated": "2017-08-10T16:00:00.000Z",
+    "lastUpdated": "2017-10-19T03:00:00.000Z",
+    "parameters": [
+      "co",
+      "no2",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "co",
+        "count": 1392
+      },
+      {
+        "parameter": "no2",
+        "count": 1392
+      },
+      {
+        "parameter": "pm10",
+        "count": 1392
+      }
+    ],
+    "count": 4176
+  },
+  {
+    "id": "AR-3",
+    "country": "AR",
+    "city": "Buenos Aires",
+    "cities": [
+      "Buenos Aires"
+    ],
+    "location": "CORDOBA",
+    "locations": [
+      "CORDOBA"
+    ],
+    "sourceName": "Buenos Aires",
+    "sourceNames": [
+      "Buenos Aires"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": -58.39165,
+      "latitude": -34.60442
+    },
+    "firstUpdated": "2017-08-10T16:00:00.000Z",
+    "lastUpdated": "2017-10-19T03:00:00.000Z",
+    "parameters": [
+      "co",
+      "no2",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "co",
+        "count": 1392
+      },
+      {
+        "parameter": "no2",
+        "count": 1392
+      },
+      {
+        "parameter": "pm10",
+        "count": 1392
+      }
+    ],
+    "count": 4176
+  },
+  {
+    "id": "AR-2",
+    "country": "AR",
+    "city": "Buenos Aires",
+    "cities": [
+      "Buenos Aires"
+    ],
+    "location": "LA BOCA",
+    "locations": [
+      "LA BOCA"
+    ],
+    "sourceName": "Buenos Aires",
+    "sourceNames": [
+      "Buenos Aires"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": -58.36555,
+      "latitude": -34.62527
+    },
+    "firstUpdated": "2017-08-10T16:00:00.000Z",
+    "lastUpdated": "2017-10-19T03:00:00.000Z",
+    "parameters": [
+      "co",
+      "no2",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "co",
+        "count": 1392
+      },
+      {
+        "parameter": "no2",
+        "count": 1392
+      },
+      {
+        "parameter": "pm10",
+        "count": 1392
+      }
+    ],
+    "count": 4176
+  },
+  {
+    "id": "AR-1",
+    "country": "AR",
+    "city": "Buenos Aires",
+    "cities": [
+      "Buenos Aires"
+    ],
+    "location": "SPARTAN - CITEDEF",
+    "locations": [
+      "SPARTAN - CITEDEF"
+    ],
+    "sourceName": "Spartan",
+    "sourceNames": [
+      "Spartan"
+    ],
+    "sourceType": "research",
+    "sourceTypes": [
+      "research"
+    ],
+    "coordinates": {
+      "longitude": -58.506,
+      "latitude": -34.56
+    },
+    "firstUpdated": "2014-10-02T12:00:00.000Z",
+    "lastUpdated": "2015-04-15T00:00:00.000Z",
+    "parameters": [
+      "pm25"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "pm25",
+        "count": 2448
+      }
+    ],
+    "count": 2448
+  },
+  {
+    "id": "AT-189",
+    "country": "AT",
+    "city": "Amt der Burgenl�ndischen Landesregierung",
+    "cities": [
+      "Amt der Burgenländischen Landesregierung",
+      "Amt der Burgenl�ndischen Landesregierung"
+    ],
+    "location": "Eisenstadt Laschoberstra�e",
+    "locations": [
+      "Eisenstadt Laschoberstraße",
+      "Eisenstadt Laschoberstra�e"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 16.52806,
+      "latitude": 47.84
+    },
+    "firstUpdated": "2017-01-11T13:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "co",
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "co",
+        "count": 3450
+      },
+      {
+        "parameter": "no2",
+        "count": 2970
+      },
+      {
+        "parameter": "o3",
+        "count": 2967
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      },
+      {
+        "parameter": "so2",
+        "count": 2963
+      }
+    ],
+    "count": 15315
+  },
+  {
+    "id": "AT-339",
+    "country": "AT",
+    "city": "Amt der Burgenl�ndischen Landesregierung",
+    "cities": [
+      "Amt der Burgenl�ndischen Landesregierung"
+    ],
+    "location": "Kittsee",
+    "locations": [
+      "Kittsee"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 17.07139,
+      "latitude": 48.10944
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2969
+      },
+      {
+        "parameter": "o3",
+        "count": 2963
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      },
+      {
+        "parameter": "so2",
+        "count": 2964
+      }
+    ],
+    "count": 11861
+  },
+  {
+    "id": "AT-317",
+    "country": "AT",
+    "city": "Amt der Burgenl�ndischen Landesregierung",
+    "cities": [
+      "Amt der Burgenl�ndischen Landesregierung"
+    ],
+    "location": "Obersch�tzen",
+    "locations": [
+      "Obersch�tzen"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 16.20808,
+      "latitude": 47.33941
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2971
+      },
+      {
+        "parameter": "o3",
+        "count": 2967
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      }
+    ],
+    "count": 8903
+  },
+  {
+    "id": "AT-307",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Arnoldstein Gailitz Waldsiedlungsstra�e",
+    "locations": [
+      "Arnoldstein Gailitz Waldsiedlungsstra�e"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 13.70541,
+      "latitude": 46.55693
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 2967
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      },
+      {
+        "parameter": "so2",
+        "count": 2959
+      }
+    ],
+    "count": 8891
+  },
+  {
+    "id": "AT-312",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Ebenthal Zell",
+    "locations": [
+      "Ebenthal Zell"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.39833,
+      "latitude": 46.61028
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "pm10",
+        "count": 2965
+      }
+    ],
+    "count": 2965
+  },
+  {
+    "id": "AT-347",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Gerlitzen Steinturm",
+    "locations": [
+      "Gerlitzen Steinturm"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 13.91449,
+      "latitude": 46.6954
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "o3"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 2967
+      }
+    ],
+    "count": 2967
+  },
+  {
+    "id": "AT-311",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klagenfurt A2 Nordumfahrung ",
+    "locations": [
+      "Klagenfurt A2 Nordumfahrung "
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.26889,
+      "latitude": 46.65278
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-02-24T10:00:00.000Z",
+    "parameters": [
+      "no2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 148
+      }
+    ],
+    "count": 148
+  },
+  {
+    "id": "AT-348",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klagenfurt A2 Nordumfahrung ",
+    "locations": [
+      "Klagenfurt A2 Nordumfahrung "
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.26611,
+      "latitude": 46.6525
+    },
+    "firstUpdated": "2017-02-24T11:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2822
+      }
+    ],
+    "count": 2822
+  },
+  {
+    "id": "AT-349",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klagenfurt A2 Nordumfahrung 2",
+    "locations": [
+      "Klagenfurt A2 Nordumfahrung 2"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.26611,
+      "latitude": 46.65306
+    },
+    "firstUpdated": "2017-06-30T00:00:00.000Z",
+    "lastUpdated": "2017-06-30T12:00:00.000Z",
+    "parameters": [
+      "no2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 13
+      }
+    ],
+    "count": 13
+  },
+  {
+    "id": "AT-252",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klagenfurt Kreuzbergl",
+    "locations": [
+      "Klagenfurt Kreuzbergl"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.28931,
+      "latitude": 46.62936
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "o3"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "o3",
+        "count": 2967
+      }
+    ],
+    "count": 2967
+  },
+  {
+    "id": "AT-268",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klagenfurt Sterneckstra�e",
+    "locations": [
+      "Klagenfurt Sterneckstra�e"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.29914,
+      "latitude": 46.62662
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2970
+      },
+      {
+        "parameter": "o3",
+        "count": 2967
+      },
+      {
+        "parameter": "pm10",
+        "count": 2963
+      },
+      {
+        "parameter": "so2",
+        "count": 2964
+      }
+    ],
+    "count": 11864
+  },
+  {
+    "id": "AT-176",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der Kärntner Landesregierung",
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klagenfurt V�lkermarkter Stra�e",
+    "locations": [
+      "Klagenfurt Völkermarkter Straße",
+      "Klagenfurt V�lkermarkter Stra�e"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.31806,
+      "latitude": 46.62556
+    },
+    "firstUpdated": "2017-01-11T13:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "co",
+      "no2",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "co",
+        "count": 3406
+      },
+      {
+        "parameter": "no2",
+        "count": 2970
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      }
+    ],
+    "count": 9341
+  },
+  {
+    "id": "AT-274",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Klein St. Paul - Pemberg",
+    "locations": [
+      "Klein St. Paul - Pemberg"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.529,
+      "latitude": 46.842
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2970
+      },
+      {
+        "parameter": "o3",
+        "count": 2968
+      },
+      {
+        "parameter": "pm10",
+        "count": 2964
+      },
+      {
+        "parameter": "so2",
+        "count": 2964
+      }
+    ],
+    "count": 11866
+  },
+  {
+    "id": "AT-269",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Obervellach Schulzentrum",
+    "locations": [
+      "Obervellach Schulzentrum"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 13.19583,
+      "latitude": 46.935
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2972
+      },
+      {
+        "parameter": "o3",
+        "count": 2968
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      }
+    ],
+    "count": 8905
+  },
+  {
+    "id": "AT-210",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Spittal a. d. Drau Oktoberstra�e",
+    "locations": [
+      "Spittal a. d. Drau Oktoberstra�e"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 13.49389,
+      "latitude": 46.80139
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2971
+      },
+      {
+        "parameter": "o3",
+        "count": 2936
+      },
+      {
+        "parameter": "pm10",
+        "count": 2961
+      }
+    ],
+    "count": 8868
+  },
+  {
+    "id": "AT-333",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "St. Andr� i. L. Volksschule",
+    "locations": [
+      "St. Andr� i. L. Volksschule"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.82222,
+      "latitude": 46.76389
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "pm10",
+        "count": 2959
+      }
+    ],
+    "count": 2959
+  },
+  {
+    "id": "AT-336",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "St. Georgen im Lavanttal - Herzogberg",
+    "locations": [
+      "St. Georgen im Lavanttal - Herzogberg"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.89167,
+      "latitude": 46.70833
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2969
+      },
+      {
+        "parameter": "o3",
+        "count": 2968
+      },
+      {
+        "parameter": "pm10",
+        "count": 2963
+      },
+      {
+        "parameter": "so2",
+        "count": 2964
+      }
+    ],
+    "count": 11864
+  },
+  {
+    "id": "AT-288",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "St. Veit a. d. Glan Hauptbahnhof",
+    "locations": [
+      "St. Veit a. d. Glan Hauptbahnhof"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.36583,
+      "latitude": 46.77111
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-05-11T19:00:00.000Z",
+    "parameters": [
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "pm10",
+        "count": 1579
+      }
+    ],
+    "count": 1579
+  },
+  {
+    "id": "AT-215",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Villach Tirolerbr�cke",
+    "locations": [
+      "Villach Tirolerbr�cke"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 13.84139,
+      "latitude": 46.6125
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2970
+      },
+      {
+        "parameter": "pm10",
+        "count": 2961
+      }
+    ],
+    "count": 5931
+  },
+  {
+    "id": "AT-260",
+    "country": "AT",
+    "city": "Amt der K�rntner Landesregierung",
+    "cities": [
+      "Amt der K�rntner Landesregierung"
+    ],
+    "location": "Wolfsberg Hauptschule",
+    "locations": [
+      "Wolfsberg Hauptschule"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.84361,
+      "latitude": 46.835
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10",
+      "so2"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2970
+      },
+      {
+        "parameter": "o3",
+        "count": 2952
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      },
+      {
+        "parameter": "so2",
+        "count": 2297
+      }
+    ],
+    "count": 11184
+  },
+  {
+    "id": "AT-322",
+    "country": "AT",
+    "city": "Amt der Nieder�sterreichischen Landesregierung",
+    "cities": [
+      "Amt der Nieder�sterreichischen Landesregierung"
+    ],
+    "location": "Amstetten",
+    "locations": [
+      "Amstetten"
+    ],
+    "sourceName": "EEA Austria",
+    "sourceNames": [
+      "EEA Austria"
+    ],
+    "sourceType": "government",
+    "sourceTypes": [
+      "government"
+    ],
+    "coordinates": {
+      "longitude": 14.87833,
+      "latitude": 48.12028
+    },
+    "firstUpdated": "2017-02-18T07:00:00.000Z",
+    "lastUpdated": "2017-07-20T19:00:00.000Z",
+    "parameters": [
+      "no2",
+      "o3",
+      "pm10"
+    ],
+    "countsByMeasurement": [
+      {
+        "parameter": "no2",
+        "count": 2972
+      },
+      {
+        "parameter": "o3",
+        "count": 2969
+      },
+      {
+        "parameter": "pm10",
+        "count": 2965
+      }
+    ],
+    "count": 8906
+  }
+]

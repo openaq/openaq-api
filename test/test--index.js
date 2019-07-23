@@ -26,6 +26,7 @@ describe('OpenAQ API', function () {
   require('./test-fetches.js');
   require('./test-latest.js');
   require('./test-locations.js');
+  require('./test-locations-metadata.js');
   require('./test-measurements.js');
   require('./test-parameters.js');
   require('./test-sources.js');

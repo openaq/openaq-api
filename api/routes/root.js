@@ -1,4 +1,6 @@
 'use strict';
+import config from 'config';
+const { strategy: authStrategy } = config.get('auth');
 
 // List all sub-level endpoints
 const rootRouteHandler = (request, reply) => {
@@ -36,6 +38,17 @@ module.exports = [
     path: '/ping',
     handler: (request, reply) => {
       return reply('pong');
+    }
+  },
+  // Auth
+  {
+    method: 'GET',
+    path: '/auth-check',
+    config: {
+      auth: authStrategy
+    },
+    handler: (request, reply) => {
+      return reply(request.auth);
     }
   }
 ];
