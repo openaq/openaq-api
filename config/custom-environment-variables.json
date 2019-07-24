@@ -23,5 +23,10 @@
   },
   "defaultRequestLimit": "REQUEST_LIMIT",
   "port": "PORT",
-  "webhookKey": "WEBHOOK_KEY"
+  "webhookKey": "WEBHOOK_KEY",
+  "auth": {
+    "strategy": "AUTH_STRATEGY",
+    "audience": "AUTH_AUDIENCE",
+    "issuer": "AUTH_ISSUER"
+  }
 }
