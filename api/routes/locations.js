@@ -39,7 +39,7 @@ module.exports = [
    * @apiGroup Locations
    * @apiDescription Provides a list of measurement locations and their meta data.
    *
-   * @apiParam {string or string[]} [city] Limit results by one or more cities (ex. `city[]=Lisboa&city[]=Porto`)
+   * @apiParam {string[]} [city] Limit results by one or more cities (ex. `city[]=Lisboa&city[]=Porto`)
    * @apiParam {string} [country] Limit results by one or more countries (ex. `country[]=NL&country[]=PL`)
    * @apiParam {string} [location] Limit results by one or more locations (ex. `location[]=Reja&location[]=Nijmegen-Graafseweg`)
    * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Limit to certain one or more parameters (ex. `parameter=pm25` or `parameter[]=co&parameter[]=pm25`)
