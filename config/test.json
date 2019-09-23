@@ -1,0 +1,16 @@
+{
+  "knex": {
+    "connection": {
+      "host": "localhost",
+      "user": "docker",
+      "port": "25432",
+      "password": "docker",
+      "database": "gis"
+    }
+  },
+  "port": 2000,
+  "webhookKey": "123",
+  "auth": {
+    "strategy": null
+  }
+}

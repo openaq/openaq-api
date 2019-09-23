@@ -1,0 +1,17 @@
+{
+  "knex": {
+    "connection": {
+      "host": "localhost",
+      "user": "docker",
+      "port": "15432",
+      "password": "docker",
+      "database": "gis"
+    }
+  },
+  "webhookKey": "123",
+  "auth": {
+    "strategy": "jwt",
+    "audience": "http://openaq.org",
+    "issuer": "https://dev-59haz2pg.auth0.com/"
+  }
+}

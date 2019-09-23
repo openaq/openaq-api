@@ -1,16 +1,17 @@
-module.exports = {
-  client: 'pg',
-  connection: {
-    host: process.env.PSQL_HOST || 'localhost',
-    user: process.env.PSQL_USER || '',
-    password: process.env.PSQL_PASSWORD || '',
-    database: process.env.PSQL_DATABASE || 'openaq-local'
-  },
-  pool: {
-    min: process.env.PSQL_POOL_MIN || 2,
-    max: process.env.PSQL_POOL_MAX || 10
-  },
-  migrations: {
-    tableName: 'migrations'
+require('babel-register');
+const config = require('config');
+
+// Get a mutable object from config
+const knexConfig = JSON.parse(JSON.stringify(config.get('knex')));
+
+// Fix pool min/max types when using environment variables
+if (knexConfig.pool) {
+  if (typeof knexConfig.pool.min !== 'undefined') {
+    knexConfig.pool.min = parseInt(knexConfig.pool.min);
   }
-};
+  if (typeof knexConfig.pool.max !== 'undefined') {
+    knexConfig.pool.max = parseInt(knexConfig.pool.max);
+  }
+}
+
+module.exports = Object.freeze(knexConfig);

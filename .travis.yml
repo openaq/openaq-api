@@ -1,7 +1,6 @@
-sudo: required
 language: node_js
 node_js:
-- '4.1'
+- '10'
 env:
   global:
   - STAGING_BRANCH=develop
@@ -18,7 +17,6 @@ before_install:
 - touch local.env
 install:
 - npm install apidoc
-- sudo pip install docker-compose
 script: npm run docker-test
 after_success:
 - ".build_scripts/build.sh"

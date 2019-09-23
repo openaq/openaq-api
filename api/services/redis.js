@@ -14,6 +14,7 @@ let redis = require('redis');
 let client;
 let updated;
 if (process.env.USE_REDIS) {
+  // eslint-disable-next-line
   console.info('Connecting to Redis');
   let redisURL = process.env.REDIS_URL || 'redis://localhost:6379';
 

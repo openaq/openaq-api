@@ -1,11 +1,17 @@
 'use strict';
-
-var Hapi = require('hapi');
-var GoodWinston = require('good-winston');
-var winston = require('winston');
+import Hapi from 'hapi';
+import GoodWinston from 'good-winston';
+import winston from 'winston';
 require('winston-papertrail').Papertrail;
-var os = require('os');
+import os from 'os';
+import jwksRsa from 'jwks-rsa';
+import hapiAuthJwt2 from 'hapi-auth-jwt2';
+import config from 'config';
+
+import { startAthenaSyncTask } from './athena-sync';
 import { getLastUpdated } from './redis';
+
+const athenaConfig = config.get('athena');
 
 var Server = function (port) {
   this.port = port;
@@ -29,6 +35,37 @@ Server.prototype.start = function (cb) {
   var self = this;
   self.hapi.connection({ port: this.port });
   self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
+
+  // Register auth servive
+  const { strategy, issuer, audience } = config.get('auth');
+  if (strategy === 'jwt') {
+    self.hapi.register({ register: hapiAuthJwt2 }, err => {
+      if (err) return cb(err);
+
+      self.hapi.auth.strategy('jwt', 'jwt', false, {
+        complete: true,
+        key: jwksRsa.hapiJwt2Key({
+          cache: true,
+          rateLimit: true,
+          jwksRequestsPerMinute: 5,
+          jwksUri: `${issuer}.well-known/jwks.json`
+        }),
+        verifyOptions: {
+          audience: audience,
+          issuer: issuer,
+          algorithms: ['RS256']
+        },
+        validateFunc: (decoded, request, callback) => {
+          if (decoded && decoded.sub) {
+            // Check if the user is active.
+            const isActive = decoded['http://openaq.org/user_metadata'].active;
+            return callback(null, isActive);
+          }
+          return callback(null, false);
+        }
+      });
+    });
+  }
 
   // Register hapi-router
   self.hapi.register({
@@ -186,6 +223,18 @@ Server.prototype.start = function (cb) {
     self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
     if (cb && typeof cb === 'function') {
       cb();
+    }
+
+    // Start Athena auto sync, if enabled
+    if (athenaConfig.syncEnabled === 'true') {
+      // Wait 5 minutes to start Athena auto sync.
+      // This is a precaution to avoid generate lots of Athena requests
+      // in case the server is restarting frequently due to
+      // some error.
+      setTimeout(() => {
+        // Schedule auto sync task
+        setInterval(startAthenaSyncTask, athenaConfig.syncInterval);
+      }, 5000);
     }
   });
 };

@@ -1,0 +1,29 @@
+{
+  "aggregationRefreshPeriod": 2700000,
+  "athena": {
+    "accessKeyId": "",
+    "secretAccessKey": "",
+    "fetchesTable": "fetches.fetches_realtime_gzipped",
+    "syncInterval": 3600000,
+    "syncEnabled": false
+  },
+  "knex": {
+    "client": "pg",
+    "pool": {
+      "min": 2,
+      "max": 10
+    },
+    "migrations": {
+      "tableName": "migrations"
+    }
+  },
+  "port": 3004,
+  "defaultRequestLimit": 100,
+  "maxRequestLimit": 10000,
+  "geoRadius": 2500,
+  "auth": {
+    "strategy": "jwt",
+    "audience": "",
+    "issuer": ""
+  }
+}
