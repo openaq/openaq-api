@@ -279,44 +279,34 @@ export const upsertCities = async function (athenaQueryResults) {
  * and will update the database, add new objects and updating metadata about
  * existing ones.
  */
-let updating = false;
 export const startAthenaSyncTask = async function () {
-  if (!updating) {
-    // Update flow control flag to avoid restart update unnecessarily
-    updating = true;
+    // Use a try/catch block to log errors without breaking the server process
+  try {
+    log('info', 'Athena sync task started.');
 
-    // Enclosed in a try/catch block to help control execution with
-    // "updating" variable.
-    try {
-      log('info', 'Athena sync task started.');
+    // Get locations metadata using Athena
+    const locationsMeta = await athena.query(queries.locationsMetadata);
 
-      // Get locations metadata using Athena
-      const locationsMeta = await athena.query(queries.locationsMetadata);
+    // Reconcile ids from existing locations
+    let locations = await reconcileLocationIds(locationsMeta);
 
-      // Reconcile ids from existing locations
-      let locations = await reconcileLocationIds(locationsMeta);
+    // Get parameters metadata from Athena
+    const parametersMeta = await athena.query(queries.parametersByLocation);
 
-      // Get parameters metadata from Athena
-      const parametersMeta = await athena.query(queries.parametersByLocation);
+    // Merge parameters to locations
+    locations = await applyParametersMeta(locations, parametersMeta);
 
-      // Merge parameters to locations
-      locations = await applyParametersMeta(locations, parametersMeta);
+    // Perform locations upsert
+    await upsertLocations(locations);
 
-      // Perform locations upsert
-      await upsertLocations(locations);
+    // Fetch cities data from Athena
+    const citiesMeta = await athena.query(queries.getCities);
 
-      // Fetch cities data from Athena
-      const citiesMeta = await athena.query(queries.getCities);
+    // Update available cities and related metadata
+    await upsertCities(citiesMeta);
 
-      // Update available cities and related metadata
-      await upsertCities(citiesMeta);
-
-      log('info', 'Athena sync task finished successfully.');
-    } catch (err) {
-      log('error', `Athena sync task error: ${err.message}`);
-    } finally {
-      // Update flow control flag
-      updating = false;
-    }
+    log('info', 'Athena sync task finished successfully.');
+  } catch (err) {
+    log('error', `Athena sync task error: ${err.message}`);
   }
 };

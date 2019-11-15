@@ -10,6 +10,7 @@ import config from 'config';
 
 import { startAthenaSyncTask } from './athena-sync';
 import { getLastUpdated } from './redis';
+import { delay } from '../../lib/utils';
 
 const athenaConfig = config.get('athena');
 
@@ -219,22 +220,27 @@ Server.prototype.start = function (cb) {
     if (err) throw err;
   });
 
-  self.hapi.start(function () {
+  self.hapi.start(async function () {
     self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
-    if (cb && typeof cb === 'function') {
-      cb();
-    }
 
     // Start Athena auto sync, if enabled
     if (athenaConfig.syncEnabled === 'true') {
       // Wait 5 minutes to start Athena auto sync.
-      // This is a precaution to avoid generate lots of Athena requests
-      // in case the server is restarting frequently due to
-      // some error.
-      setTimeout(() => {
-        // Schedule auto sync task
-        setInterval(startAthenaSyncTask, athenaConfig.syncInterval);
-      }, 5000);
+      // This is a precaution to avoid generating Athena requests
+      // when server is restarting frequently due to some error.
+      await delay(5 * 60 * 1000);
+
+      // Schedule a Athena sync task to be run in intervals, using a flag
+      // to avoid running concurrent queries.
+      let isUpdating = false;
+      const doAthenaSync = async function () {
+        if (!isUpdating) {
+          isUpdating = true;
+          await startAthenaSyncTask();
+          isUpdating = false;
+        }
+      };
+      setInterval(doAthenaSync, athenaConfig.syncInterval);
     }
   });
 };
