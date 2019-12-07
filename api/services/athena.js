@@ -18,6 +18,7 @@ class AthenaClient {
     this.submitQuery = pify(o.submitQuery.bind(o));
     this.getQueryResults = pify(o.getQueryResults.bind(o));
     this.fetchesTable = opts.fetchesTable;
+    this._client = o.athena;
   }
 
   _getAllResults (queryId) {
