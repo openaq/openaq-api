@@ -46,7 +46,7 @@
     "good-winston": "^1.0.0",
     "hapi": "^8.8.0",
     "hapi-auth-jwt2": "^7.4.1",
-    "hapi-paginate": "github:developmentseed/hapi-paginate#cfa9067d634e2bcef9a631ee71646cc9dbf2f5f7",
+    "hapi-paginate": "^0.4.1",
     "hapi-response-meta": "^0.3.0",
     "hapi-router": "^3.0.1",
     "hiredis": "^0.4.1",
