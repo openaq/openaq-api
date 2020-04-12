@@ -220,7 +220,7 @@ Server.prototype.start = function (cb) {
   });
 
   self.hapi.start(function () {
-    self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
+    self.hapi.log(['info'], 'Server running at: ' + self.hapi.app.url);
     if (cb && typeof cb === 'function') {
       cb();
     }
