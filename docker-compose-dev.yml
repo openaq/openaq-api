@@ -1,5 +1,19 @@
 version: "3"
 services:
+  api:
+    environment:
+    - API_URL=http://localhost:3004
+    - PSQL_HOST=postgresql-dev
+    - PSQL_PORT=5432
+    - PSQL_USER=docker
+    - PSQL_PASSWORD=docker
+    - PSQL_DATABASE=gis
+    ports:
+    - "3004:3004"
+    links:
+    - postgresql-dev
+    restart: always
+    command: npm run dev
   postgresql-dev:
     image: kartoza/postgis:9.4-2.1
     command: sh -c "echo \"host all all 0.0.0.0/0 md5\" >> /etc/postgresql/9.4/main/pg_hba.conf && /start-postgis.sh"
@@ -7,3 +21,10 @@ services:
       - "15432:5432"
     volumes:
       - ./data/postgresql-dev:/var/lib/postgresql
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@example.com
+      - PGADMIN_DEFAULT_PASSWORD=Secret111
