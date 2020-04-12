@@ -1,9 +1,9 @@
 {
   "knex": {
     "connection": {
-      "host": "localhost",
+      "host": "postgresql-dev",
       "user": "docker",
-      "port": "15432",
+      "port": "5432",
       "password": "docker",
       "database": "gis"
     }
