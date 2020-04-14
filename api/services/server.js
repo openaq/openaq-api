@@ -18,7 +18,8 @@ var Server = function (port) {
   this.hapi = new Hapi.Server({
     connections: {
       routes: {
-        cors: { credentials: true }
+        cors: { credentials: true },
+        log: true
       },
       router: {
         stripTrailingSlash: true
