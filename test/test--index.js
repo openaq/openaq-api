@@ -35,6 +35,6 @@ describe('OpenAQ API', function () {
   require('./test-webhooks.js');
 
   after(async function () {
-    await server.hapi.stop();
+    await server.hapi.stop(() => {});
   });
 });
