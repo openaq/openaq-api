@@ -36,7 +36,7 @@ Server.prototype.start = function (cb) {
   self.hapi.connection({ port: this.port });
   self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
 
-  // Register auth servive
+  // Register auth service
   const { strategy, issuer, audience } = config.get('auth');
   if (strategy === 'jwt') {
     self.hapi.register({ register: hapiAuthJwt2 }, err => {
@@ -110,6 +110,10 @@ Server.prototype.start = function (cb) {
     }
   }, function (err) {
     if (err) throw err;
+  });
+
+  self.hapi.register({
+    register: require('hapi-qs')
   });
 
   // Setup loggin
