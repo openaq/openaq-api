@@ -99,7 +99,7 @@ module.exports = [
           city: [Joi.string(), Joi.array().items(Joi.string())],
           coordinates: Joi.string()
             .regex(lonLatRegex)
-            .error(() => 'invalid coordinates pair'),
+            .error(new Error('invalid coordinates pair')),
           country: [Joi.string(), Joi.array().items(Joi.string())],
           has_geo: Joi.boolean(),
           limit: Joi.number()

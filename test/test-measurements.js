@@ -56,7 +56,7 @@ describe('/measurements', function () {
       expect(response.statusCode).to.equal(400);
 
       body = JSON.parse(body);
-      expect(body.message).to.equal('child "coordinates" fails because [invalid coordinates pair]');
+      expect(body.message).to.equal('invalid coordinates pair');
       done();
     });
   });
