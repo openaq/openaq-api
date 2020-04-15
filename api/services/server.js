@@ -50,34 +50,29 @@ Server.prototype.start = async function (cb) {
   // Register auth service
   const { strategy, issuer, audience } = config.get('auth');
   if (strategy === 'jwt') {
-    try {
-      await self.hapi.register({ plugin: hapiAuthJwt2 });
-    } catch (err) {
-      if (err) return cb(err);
-
-      self.hapi.auth.strategy('jwt', 'jwt', false, {
-        complete: true,
-        key: jwksRsa.hapiJwt2Key({
-          cache: true,
-          rateLimit: true,
-          jwksRequestsPerMinute: 5,
-          jwksUri: `${issuer}.well-known/jwks.json`
-        }),
-        verifyOptions: {
-          audience: audience,
-          issuer: issuer,
-          algorithms: ['RS256']
-        },
-        validateFunc: (decoded, request, callback) => {
-          if (decoded && decoded.sub) {
-            // Check if the user is active.
-            const isActive = decoded['http://openaq.org/user_metadata'].active;
-            return callback(null, isActive);
-          }
-          return callback(null, false);
+    await self.hapi.register({ plugin: hapiAuthJwt2 });
+    self.hapi.auth.strategy('jwt', 'jwt', {
+      complete: true,
+      key: jwksRsa.hapiJwt2Key({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `${issuer}.well-known/jwks.json`
+      }),
+      verifyOptions: {
+        audience: audience,
+        issuer: issuer,
+        algorithms: ['RS256']
+      },
+      validate: (decoded, request, callback) => {
+        if (decoded && decoded.sub) {
+          // Check if the user is active.
+          const isActive = decoded['http://openaq.org/user_metadata'].active;
+          return callback(null, isActive);
         }
-      });
-    }
+        return callback(null, false);
+      }
+    });
   }
 
   // Register hapi-router
