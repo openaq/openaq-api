@@ -1,5 +1,6 @@
 'use strict';
-import Hapi from 'hapi';
+import Hapi from '@hapi/hapi';
+import Boom from 'boom';
 import GoodWinston from 'good-winston';
 import winston from 'winston';
 require('winston-papertrail').Papertrail;
@@ -16,13 +17,23 @@ const athenaConfig = config.get('athena');
 var Server = function (port) {
   this.port = port;
   this.hapi = new Hapi.Server({
-    connections: {
-      routes: {
-        cors: { credentials: true },
-        log: true
-      },
-      router: {
-        stripTrailingSlash: true
+    port: port,
+    host: 'localhost',
+    router: {
+      stripTrailingSlash: true
+    },
+    routes: {
+      cors: { credentials: true },
+      validate: {
+        failAction: async (request, h, err) => {
+          if (process.env.NODE_ENV === 'default') {
+            // In prod, log a limited error message and throw the default Bad Request error.
+            throw Boom.badRequest('Invalid request payload input');
+          } else {
+            // During development, log and respond with the full error.
+            throw err;
+          }
+        }
       }
     },
     debug: process.env.API_DEBUG ? {
@@ -32,15 +43,16 @@ var Server = function (port) {
   });
 };
 
-Server.prototype.start = function (cb) {
+Server.prototype.start = async function (cb) {
   var self = this;
-  self.hapi.connection({ port: this.port });
   self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
 
   // Register auth service
   const { strategy, issuer, audience } = config.get('auth');
   if (strategy === 'jwt') {
-    self.hapi.register({ register: hapiAuthJwt2 }, err => {
+    try {
+      await self.hapi.register({ plugin: hapiAuthJwt2 });
+    } catch (err) {
       if (err) return cb(err);
 
       self.hapi.auth.strategy('jwt', 'jwt', false, {
@@ -65,22 +77,20 @@ Server.prototype.start = function (cb) {
           return callback(null, false);
         }
       });
-    });
+    }
   }
 
   // Register hapi-router
-  self.hapi.register({
-    register: require('hapi-router'),
+  await self.hapi.register({
+    plugin: require('hapi-router'),
     options: {
       routes: './api/routes/*.js'
     }
-  }, function (err) {
-    if (err) throw err;
   });
 
   // Register hapi-response-meta
-  self.hapi.register({
-    register: require('hapi-response-meta'),
+  await self.hapi.register({
+    plugin: require('hapi-response-meta'),
     options: {
       content: {
         name: 'openaq-api',
@@ -89,13 +99,11 @@ Server.prototype.start = function (cb) {
       },
       excludeFormats: ['csv']
     }
-  }, function (err) {
-    if (err) throw err;
   });
 
   // Register hapi-paginate
-  self.hapi.register({
-    register: require('hapi-paginate'),
+  await self.hapi.register({
+    plugin: require('hapi-paginate'),
     options: {
       limit: 100,
       excludeFormats: ['csv'],
@@ -109,12 +117,10 @@ Server.prototype.start = function (cb) {
         '/v1/sources'
       ]
     }
-  }, function (err) {
-    if (err) throw err;
   });
 
-  self.hapi.register({
-    register: require('hapi-qs')
+  await self.hapi.register({
+    plugin: require('hapi-qs')
   });
 
   // Setup loggin
@@ -140,67 +146,58 @@ Server.prototype.start = function (cb) {
     });
   }
   var options = {
-    reporters: [
-      new GoodWinston({
-        request: '*',
-        response: '*',
-        log: '*',
-        error: '*'
-      }, logger)
-    ]
+    reporters: {
+      myReporter: [
+        new GoodWinston({ winston: logger })
+      ]
+    }
   };
 
-  self.hapi.register({
-    register: require('good'),
+  await self.hapi.register({
+    plugin: require('good'),
     options: options
-  }, function (err) {
-    if (err) throw err;
   });
 
   // Handle dynamic CloudFront caching
   var CloudFrontPlugin = {
-    register: function (server, options, next) {
-      server.ext('onPreHandler', function (request, reply) {
+    name: 'CloudFrontPlugin',
+    version: '0.0.2',
+    register: function (server, options) {
+      server.ext('onPreHandler', function (request, h) {
         // Don't catch webhooks or this whole thing will never update
         if (request.route.path.indexOf('webhooks') !== -1) {
-          return reply.continue();
+          return h.continue;
         }
 
         // Return 304 if If-Modified-Since is newer than our last updated time
         try {
           let ifModifiedSince = request.headers['if-modified-since'];
           if (!ifModifiedSince) {
-            return reply.continue();
+            return h.continue;
           }
 
           if (!getLastUpdated() || new Date(ifModifiedSince) < new Date(getLastUpdated())) {
-            return reply.continue();
+            return h.continue;
           } else {
-            const response = reply('use cache');
+            const response = h.response('use cache');
             response.statusCode = 304;
             return response;
           }
         } catch (e) {
           // If anything went wrong, just continue like normal
-          return reply.continue();
+          return h.continue;
         }
       });
-
-      next();
     }
   };
-  CloudFrontPlugin.register.attributes = {
-    name: 'CloudFrontPlugin',
-    version: '0.0.1'
-  };
-  self.hapi.register(CloudFrontPlugin, function (err) {
-    if (err) throw err;
-  });
+  await self.hapi.register(CloudFrontPlugin);
 
-  // Handle dynamic CloudFront caching
+  // // Handle dynamic CloudFront caching
   var LastModifiedPlugin = {
-    register: function (server, options, next) {
-      server.ext('onPreResponse', function (request, reply) {
+    name: 'LastModifiedPlugin',
+    version: '0.0.2',
+    register: function (server, options) {
+      server.ext('onPreResponse', function (request, h) {
         // Add the LastModified header
         if (getLastUpdated && getLastUpdated()) {
           try {
@@ -210,38 +207,29 @@ Server.prototype.start = function (cb) {
           }
         }
 
-        reply.continue();
+        return h.continue;
       });
-
-      next();
     }
   };
-  LastModifiedPlugin.register.attributes = {
-    name: 'LastModifiedPlugin',
-    version: '0.0.1'
-  };
-  self.hapi.register(LastModifiedPlugin, function (err) {
-    if (err) throw err;
-  });
+  await self.hapi.register(LastModifiedPlugin);
 
-  self.hapi.start(function () {
-    self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
-    if (cb && typeof cb === 'function') {
-      cb();
-    }
+  await self.hapi.start();
+  self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
+  if (cb && typeof cb === 'function') {
+    cb();
+  }
 
-    // Start Athena auto sync, if enabled
-    if (athenaConfig.syncEnabled === 'true') {
-      // Wait 5 minutes to start Athena auto sync.
-      // This is a precaution to avoid generate lots of Athena requests
-      // in case the server is restarting frequently due to
-      // some error.
-      setTimeout(() => {
-        // Schedule auto sync task
-        setInterval(startAthenaSyncTask, athenaConfig.syncInterval);
-      }, 5000);
-    }
-  });
+  // Start Athena auto sync, if enabled
+  if (athenaConfig.syncEnabled === 'true') {
+    // Wait 5 minutes to start Athena auto sync.
+    // This is a precaution to avoid generate lots of Athena requests
+    // in case the server is restarting frequently due to
+    // some error.
+    setTimeout(() => {
+      // Schedule auto sync task
+      setInterval(startAthenaSyncTask, athenaConfig.syncInterval);
+    }, 5000);
+  }
 };
 
 module.exports = Server;
