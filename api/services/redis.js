@@ -7,11 +7,14 @@
 * via pubsub model.
 */
 
+import { flushLocalCache } from './localCache';
+
 let redis = require('redis');
 
 let client;
 let updated;
 if (process.env.USE_REDIS) {
+  // eslint-disable-next-line
   console.info('Connecting to Redis');
   let redisURL = process.env.REDIS_URL || 'redis://localhost:6379';
 
@@ -27,7 +30,11 @@ if (process.env.USE_REDIS) {
       try {
         message = JSON.parse(message);
         if (message.type === 'DATABASE_UPDATED') {
+          // Set last updated time
           updated = message.updatedAt;
+
+          // Flush local cache since results are now out of date
+          flushLocalCache();
         }
       } catch (e) {
         // Nothing needed for now

@@ -1,0 +1,830 @@
+[
+  { "country": "GB", "name": "London", "locations": "19", "count": "1010707" },
+  { "country": "GB", "name": "Sandy", "locations": "1", "count": "49944" },
+  { "country": "GB", "name": "Horley", "locations": "1", "count": "18074" },
+  { "country": "GB", "name": "Mace Head", "locations": "1", "count": "17474" },
+  { "country": "GB", "name": "Eastbourne", "locations": "1", "count": "44159" },
+  {
+    "country": "GB",
+    "name": "Auchencorth",
+    "locations": "1",
+    "count": "59758"
+  },
+  {
+    "country": "GB",
+    "name": "Grangemouth",
+    "locations": "2",
+    "count": "91721"
+  },
+  {
+    "country": "GB",
+    "name": "Chesterfield",
+    "locations": "2",
+    "count": "117119"
+  },
+  { "country": "GB", "name": "Derby", "locations": "1", "count": "12461" },
+  { "country": "GB", "name": "Leicester", "locations": "2", "count": "102740" },
+  {
+    "country": "GB",
+    "name": "Nottingham",
+    "locations": "2",
+    "count": "137639"
+  },
+  { "country": "GB", "name": "Cambridge", "locations": "1", "count": "17239" },
+  { "country": "GB", "name": "Norwich", "locations": "1", "count": "78506" },
+  { "country": "GB", "name": "St Osyth", "locations": "1", "count": "41137" },
+  { "country": "GB", "name": "Wicken Fen", "locations": "1", "count": "59850" },
+  {
+    "country": "GB",
+    "name": "Fort William",
+    "locations": "1",
+    "count": "40401"
+  },
+  { "country": "GB", "name": "Inverness", "locations": "1", "count": "22074" },
+  { "country": "GB", "name": "Lerwick", "locations": "1", "count": "18377" },
+  { "country": "GB", "name": "Newcastle", "locations": "2", "count": "96985" },
+  {
+    "country": "GB",
+    "name": "Stockton-on-Tees",
+    "locations": "2",
+    "count": "93444"
+  },
+  { "country": "GB", "name": "Sunderland", "locations": "2", "count": "71765" },
+  { "country": "GB", "name": "Aberdeen", "locations": "3", "count": "121176" },
+  { "country": "GB", "name": "Aston Hill", "locations": "1", "count": "40564" },
+  { "country": "GB", "name": "Wrexham", "locations": "1", "count": "35513" },
+  {
+    "country": "GB",
+    "name": "North West & Merseyside",
+    "locations": "2",
+    "count": "40048"
+  },
+  { "country": "GB", "name": "Blackburn", "locations": "1", "count": "18239" },
+  { "country": "GB", "name": "Blackpool", "locations": "1", "count": "59134" },
+  { "country": "GB", "name": "Glazebury", "locations": "1", "count": "38323" },
+  {
+    "country": "GB",
+    "name": "Manchester",
+    "locations": "3",
+    "count": "172393"
+  },
+  { "country": "GB", "name": "Preston", "locations": "1", "count": "61497" },
+  { "country": "GB", "name": "Widnes", "locations": "1", "count": "9406" },
+  { "country": "GB", "name": "Belfast", "locations": "2", "count": "139704" },
+  { "country": "GB", "name": "Derry", "locations": "2", "count": "95213" },
+  { "country": "GB", "name": "Dumfries", "locations": "1", "count": "15575" },
+  {
+    "country": "GB",
+    "name": "Eskdalemuir",
+    "locations": "1",
+    "count": "40505"
+  },
+  { "country": "GB", "name": "Brighton", "locations": "1", "count": "40171" },
+  { "country": "GB", "name": "Chatham", "locations": "1", "count": "57841" },
+  {
+    "country": "GB",
+    "name": "Lullington Heath",
+    "locations": "1",
+    "count": "59363"
+  },
+  { "country": "GB", "name": "Oxford", "locations": "2", "count": "68314" },
+  { "country": "GB", "name": "Portsmouth", "locations": "1", "count": "71527" },
+  { "country": "GB", "name": "Rochester", "locations": "1", "count": "97055" },
+  { "country": "GB", "name": "South East", "locations": "1", "count": "19055" },
+  { "country": "GB", "name": "Newport", "locations": "1", "count": "44901" },
+  { "country": "GB", "name": "Barnstaple", "locations": "1", "count": "38371" },
+  { "country": "GB", "name": "Bath", "locations": "1", "count": "16785" },
+  {
+    "country": "GB",
+    "name": "Bournemouth",
+    "locations": "1",
+    "count": "48476"
+  },
+  { "country": "GB", "name": "Bristol", "locations": "1", "count": "78281" },
+  { "country": "GB", "name": "Charlton", "locations": "1", "count": "40858" },
+  { "country": "GB", "name": "South West", "locations": "1", "count": "19638" },
+  { "country": "GB", "name": "Exeter", "locations": "1", "count": "37208" },
+  { "country": "GB", "name": "Honiton", "locations": "1", "count": "20751" },
+  { "country": "GB", "name": "Plymouth", "locations": "2", "count": "86530" },
+  {
+    "country": "GB",
+    "name": "Birmingham",
+    "locations": "3",
+    "count": "100638"
+  },
+  {
+    "country": "GB",
+    "name": "Leamington Spa",
+    "locations": "2",
+    "count": "141078"
+  },
+  {
+    "country": "GB",
+    "name": "Stoke-on-Trent",
+    "locations": "2",
+    "count": "101481"
+  },
+  { "country": "GB", "name": "Willenhall", "locations": "1", "count": "42304" },
+  { "country": "GB", "name": "Yorkshire", "locations": "1", "count": "35910" },
+  { "country": "GB", "name": "Leeds", "locations": "2", "count": "162039" },
+  { "country": "GB", "name": "Scunthorpe", "locations": "1", "count": "49819" },
+  {
+    "country": "GB",
+    "name": "Yorkshire & Humberside",
+    "locations": "1",
+    "count": "20751"
+  },
+  { "country": "GB", "name": "Sheffield", "locations": "2", "count": "97577" },
+  { "country": "GB", "name": "Oldbury", "locations": "1", "count": "13610" },
+  {
+    "country": "GB",
+    "name": "Great Dun Fell",
+    "locations": "1",
+    "count": "5640"
+  },
+  {
+    "country": "GB",
+    "name": "Stanford-le-Hope",
+    "locations": "1",
+    "count": "57403"
+  },
+  {
+    "country": "GB",
+    "name": "Port Talbot",
+    "locations": "1",
+    "count": "100413"
+  },
+  {
+    "country": "GB",
+    "name": "Storrington",
+    "locations": "1",
+    "count": "12500"
+  },
+  {
+    "country": "GB",
+    "name": "Bush Estate",
+    "locations": "1",
+    "count": "41155"
+  },
+  { "country": "GB", "name": "Edinburgh", "locations": "1", "count": "96544" },
+  { "country": "GB", "name": "Glasgow", "locations": "4", "count": "181456" },
+  {
+    "country": "GB",
+    "name": "Central Scotland",
+    "locations": "1",
+    "count": "37394"
+  },
+  { "country": "GB", "name": "Ladybower", "locations": "1", "count": "59688" },
+  {
+    "country": "GB",
+    "name": "Market Harborough",
+    "locations": "1",
+    "count": "40756"
+  },
+  { "country": "GB", "name": "Luton", "locations": "1", "count": "15847" },
+  { "country": "GB", "name": "Sibton", "locations": "1", "count": "20314" },
+  { "country": "GB", "name": "Weybourne", "locations": "1", "count": "20816" },
+  {
+    "country": "GB",
+    "name": "Strath Vaich",
+    "locations": "1",
+    "count": "13710"
+  },
+  { "country": "GB", "name": "Billingham", "locations": "1", "count": "17136" },
+  {
+    "country": "GB",
+    "name": "Middlesbrough",
+    "locations": "1",
+    "count": "88525"
+  },
+  { "country": "GB", "name": "Bury", "locations": "1", "count": "36718" },
+  { "country": "GB", "name": "Carlisle", "locations": "1", "count": "56071" },
+  { "country": "GB", "name": "Liverpool", "locations": "3", "count": "163818" },
+  {
+    "country": "GB",
+    "name": "Crompton Way   OL2 8AQ",
+    "locations": "1",
+    "count": "14868"
+  },
+  { "country": "GB", "name": "Warrington", "locations": "1", "count": "58389" },
+  { "country": "GB", "name": "Wigan", "locations": "1", "count": "57694" },
+  { "country": "GB", "name": "Armagh", "locations": "1", "count": "38094" },
+  { "country": "GB", "name": "Ballymena", "locations": "1", "count": "30509" },
+  {
+    "country": "GB",
+    "name": "Lough Navar",
+    "locations": "1",
+    "count": "43112"
+  },
+  { "country": "GB", "name": "Peebles", "locations": "1", "count": "41014" },
+  { "country": "GB", "name": "Canterbury", "locations": "1", "count": "34481" },
+  {
+    "country": "GB",
+    "name": "Stockbridge",
+    "locations": "1",
+    "count": "99781"
+  },
+  { "country": "GB", "name": "Reading", "locations": "2", "count": "96210" },
+  {
+    "country": "GB",
+    "name": "Southampton",
+    "locations": "2",
+    "count": "113866"
+  },
+  { "country": "GB", "name": "Cardiff", "locations": "2", "count": "140982" },
+  { "country": "GB", "name": "Chepstow", "locations": "1", "count": "58992" },
+  { "country": "GB", "name": "Swfrryd", "locations": "1", "count": "16890" },
+  { "country": "GB", "name": "Narberth", "locations": "1", "count": "85133" },
+  { "country": "GB", "name": "Swansea", "locations": "1", "count": "57769" },
+  { "country": "GB", "name": "Saltash", "locations": "1", "count": "39085" },
+  {
+    "country": "GB",
+    "name": "Yarner Wood",
+    "locations": "1",
+    "count": "41234"
+  },
+  {
+    "country": "GB",
+    "name": "West Midlands",
+    "locations": "2",
+    "count": "64838"
+  },
+  { "country": "GB", "name": "Coventry", "locations": "1", "count": "62619" },
+  { "country": "GB", "name": "Leominster", "locations": "1", "count": "30897" },
+  { "country": "GB", "name": "Barnsley", "locations": "1", "count": "61629" },
+  { "country": "GB", "name": "Bradford", "locations": "1", "count": "20052" },
+  { "country": "GB", "name": "Doncaster", "locations": "1", "count": "17052" },
+  {
+    "country": "GB",
+    "name": "High Muffles",
+    "locations": "1",
+    "count": "39334"
+  },
+  { "country": "GB", "name": "Hull", "locations": "1", "count": "83557" },
+  { "country": "GB", "name": "York", "locations": "2", "count": "111462" },
+  { "country": "GB", "name": "Dumbarton", "locations": "1", "count": "14357" },
+  { "country": "GB", "name": "Lincoln", "locations": "1", "count": "10363" },
+  { "country": "GB", "name": "Bottesford", "locations": "1", "count": "4044" },
+  {
+    "country": "GB",
+    "name": "Northampton",
+    "locations": "1",
+    "count": "13769"
+  },
+  { "country": "BR", "name": "Americana", "locations": "1", "count": "2862" },
+  { "country": "BR", "name": "Araçatuba", "locations": "1", "count": "3198" },
+  { "country": "BR", "name": "Campinas", "locations": "3", "count": "14212" },
+  { "country": "BR", "name": "Catanduva", "locations": "1", "count": "4714" },
+  { "country": "BR", "name": "Cubatão", "locations": "3", "count": "16883" },
+  { "country": "BR", "name": "Guarulhos", "locations": "2", "count": "14032" },
+  { "country": "BR", "name": "Marília", "locations": "1", "count": "4448" },
+  { "country": "BR", "name": "Santo André", "locations": "2", "count": "6184" },
+  {
+    "country": "BR",
+    "name": "São José Do Rio Preto",
+    "locations": "1",
+    "count": "6423"
+  },
+  { "country": "BR", "name": "Santos", "locations": "2", "count": "12133" },
+  { "country": "BR", "name": "Sorocaba", "locations": "1", "count": "3773" },
+  { "country": "BR", "name": "Diadema", "locations": "1", "count": "143" },
+  { "country": "BR", "name": "Jacareí", "locations": "1", "count": "2888" },
+  { "country": "BR", "name": "Jundiaí", "locations": "1", "count": "4846" },
+  {
+    "country": "BR",
+    "name": "Presidente Prudente",
+    "locations": "1",
+    "count": "3708"
+  },
+  { "country": "BR", "name": "Taubaté", "locations": "1", "count": "9328" },
+  { "country": "BR", "name": "Bauru", "locations": "1", "count": "4296" },
+  {
+    "country": "BR",
+    "name": "Cerqueira César",
+    "locations": "1",
+    "count": "6304"
+  },
+  { "country": "BR", "name": "São Paulo", "locations": "14", "count": "67589" },
+  { "country": "BR", "name": "Limeira", "locations": "1", "count": "4795" },
+  { "country": "BR", "name": "Sao Paulo", "locations": "10", "count": "62035" },
+  { "country": "BR", "name": "Osasco", "locations": "1", "count": "6242" },
+  { "country": "BR", "name": "Paulínia", "locations": "1", "count": "6281" },
+  { "country": "BR", "name": "Piracicaba", "locations": "1", "count": "5805" },
+  {
+    "country": "BR",
+    "name": "São Bernardo do Campo",
+    "locations": "2",
+    "count": "7865"
+  },
+  {
+    "country": "BR",
+    "name": "Santa Gertrudes",
+    "locations": "1",
+    "count": "978"
+  },
+  {
+    "country": "BR",
+    "name": "Taboão da Serra",
+    "locations": "1",
+    "count": "4693"
+  },
+  { "country": "BR", "name": "Tatuí", "locations": "1", "count": "4648" },
+  { "country": "BR", "name": "Araraquara", "locations": "1", "count": "4721" },
+  { "country": "BR", "name": "Jaú", "locations": "1", "count": "4701" },
+  { "country": "BR", "name": "Mauá", "locations": "1", "count": "3539" },
+  { "country": "NL", "name": "Zegveld", "locations": "1", "count": "94573" },
+  { "country": "NL", "name": "Nijmegen", "locations": "2", "count": "189172" },
+  { "country": "NL", "name": "Ridderkerk", "locations": "1", "count": "89460" },
+  {
+    "country": "NL",
+    "name": "Amsterdam",
+    "locations": "14",
+    "count": "799055"
+  },
+  { "country": "NL", "name": "Schiedam", "locations": "2", "count": "89465" },
+  { "country": "NL", "name": "Oude Meer", "locations": "2", "count": "44734" },
+  {
+    "country": "NL",
+    "name": "Maastricht",
+    "locations": "3",
+    "count": "156426"
+  },
+  {
+    "country": "NL",
+    "name": "Wijnandsrade",
+    "locations": "1",
+    "count": "82523"
+  },
+  {
+    "country": "NL",
+    "name": "Rotterdam Zuid",
+    "locations": "2",
+    "count": "114946"
+  },
+  { "country": "NL", "name": "Rotterdam", "locations": "3", "count": "185334" },
+  { "country": "NL", "name": "Utrecht", "locations": "5", "count": "212835" },
+  { "country": "NL", "name": "Botlek", "locations": "1", "count": "11470" },
+  {
+    "country": "NL",
+    "name": "Hoek v. Holland",
+    "locations": "1",
+    "count": "89462"
+  },
+  { "country": "NL", "name": "Zaandam", "locations": "1", "count": "89463" },
+  { "country": "NL", "name": "Vredepeel", "locations": "1", "count": "94446" },
+  { "country": "NL", "name": "Hilversum", "locations": "2", "count": "61952" },
+  { "country": "NL", "name": "Hoofddorp", "locations": "2", "count": "67093" },
+  { "country": "NL", "name": "Huijbergen", "locations": "1", "count": "70934" },
+  { "country": "NL", "name": "De Zilk", "locations": "1", "count": "118243" },
+  { "country": "NL", "name": "Den Haag", "locations": "4", "count": "212820" },
+  { "country": "NL", "name": "Posterholt", "locations": "1", "count": "47280" },
+  {
+    "country": "NL",
+    "name": "Valthermond",
+    "locations": "1",
+    "count": "70945"
+  },
+  {
+    "country": "NL",
+    "name": "Staalstraat",
+    "locations": "1",
+    "count": "15620"
+  },
+  {
+    "country": "NL",
+    "name": "Kollumerwaard",
+    "locations": "1",
+    "count": "114962"
+  },
+  { "country": "NL", "name": "Balk", "locations": "1", "count": "70946" },
+  {
+    "country": "NL",
+    "name": "Reijndersweg",
+    "locations": "1",
+    "count": "15620"
+  },
+  { "country": "NL", "name": "Leiden", "locations": "1", "count": "1620" },
+  { "country": "NL", "name": "Zaanstad", "locations": "1", "count": "29113" },
+  {
+    "country": "NL",
+    "name": "Beverwijk West",
+    "locations": "1",
+    "count": "29121"
+  },
+  { "country": "NL", "name": "Cabauw", "locations": "1", "count": "141893" },
+  { "country": "NL", "name": "Geleen", "locations": "2", "count": "89458" },
+  { "country": "NL", "name": "Maassluis", "locations": "1", "count": "89467" },
+  { "country": "NL", "name": "Hemkade", "locations": "1", "count": "15621" },
+  { "country": "NL", "name": "Heerlen", "locations": "2", "count": "165525" },
+  { "country": "NL", "name": "Veldhoven", "locations": "1", "count": "94583" },
+  {
+    "country": "NL",
+    "name": "Rotterdam Noord ",
+    "locations": "1",
+    "count": "67096"
+  },
+  { "country": "NL", "name": "Fijnaart", "locations": "1", "count": "47293" },
+  {
+    "country": "NL",
+    "name": "Biddinghuizen",
+    "locations": "2",
+    "count": "111485"
+  },
+  { "country": "NL", "name": "Pernis", "locations": "1", "count": "7611" },
+  {
+    "country": "NL",
+    "name": "Badhoevedorp",
+    "locations": "2",
+    "count": "89224"
+  },
+  { "country": "NL", "name": "Eindhoven", "locations": "2", "count": "118225" },
+  { "country": "NL", "name": "Dordrecht", "locations": "1", "count": "70937" },
+  { "country": "NL", "name": "Zierikzee", "locations": "1", "count": "47280" },
+  {
+    "country": "NL",
+    "name": "Wieringerwerf",
+    "locations": "1",
+    "count": "94590"
+  },
+  { "country": "NL", "name": "Hoogvliet", "locations": "1", "count": "89461" },
+  { "country": "NL", "name": "IJmuiden", "locations": "2", "count": "103932" },
+  {
+    "country": "NL",
+    "name": "Biest Houtakker",
+    "locations": "1",
+    "count": "94585"
+  },
+  {
+    "country": "NL",
+    "name": "Vlaardingen",
+    "locations": "1",
+    "count": "82605"
+  },
+  {
+    "country": "NL",
+    "name": "Hellendoorn",
+    "locations": "1",
+    "count": "70948"
+  },
+  { "country": "NL", "name": "Laren", "locations": "1", "count": "41306" },
+  { "country": "NL", "name": "Eibergen", "locations": "1", "count": "94603" },
+  {
+    "country": "NL",
+    "name": "Wijk aan Zee",
+    "locations": "2",
+    "count": "111375"
+  },
+  { "country": "NL", "name": "Westmaas", "locations": "1", "count": "70934" },
+  { "country": "NL", "name": "Barsbeek", "locations": "1", "count": "70947" },
+  { "country": "NL", "name": "Philippine", "locations": "1", "count": "94589" },
+  { "country": "NL", "name": "Groningen", "locations": "2", "count": "141894" },
+  { "country": "NL", "name": "Haarlem", "locations": "1", "count": "70941" },
+  { "country": "NL", "name": "Wekerom", "locations": "1", "count": "94599" },
+  { "country": "NL", "name": "Breda", "locations": "2", "count": "165530" },
+  { "country": "NL", "name": "Breukelen", "locations": "1", "count": "94594" },
+  {
+    "country": "NL",
+    "name": "Horst a/d Maas",
+    "locations": "1",
+    "count": "44743"
+  },
+  { "country": "NL", "name": "Beverwijk", "locations": "1", "count": "15620" },
+  { "country": "NL", "name": "Enschede", "locations": "2", "count": "23653" },
+  { "country": "NL", "name": "De Rips", "locations": "2", "count": "4110" },
+  { "country": "NL", "name": "De Rijp", "locations": "2", "count": "22374" },
+  { "country": "NL", "name": "Velsen", "locations": "2", "count": "58242" },
+  { "country": "NL", "name": "Ijmuiden", "locations": "1", "count": "7445" },
+  { "country": "PL", "name": "Belsk", "locations": "1", "count": "32105" },
+  { "country": "PL", "name": "Siedlce", "locations": "2", "count": "56830" },
+  { "country": "PL", "name": "Warszawa", "locations": "11", "count": "199531" },
+  { "country": "PL", "name": "Piastów", "locations": "2", "count": "40524" },
+  { "country": "PL", "name": "Bydgoszcz", "locations": "2", "count": "9563" },
+  { "country": "PL", "name": "Belsk Duży", "locations": "1", "count": "3272" },
+  { "country": "PL", "name": "Toruń", "locations": "4", "count": "12873" },
+  { "country": "PL", "name": "Inowrocław", "locations": "1", "count": "2530" },
+  { "country": "PL", "name": "Włocławek", "locations": "1", "count": "4805" },
+  { "country": "PL", "name": "Ciechocinek", "locations": "1", "count": "2367" },
+  { "country": "PL", "name": "Koniczynka", "locations": "1", "count": "1411" },
+  { "country": "PL", "name": "Legnica", "locations": "1", "count": "5154" },
+  { "country": "PL", "name": "Dzierżoniów", "locations": "1", "count": "2645" },
+  { "country": "PL", "name": "Działoszyn", "locations": "1", "count": "2611" },
+  { "country": "PL", "name": "Czerniawa", "locations": "1", "count": "2452" },
+  { "country": "PL", "name": "Kłodzko", "locations": "1", "count": "3525" },
+  { "country": "PL", "name": "Oława", "locations": "1", "count": "2205" },
+  { "country": "PL", "name": "Nowa Ruda", "locations": "1", "count": "508" },
+  {
+    "country": "PL",
+    "name": "Ząbkowice Śląskie",
+    "locations": "1",
+    "count": "2647"
+  },
+  { "country": "PL", "name": "Karpacz", "locations": "1", "count": "887" },
+  {
+    "country": "PL",
+    "name": "Jelenia Góra",
+    "locations": "1",
+    "count": "6191"
+  },
+  { "country": "PL", "name": "Pabianice", "locations": "1", "count": "3553" },
+  { "country": "PL", "name": "Zgierz", "locations": "1", "count": "4253" },
+  { "country": "PL", "name": "Parzniewice", "locations": "1", "count": "2629" },
+  {
+    "country": "PL",
+    "name": "Piotrków Trybunalski",
+    "locations": "1",
+    "count": "4360"
+  },
+  { "country": "PL", "name": "Opole", "locations": "2", "count": "3541" },
+  { "country": "PL", "name": "Gołdap", "locations": "1", "count": "4416" },
+  { "country": "PL", "name": "Nisko", "locations": "1", "count": "4441" },
+  { "country": "PL", "name": "Jasło", "locations": "1", "count": "3546" },
+  { "country": "PL", "name": "Diabla Góra", "locations": "1", "count": "2651" },
+  { "country": "PL", "name": "Piła", "locations": "1", "count": "3476" },
+  { "country": "PL", "name": "Kalisz", "locations": "1", "count": "6124" },
+  { "country": "PL", "name": "Szczecinek", "locations": "1", "count": "2648" },
+  { "country": "PL", "name": "Widuchowa", "locations": "1", "count": "2627" },
+  { "country": "PL", "name": "Tychy", "locations": "1", "count": "2558" },
+  { "country": "PL", "name": "Sosnowiec", "locations": "1", "count": "2651" },
+  { "country": "PL", "name": "Zabrze", "locations": "1", "count": "4432" },
+  { "country": "PL", "name": "Rybnik", "locations": "1", "count": "5254" },
+  { "country": "PL", "name": "Ustroń", "locations": "1", "count": "3542" },
+  {
+    "country": "PL",
+    "name": "Wodzisław Śląski",
+    "locations": "1",
+    "count": "4419"
+  },
+  { "country": "PL", "name": "Złoty Potok", "locations": "1", "count": "5269" },
+  { "country": "PL", "name": "Lubliniec", "locations": "1", "count": "890" },
+  {
+    "country": "PL",
+    "name": "Czerwionka-Leszczyny",
+    "locations": "1",
+    "count": "882"
+  },
+  { "country": "PL", "name": "Kielce", "locations": "1", "count": "5432" },
+  { "country": "PL", "name": "Starachowice", "locations": "1", "count": "820" },
+  { "country": "PL", "name": "Połaniec", "locations": "1", "count": "5261" },
+  { "country": "PL", "name": "Kraków", "locations": "7", "count": "18974" },
+  { "country": "PL", "name": "Elbląg", "locations": "1", "count": "5352" },
+  { "country": "PL", "name": "Krempna", "locations": "1", "count": "2665" },
+  { "country": "PL", "name": "Białystok", "locations": "2", "count": "5985" },
+  { "country": "PL", "name": "Augustów", "locations": "1", "count": "2924" },
+  { "country": "PL", "name": "Łomża", "locations": "1", "count": "2672" },
+  {
+    "country": "PL",
+    "name": "Borsukowizna",
+    "locations": "1",
+    "count": "2654"
+  },
+  { "country": "PL", "name": "Gdynia", "locations": "3", "count": "9146" },
+  { "country": "PL", "name": "Malbork", "locations": "1", "count": "4299" },
+  { "country": "PL", "name": "Skawina", "locations": "1", "count": "2624" },
+  { "country": "PL", "name": "Zakopane", "locations": "1", "count": "5265" },
+  { "country": "PL", "name": "Nowy Targ", "locations": "1", "count": "1742" },
+  { "country": "PL", "name": "Puławy", "locations": "1", "count": "883" },
+  { "country": "PL", "name": "Zamość", "locations": "1", "count": "3487" },
+  { "country": "PL", "name": "Florianka", "locations": "1", "count": "2604" },
+  { "country": "PL", "name": "Jarczew", "locations": "1", "count": "792" },
+  { "country": "PL", "name": "Wschowa", "locations": "1", "count": "5067" },
+  { "country": "PL", "name": "Żary", "locations": "1", "count": "5035" },
+  { "country": "PL", "name": "Sulęcin", "locations": "1", "count": "3273" },
+  { "country": "PL", "name": "Suwałki", "locations": "1", "count": "540" },
+  { "country": "PL", "name": "Granica", "locations": "2", "count": "28690" },
+  { "country": "PL", "name": "Płock", "locations": "4", "count": "100740" },
+  { "country": "PL", "name": "Legionowo", "locations": "2", "count": "40193" },
+  { "country": "PL", "name": "Radom", "locations": "2", "count": "61752" },
+  { "country": "PL", "name": "Otwock", "locations": "2", "count": "11502" },
+  { "country": "PL", "name": "Guty Duże", "locations": "1", "count": "2629" },
+  { "country": "PL", "name": "Żyrardów", "locations": "1", "count": "1754" },
+  {
+    "country": "PL",
+    "name": "Konstancin-Jeziorna",
+    "locations": "1",
+    "count": "5212"
+  },
+  { "country": "PL", "name": "Kaszów", "locations": "1", "count": "1743" },
+  { "country": "PL", "name": "Grudziądz", "locations": "1", "count": "2681" },
+  { "country": "PL", "name": "Zielonka", "locations": "1", "count": "3283" },
+  { "country": "PL", "name": "Wrocław", "locations": "3", "count": "10504" },
+  { "country": "PL", "name": "Wałbrzych", "locations": "1", "count": "5048" },
+  { "country": "PL", "name": "Osieczów", "locations": "1", "count": "2645" },
+  { "country": "PL", "name": "Zgorzelec", "locations": "1", "count": "3399" },
+  { "country": "PL", "name": "Lądek-Zdrój", "locations": "1", "count": "3398" },
+  { "country": "PL", "name": "Lubań", "locations": "1", "count": "2207" },
+  { "country": "PL", "name": "Łódź", "locations": "3", "count": "15066" },
+  { "country": "PL", "name": "Gajew", "locations": "1", "count": "3449" },
+  { "country": "PL", "name": "Radomsko", "locations": "1", "count": "4440" },
+  { "country": "PL", "name": "Olesno", "locations": "1", "count": "2259" },
+  {
+    "country": "PL",
+    "name": "Zdzieszowice",
+    "locations": "1",
+    "count": "3529"
+  },
+  { "country": "PL", "name": "Rzeszów", "locations": "1", "count": "5282" },
+  {
+    "country": "PL",
+    "name": "Kędzierzyn-Koźle",
+    "locations": "1",
+    "count": "5782"
+  },
+  { "country": "PL", "name": "Przemyśl", "locations": "1", "count": "5150" },
+  { "country": "PL", "name": "Ełk", "locations": "1", "count": "3536" },
+  { "country": "PL", "name": "Ostróda", "locations": "1", "count": "4457" },
+  { "country": "PL", "name": "Poznań", "locations": "2", "count": "7657" },
+  { "country": "PL", "name": "Krzyżówka", "locations": "1", "count": "2593" },
+  { "country": "PL", "name": "Konin", "locations": "1", "count": "4334" },
+  { "country": "PL", "name": "Koziegłowy", "locations": "1", "count": "4375" },
+  { "country": "PL", "name": "Borówiec", "locations": "1", "count": "4392" },
+  { "country": "PL", "name": "Szczecin", "locations": "3", "count": "9644" },
+  { "country": "PL", "name": "Koszalin", "locations": "1", "count": "2478" },
+  { "country": "PL", "name": "Katowice", "locations": "2", "count": "7019" },
+  { "country": "PL", "name": "Gliwice", "locations": "1", "count": "2663" },
+  {
+    "country": "PL",
+    "name": "Dąbrowa Górnicza",
+    "locations": "1",
+    "count": "5332"
+  },
+  {
+    "country": "PL",
+    "name": "Bielsko-Biała",
+    "locations": "2",
+    "count": "6078"
+  },
+  { "country": "PL", "name": "Żory", "locations": "1", "count": "1750" },
+  { "country": "PL", "name": "Częstochowa", "locations": "2", "count": "7076" },
+  { "country": "PL", "name": "Cieszyn", "locations": "1", "count": "4419" },
+  { "country": "PL", "name": "Żywiec", "locations": "1", "count": "2667" },
+  { "country": "PL", "name": "Końskie", "locations": "1", "count": "3304" },
+  { "country": "PL", "name": "Nowiny", "locations": "1", "count": "3447" },
+  { "country": "PL", "name": "Małogoszcz", "locations": "1", "count": "2668" },
+  { "country": "PL", "name": "Olsztyn", "locations": "1", "count": "6244" },
+  { "country": "PL", "name": "Tarnów", "locations": "2", "count": "6807" },
+  { "country": "PL", "name": "Nowy Sącz", "locations": "1", "count": "2550" },
+  { "country": "PL", "name": "Mielec", "locations": "1", "count": "5275" },
+  {
+    "country": "PL",
+    "name": "Rymanów-Zdrój",
+    "locations": "1",
+    "count": "1770"
+  },
+  { "country": "PL", "name": "Gdańsk", "locations": "5", "count": "18812" },
+  { "country": "PL", "name": "Sopot", "locations": "1", "count": "3156" },
+  { "country": "PL", "name": "Lębork", "locations": "1", "count": "4341" },
+  { "country": "PL", "name": "Słupsk", "locations": "1", "count": "4517" },
+  { "country": "PL", "name": "Kościerzyna", "locations": "1", "count": "4829" },
+  { "country": "PL", "name": "Szymbark", "locations": "1", "count": "2614" },
+  {
+    "country": "PL",
+    "name": "Liniewko Kościerskie",
+    "locations": "1",
+    "count": "3099"
+  },
+  { "country": "PL", "name": "Szarów", "locations": "1", "count": "1758" },
+  { "country": "PL", "name": "Łeba", "locations": "1", "count": "893" },
+  { "country": "PL", "name": "Trzebinia", "locations": "1", "count": "4343" },
+  {
+    "country": "PL",
+    "name": "Sucha Beskidzka",
+    "locations": "1",
+    "count": "855"
+  },
+  {
+    "country": "PL",
+    "name": "Biała Podlaska",
+    "locations": "1",
+    "count": "3545"
+  },
+  { "country": "PL", "name": "Lublin", "locations": "1", "count": "6204" },
+  { "country": "PL", "name": "Wilczopole", "locations": "1", "count": "730" },
+  {
+    "country": "PL",
+    "name": "Gorzów Wielkopolski",
+    "locations": "1",
+    "count": "5084"
+  },
+  {
+    "country": "PL",
+    "name": "Zielona Góra",
+    "locations": "1",
+    "count": "5842"
+  },
+  {
+    "country": "PL",
+    "name": "Smolary Bytnickie",
+    "locations": "1",
+    "count": "2613"
+  },
+  {
+    "country": "IT",
+    "name": "Civitavecchia",
+    "locations": "10",
+    "count": "163019"
+  },
+  { "country": "IT", "name": "Latina", "locations": "5", "count": "86170" },
+  { "country": "IT", "name": "BOLOGNA", "locations": "3", "count": "51045" },
+  {
+    "country": "IT",
+    "name": "LUGAGNANO VAL D'ARDA",
+    "locations": "1",
+    "count": "17429"
+  },
+  { "country": "IT", "name": "SAN LEO", "locations": "1", "count": "16344" },
+  { "country": "IT", "name": "SASSUOLO", "locations": "1", "count": "17638" },
+  { "country": "IT", "name": "LANGHIRANO", "locations": "1", "count": "17450" },
+  { "country": "IT", "name": "RIMINI", "locations": "1", "count": "8811" },
+  { "country": "IT", "name": "FAENZA", "locations": "1", "count": "17435" },
+  {
+    "country": "IT",
+    "name": "CORTE BRUGNATELLA",
+    "locations": "1",
+    "count": "17010"
+  },
+  {
+    "country": "IT",
+    "name": "JOLANDA DI SAVOIA",
+    "locations": "1",
+    "count": "16919"
+  },
+  { "country": "IT", "name": "IMOLA", "locations": "1", "count": "16731" },
+  {
+    "country": "IT",
+    "name": "PORRETTA TERME",
+    "locations": "1",
+    "count": "16004"
+  },
+  { "country": "IT", "name": "PARMA", "locations": "3", "count": "42995" },
+  {
+    "country": "IT",
+    "name": "VILLA MINOZZO",
+    "locations": "1",
+    "count": "16684"
+  },
+  { "country": "IT", "name": "GUASTALLA", "locations": "1", "count": "17404" },
+  { "country": "IT", "name": "CESENA", "locations": "1", "count": "6820" },
+  {
+    "country": "IT",
+    "name": "SAN LAZZARO DI SAVENA",
+    "locations": "1",
+    "count": "366"
+  },
+  { "country": "IT", "name": "Frosinone", "locations": "8", "count": "152316" },
+  { "country": "IT", "name": "Rieti", "locations": "2", "count": "57779" },
+  { "country": "IT", "name": "Roma", "locations": "25", "count": "501585" },
+  { "country": "IT", "name": "Viterbo", "locations": "3", "count": "78062" },
+  {
+    "country": "IT",
+    "name": "CASTELLARANO",
+    "locations": "1",
+    "count": "17177"
+  },
+  { "country": "IT", "name": "FERRARA", "locations": "2", "count": "34728" },
+  { "country": "IT", "name": "CARPI", "locations": "1", "count": "17744" },
+  { "country": "IT", "name": "MIRANDOLA", "locations": "1", "count": "16887" },
+  { "country": "IT", "name": "CENTO", "locations": "1", "count": "17178" },
+  { "country": "IT", "name": "PIACENZA", "locations": "4", "count": "60613" },
+  { "country": "IT", "name": "MODENA", "locations": "2", "count": "33011" },
+  { "country": "IT", "name": "CERVIA", "locations": "1", "count": "17370" },
+  { "country": "IT", "name": "FORLI'", "locations": "2", "count": "33091" },
+  {
+    "country": "IT",
+    "name": "SAVIGNANO SUL RUBICONE",
+    "locations": "1",
+    "count": "16770"
+  },
+  {
+    "country": "IT",
+    "name": "SAN CLEMENTE",
+    "locations": "1",
+    "count": "17017"
+  },
+  {
+    "country": "IT",
+    "name": "FIORANO MODENESE",
+    "locations": "1",
+    "count": "17538"
+  },
+  { "country": "IT", "name": "COLORNO", "locations": "1", "count": "17162" },
+  { "country": "IT", "name": "OSTELLATO", "locations": "1", "count": "16750" },
+  {
+    "country": "IT",
+    "name": "REGGIO NELL'EMILIA",
+    "locations": "2",
+    "count": "26516"
+  },
+  {
+    "country": "IT",
+    "name": "SOGLIANO AL RUBICONE",
+    "locations": "1",
+    "count": "15189"
+  },
+  { "country": "IT", "name": "ALFONSINE", "locations": "1", "count": "17419" },
+  { "country": "IT", "name": "MOLINELLA", "locations": "1", "count": "16613" },
+  { "country": "IT", "name": "MEZZANI", "locations": "1", "count": "8763" },
+  { "country": "IT", "name": "RAVENNA", "locations": "2", "count": "43165" },
+  { "country": "IT", "name": "SORBOLO", "locations": "1", "count": "8788" },
+  { "country": "IT", "name": "BESENZONE", "locations": "1", "count": "17183" },
+  { "country": "IT", "name": "VERUCCHIO", "locations": "1", "count": "369" }
+]

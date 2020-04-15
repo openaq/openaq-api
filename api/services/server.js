@@ -1,18 +1,17 @@
 'use strict';
-
-var Hapi = require('hapi');
-var Keen = require('keen-js');
-var GoodWinston = require('good-winston');
-var winston = require('winston');
+import Hapi from 'hapi';
+import GoodWinston from 'good-winston';
+import winston from 'winston';
 require('winston-papertrail').Papertrail;
-var os = require('os');
+import os from 'os';
+import jwksRsa from 'jwks-rsa';
+import hapiAuthJwt2 from 'hapi-auth-jwt2';
+import config from 'config';
+
+import { startAthenaSyncTask } from './athena-sync';
 import { getLastUpdated } from './redis';
 
-// Configure Keen instance
-var keen = new Keen({
-  projectId: process.env.KEEN_PROJECT_ID,
-  writeKey: process.env.KEEN_WRITE_KEY
-});
+const athenaConfig = config.get('athena');
 
 var Server = function (port) {
   this.port = port;
@@ -36,6 +35,37 @@ Server.prototype.start = function (cb) {
   var self = this;
   self.hapi.connection({ port: this.port });
   self.hapi.app.url = process.env.API_URL || self.hapi.info.uri;
+
+  // Register auth servive
+  const { strategy, issuer, audience } = config.get('auth');
+  if (strategy === 'jwt') {
+    self.hapi.register({ register: hapiAuthJwt2 }, err => {
+      if (err) return cb(err);
+
+      self.hapi.auth.strategy('jwt', 'jwt', false, {
+        complete: true,
+        key: jwksRsa.hapiJwt2Key({
+          cache: true,
+          rateLimit: true,
+          jwksRequestsPerMinute: 5,
+          jwksUri: `${issuer}.well-known/jwks.json`
+        }),
+        verifyOptions: {
+          audience: audience,
+          issuer: issuer,
+          algorithms: ['RS256']
+        },
+        validateFunc: (decoded, request, callback) => {
+          if (decoded && decoded.sub) {
+            // Check if the user is active.
+            const isActive = decoded['http://openaq.org/user_metadata'].active;
+            return callback(null, isActive);
+          }
+          return callback(null, false);
+        }
+      });
+    });
+  }
 
   // Register hapi-router
   self.hapi.register({
@@ -122,36 +152,6 @@ Server.prototype.start = function (cb) {
     if (err) throw err;
   });
 
-  // Add analytics to endpoints
-  var KeenPlugin = {
-    register: function (server, options, next) {
-      server.ext('onPreHandler', function (request, reply) {
-        // Pass along route view, exclude ping, webhooks and status
-        if (request.route.path !== '/ping' && request.route.path !== '/favicon.ico' && request.route.path.indexOf('webhooks') === -1 && request.route.path !== '/status') {
-          var components = request.route.path.split('/');
-          var rEvent = {
-            endpoint: components[2],
-            version: components[1],
-            query: request.query,
-            ip: request.info.remoteAddress
-          };
-          keen.addEvent('requests', rEvent);
-        }
-
-        return reply.continue();
-      });
-
-      next();
-    }
-  };
-  KeenPlugin.register.attributes = {
-    name: 'KeenPlugin',
-    version: '0.0.1'
-  };
-  self.hapi.register(KeenPlugin, function (err) {
-    if (err) throw err;
-  });
-
   // Handle dynamic CloudFront caching
   var CloudFrontPlugin = {
     register: function (server, options, next) {
@@ -223,6 +223,18 @@ Server.prototype.start = function (cb) {
     self.hapi.log(['info'], 'Server running at:' + self.hapi.info.uri);
     if (cb && typeof cb === 'function') {
       cb();
+    }
+
+    // Start Athena auto sync, if enabled
+    if (athenaConfig.syncEnabled === 'true') {
+      // Wait 5 minutes to start Athena auto sync.
+      // This is a precaution to avoid generate lots of Athena requests
+      // in case the server is restarting frequently due to
+      // some error.
+      setTimeout(() => {
+        // Schedule auto sync task
+        setInterval(startAthenaSyncTask, athenaConfig.syncInterval);
+      }, 5000);
     }
   });
 };

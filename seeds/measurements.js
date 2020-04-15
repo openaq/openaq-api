@@ -17,15 +17,21 @@ let buildSQLObject = function (m) {
   obj.data = assign({}, m);
   // If we have coordinates, save them with postgis
   if (m.coordinates) {
-    obj.coordinates = st.geomFromText(`Point(${m.coordinates.longitude} ${m.coordinates.latitude})`, 4326);
+    obj.coordinates = st.geomFromText(
+      `Point(${m.coordinates.longitude} ${m.coordinates.latitude})`,
+      4326
+    );
   }
 
   return obj;
 };
 
-exports.seed = function (knex, Promise) {
+exports.seed = async function (knex, Promise) {
+  // Clean up measurements table
+  await knex('measurements').del();
+
   // Create array of inserts tasks
-  let tasks = measurements.results.map((m) => {
+  let tasks = measurements.results.map(m => {
     let o = buildSQLObject(m);
     return knex('measurements').insert(o);
   });

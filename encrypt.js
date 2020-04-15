@@ -9,5 +9,6 @@ var encrypt = function (text) {
   return crypted;
 };
 
+/* eslint-disable no-console */
 console.log('Encrypting string: ' + process.argv[2]);
 console.log(encrypt(process.argv[2]));

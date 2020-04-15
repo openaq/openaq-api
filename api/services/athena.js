@@ -1,20 +1,24 @@
 'use strict';
-
+import config from 'config';
 import owl from 'little-owl';
 import pify from 'pify';
 import { doWhilst } from 'async';
 
-const athenaConfig = {
-  accessKeyId: process.env.ATHENA_ACCESS_KEY_ID,
-  secretAccessKey: process.env.ATHENA_SECRET_ACCESS_KEY,
-  outputBucket: process.env.ATHENA_OUTPUT_BUCKET
-};
+// Athena config
+const {
+  accessKeyId,
+  secretAccessKey,
+  outputBucket,
+  fetchesTable
+} = config.get('athena');
 
 class AthenaClient {
   constructor (opts) {
     const o = owl(opts);
     this.submitQuery = pify(o.submitQuery.bind(o));
     this.getQueryResults = pify(o.getQueryResults.bind(o));
+    this.fetchesTable = opts.fetchesTable;
+    this._client = o.athena;
   }
 
   _getAllResults (queryId) {
@@ -105,5 +109,10 @@ class AthenaClient {
   }
 }
 
-const client = new AthenaClient(athenaConfig);
+const client = new AthenaClient({
+  accessKeyId,
+  secretAccessKey,
+  outputBucket,
+  fetchesTable
+});
 export default client;

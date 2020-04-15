@@ -1,8 +1,13 @@
 'use strict';
-
-var Boom = require('boom');
-var m = require('../controllers/cities.js');
+import { db } from '../services/db';
 import { log } from '../services/logger';
+import Boom from 'boom';
+import config from 'config';
+import Joi from 'joi';
+
+const maxRequestLimit = config.get('maxRequestLimit');
+const defaultRequestLimit = config.get('defaultRequestLimit');
+const orderableColumns = ['country', 'city', 'name', 'count', 'locations'];
 
 /**
  * @api {get} /cities GET
@@ -15,7 +20,8 @@ import { log } from '../services/logger';
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results.
  *
- * @apiSuccess {string}   city        Name of the city
+ * @apiSuccess {string}   name        Name of the city
+ * @apiSuccess {string}   city        Name of the city (DEPRECATED: use "name" instead)
  * @apiSuccess {string}   country     Country containing city, in 2 letter ISO code
  * @apiSuccess {number}   count       Number of measurements for this city
  * @apiSuccess {number}   locations   Number of locations in this city
@@ -53,29 +59,79 @@ module.exports = [
     method: ['GET'],
     path: '/v1/cities',
     config: {
-      description: 'An aggregation of cities included in platform.'
-    },
-    handler: function (request, reply) {
-      var params = {};
-
-      // For GET
-      if (request.query) {
-        params = request.query;
+      description: 'Query cities included in platform.',
+      validate: {
+        query: {
+          country: [Joi.string(), Joi.array().items(Joi.string())],
+          limit: Joi.number()
+            .default(defaultRequestLimit)
+            .max(maxRequestLimit),
+          order_by: [
+            Joi.string().valid(orderableColumns),
+            Joi.array().items(Joi.string().valid(orderableColumns))
+          ],
+          page: Joi.number(),
+          sort: [
+            Joi.string().valid('asc', 'desc'),
+            Joi.array().items(Joi.string().valid('asc', 'desc'))
+          ]
+        }
       }
+    },
 
-      // Set max limit based on env var or default to 10000
-      request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
+    handler: async function (request, reply) {
+      try {
+        const { query, page, limit } = request;
+        let { country, order_by, sort } = query;
+        const offset = (page - 1) * limit;
 
-      // Handle it
-      m.query(params, request.page, request.limit, function (err, records, count) {
-        if (err) {
-          log(['error'], err);
-          return reply(Boom.badImplementation(err));
+        // Sort parameters
+        let orderBy;
+        let sortBy = sort ? [].concat(sort) : [];
+        // eslint-disable-next-line
+        if (typeof order_by !== 'undefined') {
+          // Map orderBy as described in: https://knexjs.org/#Builder-orderBy
+          orderBy = [].concat(order_by).map((column, i) => {
+            // Handle parameter deprecation (use "name" instead of "city")
+            if (column === 'city') column = 'name';
+
+            return {
+              column,
+              order: sortBy[i] || 'asc'
+            };
+          });
+        } else {
+          // Default sort order
+          orderBy = ['country', 'name'];
         }
 
-        request.count = count;
-        return reply(records);
-      });
+        // Build where clause
+        const dbQuery = db('cities').where(builder => {
+          if (country) {
+            builder.where('country', 'IN', [].concat(country));
+          }
+        });
+
+        // Query results
+        const results = await dbQuery
+          .clone()
+          .select('country', 'name', 'name as city', 'count', 'locations')
+          .offset(offset)
+          .orderBy(orderBy)
+          .limit(limit);
+
+        // Query count
+        request.count = parseInt(
+          (await dbQuery.count('country').first()).count
+        );
+
+        // Return results
+        reply(results);
+      } catch (err) {
+        // Unexpected error
+        log(['error'], err);
+        reply(Boom.badImplementation(err.message));
+      }
     }
   }
 ];

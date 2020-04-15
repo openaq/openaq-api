@@ -18,10 +18,10 @@ module.exports = [
     method: ['GET'],
     path: '/status',
     handler: (request, reply) => {
-      console.log(options);
       https.get(options, (response) => {
         // Make sure we have a valid response
         if (response.statusCode !== 200) {
+          // eslint-disable-next-line
           console.warn(`Couldn't fetch API Health from New Relic: ${response.statusCode}`);
           return reply({
             healthStatus: 'unknown'
@@ -41,6 +41,7 @@ module.exports = [
           });
         });
       }).on('error', (e) => {
+        // eslint-disable-next-line
         console.warn(`Couldn't fetch API Health from New Relic: ${e.message}`);
         return reply({
           healthStatus: 'unknown'
