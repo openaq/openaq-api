@@ -34,11 +34,11 @@ module.exports = [
         payload: metadataSchema
       }
     },
-    handler: async function (request, reply) {
+    handler: async function (request, h) {
       try {
         // Check if the location exists.
         if (!(await checkLocation(request.params.id))) {
-          return reply(Boom.notFound('This location does not exist'));
+          return Boom.notFound('This location does not exist');
         }
 
         const user = _.get(request, 'auth.credentials.sub', 'anonymous');
@@ -60,12 +60,12 @@ module.exports = [
             .first();
         });
 
-        reply(res);
+        return res;
       } catch (err) {
         /*
          * Unexpected error, log message internally.
          */
-        reply(Boom.badImplementation(err.message));
+        return Boom.badImplementation(err.message);
       }
     }
   }

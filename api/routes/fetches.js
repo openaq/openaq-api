@@ -88,7 +88,7 @@ module.exports = [
     config: {
       description: 'See history of data update attempts by the platform.'
     },
-    handler: function (request, reply) {
+    handler: function (request, h) {
       var params = {};
 
       // For GET
@@ -100,13 +100,15 @@ module.exports = [
       request.limit = Math.min(request.limit, process.env.REQUEST_LIMIT || 10000);
 
       // Handle it
-      m.query(params, request.page, request.limit, function (err, records, count) {
-        if (err) {
-          return reply(Boom.badImplementation(err));
-        }
+      return new Promise((resolve, reject) => {
+        m.query(params, request.page, request.limit, function (err, records, count) {
+          if (err) {
+            return reject(Boom.badImplementation(err));
+          }
 
-        request.count = count;
-        return reply(records);
+          request.count = count;
+          return resolve(records);
+        });
       });
     }
   }

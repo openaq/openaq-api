@@ -79,7 +79,7 @@ module.exports = [
       }
     },
 
-    handler: async function (request, reply) {
+    handler: async function (request, h) {
       try {
         const { query, page, limit } = request;
         let { country, order_by, sort } = query;
@@ -126,11 +126,11 @@ module.exports = [
         );
 
         // Return results
-        reply(results);
+        return results;
       } catch (err) {
         // Unexpected error
         log(['error'], err);
-        reply(Boom.badImplementation(err.message));
+        return Boom.badImplementation(err.message);
       }
     }
   }

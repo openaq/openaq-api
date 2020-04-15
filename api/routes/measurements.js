@@ -124,7 +124,7 @@ module.exports = [
         }
       }
     },
-    handler: async function (request, reply) {
+    handler: async function (request, h) {
       try {
         var params = {};
 
@@ -142,7 +142,7 @@ module.exports = [
         // 6/20/2019 We're seeing major database issues related to someone trying
         // to query the API for all the data in the system and making large page requests.
         if (request.page > (process.env.REQUEST_PAGE || 100)) {
-          return reply(Boom.badRequest('page limit is set too high'));
+          return Boom.badRequest('page limit is set too high');
         }
 
         // Check if this is supposed to be formatted as csv
@@ -206,26 +206,29 @@ module.exports = [
             return r;
           });
 
-          csv(records, options, function (err, data) {
-            if (err) {
-              log(['error'], err);
-              return reply(Boom.badImplementation(err));
-            }
+          return new Promise((resolve, reject) => {
+            csv(records, options, function (err, data) {
+              if (err) {
+                log(['error'], err);
+                return reject(Boom.badImplementation(err));
+              }
 
-            // And force the csv to be downloaded in browser
-            var response = reply(data);
-            response.header('Content-type', 'text/csv');
-            response.header(
-              'Content-disposition',
-              'attachment;filename=openaq.csv'
-            );
+              // And force the csv to be downloaded in browser
+              var response = h.response(data);
+              response.header('Content-type', 'text/csv');
+              response.header(
+                'Content-disposition',
+                'attachment;filename=openaq.csv'
+              );
+              return resolve(response);
+            });
           });
         } else {
           request.count = count;
-          return reply(records);
+          return records;
         }
       } catch (err) {
-        return reply(Boom.badImplementation(err));
+        return Boom.badImplementation(err);
       }
     }
   }

@@ -151,7 +151,7 @@ module.exports = [
         }
       }
     },
-    handler: async function (request, reply) {
+    handler: async function (request, h) {
       try {
         const { query, page, limit } = request;
         const {
@@ -186,11 +186,9 @@ module.exports = [
                   `)
                 );
               } else {
-                reply(
-                  Boom.badRequest(
+                return Boom.badRequest(
                     'Parameter "coordinates" must be set when ordering by distance.'
-                  )
-                );
+                  );
               }
             }
 
@@ -247,11 +245,11 @@ module.exports = [
         /*
          * Return results
          */
-        reply(results);
+        return results;
       } catch (err) {
         // Unexpected error, log message internally.
         log(['error'], err);
-        reply(Boom.badImplementation(err.message));
+        return Boom.badImplementation(err.message);
       }
     }
   },
@@ -315,7 +313,7 @@ module.exports = [
         }
       }
     },
-    handler: async function (request, reply) {
+    handler: async function (request, h) {
       const { metadata } = request.query;
 
       try {
@@ -339,15 +337,15 @@ module.exports = [
 
         // Check if the metadata exists.
         if (!res) {
-          return reply(Boom.notFound('Location was not found'));
+          return Boom.notFound('Location was not found');
         }
 
-        reply(processCoords(res));
+        return processCoords(res);
       } catch (err) {
         /*
          * Unexpected error, log message internally.
          */
-        reply(Boom.badImplementation(err.message));
+        return Boom.badImplementation(err.message);
       }
     }
   }

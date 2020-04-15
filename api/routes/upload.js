@@ -10,14 +10,16 @@ module.exports = [
   {
     method: ['GET'],
     path: '/v1/upload',
-    handler: (request, reply) => {
-      upload.getURL(request.query, (err, url) => {
-        if (err) {
-          log(['error'], `error: ${err.message}`);
-          return reply(err);
-        }
+    handler: (request, h) => {
+      return new Promise((resolve, reject) => {
+        upload.getURL(request.query, (err, url) => {
+          if (err) {
+            log(['error'], `error: ${err.message}`);
+            return reject(err);
+          }
 
-        return reply(url);
+          return resolve(url);
+        });
       });
     }
   }

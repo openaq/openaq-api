@@ -17,15 +17,13 @@ module.exports = [
   {
     method: ['GET'],
     path: '/status',
-    handler: (request, reply) => {
+    handler: (request, h) => {
       https.get(options, (response) => {
         // Make sure we have a valid response
         if (response.statusCode !== 200) {
           // eslint-disable-next-line
           console.warn(`Couldn't fetch API Health from New Relic: ${response.statusCode}`);
-          return reply({
-            healthStatus: 'unknown'
-          });
+          return { healthStatus: 'unknown' };
         }
 
         // Grab data
@@ -36,16 +34,16 @@ module.exports = [
 
         response.on('end', () => {
           const fullHealth = JSON.parse(body);
-          return reply({
+          return {
             healthStatus: fullHealth.application.health_status
-          });
+          };
         });
       }).on('error', (e) => {
         // eslint-disable-next-line
         console.warn(`Couldn't fetch API Health from New Relic: ${e.message}`);
-        return reply({
+        return {
           healthStatus: 'unknown'
-        });
+        };
       });
     }
   }
