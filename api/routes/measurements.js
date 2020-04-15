@@ -6,7 +6,7 @@ import { log } from '../services/logger';
 import { lonLatRegex } from '../../lib/utils';
 import Boom from 'boom';
 import csv from 'csv-stringify';
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 import m from '../controllers/measurements.js';
 
 const maxRequestLimit = config.get('maxRequestLimit');

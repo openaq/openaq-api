@@ -3,7 +3,7 @@ import { db } from '../services/db';
 import { log } from '../services/logger';
 import config from 'config';
 import Boom from 'boom';
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 
 const maxRequestLimit = config.get('maxRequestLimit');
 const defaultRequestLimit = config.get('defaultRequestLimit');

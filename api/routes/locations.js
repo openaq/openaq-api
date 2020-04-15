@@ -4,7 +4,7 @@ import { log } from '../services/logger';
 import { lonLatRegex, buildLocationsWhere } from '../../lib/utils';
 import Boom from 'boom';
 import config from 'config';
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 
 const maxRequestLimit = config.get('maxRequestLimit');
 const defaultRequestLimit = config.get('defaultRequestLimit');
