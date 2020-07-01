@@ -35,7 +35,8 @@ describe('/v1', function () {
         'PUT locations-metadata',
         'measurements',
         'parameters',
-        'sources'
+        'sources',
+        'averages'
       ];
 
       var res = JSON.parse(body);
