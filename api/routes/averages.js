@@ -12,32 +12,32 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
 
 // TODO: ADD IN AVERAGING METHODOLOGY BELOW
 /**
- * @api {get} /averages GET
+ * @api {get} beta/averages GET
  * @apiGroup Averages
- * @apiDescription (BETA) Provides averages across specified spatial and temporal resolutions. Give feedback at: github.com/openaq/openaq-averaging
+ * @apiDescription (!!BETA!!) Provides averages across specified spatial and temporal resolutions. 
+ * NOTE: Because the endpoint is in beta, it has limited functionality, functionality may change, and there may be bugs. Learn more and give feedback: github.com/openaq/openaq-averaging.
  *
+ * @apiParam {string=location, city, country} spatial=location Indicate spatial resolution for calculated average. 
+ * @apiParam {string=day, month, year} temporal=day Indicate temporal resolution for calculated average.
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [city] Limit results by a certain city.
  * @apiParam {string} [location] Limit results by a certain location.
- * @apiParam {string=pm25, pm10, so2, no2, o3, co, bc} [parameter] Note: Currently only works for pm25. Limit to certain one or more parameters (ex. `parameter=pm25` or `parameter[]=co&parameter[]=pm25`)
- * @apiParam {boolean=true, false} [has_geo] Filter out items that have or do not have geographic information.
- * @apiParam {string} [coordinates] Center point (`lat, lon`) used to get calculations within a certain area. (ex. `coordinates=40.23,34.17`)
- * @apiParam {number} [radius=2500] Radius (in meters) used to get calculations within a certain area, must be used with `coordinates`.
- * @apiParam {string} [date_from] Show results after a certain date (in utc). (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
- * @apiParam {string} [date_to] Show results before a certain date (in utc). (ex. `2015-12-20`, or `2015-12-20T09:00:00`)
- * @apiParam {string[]} [order_by=date] Order by one or more fields (ex. `order_by=date` or `order_by[]=value&order_by[]=parameter`).
+ * @apiParam {string=pm25} [parameter] Limit to certain one or more parameters. (ex. `parameter=pm25` or `parameter[]=co&parameter[]=pm25`) Note: Currently only works for pm25.
+ * @apiParam {string} [date_from] Show results after a certain date (in utc). (ex. `2015`, or `2015-12-20`)
+ * @apiParam {string} [date_to] Show results before a certain date (in utc). (ex. `2015-12-20`, or `2015-12-20`)
+ * @apiParam {string[]} [order_by=date] Order by one or more fields. (ex. `order_by=date` or `order_by[]=value&order_by[]=parameter`).
  * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results. Max is set at 100.
  *
- * @apiSuccess {string}   country         Country for calculated average in 2 letter ISO code `default`
+ * @apiSuccess {string}   country         Country for calculated average in 2 letter ISO code
  * @apiSuccess {string}   city            City for calculated average
  * @apiSuccess {string}   location        Location for calculated average
  * @apiSuccess {object}   coordinates     Latitude and longitude for calculated average
- * @apiSuccess {string}   parameter       Parameter for calculated average for `default`
- * @apiSuccess {object}   date            Date and time for calculated average in UTC `default`
- * @apiSuccess {number}   average         Calculated average `default`
- * @apiSuccess {number}   measurement_count   Number of measurements used to calculate average `default`
+ * @apiSuccess {string}   parameter       Parameter for calculated average for 
+ * @apiSuccess {object}   date            Date and time for calculated average in UTC 
+ * @apiSuccess {number}   average         Calculated average 
+ * @apiSuccess {number}   measurement_count   Number of measurements used to calculate average 
 
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK

@@ -138,7 +138,8 @@ module.exports.query = async function (query, page, limit) {
     'parameter',
     'date',
     'average',
-    'measurement_count'
+    'measurement_count',
+    'unit'
   ];
 
     // if (has(payload, 'include_fields')) {
