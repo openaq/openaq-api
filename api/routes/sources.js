@@ -4,7 +4,7 @@ var Boom = require('boom');
 var m = require('../controllers/sources.js');
 
 /**
- * @api {get} /sources GET
+ * @api {get} v1/sources GET
  * @apiGroup Sources
  * @apiDescription Provides a list of data sources.
  *
