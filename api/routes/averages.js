@@ -69,7 +69,7 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
 module.exports = [
   {
     method: ['GET'],
-    path: '/beta/averages',
+    path: '/v1/beta-averages',
     config: {
       description: 'BETA - Retrieve measurement averages for specified spatial and temporal resolutions.',
       validate: {
