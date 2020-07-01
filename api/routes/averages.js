@@ -14,10 +14,10 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
 /**
  * @api {get} beta/averages GET
  * @apiGroup Averages
- * @apiDescription (!!BETA!!) Provides averages across specified spatial and temporal resolutions. 
+ * @apiDescription (!!BETA!!) Provides averages across specified spatial and temporal resolutions.
  * NOTE: Because the endpoint is in beta, it has limited functionality, functionality may change, and there may be bugs. Learn more and give feedback: github.com/openaq/openaq-averaging.
  *
- * @apiParam {string=location, city, country} spatial=location Indicate spatial resolution for calculated average. 
+ * @apiParam {string=location, city, country} spatial=location Indicate spatial resolution for calculated average.
  * @apiParam {string=day, month, year} temporal=day Indicate temporal resolution for calculated average.
  * @apiParam {string} [country] Limit results by a certain country.
  * @apiParam {string} [city] Limit results by a certain city.
@@ -34,10 +34,10 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
  * @apiSuccess {string}   city            City for calculated average
  * @apiSuccess {string}   location        Location for calculated average
  * @apiSuccess {object}   coordinates     Latitude and longitude for calculated average
- * @apiSuccess {string}   parameter       Parameter for calculated average for 
- * @apiSuccess {object}   date            Date and time for calculated average in UTC 
- * @apiSuccess {number}   average         Calculated average 
- * @apiSuccess {number}   measurement_count   Number of measurements used to calculate average 
+ * @apiSuccess {string}   parameter       Parameter for calculated average for
+ * @apiSuccess {object}   date            Date and time for calculated average in UTC
+ * @apiSuccess {number}   average         Calculated average
+ * @apiSuccess {number}   measurement_count   Number of measurements used to calculate average
 
  * @apiSuccessExample {json} Success Response:
  *      HTTP/1.1 200 OK
@@ -124,8 +124,8 @@ module.exports = [
         }
 
                 // Set default spatial and temporal to location and day
-        if (params.spatial === '') { params.spatial = 'location'; }
-        if (params.temporal === '') { params.temporal = 'day'; }
+        if (!params.spatial) { params.spatial = 'location'; }
+        if (!params.temporal) { params.temporal = 'day'; }
 
                 // Check if this is supposed to be formatted as csv
         var formatForCSV = false;
