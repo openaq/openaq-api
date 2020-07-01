@@ -1,5 +1,6 @@
 # OpenAQ Platform API
 [![Build Status](https://travis-ci.org/openaq/openaq-api.svg?branch=master)](https://travis-ci.org/openaq/openaq-api)
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://openaq-slackin.herokuapp.com/)
 
 ## Overview
 This is the main API for the [OpenAQ](https://openaq.org) project.

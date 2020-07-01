@@ -279,12 +279,35 @@ export const upsertCities = async function (athenaQueryResults) {
  * and will update the database, add new objects and updating metadata about
  * existing ones.
  */
-let updating = false;
 export const startAthenaSyncTask = async function () {
-  if (!updating) {
-    // Update flow control flag to avoid restart update unnecessarily
-    updating = true;
+  // Check most recent Athena executions to see if we're running any of these queries currently.
+  let updating = false;
+  try {
+    const ids = await athena._client.listQueryExecutions({MaxResults: 10}).promise();
+    try {
+      let executions = await athena._client.batchGetQueryExecution({QueryExecutionIds: ids.QueryExecutionIds}).promise();
+      // Filter to only active queries
+      executions = executions.QueryExecutions.filter((execution) => {
+        return (execution.Status.State === 'RUNNING' || execution.Status.State === 'QUEUED');
+      });
+      // If we have some queries running, we need to check if they're one of the aggregation ones we're looking for
+      if (executions.length !== 0) {
+        executions.forEach(execution => {
+          if ([queries.getCities.trim(), queries.parametersByLocation.trim(), queries.locationsMetadata.trim()].includes(execution.Query.trim())) {
+            updating = true;
+          }
+        });
+      }
+    } catch (e) {
+      return log('error', `Athena sync task error: ${e.message}`);
+    }
+  } catch (e) {
+    return log('error', `Athena sync task error: ${e.message}`);
+  }
 
+  if (updating) {
+    log('info', 'Tried to start athena sync task, but some were already running.');
+  } else {
     // Enclosed in a try/catch block to help control execution with
     // "updating" variable.
     try {
@@ -314,9 +337,6 @@ export const startAthenaSyncTask = async function () {
       log('info', 'Athena sync task finished successfully.');
     } catch (err) {
       log('error', `Athena sync task error: ${err.message}`);
-    } finally {
-      // Update flow control flag
-      updating = false;
     }
   }
 };
