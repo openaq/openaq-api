@@ -2,8 +2,10 @@
 
 import config from 'config';
 import _ from 'lodash';
+import { log } from '../services/logger';
 import { lonLatRegex } from '../../lib/utils';
 import Boom from 'boom';
+import csv from 'csv-stringify';
 import Joi from 'joi';
 import m from '../controllers/averages.js';
 
@@ -29,6 +31,7 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
  * @apiParam {string[]} [sort=asc] Define sort order for one or more fields (ex. `sort=desc` or `sort[]=asc&sort[]=desc`).
  * @apiParam {number} [limit=100] Change the number of results returned, max is 10000.
  * @apiParam {number} [page=1] Paginate through results. Max is set at 100.
+ * @apiParam {string=csv, json} [format=json] Format for data return. Note that `csv` will return a max of 65,536 results when no limit is set.
  *
  * @apiSuccess {string}   country         Country for calculated average in 2 letter ISO code
  * @apiSuccess {string}   city            City for calculated average
@@ -52,7 +55,7 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
  *     "parameter": "pm25",
  *     "date": "2017-12-26",
  *     "average": 41.2857,
- *     "measurement_count": null
+ *     "measurement_count": 345
  *   }
  *
  * @apiError statusCode     The error code
@@ -79,7 +82,6 @@ module.exports = [
                         .regex(lonLatRegex)
                         .error(() => 'invalid coordinates pair'),
           country: [Joi.string(), Joi.array().items(Joi.string())],
-                    // has_geo: Joi.boolean(),
           limit: Joi.number()
                         .default(defaultRequestLimit)
                         .max(maxRequestLimit),
@@ -96,8 +98,8 @@ module.exports = [
           sort: [
             Joi.string().valid('asc', 'desc'),
             Joi.array().items(Joi.string().valid('asc', 'desc'))
-          ]
-                    // format: Joi.string().valid('json', 'csv'),
+          ],
+          format: Joi.string().valid('json', 'csv')
                     // include_fields: Joi.string()
         }
       }
@@ -143,13 +145,13 @@ module.exports = [
 
                     // Force to include attribution, handle case where it may have already
                     // been present.
-          if (params.include_fields === undefined) {
-            params.include_fields = 'attribution';
-          } else {
-            if (params.include_fields.indexOf('attribution') === -1) {
-              params.include_fields += ',attribution';
-            }
-          }
+          // if (params.include_fields === undefined) {
+          //   params.include_fields = 'attribution';
+          // } else {
+          //   if (params.include_fields.indexOf('attribution') === -1) {
+          //     params.include_fields += ',attribution';
+          //   }
+          // }
         }
         params = _.omit(params, 'format');
 
@@ -160,49 +162,35 @@ module.exports = [
                     request.limit
                 );
 
-        if (formatForCSV) { // IGNORE FOR NOW
-        //   console.log('csv option');
-                    // var columns = [
-                    //     'location',
-                    //     'city',
-                    //     'country',
-                    //     'utc',
-                    //     'local',
-                    //     'parameter',
-                    //     'value',
-                    //     'unit',
-                    //     'latitude',
-                    //     'longitude'
-                    // ];
-                    // var options = {
-                    //     header: true,
-                    //     columns: columns.concat(params.include_fields.split(','))
-                    // };
-                    // records = records.map(function (r) {
-                    //     r.utc = r.date.utc;
-                    //     r.local = r.date.local;
-                    //     if (r.coordinates) {
-                    //         r.latitude = r.coordinates.latitude;
-                    //         r.longitude = r.coordinates.longitude;
-                    //     }
-                    //     r = _.omit(r, ['date', 'coordinates']);
-                    //     return r;
-                    // });
+        if (formatForCSV) {
+          records = records.map(function (r) {
+            if (r.coordinates) {
+              r.latitude = r.coordinates.latitude;
+              r.longitude = r.coordinates.longitude;
+            }
+            r = _.omit(r, ['coordinates']);
+            return r;
+          });
 
-                    // csv(records, options, function (err, data) {
-                    //     if (err) {
-                    //         log(['error'], err);
-                    //         return reply(Boom.badImplementation(err));
-                    //     }
+          var options = {
+            header: true,
+            columns: records[0].keys
+          };
 
-                    //     // And force the csv to be downloaded in browser
-                    //     var response = reply(data);
-                    //     response.header('Content-type', 'text/csv');
-                    //     response.header(
-                    //         'Content-disposition',
-                    //         'attachment;filename=openaq.csv'
-                    //     );
-                    // });
+          csv(records, options, function (err, data) {
+            if (err) {
+              log(['error'], err);
+              return reply(Boom.badImplementation(err));
+            }
+
+            // And force the csv to be downloaded in browser
+            var response = reply(data);
+            response.header('Content-type', 'text/csv');
+            response.header(
+              'Content-disposition',
+              'attachment;filename=openaq.csv'
+            );
+          });
         } else {
           request.count = count;
           return reply(records);
