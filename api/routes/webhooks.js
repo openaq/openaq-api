@@ -8,17 +8,19 @@ module.exports = [
   {
     method: ['POST'],
     path: '/v1/webhooks',
-    handler: function (request, reply) {
+    handler: function (request, h) {
       var payload = request.payload;
 
       // Handle it
-      c.handleAction(payload, function (err, records, count) {
-        if (err) {
-          log(['error'], err);
-          return reply(Boom.badRequest(err.error));
-        }
+      return new Promise((resolve, reject) => {
+        c.handleAction(payload, function (err, records, count) {
+          if (err) {
+            log(['error'], err);
+            return reject(Boom.badRequest(err.error));
+          }
 
-        return reply();
+          return resolve(h.response());
+        });
       });
     }
   }

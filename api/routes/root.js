@@ -4,7 +4,7 @@ const { strategy: authStrategy } = config.get('auth');
 
 // List all sub-level endpoints
 const rootRouteHandler = (request, reply) => {
-  var table = request.server.table(request.server.info.host)[0].table;
+  var table = request.server.table(request.server.info.host);
   var endpoints = [];
   table.forEach((route) => {
     var path = route.public.path;
@@ -16,15 +16,15 @@ const rootRouteHandler = (request, reply) => {
       });
     }
   });
-  return reply(endpoints);
+  return endpoints;
 };
 
 module.exports = [
   {
     method: 'GET',
     path: '/',
-    handler: (request, reply) => {
-      reply.redirect('/v1');
+    handler: (request, h) => {
+      return h.redirect('/v1');
     }
   },
   {
@@ -36,8 +36,8 @@ module.exports = [
   {
     method: 'GET',
     path: '/ping',
-    handler: (request, reply) => {
-      return reply('pong');
+    handler: (request, h) => {
+      return 'pong';
     }
   },
   // Auth
@@ -47,8 +47,8 @@ module.exports = [
     config: {
       auth: authStrategy
     },
-    handler: (request, reply) => {
-      return reply(request.auth);
+    handler: (request, h) => {
+      return request.auth;
     }
   }
 ];

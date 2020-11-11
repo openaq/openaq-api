@@ -51,9 +51,9 @@ module.exports = [
     config: {
       description: 'The list of parameters that OpenAQ collects.'
     },
-    handler: function (request, reply) {
+    handler: function (request, h) {
       p = orderBy(p, request.query.order_by || 'name', request.query.sort || 'asc');
-      return reply(p);
+      return p;
     }
   }
 ];

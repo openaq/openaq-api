@@ -9,3 +9,4 @@ local.env
 ecs-task-generated.json
 data
 local.json
+.vscode
