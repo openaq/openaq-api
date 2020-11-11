@@ -180,6 +180,11 @@ module.exports.query = async function (query, page, limit) {
       } catch (err) {
         direction = 'asc';
       }
+      
+      if (column == 'date_utc') {
+        var limiting_date = (direction == 'asc') ? 'date_from' : 'date_to';
+      }
+      
       sort.push({
         column: column,
         direction: direction
@@ -203,7 +208,41 @@ module.exports.query = async function (query, page, limit) {
   // Apply paging
   //
   var skip = limit * (page - 1);
-
+  
+  //
+  // Apply a date filter to add selectivity.
+  // Knowing that there are a maximum of 600,000 records per day, we know 
+  // the date range can safely be set without removing any rows.
+  //
+  let days = Math.ceil( ( limit + skip ) / 600000 );
+  let seconds = days * 24 *3600;
+  
+  if (has(payload, 'date_to')){
+    let dateTo = new Date(payload.date_to);
+  } else {
+    let dateTo = new Date.now();
+  }
+  if (has(payload, 'date_from')){
+    let dateFrom = new Date(payload.date_from);
+  } else {
+    let dateFrom = new Date.parse('2018-01-01');
+  }
+  if (limiting_date == 'date_from') {
+    dateFrom = dateTo - seconds;
+    operators.push({
+      column: 'date_utc',
+      operator: '>=',
+      value: dateFrom
+    });
+  } else {
+    dateTo = dateFrom + seconds;
+    operators.push({
+      column: 'date_utc',
+      operator: '<=',
+      value: dateTo
+    });
+  }
+  
   // Base query
   let resultsQuery = db
     .select('data')
