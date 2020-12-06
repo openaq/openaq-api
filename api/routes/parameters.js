@@ -5,7 +5,7 @@ import { orderBy } from 'lodash';
 var p = require('../../lib/parameters.json');
 
 /**
- * @api {get} /parameters GET
+ * @api {get} v1/parameters GET
  * @apiGroup Parameters
  * @apiDescription Provides a simple listing of parameters within the platform.
  *

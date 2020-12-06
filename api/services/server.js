@@ -105,7 +105,8 @@ Server.prototype.start = function (cb) {
         '/v1/cities',
         '/v1/countries',
         '/v1/fetches',
-        '/v1/sources'
+        '/v1/sources',
+        '/beta/averages'
       ]
     }
   }, function (err) {

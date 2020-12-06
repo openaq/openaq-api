@@ -80,7 +80,7 @@
   "apidoc": {
     "title": "Open AQ Platform API",
     "name": "Open AQ Platform API",
-    "url": "https://api.openaq.org/v1",
+    "url": "https://api.openaq.org/",
     "template": {
       "withCompare": false
     },

@@ -13,7 +13,7 @@ const maxRequestLimit = config.get('maxRequestLimit');
 const defaultRequestLimit = config.get('defaultRequestLimit');
 
 /**
- * @api {get} /measurements GET
+ * @api {get} v1/measurements GET
  * @apiGroup Measurements
  * @apiDescription Provides data about individual measurements
  *

@@ -20,7 +20,7 @@ async function checkLocation (id) {
 
 module.exports = [
   /**
-   * @api {put} /locations/metadata PUT
+   * @api {put} v1/locations/metadata PUT
    * @apiGroup Locations
    * @apiDescription Allows the user to update the metadata for a given location.
    */

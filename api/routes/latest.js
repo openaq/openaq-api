@@ -5,7 +5,7 @@ var m = require('../controllers/latest.js');
 import { log } from '../services/logger';
 
 /**
- * @api {get} /latest GET
+ * @api {get} v1/latest GET
  * @apiGroup Latest
  * @apiDescription Provides the latest value of each available parameter for every location in the system.
  *

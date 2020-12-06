@@ -10,7 +10,7 @@ const defaultRequestLimit = config.get('defaultRequestLimit');
 const orderableColumns = ['country', 'city', 'name', 'count', 'locations'];
 
 /**
- * @api {get} /cities GET
+ * @api {get} v1/cities GET
  * @apiGroup Cities
  * @apiDescription Provides a simple listing of cities within the platform.
  *

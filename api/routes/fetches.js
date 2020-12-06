@@ -4,7 +4,7 @@ var Boom = require('boom');
 var m = require('../controllers/fetches.js');
 
 /**
- * @api {get} /fetches GET
+ * @api {get} v1/fetches GET
  * @apiGroup Fetches
  * @apiDescription Providing data about individual fetch operations that are
  * used to populate data in the platform.

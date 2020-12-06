@@ -17,7 +17,7 @@ countries = countries.reduce((acc, c) => {
 }, {});
 
 /**
- * @api {get} /countries GET
+ * @api {get} v1/countries GET
  * @apiGroup Countries
  * @apiDescription Provides a simple listing of countries within the platform.
  *
