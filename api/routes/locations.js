@@ -35,7 +35,7 @@ function processCoords (loc) {
 
 module.exports = [
   /**
-   * @api {get} /locations GET
+   * @api {get} v1/locations GET
    * @apiGroup Locations
    * @apiDescription Provides a list of measurement locations and their meta data.
    *
@@ -257,7 +257,7 @@ module.exports = [
   },
 
   /**
-   * @api {get} /locations/{id} GET
+   * @api {get} v1/locations/{id} GET
    * @apiGroup Locations
    * @apiDescription Provides data on a specific location
    *
