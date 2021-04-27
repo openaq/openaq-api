@@ -61,7 +61,7 @@
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
     "pg": "^4.4.3",
-    "redis": "^2.4.2",
+    "redis": "^3.1.1",
     "turf-distance": "^1.1.0",
     "turf-point": "^2.0.1",
     "winston": "^2.1.1",
