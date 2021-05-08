@@ -55,7 +55,7 @@
     "knex": "^0.16.3",
     "knex-postgis": "^0.7.0",
     "little-owl": "^1.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "moment": "^2.18.1",
     "newrelic": "^1.21.1",
     "nodemon": "^1.18.10",
