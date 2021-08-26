@@ -123,7 +123,7 @@ Via an undocumented `/upload` endpoint, there is the ability to generate presign
 
 ## Dockerfile
 
-There is a Dockerfile included that will turn the project into a Docker container. The container can be found [here](https://hub.docker.com/r/flasher/openaq-api/) and is currently mostly used for deployment purposes for [AWS ECS](https://aws.amazon.com/ecs/). If someone wanted to make it better for local development, that'd be a great PR!
+There is a Dockerfile included that will turn the project into a Docker container. [The container](https://hub.docker.com/r/flasher/openaq-api/) is currently mostly used for deployment purposes for [AWS ECS](https://aws.amazon.com/ecs/). If someone wanted to make it better for local development, that'd be a great PR!
 
 ## Contributing
 There are a lot of ways to contribute to this project, more details can be found in the [contributing guide](CONTRIBUTING.md).

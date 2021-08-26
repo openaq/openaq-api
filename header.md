@@ -1,6 +1,6 @@
 ### Overview
 
-Welcome to the OpenAQ API! This API is used to power various [tools built by the community](https://openaq.org/#/community) as well as [openaq.org](https://openaq.org). 
+Welcome to the OpenAQ API! This API is used to power various [tools built by the community](https://openaq.org/#/community) as well as [openaq.org](https://openaq.org).
 
 If you have any problems, please create an issue on [GitHub](https://github.com/openaq/openaq-api/issues)!
 
@@ -14,4 +14,4 @@ There are IP-based limits imposed of ~2000 requests over a 5 minute period. If y
 
 ### License
 
-For the most up to date license information, please see [here](https://github.com/openaq/openaq-api/blob/develop/LICENSE.md).
+Please refer to the [most up to date license information](https://github.com/openaq/openaq-api/blob/develop/LICENSE.md).
