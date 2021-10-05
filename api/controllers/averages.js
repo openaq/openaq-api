@@ -13,42 +13,6 @@ import moment from 'moment';
  *
  * @param {Object} query - Payload contains query parameters and their values
  */
-// const queryCountViaLocations = async function (query) {
-//     let totalCount;
-
-//     // Flag if query has "parameter" property defined.
-//     const countByParameters = query.parameter && query.parameter.length > 0;
-
-//     // Create query
-//     let counts = await db
-//         .select(countByParameters ? 'countsByMeasurement' : 'count')
-//         .from('locations')
-//         .where(buildLocationsWhere(query));
-
-//     // If querying by parameter, break down count per measurement
-//     if (countByParameters) {
-//         // Convert parameters to array, if string
-//         const queryParameters = [].concat(query.parameter);
-
-//         // Add values by parameter
-//         totalCount = counts.reduce((count, i) => {
-//             return (
-//                 count +
-//                 i.countsByMeasurement.reduce((pCount, p) => {
-//                     // Filter by queried parameters
-//                     return pCount + (queryParameters.includes(p.parameter) ? p.count : 0);
-//                 }, 0)
-//             );
-//         }, 0);
-//     } else {
-//         // If no parameters were passed, return total count
-//         totalCount = counts.reduce((count, i) => {
-//             return count + i.count;
-//         }, 0);
-//     }
-
-//     return totalCount;
-// };
 
 /**
  * Query row count via measurements table.
