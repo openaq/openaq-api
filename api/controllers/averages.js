@@ -19,37 +19,7 @@ import moment from 'moment';
  *
  * @param {Object} query - Payload contains query parameters and their values
  */
-// const queryCountViaMeasurements = async function (query) {
-//     // Omit query parameters that doesn't affect count
-//     query = omit(query, ['sort', 'limit', 'page', 'order_by', 'include_fields']);
 
-//     // Parse request as database query
-//     let {
-//         payload,
-//         operators,
-//         betweens,
-//         nulls,
-//         notNulls,
-//         geo
-//     } = queryFromParameters(query);
-
-//     // Get base db query
-//     let countQuery = db.count('location').from('measurements');
-
-//     // Apply parameters
-//     countQuery = buildSQLQuery(
-//         countQuery,
-//         payload,
-//         operators,
-//         betweens,
-//         nulls,
-//         notNulls,
-//         geo
-//     );
-
-//     // Return count
-//     return Number((await countQuery)[0].count);
-// };
 
 /**
  * Query Measurements. Implements all protocols supported by /measurements endpoint
@@ -66,20 +36,8 @@ module.exports.query = async function (query, page, limit) {
      * When query filters by values or date, the count is fetched via
      * measurements table, which do not include full history.
      */
-    // // DON'T NEED FOLLOWING I'M PRETTY SURE
+
   let count;
-    // if (
-    //     intersection(Object.keys(query), [
-    //         'value_from',
-    //         'value_to',
-    //         'date_from',
-    //         'date_to'
-    //     ]).length > 0
-    // ) {
-    //     count = await queryCountViaMeasurements(query);
-    // } else {
-    //     count = await queryCountViaLocations(query);
-    // }
 
     // Turn the payload into something we can use with psql
   let {
@@ -105,17 +63,6 @@ module.exports.query = async function (query, page, limit) {
     'measurement_count',
     'unit'
   ];
-
-    // if (has(payload, 'include_fields')) {
-    //     // Turn into an array and add to projection
-    //     var fields = payload.include_fields.split(',');
-    //     forEach(fields, function (f) {
-    //         projection.push(f);
-    //     });
-
-    //     // sanitized payload
-    //     payload = omit(payload, 'include_fields');
-    // }
 
     //
     // Handle custom sorts, starting with default of most recent measurements first.
