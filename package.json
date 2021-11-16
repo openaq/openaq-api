@@ -35,7 +35,7 @@
   "homepage": "https://github.com/openaq/openaq-api#readme",
   "dependencies": {
     "async": "^1.5.0",
-    "aws-sdk": "^2.7.0",
+    "aws-sdk": "^2.814.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-register": "^6.26.0",
     "boom": "^7.3.0",
