@@ -2,6 +2,10 @@
 [![Build Status](https://travis-ci.org/openaq/openaq-api.svg?branch=master)](https://travis-ci.org/openaq/openaq-api)
 [![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://openaq-slackin.herokuapp.com/)
 
+## NO LONGER IN USE
+
+This codebase is no longer in use, please see https://github.com/openaq/openaq-api-v2.  Version 1 of the OpenAQ API is still available via api.openaq.org/v1 but has been reimplemented in the same repository as version 2.
+
 ## Overview
 This is the main API for the [OpenAQ](https://openaq.org) project.
 
