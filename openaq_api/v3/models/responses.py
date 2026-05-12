@@ -269,7 +269,7 @@ class FlagInfo(JsonBase):
 
 
 class Measurement(JsonBase):
-    value: float
+    value: float | None = None
     flag_info: FlagInfo
     parameter: ParameterBase
     period: Period | None = None
