@@ -135,7 +135,23 @@ class ParametersQueries(
     RadiusQuery,
     ParameterTypeQuery,
     ParametersSorting,
-): ...
+):
+    def ensure_no_spatial_filters(self) -> None:
+        """Reject spatial filters that this endpoint cannot execute.
+
+        ``parameters_view_cached`` has no geometry column, so applying
+        ``RadiusQuery`` / ``BboxQuery`` SQL produces an undefined-column
+        error and HTTP 500.
+        """
+        if (
+            self.bbox is not None
+            or self.coordinates is not None
+            or self.radius is not None
+        ):
+            raise HTTPException(
+                status_code=422,
+                detail="coordinates, radius, and bbox are not supported on /v3/parameters",
+            )
 
 
 @router.get(
@@ -169,6 +185,8 @@ async def parameters_get(
 
 
 async def fetch_parameters(query, db) -> ParametersResponse:
+    if isinstance(query, ParametersQueries):
+        query.ensure_no_spatial_filters()
     query_builder = QueryBuilder(query)
     ## TODO
     sql = f"""
