@@ -36,7 +36,7 @@ from openaq_api.v3.models.queries import (
     truncate_float,
 )
 from openaq_api.v3.routers.locations import LocationPathQuery, LocationsQueries
-from openaq_api.v3.routers.parameters import ParametersQueries
+from openaq_api.v3.routers.parameters import ParametersQueries, _reject_spatial_filters
 
 
 class TestTruncateFloat:
@@ -674,23 +674,17 @@ class TestDatetimeMinQuery:
 
 class TestParametersQueries:
     def test_no_spatial_filters_allowed(self):
-        query = ParametersQueries()
-        query.ensure_no_spatial_filters()
+        _reject_spatial_filters(ParametersQueries())
 
     def test_coordinates_radius_rejected(self):
-        """Issue #383: spatial filters on /v3/parameters must be 422, not 500."""
-        query = ParametersQueries(
-            coordinates="51.509865,-0.118092",
-            radius=1000,
-        )
+        query = ParametersQueries(coordinates="51.509865,-0.118092", radius=1000)
         with pytest.raises(fastapi.exceptions.HTTPException) as exc_info:
-            query.ensure_no_spatial_filters()
-        err = exc_info.value
-        assert err.status_code == 422
-        assert "not supported on /v3/parameters" in err.detail
+            _reject_spatial_filters(query)
+        assert exc_info.value.status_code == 422
+        assert "not supported on /v3/parameters" in exc_info.value.detail
 
     def test_bbox_rejected(self):
         query = ParametersQueries(bbox="-77.1234,38.7916,-76.9094,38.9955")
         with pytest.raises(fastapi.exceptions.HTTPException) as exc_info:
-            query.ensure_no_spatial_filters()
+            _reject_spatial_filters(query)
         assert exc_info.value.status_code == 422
