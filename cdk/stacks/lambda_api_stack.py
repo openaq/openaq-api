@@ -233,65 +233,65 @@ class LambdaApiStack(Stack):
                 ],
             )
 
-            log_event_queue = aws_sqs.Queue(
-                self,
-                f"openaq-api-cf-log-event-queue-{env_name}",
-                visibility_timeout=Duration.seconds(cf_logs_lambda_timeout),
-            )
+            # log_event_queue = aws_sqs.Queue(
+            #     self,
+            #     f"openaq-api-cf-log-event-queue-{env_name}",
+            #     visibility_timeout=Duration.seconds(cf_logs_lambda_timeout),
+            # )
 
-            log_bucket.add_event_notification(
-                aws_s3.EventType.OBJECT_CREATED_PUT,
-                aws_s3_notifications.SqsDestination(log_event_queue),
-            )
+            # log_bucket.add_event_notification(
+            #     aws_s3.EventType.OBJECT_CREATED_PUT,
+            #     aws_s3_notifications.SqsDestination(log_event_queue),
+            # )
 
-            cloudfront_access_log_group = aws_logs.LogGroup(
-                self,
-                f"openaq-api-{env_name}-cf-access-log",
-                retention=aws_logs.RetentionDays.ONE_YEAR,
-            )
+            # cloudfront_access_log_group = aws_logs.LogGroup(
+            #     self,
+            #     f"openaq-api-{env_name}-cf-access-log",
+            #     retention=aws_logs.RetentionDays.ONE_YEAR,
+            # )
 
-            cloudfront_access_log_group.add_stream(
-                f"openaq-api-{env_name}-cf-access-log-stream",
-                log_stream_name=f"openaq-api-{env_name}-cf-access-log-stream",
-            )
+            # cloudfront_access_log_group.add_stream(
+            #     f"openaq-api-{env_name}-cf-access-log-stream",
+            #     log_stream_name=f"openaq-api-{env_name}-cf-access-log-stream",
+            # )
 
-            log_lambda = aws_lambda.Function(
-                self,
-                f"openaq-api-cloudfront-logs-{env_name}-lambda",
-                code=aws_lambda.Code.from_asset(
-                    path="../cloudfront_logs",
-                    exclude=[
-                        "venv",
-                        "__pycache__",
-                        "pytest_cache",
-                    ],
-                ),
-                handler="cloudfront_logs.main.handler",
-                runtime=aws_lambda.Runtime.PYTHON_3_11,
-                allow_public_subnet=True,
-                memory_size=cf_logs_lambda_memory_size,
-                environment=stringify_settings(cloudfront_logs_lambda_env),
-                timeout=Duration.seconds(cf_logs_lambda_timeout),
-                layers=[
-                    create_dependencies_layer(
-                        self,
-                        f"{env_name}",
-                        "cloudfront_logs",
-                        aws_lambda.Runtime.PYTHON_3_11,
-                    ),
-                ],
-            )
+            # log_lambda = aws_lambda.Function(
+            #     self,
+            #     f"openaq-api-cloudfront-logs-{env_name}-lambda",
+            #     code=aws_lambda.Code.from_asset(
+            #         path="../cloudfront_logs",
+            #         exclude=[
+            #             "venv",
+            #             "__pycache__",
+            #             "pytest_cache",
+            #         ],
+            #     ),
+            #     handler="cloudfront_logs.main.handler",
+            #     runtime=aws_lambda.Runtime.PYTHON_3_11,
+            #     allow_public_subnet=True,
+            #     memory_size=cf_logs_lambda_memory_size,
+            #     environment=stringify_settings(cloudfront_logs_lambda_env),
+            #     timeout=Duration.seconds(cf_logs_lambda_timeout),
+            #     layers=[
+            #         create_dependencies_layer(
+            #             self,
+            #             f"{env_name}",
+            #             "cloudfront_logs",
+            #             aws_lambda.Runtime.PYTHON_3_11,
+            #         ),
+            #     ],
+            # )
 
-            log_lambda.add_event_source(
-                SqsEventSource(
-                    log_event_queue,
-                    batch_size=10,
-                    max_batching_window=Duration.minutes(1),
-                    report_batch_item_failures=True,
-                )
-            )
+            # log_lambda.add_event_source(
+            #     SqsEventSource(
+            #         log_event_queue,
+            #         batch_size=10,
+            #         max_batching_window=Duration.minutes(1),
+            #         report_batch_item_failures=True,
+            #     )
+            # )
 
-            log_bucket.grant_read(log_lambda)
+            # log_bucket.grant_read(log_lambda)
 
             origin_url = Fn.select(
                 2, Fn.split("/", api_url)
