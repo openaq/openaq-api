@@ -1,4 +1,5 @@
 from datetime import datetime, date
+import json
 from zoneinfo import ZoneInfo
 
 import fastapi
@@ -466,6 +467,14 @@ class TestBboxQuery:
             BboxQuery(bbox="-179.0,38.7916,-181.9094,38.9955")
         with pytest.raises(fastapi.exceptions.HTTPException):
             BboxQuery(bbox="-179.0,38.7916,-76.9094,-90.9955")
+
+    def test_inverted_bbox_returns_serializable_422(self):
+        with pytest.raises(fastapi.exceptions.HTTPException) as exc_info:
+            BboxQuery(bbox="50.01535,58.22718,8.4727,8.8084")
+        err = exc_info.value
+        assert err.status_code == 422
+        assert json.dumps(err.detail)
+        assert all(set(item.keys()) == {"loc", "msg", "type"} for item in err.detail)
 
     def test_minx(self):
         assert self.bbox_query.minx == -77.1234

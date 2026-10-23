@@ -179,6 +179,28 @@ class CommaSeparatedList(list, metaclass=TypeParametersMemoizer):
         raise NotImplementedError("should be overridden in metaclass")
 
 
+def _serializable_validation_detail(exc: ValidationError) -> list[dict[str, Any]]:
+    """Strip Pydantic internals so HTTP 422 bodies stay JSON-serializable.
+
+    Custom validators raise ``ValueError``, which Pydantic stores on
+    ``ctx.error``. FastAPI/Mangum cannot encode that object and respond
+    with HTTP 500 instead of 422.
+    """
+    detail: list[dict[str, Any]] = []
+    for error in exc.errors():
+        loc = error.get("loc", ())
+        if not loc or loc[0] != "query":
+            loc = ("query",) + tuple(loc)
+        detail.append(
+            {
+                "loc": list(loc),
+                "msg": error.get("msg"),
+                "type": error.get("type"),
+            }
+        )
+    return detail
+
+
 class QueryBaseModel(ABC, BaseModel):
     """Base class for building query objects.
 
@@ -198,10 +220,7 @@ class QueryBaseModel(ABC, BaseModel):
         try:
             super().__init__(**kwargs)
         except ValidationError as e:
-            errors = e.errors()
-            for error in errors:
-                error["loc"] = ("query",) + error["loc"]
-            raise HTTPException(422, detail=errors)
+            raise HTTPException(422, detail=_serializable_validation_detail(e))
 
     model_config = ConfigDict(
         str_min_length=1,
