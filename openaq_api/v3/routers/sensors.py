@@ -96,7 +96,10 @@ async def fetch_sensors(q, db):
     ELSE NULL
     END as summary
     , CASE
-        WHEN r.value_latest IS NOT NULL THEN
+        WHEN r.value_latest IS NOT NULL
+         AND r.value_count IS NOT NULL
+         AND s.data_averaging_period_seconds > 0
+         AND s.data_logging_period_seconds > 0 THEN
       jsonb_build_object(
         'datetime_from', get_datetime_object(r.datetime_first, t.tzid),
         'datetime_to', get_datetime_object(r.datetime_last, t.tzid)
